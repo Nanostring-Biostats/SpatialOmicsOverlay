@@ -1,0 +1,83 @@
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Imports
+import(Biobase)
+import(ggplot2)
+import(S4Vectors)
+import(XML)
+import(GeomxTools)
+
+importFrom(base64enc,base64decode)
+importFrom(data.table,fread)
+importFrom(dplyr,bind_rows)
+importFrom(dplyr,distinct)
+importFrom(EBImage,imageData)
+importFrom(EBImage,"imageData<-")
+importFrom(EBImage,normalize)
+importFrom(grDevices,col2rgb)
+importFrom(magick,as_EBImage)
+importFrom(magick,image_flip)
+importFrom(magick,image_flop)
+importFrom(magick,image_info)
+importFrom(magick,image_ggplot)
+importFrom(magick,image_read)
+importFrom(pbapply,pbapply)
+importFrom(RBioFormats,read.image)
+importFrom(RBioFormats,read.metadata)
+importFrom(RBioFormats,read.omexml)
+importFrom(readxl,read_xlsx)
+importFrom(scattermore,geom_scattermore)
+
+importClassesFrom(GeomxTools,NanoStringGeoMxSet)
+
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Export S4 classes
+exportClasses(SpatialOverlay)
+exportClasses(SpatialPosition)
+
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Export S4 generics
+
+export(SpatialOverlay, SpatialPosition, position, meta, slideName, overlay, 
+       scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, seg,
+       "plotFactors<-", "coords<-", sampNames, image)
+
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Export S4 methods
+
+export(SpatialOverlay, SpatialPosition, position, meta, show, slideName, overlay, 
+       scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, seg,
+       "plotFactors<-", "coords<-", sampNames, image)
+
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Export non-generic functions
+
+export(addImageFile)
+export(addImageOmeTiff)
+export(bookendStr)
+export(coordsFromMask)
+export(checkValidRes)
+export(createCoordFile)
+export(createMask)
+export(decodeB64)
+export(flipX)
+export(flipY)
+export(fluorData)
+export(imageExtraction)
+export(parseOverlayAttrs)
+export(parseScanMetatdata)
+export(pencilCoordSorting)
+export(physicalSizes)
+export(plotSpatialOverlay)
+export(readLabWorksheet)
+export(readSpatialOverlay)
+#export(removeBleedOver)
+export(removeSample)
+export(scaleBarPrinting)
+export(scaleCoords)
+export(themeTransparent)
+export(xmlExtraction)
+
+### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### Export S3 methods
+
+exportMethods(addPlottingFactor)
