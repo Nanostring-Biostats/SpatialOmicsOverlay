@@ -60,8 +60,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
     
     if(outline(overlay) == TRUE){
         gp <- gp +
-            geom_polygon(data = pts, aes(x=xcoor, y=ycoor, fill=colorBy),
-                         alpha = alpha, aes(group=sampleID))+
+            geom_polygon(data = pts, aes(x=xcoor, y=ycoor, fill=colorBy, group=sampleID),
+                         alpha = alpha)+
             labs(fill = colorBy)
     }else if(hiRes == TRUE){
         gp <- gp +

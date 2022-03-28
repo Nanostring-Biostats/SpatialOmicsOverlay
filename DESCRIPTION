@@ -1,4 +1,4 @@
-Package: ImagePlotting
+Package: SpatialOmicsOverlay
 Title: Spatial Overlay for Omic Data From Nanostring GeoMx data
 Description: Tools for NanoString Technologies GeoMx Technology. Package to easily graph on top of an image. 
               Using OME-XML info to plot in the correct coordinates
