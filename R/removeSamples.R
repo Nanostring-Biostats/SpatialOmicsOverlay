@@ -1,6 +1,6 @@
 #' Remove sample(s) from SpatialOverlay
 #' 
-#' @param object SpatialOverlay object
+#' @param overlay SpatialOverlay object
 #' @param remove sampNames of overlay to remove
 #' 
 #' @return SpatialOverlay object without samples in remove
@@ -10,16 +10,16 @@
 #' @export 
 #' 
 
-removeSample <- function(object, remove){
-    w2kp <- which(!sampNames(object) %in% remove)
+removeSample <- function(overlay, remove){
+    w2kp <- which(!sampNames(overlay) %in% remove)
     
-    if(length(w2kp) == length(sampNames(object))){
-        warning("No valid sample names; returning original object")
-            return(object)
+    if(length(w2kp) == length(sampNames(overlay))){
+        warning("No valid sample names; returning original overlay")
+            return(overlay)
     }else{
-        AOIattrs <- SpatialPosition(overlay(object)@position[w2kp,])
+        AOIattrs <- SpatialPosition(overlay(overlay)@position[w2kp,])
         
-        scan_metadata <- scanMeta(object)
+        scan_metadata <- scanMeta(overlay)
         
         if(any(meta(AOIattrs)$Segmentation == "Segmented")){
             scan_metadata[["Segmentation"]] <- "Segmented"
@@ -27,16 +27,16 @@ removeSample <- function(object, remove){
             scan_metadata[["Segmentation"]] <- "Geometric"
         }
         
-        if(!is.null(coords(object))){
-            newCoords <- coords(object)[!coords(object)$sampleID %in% remove,]
+        if(!is.null(coords(overlay))){
+            newCoords <- coords(overlay)[!coords(overlay)$sampleID %in% remove,]
         }else{
-            newCoords <- coords(object)
+            newCoords <- coords(overlay)
         }
         
-        if(!is.null(plotFactors(object))){
-            plotFacts <- as.data.frame(plotFactors(object)[w2kp,])
-            colnames(plotFacts) <- colnames(plotFactors(object))
-            rownames(plotFacts) <- rownames(plotFactors(object))[w2kp]
+        if(!is.null(plotFactors(overlay))){
+            plotFacts <- as.data.frame(plotFactors(overlay)[w2kp,])
+            colnames(plotFacts) <- colnames(plotFactors(overlay))
+            rownames(plotFacts) <- rownames(plotFactors(overlay))[w2kp]
             
             for(i in 1:ncol(plotFacts)){
                 if(class(plotFacts[,i]) == "character"){
@@ -44,17 +44,18 @@ removeSample <- function(object, remove){
                 }
             }
         }else{
-            plotFacts <- plotFactors(object)
+            plotFacts <- plotFactors(overlay)
         }
         
-        return(SpatialOverlay(slideName = slideName(object),
+        return(SpatialOverlay(slideName = slideName(overlay),
                               scanMetadata = scan_metadata,
                               overlayData = AOIattrs,
                               coords = newCoords,
                               plottingFactors = plotFacts,
-                              workflow = object@workflow,
-                              image = object@image))
+                              workflow = overlay@workflow,
+                              image = overlay@image))
     }
     
     
 }
+ 

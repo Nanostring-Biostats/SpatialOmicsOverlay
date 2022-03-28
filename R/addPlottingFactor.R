@@ -1,7 +1,7 @@
 
 #' Add plotting factor to \code{\link{SpatialOverlay}} object
 #' 
-#' @param object \code{\link{SpatialOverlay}} object
+#' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots object with annotation: can be \code{NanoStringGeoMxSet}, 
 #'                  \code{data.frame}, \code{matrix}, or vector containing 
 #'                  \code{character}, \code{factor}, or \code{numeric}
@@ -18,11 +18,11 @@
 
 
 setGeneric("addPlottingFactor", signature = "annots",
-           function(object, annots, plottingFactor, ...) standardGeneric("addPlottingFactor"))
+           function(overlay, annots, plottingFactor, ...) standardGeneric("addPlottingFactor"))
 
 
 setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
-          function(object, annots, plottingFactor, countMatrix = "exprs"){
+          function(overlay, annots, plottingFactor, countMatrix = "exprs"){
               if(length(plottingFactor) > 1){
                   warning("Plotting factors must be added 1 at a time, continuing with only the first factor")
                   plottingFactor <- plottingFactor[1]
@@ -38,7 +38,7 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
                   axis <- "row"
               }
               
-              samples <- sampNames(object)
+              samples <- sampNames(overlay)
               
               sampIDs <- which(apply(as.matrix(sData(annots)), 2, function(x){any(samples %in% x)}))
               
@@ -52,52 +52,52 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
               samples <- samples[match(gxtSamples, samples, nomatch = 0)]
 
               
-              if(length(samples) != length(sampNames(object))){
+              if(length(samples) != length(sampNames(overlay))){
                   warning(paste("Missing annotations in annots. Samples missing:", 
-                                paste(sampNames(object)[!sampNames(object) %in% samples], 
+                                paste(sampNames(overlay)[!sampNames(overlay) %in% samples], 
                                       collapse = ", ")))
-                  object <- removeSample(object = object, 
-                                         remove = sampNames(object)[which(!sampNames(object) %in% samples)])
+                  overlay <- removeSample(overlay = overlay, 
+                                         remove = sampNames(overlay)[which(!sampNames(overlay) %in% samples)])
               }
               
-              if(plottingFactor %in% colnames(plotFactors(object))){
+              if(plottingFactor %in% colnames(plotFactors(overlay))){
                   if(axis == "col"){
-                      plotFactors(object)[[plottingFactor]] <- sData(annots)[[plottingFactor]]
+                      plotFactors(overlay)[[plottingFactor]] <- sData(annots)[[plottingFactor]]
                   }else{
-                      plotFactors(object)[[plottingFactor]] <- assayDataElement(annots, 
+                      plotFactors(overlay)[[plottingFactor]] <- assayDataElement(annots, 
                                                                                 elt = countMatrix)[rownames(annots) == 
                                                                                                        plottingFactor,]
                   }
               }else{
                   if(axis == "col"){
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), sData(annots)[[plottingFactor]]))
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), sData(annots)[[plottingFactor]]))
                   }else{
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), 
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), 
                                                                  assayDataElement(annots, 
                                                                                   elt = countMatrix)[rownames(annots) == 
                                                                                                          plottingFactor,]))
                   }
                   
-                  rownames(plotFactors(object)) <- samples
-                  colnames(plotFactors(object))[ncol(plotFactors(object))] <- plottingFactor
+                  rownames(plotFactors(overlay)) <- samples
+                  colnames(plotFactors(overlay))[ncol(plotFactors(overlay))] <- plottingFactor
               }
               
-              if(class(plotFactors(object)[,ncol(plotFactors(object))]) == "character"){
-                  plotFactors(object)[,ncol(plotFactors(object))] <- as.factor(plotFactors(object)[,ncol(plotFactors(object))])
+              if(class(plotFactors(overlay)[,ncol(plotFactors(overlay))]) == "character"){
+                  plotFactors(overlay)[,ncol(plotFactors(overlay))] <- as.factor(plotFactors(overlay)[,ncol(plotFactors(overlay))])
               }
               
-              return(object)
+              return(overlay)
           })
           
 setMethod("addPlottingFactor",  "matrix",
-          function(object, annots, plottingFactor){
+          function(overlay, annots, plottingFactor){
               return(addPlottingFactor(annots = as.data.frame(annots), 
-                                       object = object, 
+                                       overlay = overlay, 
                                        plottingFactor = plottingFactor))
           })    
 
 setMethod("addPlottingFactor",  "data.frame",
-          function(object, annots, plottingFactor){
+          function(overlay, annots, plottingFactor){
               if(length(plottingFactor) > 1){
                   warning("Plotting factors must be added 1 at a time, continuing with only the first factor")
                   plottingFactor <- plottingFactor[1]
@@ -113,7 +113,7 @@ setMethod("addPlottingFactor",  "data.frame",
                   axis <- "row"
               }
               
-              samples <- sampNames(object)
+              samples <- sampNames(overlay)
               
               if(axis == "col"){
                   sampIDs <- which(apply(annots, 2, function(x){any(samples %in% x)}))
@@ -129,68 +129,68 @@ setMethod("addPlottingFactor",  "data.frame",
                   samples <- samples[match(colnames(annots), samples, nomatch = 0)]
               }
               
-              if(length(samples) != length(sampNames(object))){
+              if(length(samples) != length(sampNames(overlay))){
                   warning(paste("Missing annotations in annots. Samples missing:", 
-                                paste(sampNames(object)[!sampNames(object) %in% samples], 
+                                paste(sampNames(overlay)[!sampNames(overlay) %in% samples], 
                                       collapse = ", ")))
-                  object <- removeSample(object = object, 
-                                         remove = sampNames(object)[which(!sampNames(object) %in% samples)])
+                  overlay <- removeSample(overlay = overlay, 
+                                         remove = sampNames(overlay)[which(!sampNames(overlay) %in% samples)])
               }
               
-              if(plottingFactor %in% colnames(plotFactors(object))){
+              if(plottingFactor %in% colnames(plotFactors(overlay))){
                   if(axis == "col"){
-                      plotFactors(object)[[plottingFactor]] <- annots[[plottingFactor]]
+                      plotFactors(overlay)[[plottingFactor]] <- annots[[plottingFactor]]
                   }else{
-                      plotFactors(object)[[plottingFactor]] <- t(annots[rownames(annots) == plottingFactor,])
+                      plotFactors(overlay)[[plottingFactor]] <- t(annots[rownames(annots) == plottingFactor,])
                   }
               }else{
                   if(axis == "col"){
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), annots[[plottingFactor]]))
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), annots[[plottingFactor]]))
                   }else{
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), t(annots[rownames(annots) == plottingFactor,])))
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), t(annots[rownames(annots) == plottingFactor,])))
                   }
-                  rownames(plotFactors(object)) <- samples
-                  colnames(plotFactors(object))[ncol(plotFactors(object))] <- plottingFactor
+                  rownames(plotFactors(overlay)) <- samples
+                  colnames(plotFactors(overlay))[ncol(plotFactors(overlay))] <- plottingFactor
               }
               
-              if(class(plotFactors(object)[,ncol(plotFactors(object))]) == "character"){
-                  plotFactors(object)[,ncol(plotFactors(object))] <- as.factor(plotFactors(object)[,ncol(plotFactors(object))])
+              if(class(plotFactors(overlay)[,ncol(plotFactors(overlay))]) == "character"){
+                  plotFactors(overlay)[,ncol(plotFactors(overlay))] <- as.factor(plotFactors(overlay)[,ncol(plotFactors(overlay))])
               }
               
-              return(object)
+              return(overlay)
           }) 
 
 setMethod("addPlottingFactor",  "character",
-          function(object, annots, plottingFactor){
+          function(overlay, annots, plottingFactor){
               if(is.null(names(annots))){
-                  warning("No names on vector, assuming data is in same order as object", 
+                  warning("No names on vector, assuming data is in same order as overlay", 
                           immediate. = TRUE)
               }
               
               samples <- names(annots)
               
-              if(length(annots) < length(sampNames(object))){
+              if(length(annots) < length(sampNames(overlay))){
                   if(is.null(names(annots))){
-                      stop("Length of annots does not match samples in object & there are no names to match to")
+                      stop("Length of annots does not match samples in overlay & there are no names to match to")
                   }
                   
                   warning(paste("Missing annotations in annots. Samples missing:", 
-                                paste(sampNames(object)[!sampNames(object) %in% samples], 
+                                paste(sampNames(overlay)[!sampNames(overlay) %in% samples], 
                                       collapse = ", ")))
-                  object <- removeSample(object = object, 
-                                         remove = sampNames(object)[which(!sampNames(object) %in% samples)])
+                  overlay <- removeSample(overlay = overlay, 
+                                         remove = sampNames(overlay)[which(!sampNames(overlay) %in% samples)])
               }
               
-              samples <- sampNames(object)
+              samples <- sampNames(overlay)
               
-              if(plottingFactor %in% colnames(plotFactors(object))){
+              if(plottingFactor %in% colnames(plotFactors(overlay))){
                   if(is.null(names(annots))){
                       annots <- annots[1:length(samples)]
                   }else{
                       annots <- annots[match(samples, names(annots), nomatch = 0)]
                       samples <- samples[match(names(annots), samples, nomatch = 0)]
                   }
-                  plotFactors(object)[[plottingFactor]] <- annots
+                  plotFactors(overlay)[[plottingFactor]] <- annots
               }else{
                   if(!is.null(samples)){
                       if(is.null(names(annots))){
@@ -199,37 +199,37 @@ setMethod("addPlottingFactor",  "character",
                           annots <- annots[match(samples, names(annots), nomatch = 0)]
                           samples <- samples[match(names(annots), samples, nomatch = 0)]
                       }
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), annots))
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), annots))
                   }else{
-                      plotFactors(object) <- as.data.frame(cbind(plotFactors(object), t(annots)))
+                      plotFactors(overlay) <- as.data.frame(cbind(plotFactors(overlay), t(annots)))
                   }
                   
-                  rownames(plotFactors(object)) <- samples
-                  colnames(plotFactors(object))[ncol(plotFactors(object))] <- plottingFactor
+                  rownames(plotFactors(overlay)) <- samples
+                  colnames(plotFactors(overlay))[ncol(plotFactors(overlay))] <- plottingFactor
               }
               
-              if(class(plotFactors(object)[,ncol(plotFactors(object))]) == "character"){
-                  plotFactors(object)[,ncol(plotFactors(object))] <- as.factor(plotFactors(object)[,ncol(plotFactors(object))])
+              if(class(plotFactors(overlay)[,ncol(plotFactors(overlay))]) == "character"){
+                  plotFactors(overlay)[,ncol(plotFactors(overlay))] <- as.factor(plotFactors(overlay)[,ncol(plotFactors(overlay))])
               }
               
-              return(object)
+              return(overlay)
           }) 
 
 setMethod("addPlottingFactor",  "numeric",
-          function(object, annots, plottingFactor){
-             object <- addPlottingFactor(object, 
+          function(overlay, annots, plottingFactor){
+             overlay <- addPlottingFactor(overlay, 
                                          setNames(as.character(annots), 
                                                   names(annots)), 
                                          plottingFactor)
               
-             plotFactors(object)[,ncol(plotFactors(object))] <- as.numeric(as.character(plotFactors(object)[,ncol(plotFactors(object))]))
+             plotFactors(overlay)[,ncol(plotFactors(overlay))] <- as.numeric(as.character(plotFactors(overlay)[,ncol(plotFactors(overlay))]))
  
-             return(object)
+             return(overlay)
           }) 
 
 setMethod("addPlottingFactor",  "factor",
-          function(object, annots, plottingFactor){
-              addPlottingFactor(object, 
+          function(overlay, annots, plottingFactor){
+              addPlottingFactor(overlay, 
                                 setNames(as.character(annots), 
                                          names(annots)), 
                                 plottingFactor)

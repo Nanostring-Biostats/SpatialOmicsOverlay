@@ -45,71 +45,17 @@ imageColoring <- function(omeImage, scanMeta){
     return(normalize(omeImage))
 }
 
-#' #' Remove bleed over around tissue 
-#' #' 
-#' #' @param omeImage AnnotatedImage from read.image
-#' #' @param minTresh percent of max value to set minimum threshold i.e. max * minThresh. 
-#' #'                   Values below this max * minThresh value are set to 0
-#' #' 
-#' #' @return AnnotatedImage with color values below minThresh set to 0
-#' #' 
-#' #' @examples
-#' #' 
-#' #' @importFrom imageData EBImage
-#' #' @importFrom imageData<- EBImage
-#' #' @importFrom as_EBImage magick
-#' #' @importFrom as_EBImage magick
-#' #'
-#' #' @export
-#' 
-#' setGeneric("removeBleedOver", function(omeImage, minTresh = 0.05) standardGeneric("removeBleedOver"))
-#' 
-#' 
-#' setMethod("removeBleedOver",  "SpatialOverlay",
-#'           function(omeImage, minTresh = 0.05){
-#'               if(class(minTresh) != "numeric"){
-#'                   stop("prop must be numeric")
-#'               }
-#'               
-#'               if(minTresh > 0.5){
-#'                   stop("prop must be between 0 - 0.5")
-#'               }
-#'               
-#'               so <- omeImage
-#'               
-#'               omeImage <- as_EBImage(image(so))
-#'               
-#'               # remove bleed over around tissue
-#'               imageData(omeImage)[,,1][imageData(omeImage)[,,1] < max(imageData(omeImage)[,,1])*minTresh] <- 0
-#'               imageData(omeImage)[,,2][imageData(omeImage)[,,2] < max(imageData(omeImage)[,,2])*minTresh] <- 0
-#'               imageData(omeImage)[,,3][imageData(omeImage)[,,3] < max(imageData(omeImage)[,,3])*minTresh] <- 0
-#'               
-#'               so@image$imagePointer <- image_read(omeImage)
-#' 
-#'               return(so)
-#'           })
-#' 
-#' setMethod("removeBleedOver",  "Image",
-#'           function(omeImage, minTresh = 0.05){
-#'               if(class(minTresh) != "numeric"){
-#'                   stop("prop must be numeric")
-#'               }
-#'               
-#'               if(minTresh > 0.5){
-#'                   stop("prop must be between 0 - 0.5")
-#'               }
-#'               
-#'               # remove bleed over around tissue
-#'               imageData(omeImage)[,,1][imageData(omeImage)[,,1] < max(imageData(omeImage)[,,1])*minTresh] <- 0
-#'               imageData(omeImage)[,,2][imageData(omeImage)[,,2] < max(imageData(omeImage)[,,2])*minTresh] <- 0
-#'               imageData(omeImage)[,,3][imageData(omeImage)[,,3] < max(imageData(omeImage)[,,3])*minTresh] <- 0
-#'               
-#'               return(omeImage)
-#'           })
+changeImageColoring <- function(){
+    
+}
+
+changeColoringIntensity <- function(){
+    
+}
 
 #' Flip y axis in image and overlay points 
 #' 
-#' @param object SpatialOverlay object
+#' @param overlay SpatialOverlay object
 #' 
 #' @return SpatialOverlay object with y axis flipped
 #' 
@@ -119,18 +65,18 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' @export 
 #' 
-flipY <- function(object){
-    object@image$imagePointer <- image_flip(image(object))
+flipY <- function(overlay){
+    overlay@image$imagePointer <- image_flip(image(overlay))
     
-    coords(object)$ycoor <- abs(image_info(image(object))$height - 
-                                    coords(object)$ycoor)
+    coords(overlay)$ycoor <- abs(image_info(image(overlay))$height - 
+                                     coords(overlay)$ycoor)
     
-    return(object)
+    return(overlay)
 }
 
 #' Flip x axis in image and overlay points 
 #' 
-#' @param object SpatialOverlay object
+#' @param overlay SpatialOverlay object
 #' 
 #' @return SpatialOverlay object with x axis flipped
 #' 
@@ -140,49 +86,173 @@ flipY <- function(object){
 #' 
 #' @export 
 #' 
-flipX <- function(object){
-    object@image$imagePointer <- image_flop(image(object))
+flipX <- function(overlay){
+    overlay@image$imagePointer <- image_flop(image(overlay))
     
-    coords(object)$xcoor <- abs(image_info(image(object))$width - 
-                                    coords(object)$xcoor)
+    coords(overlay)$xcoor <- abs(image_info(image(overlay))$width - 
+                                     coords(overlay)$xcoor)
     
-    return(object)
+    return(overlay)
 }
 
 #' Create coordinate file for entire scan
 #' 
-#' @param overlay df from GeoMxmlParsing_AOIattrs
-#' @param outline returned coordinates only contain outlinearies, 
-#'                   will not work for segmented ROIs
+#' @param overlay SpatialOverlay object
+#' @param xmin minimum x coordinate
+#' @param xmax maximum x cooridnate
+#' @param ymin minimum y coordinate
+#' @param ymax maximum y coordinate
 #' 
 #' @return df of coordinates for every AOI in the scan
 #' 
 #' @examples
 #' 
-#' @importFrom bind_rows dplyr
-#' @importFrom pbapply pbapply 
+#' @importFrom image_crop magick
+#' @importFrom image_info magick
 #' 
-#' @export 
 #' 
-crop <- function(object){
+crop <- function(overlay, xmin, xmax, ymin, ymax){
+    if(class(xmin) != "numeric" | class(xmax) != "numeric" |
+       class(ymin) != "numeric" | class(ymax) != "numeric"){
+        stop("min/max coordinate values must be numeric")
+    }
     
+    if(xmin < 0 | ymin < 0 | xmax < 0 | ymax < 0){
+        stop("min/max coordinate values must be greater than 0")
+    }
+    
+    maxWidth <- image_info(overlay@image$imagePointer)$width
+    maxHeight <- image_info(overlay@image$imagePointer)$height
+    
+    if(xmax <= xmin){
+        stop("xmax must be greater than xmin")
+    }
+    if(ymax > ymin){
+        ymax <- maxHeight - ymax
+        ymin <- maxHeight - ymin
+    }
+    
+    width  <- xmax - xmin
+    height <- ymin - ymax
+    
+    if(xmax > maxWidth){
+        stop("xmax must be within image")
+    }
+    if(ymin > maxHeight){
+        stop("ymin must be within image")
+    }
+    
+    overlay@image$imagePointer <- image_crop(overlay@image$imagePointer, 
+                                             paste0(width,  "x", height,
+                                                    "+", xmin, "+", ymax))
+    
+    coords(overlay) <- coords(overlay)[coords(overlay)$xcoor >= xmin &
+                                       coords(overlay)$xcoor <= xmax &
+                                       coords(overlay)$ycoor >= (maxHeight - ymin) &
+                                       coords(overlay)$ycoor <= (maxHeight - ymax),]
+    
+    coords(overlay)$xcoor <- coords(overlay)$xcoor - xmin
+    coords(overlay)$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
+    
+    return(overlay)
 }
 
-#' Create coordinate file for entire scan
+#' Crop to zoom in on given ROIs
 #' 
-#' @param overlay df from GeoMxmlParsing_AOIattrs
-#' @param outline returned coordinates only contain outlinearies, 
-#'                   will not work for segmented ROIs
+#' @param overlay SpatialOverlay object
+#' @param sampleIDs sampleIDs of ROIs to keep in image
+#' @param buffer percent of new image size to add to each edge as a buffer 
+#' @param sampsOnly should only ROIs with given sampleIDs be in image
 #' 
-#' @return df of coordinates for every AOI in the scan
+#' @return SpatialOverlay object
 #' 
 #' @examples
 #' 
-#' @importFrom bind_rows dplyr
-#' @importFrom pbapply pbapply 
+#' @importFrom image_info magick
 #' 
 #' @export 
 #' 
-autoCrop <- function(object){
+cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
+    if(!all(sampleIDs %in% sampNames(overlay))){
+        warning("invalid sampleIDs given, proceeding with only valid sampleIDs", 
+                immediate. = TRUE)
+        
+        sampleIDs <- sampleIDs[sampleIDs %in% sampNames(overlay)]
+        
+        if(length(sampleIDs) == 0){
+            stop("No valid sampleIDs")
+        }
+    }
     
+    if(is.null(coords(overlay))){
+        stop("No coordinates for found. Run createCoordFile() before running this function")
+    }
+    
+    sampCoords <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
+    
+    maxHeight <- image_info(overlay@image$imagePointer)$height
+    
+    xmin <- min(sampCoords$xcoor)
+    xmax <- max(sampCoords$xcoor)
+    ymin <- maxHeight - min(sampCoords$ycoor)
+    ymax <- maxHeight - max(sampCoords$ycoor)
+    
+    xbuf <- (xmax-xmin)*(buffer)
+    ybuf <- (ymin-ymax)*(buffer)
+    
+    xmin <- xmin-xbuf
+    xmax <- xmax+xbuf
+    ymin <- ymin+ybuf
+    ymax <- ymax-ybuf
+    
+    overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
+                    ymin = ymin, ymax = ymax)
+    
+    if(sampsOnly == TRUE){
+        coords(overlay) <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
+    }
+    
+    return(overlay)
+}
+
+#' Crop to remove black boundary around tissue.
+#' 
+#' @param overlay SpatialOverlay object
+#' @param buffer percent of new image size to add to each edge as a buffer 
+#' 
+#' @return SpatialOverlay object 
+#' 
+#' @examples
+#' 
+#' 
+#' @export 
+#'
+cropTissue <- function(overlay, buffer = 0.05){
+    image_data <- imageData(as_EBImage(overlay@image$imagePointer))
+    
+    
+    red <- image_data[,,1] > 0.1
+    green <- image_data[,,2] > 0.1
+    blue <- image_data[,,3] > 0.1
+    
+    bg <- matrix(boundary(red & green & blue), 
+                 nrow = nrow(red), ncol = ncol(red))
+    
+    xmin <- min(which(rowSums(bg) > nrow(red)*0.03))
+    xmax <- max(which(rowSums(bg) > nrow(red)*0.03))
+    ymin <- max(which(colSums(bg) > ncol(red)*0.03))
+    ymax <- min(which(colSums(bg) > ncol(red)*0.03))
+    
+    xbuf <- (xmax-xmin)*(buffer)
+    ybuf <- (ymin-ymax)*(buffer)
+    
+    xmin <- xmin-xbuf
+    xmax <- xmax+xbuf
+    ymin <- ymin+ybuf
+    ymax <- ymax-ybuf
+    
+    overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
+         ymin = ymin, ymax = ymax)
+    
+    return(overlay)
 }

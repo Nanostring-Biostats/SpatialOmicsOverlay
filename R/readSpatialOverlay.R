@@ -80,7 +80,8 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
     
     if(image == TRUE){
         print("Scaling Coordinates")
-        so <- scaleCoords(object = so)
+        so <- scaleCoords(overlay = so)
+        so <- cropTissue(overlay = so)
     }
      
     

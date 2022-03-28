@@ -209,7 +209,7 @@ boundary <-  function(mat) {
 
 #' Scale coordinates to the size of the image
 #' 
-#' @param object SpatialOverlay object
+#' @param overlay SpatialOverlay object
 #' 
 #' @return SpatialOverlay object 
 #' 
@@ -219,28 +219,28 @@ boundary <-  function(mat) {
 #' @importFrom image_info magick
 #' 
 #' @export
-scaleCoords <- function(object){
-    if(class(object) != "SpatialOverlay"){
-        stop("Object must be a SpatialOverlay")
+scaleCoords <- function(overlay){
+    if(class(overlay) != "SpatialOverlay"){
+        stop("overlay must be a SpatialOverlay")
     }
-    if(object@workflow$scaled == TRUE){
+    if(overlay@workflow$scaled == TRUE){
         stop("Coordinates are already scaled and can't be scaled again")
     }
-    if(is.null(image(object))){
+    if(is.null(image(overlay))){
         warning("No image has been added to the SpatialOverlay object, no scaling will be done")
     }else{
-        scaling <- 1/2^(object@image$resolution-1)
+        scaling <- 1/2^(overlay@image$resolution-1)
         
         #scale and center y axis
-        coords(object)$ycoor <- image_info(image(object))$height - 
-            round(coords(object)$ycoor * scaling) 
+        coords(overlay)$ycoor <- image_info(image(overlay))$height - 
+            round(coords(overlay)$ycoor * scaling) 
         
-        coords(object)$xcoor <- round(coords(object)$xcoor * scaling)
+        coords(overlay)$xcoor <- round(coords(overlay)$xcoor * scaling)
         
-        coords(object) <- distinct(coords(object))
+        coords(overlay) <- distinct(coords(overlay))
         
-        object@workflow$scaled <- TRUE
+        overlay@workflow$scaled <- TRUE
     }
     
-    return(object)
+    return(overlay)
 }
