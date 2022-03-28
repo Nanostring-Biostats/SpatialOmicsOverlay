@@ -4,10 +4,10 @@
 \alias{removeSample}
 \title{Remove sample(s) from SpatialOverlay}
 \usage{
-removeSample(object, remove)
+removeSample(overlay, remove)
 }
 \arguments{
-\item{object}{SpatialOverlay object}
+\item{overlay}{SpatialOverlay object}
 
 \item{remove}{sampNames of overlay to remove}
 }

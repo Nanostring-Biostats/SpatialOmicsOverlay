@@ -21,8 +21,9 @@ imageColoring <- function(omeImage, scanMeta){
     if("MinIntensity" %in% colnames(scanMeta$Fluorescence)){
         for(i in 1:nrow(scanMeta$Fluorescence)){
             imageData(omeImage)[,,i] <- normalize(imageData(omeImage)[,,i],
-                                                  inputRange = c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
-                                                                 as.numeric(scanMeta$Fluorescence$MaxIntensity[i])))
+                                                  inputRange = 
+                                                      c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
+                                                        as.numeric(scanMeta$Fluorescence$MaxIntensity[i])))
         }
     }
     
@@ -136,10 +137,10 @@ crop <- function(overlay, xmin, xmax, ymin, ymax){
     height <- ymin - ymax
     
     if(xmax > maxWidth){
-        stop("xmax must be within image")
+        xmax <- maxWidth
     }
     if(ymin > maxHeight){
-        stop("ymin must be within image")
+        ymin <- maxHeight
     }
     
     overlay@image$imagePointer <- image_crop(overlay@image$imagePointer, 
@@ -200,10 +201,10 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
     xbuf <- (xmax-xmin)*(buffer)
     ybuf <- (ymin-ymax)*(buffer)
     
-    xmin <- xmin-xbuf
-    xmax <- xmax+xbuf
-    ymin <- ymin+ybuf
-    ymax <- ymax-ybuf
+    xmin <- max(xmin-xbuf, 0)
+    xmax <- min(xmax+xbuf, image_info(overlay@image$imagePointer)$width)
+    ymin <- min(ymin+ybuf,maxHeight)
+    ymax <- max(ymax-ybuf, 0)
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
                     ymin = ymin, ymax = ymax)

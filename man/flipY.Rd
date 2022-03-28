@@ -2,76 +2,17 @@
 % Please edit documentation in R/imageManipulation.R
 \name{flipY}
 \alias{flipY}
-\title{#' Remove bleed over around tissue 
-#' 
-#' @param omeImage AnnotatedImage from read.image
-#' @param minTresh percent of max value to set minimum threshold i.e. max * minThresh. 
-#'                   Values below this max * minThresh value are set to 0
-#' 
-#' @return AnnotatedImage with color values below minThresh set to 0
-#' 
-#' @examples
-#' 
-#' @importFrom imageData EBImage
-#' @importFrom imageData<- EBImage
-#' @importFrom as_EBImage magick
-#' @importFrom as_EBImage magick
-#'
-#' @export}
+\title{Flip y axis in image and overlay points}
 \usage{
-flipY(object)
+flipY(overlay)
 }
 \arguments{
-\item{object}{SpatialOverlay object}
+\item{overlay}{SpatialOverlay object}
 }
 \value{
 SpatialOverlay object with y axis flipped
 }
 \description{
-setGeneric("removeBleedOver", function(omeImage, minTresh = 0.05) standardGeneric("removeBleedOver"))
-}
-\details{
-setMethod("removeBleedOver",  "SpatialOverlay",
-          function(omeImage, minTresh = 0.05){
-              if(class(minTresh) != "numeric"){
-                  stop("prop must be numeric")
-              }
-              
-              if(minTresh > 0.5){
-                  stop("prop must be between 0 - 0.5")
-              }
-              
-              so <- omeImage
-              
-              omeImage <- as_EBImage(image(so))
-              
-              # remove bleed over around tissue
-              imageData(omeImage)[,,1][imageData(omeImage)[,,1] < max(imageData(omeImage)[,,1])*minTresh] <- 0
-              imageData(omeImage)[,,2][imageData(omeImage)[,,2] < max(imageData(omeImage)[,,2])*minTresh] <- 0
-              imageData(omeImage)[,,3][imageData(omeImage)[,,3] < max(imageData(omeImage)[,,3])*minTresh] <- 0
-              
-              so@image$imagePointer <- image_read(omeImage)
-
-              return(so)
-          })
-
-setMethod("removeBleedOver",  "Image",
-          function(omeImage, minTresh = 0.05){
-              if(class(minTresh) != "numeric"){
-                  stop("prop must be numeric")
-              }
-              
-              if(minTresh > 0.5){
-                  stop("prop must be between 0 - 0.5")
-              }
-              
-              # remove bleed over around tissue
-              imageData(omeImage)[,,1][imageData(omeImage)[,,1] < max(imageData(omeImage)[,,1])*minTresh] <- 0
-              imageData(omeImage)[,,2][imageData(omeImage)[,,2] < max(imageData(omeImage)[,,2])*minTresh] <- 0
-              imageData(omeImage)[,,3][imageData(omeImage)[,,3] < max(imageData(omeImage)[,,3])*minTresh] <- 0
-              
-              return(omeImage)
-          })
 Flip y axis in image and overlay points
 }
 \examples{

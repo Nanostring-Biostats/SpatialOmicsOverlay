@@ -4,10 +4,10 @@
 \alias{flipX}
 \title{Flip x axis in image and overlay points}
 \usage{
-flipX(object)
+flipX(overlay)
 }
 \arguments{
-\item{object}{SpatialOverlay object}
+\item{overlay}{SpatialOverlay object}
 }
 \value{
 SpatialOverlay object with x axis flipped

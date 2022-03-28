@@ -4,13 +4,18 @@
 \alias{crop}
 \title{Create coordinate file for entire scan}
 \usage{
-crop(object)
+crop(overlay, xmin, xmax, ymin, ymax)
 }
 \arguments{
-\item{overlay}{df from GeoMxmlParsing_AOIattrs}
+\item{overlay}{SpatialOverlay object}
 
-\item{outline}{returned coordinates only contain outlinearies, 
-will not work for segmented ROIs}
+\item{xmin}{minimum x coordinate}
+
+\item{xmax}{maximum x cooridnate}
+
+\item{ymin}{minimum y coordinate}
+
+\item{ymax}{maximum y coordinate}
 }
 \value{
 df of coordinates for every AOI in the scan

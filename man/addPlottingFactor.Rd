@@ -4,10 +4,10 @@
 \alias{addPlottingFactor}
 \title{Add plotting factor to \code{\link{SpatialOverlay}} object}
 \usage{
-addPlottingFactor(object, annots, plottingFactor, ...)
+addPlottingFactor(overlay, annots, plottingFactor, ...)
 }
 \arguments{
-\item{object}{\code{\link{SpatialOverlay}} object}
+\item{overlay}{\code{\link{SpatialOverlay}} object}
 
 \item{annots}{object with annotation: can be \code{NanoStringGeoMxSet}, 
 \code{data.frame}, \code{matrix}, or vector containing 

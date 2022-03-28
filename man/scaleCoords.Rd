@@ -4,10 +4,10 @@
 \alias{scaleCoords}
 \title{Scale coordinates to the size of the image}
 \usage{
-scaleCoords(object)
+scaleCoords(overlay)
 }
 \arguments{
-\item{object}{SpatialOverlay object}
+\item{overlay}{SpatialOverlay object}
 }
 \value{
 SpatialOverlay object
