@@ -19,5 +19,4 @@ Crop to remove black boundary around tissue.
 }
 \examples{
 
-
 }

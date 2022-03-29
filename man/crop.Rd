@@ -4,7 +4,7 @@
 \alias{crop}
 \title{Create coordinate file for entire scan}
 \usage{
-crop(overlay, xmin, xmax, ymin, ymax)
+crop(overlay, xmin, xmax, ymin, ymax, coords = TRUE)
 }
 \arguments{
 \item{overlay}{SpatialOverlay object}
@@ -16,6 +16,8 @@ crop(overlay, xmin, xmax, ymin, ymax)
 \item{ymin}{minimum y coordinate}
 
 \item{ymax}{maximum y coordinate}
+
+\item{coords}{should coords be cropped}
 }
 \value{
 df of coordinates for every AOI in the scan
