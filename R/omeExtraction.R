@@ -71,7 +71,7 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #' @export
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
-                            fileType = "tiff"){
+                            fileType = "tiff", color = TRUE){
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -93,7 +93,14 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     omeImage <- read.image(ometiff, resolution = res,
                        read.metadata = F, normalize = F)
     
-    omeImage <- imageColoring(omeImage, scanMeta)
+    if(color == TRUE){
+        omeImage <- imageColoring(omeImage, scanMeta)
+    }else{
+        if(saveFile == TRUE){
+            warning("file can only be saved if color == TRUE, will not save file", immediate. = T)
+            saveFile <- FALSE
+        }
+    }
     
     if(saveFile == TRUE){
         width <- omeImage@metadata$coreMetadata$sizeX
@@ -121,7 +128,11 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
         dev.off()
     }
     
-    return(image_read(omeImage))
+    if(color == TRUE){
+        omeImage <- image_read(omeImage)
+    }
+    
+    return(omeImage)
 }
 
 #' Determine lowest resolution image in OME-TIFF

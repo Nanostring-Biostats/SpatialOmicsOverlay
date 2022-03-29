@@ -46,12 +46,121 @@ imageColoring <- function(omeImage, scanMeta){
     return(normalize(omeImage))
 }
 
-changeImageColoring <- function(){
+#' Update color scheme for changing to RGB image
+#' 
+#' @param overlay SpatialOverlay object, with 4channel image
+#' @param color color to change dye to, hex or color name
+#' @param dye which dye to change color, can be from Dye or DisplayName column from fluor(overlay)
+#' 
+#' @return SpatialOverlay object with updated fluor data
+#' 
+#' @examples
+#' 
+#' @importFrom color.id plotrix
+#' @importFrom str_to_title stringr
+#' 
+#' @export
+#'
+changeImageColoring <- function(overlay, color, dye){
+    if(class(image(overlay)) != "AnnotatedImage"){
+        stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
+    }
     
+    if(!dye %in% fluor(overlay)$Dye & !dye %in% fluor(overlay)$DisplayName){
+        stop("dye not found in overlay object")
+    }
+    
+    dyeCol <- ifelse(dye %in% fluor(overlay)$Dye, "Dye", "DisplayName")
+    dyeRow <- which(fluor(overlay)[[dyeCol]] == dye)
+    
+    overlay@scanMetadata$Fluorescence$ColorCode[dyeRow] <- color
+    
+    if(startsWith(color, "#")){
+        overlay@scanMetadata$Fluorescence$Color[dyeRow] <- str_to_title(color.id(color)[1])
+    }else{
+        overlay@scanMetadata$Fluorescence$Color[dyeRow] <- str_to_title(color)
+    }
+    
+    return(overlay)
 }
 
-changeColoringIntensity <- function(){
+#' Update color intensities for changing to RGB image
+#' 
+#' @param overlay SpatialOverlay object
+#' @param minInten value to change MinIntensity to; NULL indicates no change
+#' @param maxInten value to change MaxIntensity to; NULL indicates no change
+#' @param dye which dye to change color, can be from Dye or DisplayName column from fluor(overlay)
+#' 
+#' @return SpatialOverlay object with updated fluor data
+#' 
+#' @examples
+#' 
+#' @export
+#'
+changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, dye){
+    if(class(image(overlay)) != "AnnotatedImage"){
+        stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
+    }
     
+    if(!dye %in% fluor(overlay)$Dye & !dye %in% fluor(overlay)$DisplayName){
+        stop("dye not found in overlay object")
+    }
+    
+    if(is.null(minInten) & is.null(maxInten)){
+        stop("changes must be made to minInten and/or maxInten")
+    }
+    
+    if(class(minInten) != "numeric"){
+        stop("minInten must be numeric")
+    }
+    
+    if(class(maxInten) != "numeric"){
+        stop("maxInten must be numeric")
+    }
+    
+    if(minInten < 0){
+        stop("minInten must be a positive value")
+    }
+    
+    if(maxInten < 0){
+        stop("maxInten must be a positive value")
+    }
+    
+    dyeCol <- ifelse(dye %in% fluor(overlay)$Dye, "Dye", "DisplayName")
+    dyeRow <- which(fluor(overlay)[[dyeCol]] == dye)
+    
+    if(!is.null(minInten)){
+        overlay@scanMetadata$Fluorescence$MinIntensity[dyeRow] <- minInten
+    }
+    
+    if(!is.null(maxInten)){
+        overlay@scanMetadata$Fluorescence$MaxIntensity[dyeRow] <- maxInten
+    }
+    
+    return(overlay)
+}
+
+#' recolor images after changing colors and/or color intensities
+#' 
+#' @param overlay SpatialOverlay object
+#' 
+#' @return SpatialOverlay object with RGB image
+#' 
+#' @examples
+#' 
+#' @export
+#'
+recolor <- function(overlay){
+    if(class(image(overlay)) != "AnnotatedImage"){
+        stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
+    }
+    
+    overlay@image$imagePointer <- imageColoring(overlay@image$imagePointer, 
+                                                           scanMeta(overlay))
+    
+    overlay <- cropTissue(overlay)
+    
+    return(overlay)
 }
 
 #' Flip y axis in image and overlay points 
@@ -103,6 +212,7 @@ flipX <- function(overlay){
 #' @param xmax maximum x cooridnate
 #' @param ymin minimum y coordinate
 #' @param ymax maximum y coordinate
+#' @param coords should coords be cropped
 #' 
 #' @return df of coordinates for every AOI in the scan
 #' 
@@ -112,7 +222,7 @@ flipX <- function(overlay){
 #' @importFrom image_info magick
 #' 
 #' 
-crop <- function(overlay, xmin, xmax, ymin, ymax){
+crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
     if(class(xmin) != "numeric" | class(xmax) != "numeric" |
        class(ymin) != "numeric" | class(ymax) != "numeric"){
         stop("min/max coordinate values must be numeric")
@@ -147,13 +257,15 @@ crop <- function(overlay, xmin, xmax, ymin, ymax){
                                              paste0(width,  "x", height,
                                                     "+", xmin, "+", ymax))
     
-    coords(overlay) <- coords(overlay)[coords(overlay)$xcoor >= xmin &
-                                       coords(overlay)$xcoor <= xmax &
-                                       coords(overlay)$ycoor >= (maxHeight - ymin) &
-                                       coords(overlay)$ycoor <= (maxHeight - ymax),]
-    
-    coords(overlay)$xcoor <- coords(overlay)$xcoor - xmin
-    coords(overlay)$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
+    if(coords == TRUE){
+        coords(overlay) <- coords(overlay)[coords(overlay)$xcoor >= xmin &
+                                               coords(overlay)$xcoor <= xmax &
+                                               coords(overlay)$ycoor >= (maxHeight - ymin) &
+                                               coords(overlay)$ycoor <= (maxHeight - ymax),]
+        
+        coords(overlay)$xcoor <- coords(overlay)$xcoor - xmin
+        coords(overlay)$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
+    }
     
     return(overlay)
 }
@@ -184,9 +296,16 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
             stop("No valid sampleIDs")
         }
     }
+    if(is.null(sampleIDs) | length(sampleIDs) == 0){
+        stop("No valid sampleIDs")
+    }
     
     if(is.null(coords(overlay))){
-        stop("No coordinates for found. Run createCoordFile() before running this function")
+        stop("No coordinates found. Run createCoordFile() before running this function")
+    }
+    
+    if(is.null(overlay@image$imagePointer)){
+        stop("No image found. Run addImageOmeTiff() before running this function")
     }
     
     sampCoords <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
@@ -225,12 +344,21 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' 
 #' @examples
 #' 
+#' @importFrom imageData EBImage
+#' @importFrom as_EBImage magick
+#' @importFrom image_read magick
 #' 
 #' @export 
 #'
 cropTissue <- function(overlay, buffer = 0.05){
-    image_data <- imageData(as_EBImage(overlay@image$imagePointer))
-    
+    if(class(overlay@image$imagePointer) == "AnnotatedImage"){
+        coords <- FALSE
+        image_data <- imageData(overlay@image$imagePointer)
+        overlay@image$imagePointer <- image_read(overlay@image$imagePointer)
+    }else{
+        coords <- TRUE
+        image_data <- imageData(as_EBImage(overlay@image$imagePointer))
+    }
     
     red <- image_data[,,1] > 0.1
     green <- image_data[,,2] > 0.1
@@ -253,7 +381,7 @@ cropTissue <- function(overlay, buffer = 0.05){
     ymax <- ymax-ybuf
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
-         ymin = ymin, ymax = ymax)
+         ymin = ymin, ymax = ymax, coords = coords)
     
     return(overlay)
 }

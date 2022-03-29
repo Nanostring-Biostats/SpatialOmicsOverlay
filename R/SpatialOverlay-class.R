@@ -225,3 +225,8 @@ setGeneric("image", signature = "object",
            function(object) standardGeneric("image"))
 setMethod("image", "SpatialOverlay", function(object) 
     object@image$imagePointer)
+
+setGeneric("res", signature = "object",
+           function(object) standardGeneric("res"))
+setMethod("res", "SpatialOverlay", function(object) 
+    object@image$resolution)

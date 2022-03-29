@@ -50,6 +50,10 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
                                                                 colorBy]))
     }
     
+    if(class(image(overlay)) == "AnnotatedImage"){
+        overlay <- recolor(overlay)
+    }
+    
     if(!is.null(image(overlay)) & image == TRUE){
         gp <- image_ggplot(image(overlay))
         

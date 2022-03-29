@@ -9,7 +9,8 @@ imageExtraction(
   res = 6,
   scanMeta = NULL,
   saveFile = FALSE,
-  fileType = "tiff"
+  fileType = "tiff",
+  color = TRUE
 )
 }
 \arguments{

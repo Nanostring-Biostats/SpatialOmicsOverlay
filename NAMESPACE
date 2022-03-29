@@ -22,11 +22,13 @@ importFrom(magick,image_info)
 importFrom(magick,image_ggplot)
 importFrom(magick,image_read)
 importFrom(pbapply,pbapply)
+importFrom(plotrix,color.id)
 importFrom(RBioFormats,read.image)
 importFrom(RBioFormats,read.metadata)
 importFrom(RBioFormats,read.omexml)
 importFrom(readxl,read_xlsx)
 importFrom(scattermore,geom_scattermore)
+importFrom(stringr,str_to_title)
 
 importClassesFrom(GeomxTools,NanoStringGeoMxSet)
 
@@ -40,23 +42,26 @@ exportClasses(SpatialPosition)
 
 export(SpatialOverlay, SpatialPosition, position, meta, slideName, overlay, 
        scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, seg,
-       "plotFactors<-", "coords<-", sampNames, image)
+       "plotFactors<-", "coords<-", sampNames, image, res)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 methods
 
 export(SpatialOverlay, SpatialPosition, position, meta, show, slideName, overlay, 
        scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, seg,
-       "plotFactors<-", "coords<-", sampNames, image)
+       "plotFactors<-", "coords<-", sampNames, image, res)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export non-generic functions
 
+export(add4ChannelImage)
 export(addImageFile)
 export(addImageOmeTiff)
 export(bookendStr)
-export(coordsFromMask)
+export(changeColoringIntensity)
+export(changeImageColoring)
 export(checkValidRes)
+export(coordsFromMask)
 export(createCoordFile)
 export(createMask)
 export(cropSamples)
@@ -73,6 +78,7 @@ export(physicalSizes)
 export(plotSpatialOverlay)
 export(readLabWorksheet)
 export(readSpatialOverlay)
+export(recolor)
 export(removeSample)
 export(scaleBarPrinting)
 export(scaleCoords)
