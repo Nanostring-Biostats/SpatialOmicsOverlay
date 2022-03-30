@@ -124,6 +124,12 @@
       \item{}{
         \code{fluor(object)}: extracts fluorenscence information for the scan.
       }
+      \item{}{
+        \code{showImage(object)}: prints image.
+      }
+      \item{}{
+        \code{res(object)}: extracts resolution of image.
+      }
     }
 }
 

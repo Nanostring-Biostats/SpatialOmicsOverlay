@@ -62,7 +62,7 @@ imageColoring <- function(omeImage, scanMeta){
 #' @export
 #'
 changeImageColoring <- function(overlay, color, dye){
-    if(class(image(overlay)) != "AnnotatedImage"){
+    if(class(showImage(overlay)) != "AnnotatedImage"){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
@@ -98,7 +98,7 @@ changeImageColoring <- function(overlay, color, dye){
 #' @export
 #'
 changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, dye){
-    if(class(image(overlay)) != "AnnotatedImage"){
+    if(class(showImage(overlay)) != "AnnotatedImage"){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
@@ -151,12 +151,12 @@ changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, d
 #' @export
 #'
 recolor <- function(overlay){
-    if(class(image(overlay)) != "AnnotatedImage"){
+    if(class(showImage(overlay)) != "AnnotatedImage"){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
-    overlay@image$imagePointer <- imageColoring(overlay@image$imagePointer, 
-                                                           scanMeta(overlay))
+    overlay@image$imagePointer <- image_read(imageColoring(overlay@image$imagePointer, 
+                                                           scanMeta(overlay)))
     if(overlay@workflow$scaled == FALSE){
         overlay <- scaleCoords(overlay)
     }
@@ -179,9 +179,9 @@ recolor <- function(overlay){
 #' @export 
 #' 
 flipY <- function(overlay){
-    overlay@image$imagePointer <- image_flip(image(overlay))
+    overlay@image$imagePointer <- image_flip(showImage(overlay))
     
-    coords(overlay)$ycoor <- abs(image_info(image(overlay))$height - 
+    coords(overlay)$ycoor <- abs(image_info(showImage(overlay))$height - 
                                      coords(overlay)$ycoor)
     
     return(overlay)
@@ -200,9 +200,9 @@ flipY <- function(overlay){
 #' @export 
 #' 
 flipX <- function(overlay){
-    overlay@image$imagePointer <- image_flop(image(overlay))
+    overlay@image$imagePointer <- image_flop(showImage(overlay))
     
-    coords(overlay)$xcoor <- abs(image_info(image(overlay))$width - 
+    coords(overlay)$xcoor <- abs(image_info(showImage(overlay))$width - 
                                      coords(overlay)$xcoor)
     
     return(overlay)
@@ -235,8 +235,8 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
         stop("min/max coordinate values must be greater than 0")
     }
     
-    maxWidth <- image_info(overlay@image$imagePointer)$width
-    maxHeight <- image_info(overlay@image$imagePointer)$height
+    maxWidth <- image_info(showImage(overlay))$width
+    maxHeight <- image_info(showImage(overlay))$height
     
     if(xmax <= xmin){
         stop("xmax must be greater than xmin")
@@ -307,13 +307,13 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
         stop("No coordinates found. Run createCoordFile() before running this function")
     }
     
-    if(is.null(overlay@image$imagePointer)){
+    if(is.null(showImage(overlay))){
         stop("No image found. Run addImageOmeTiff() before running this function")
     }
     
     sampCoords <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
     
-    maxHeight <- image_info(overlay@image$imagePointer)$height
+    maxHeight <- image_info(showImage(overlay))$height
     
     xmin <- min(sampCoords$xcoor)
     xmax <- max(sampCoords$xcoor)
@@ -324,7 +324,7 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
     ybuf <- (ymin-ymax)*(buffer)
     
     xmin <- max(xmin-xbuf, 0)
-    xmax <- min(xmax+xbuf, image_info(overlay@image$imagePointer)$width)
+    xmax <- min(xmax+xbuf, image_info(showImage(overlay))$width)
     ymin <- min(ymin+ybuf,maxHeight)
     ymax <- max(ymax-ybuf, 0)
     
@@ -354,13 +354,14 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @export 
 #'
 cropTissue <- function(overlay, buffer = 0.05){
-    if(class(overlay@image$imagePointer) == "AnnotatedImage"){
+    if(class(showImage(overlay)) == "AnnotatedImage"){
         coords <- FALSE
-        image_data <- imageData(overlay@image$imagePointer)
-        overlay@image$imagePointer <- image_read(overlay@image$imagePointer)
+        image_data <- imageData(showImage(overlay))
+        overlay@image$imagePointer <- image_read(imageColoring(overlay@image$imagePointer,
+                                                               scanMeta(overlay)))
     }else{
         coords <- TRUE
-        image_data <- imageData(as_EBImage(overlay@image$imagePointer))
+        image_data <- imageData(as_EBImage(showImage(overlay)))
     }
     
     red <- image_data[,,1] > 0.05
@@ -379,8 +380,8 @@ cropTissue <- function(overlay, buffer = 0.05){
     ybuf <- (ymin-ymax)*(buffer)
     
     xmin <- max(xmin-xbuf, 0)
-    xmax <- min(xmax+xbuf, image_info(overlay@image$imagePointer)$width)
-    ymin <- min(ymin+ybuf, image_info(overlay@image$imagePointer)$height)
+    xmax <- min(xmax+xbuf, image_info(showImage(overlay))$width)
+    ymin <- min(ymin+ybuf, image_info(showImage(overlay))$height)
     ymax <- max(ymax-ybuf, 0)
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 

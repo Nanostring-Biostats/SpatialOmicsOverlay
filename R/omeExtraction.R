@@ -148,7 +148,7 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' @export
 #' 
 checkValidRes <- function(ometiff){
-    meta <- RBioFormats::read.metadata(tifFile)
+    meta <- RBioFormats::read.metadata(ometiff)
     
     return(length(meta))
 }

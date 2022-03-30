@@ -227,16 +227,16 @@ scaleCoords <- function(overlay){
     if(overlay@workflow$scaled == TRUE){
         stop("Coordinates are already scaled and can't be scaled again")
     }
-    if(is.null(overlay@image$imagePointer)){
+    if(is.null(showImage(overlay))){
         warning("No image has been added to the SpatialOverlay object, no scaling will be done")
     }else{
         scaling <- 1/2^(overlay@image$resolution-1)
         
-        if(class(overlay@image$imagePointer) == "AnnotatedImage"){
-            temp <- image_read(imageColoring(overlay@image$imagePointer,
+        if(class(showImage(overlay)) == "AnnotatedImage"){
+            temp <- image_read(imageColoring(showImage(overlay),
                                              scanMeta(overlay)))
         }else{
-            temp <- image(overlay)
+            temp <- showImage(overlay)
         }
         
         #scale and center y axis

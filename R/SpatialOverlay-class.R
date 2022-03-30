@@ -221,9 +221,9 @@ setGeneric("sampNames", signature = "object",
 setMethod("sampNames", "SpatialOverlay", function(object) 
     meta(overlay(object))$Sample_ID)
 
-setGeneric("image", signature = "object",
-           function(object) standardGeneric("image"))
-setMethod("image", "SpatialOverlay", function(object) 
+setGeneric("showImage", signature = "object",
+           function(object) standardGeneric("showImage"))
+setMethod("showImage", "SpatialOverlay", function(object) 
     object@image$imagePointer)
 
 setGeneric("res", signature = "object",

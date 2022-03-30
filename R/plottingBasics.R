@@ -35,7 +35,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
                                scaleBarColor = "red", scaleBarFontSize = 6, 
                                scaleBarLineSize = 1.5, textDistance = 2){
     
-    if(class(image(overlay)) == "AnnotatedImage"){
+    if(class(showImage(overlay)) == "AnnotatedImage"){
         overlay <- recolor(overlay)
     }
     
@@ -54,8 +54,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
                                                                 colorBy]))
     }
     
-    if(!is.null(image(overlay)) & image == TRUE){
-        gp <- image_ggplot(image(overlay))
+    if(!is.null(showImage(overlay)) & image == TRUE){
+        gp <- image_ggplot(showImage(overlay))
         
         scaleImage <- overlay@image
     }else{
@@ -79,14 +79,14 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
             labs(color = colorBy)
     }
     
-    if(!is.null(image(overlay)) & image == FALSE){
-        info <- image_info(SpatialOmicsOverlay::image(overlay))
+    if(!is.null(showImage(overlay)) & image == FALSE){
+        info <- image_info(showImage(overlay))
         gp <- gp + coord_fixed(expand = FALSE, xlim = c(0, info$width), 
                                ylim = c(0, info$height))+
             themeTransparent()
         
         scaleImage <- overlay@image
-    }else if(is.null(image(overlay))){
+    }else if(is.null(showImage(overlay))){
         gp <- gp + coord_fixed(ratio = 1)+
             scale_y_reverse()+
             themeTransparent()
