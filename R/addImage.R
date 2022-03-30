@@ -21,10 +21,10 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- overlay@image$resolution
     }
     
-    if(length(overlay@image) != 0){
-        difRes <- res - overlay@image$resolution
-    }else{
+    if(is.null(overlay@image$resolution)){
         difRes <- 0
+    }else{
+        difRes <- res - overlay@image$resolution
     }
     
     overlay@image <- list(filePath = ometiff, 
@@ -91,10 +91,10 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- overlay@image$resolution
     }
     
-    if(length(overlay@image) != 0){
-        difRes <- res - overlay@image$resolution
-    }else{
+    if(is.null(overlay@image$resolution)){
         difRes <- 0
+    }else{
+        difRes <- res - overlay@image$resolution
     }
     
     overlay@image <- list(filePath = ometiff, 
