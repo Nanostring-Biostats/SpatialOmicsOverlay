@@ -157,6 +157,9 @@ recolor <- function(overlay){
     
     overlay@image$imagePointer <- imageColoring(overlay@image$imagePointer, 
                                                            scanMeta(overlay))
+    if(overlay@workflow$scaled == FALSE){
+        overlay <- scaleCoords(overlay)
+    }
     
     overlay <- cropTissue(overlay)
     
@@ -360,9 +363,9 @@ cropTissue <- function(overlay, buffer = 0.05){
         image_data <- imageData(as_EBImage(overlay@image$imagePointer))
     }
     
-    red <- image_data[,,1] > 0.1
-    green <- image_data[,,2] > 0.1
-    blue <- image_data[,,3] > 0.1
+    red <- image_data[,,1] > 0.05
+    green <- image_data[,,2] > 0.05
+    blue <- image_data[,,3] > 0.05
     
     bg <- matrix(boundary(red & green & blue), 
                  nrow = nrow(red), ncol = ncol(red))
@@ -375,10 +378,10 @@ cropTissue <- function(overlay, buffer = 0.05){
     xbuf <- (xmax-xmin)*(buffer)
     ybuf <- (ymin-ymax)*(buffer)
     
-    xmin <- xmin-xbuf
-    xmax <- xmax+xbuf
-    ymin <- ymin+ybuf
-    ymax <- ymax-ybuf
+    xmin <- max(xmin-xbuf, 0)
+    xmax <- min(xmax+xbuf, image_info(overlay@image$imagePointer)$width)
+    ymin <- min(ymin+ybuf, image_info(overlay@image$imagePointer)$height)
+    ymax <- max(ymax-ybuf, 0)
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
          ymin = ymin, ymax = ymax, coords = coords)

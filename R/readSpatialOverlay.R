@@ -30,6 +30,14 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
     labWorksheet <- FALSE
     if(class(annots) == "NanoStringGeoMxSet"){
        annots <- pData(annots)
+       annots <- annots[annots$`slide name` == slideName,]
+       
+       if(nrow(annots) == 0){
+           stop("No ROIs match given slideName")
+       }
+       
+       annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
+       
        labWorksheet <- TRUE
        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else if(endsWith(annots, "_LabWorksheet.txt")){

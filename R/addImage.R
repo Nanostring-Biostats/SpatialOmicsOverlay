@@ -21,11 +21,27 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- overlay@image$resolution
     }
     
+    if(length(overlay@image) != 0){
+        difRes <- res - overlay@image$resolution
+    }else{
+        difRes <- 0
+    }
+    
     overlay@image <- list(filePath = ometiff, 
                      imagePointer = imageExtraction(ometiff = ometiff,
                                                     res = res,
                                                     ...),
                      resolution = res)
+    
+    if(difRes != 0){
+        warning("Resolutions do not match, rescaling coordinates", 
+                immediate. = TRUE)
+        if(difRes < 0){
+            warning("Coordinates need to be recalculated", immediate. = TRUE)
+            overlay <- createCoordFile(overlay, overlay@workflow$outline)
+        }
+        overlay <- scaleCoords(overlay)
+    }
     
     return(overlay)
 }
@@ -75,12 +91,28 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- overlay@image$resolution
     }
     
+    if(length(overlay@image) != 0){
+        difRes <- res - overlay@image$resolution
+    }else{
+        difRes <- 0
+    }
+    
     overlay@image <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
                                                          res = res,
                                                          color = FALSE,
                                                          ...),
                           resolution = res)
+    
+    if(difRes != 0){
+        warning("Resolutions do not match, rescaling coordinates", 
+                immediate. = TRUE)
+        if(difRes < 0){
+            warning("Coordinates need to be recalculated", immediate. = TRUE)
+            overlay <- createCoordFile(overlay, overlay@workflow$outline)
+        }
+        overlay <- scaleCoords(overlay)
+    }
     
     return(overlay)
 }

@@ -35,6 +35,10 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
                                scaleBarColor = "red", scaleBarFontSize = 6, 
                                scaleBarLineSize = 1.5, textDistance = 2){
     
+    if(class(image(overlay)) == "AnnotatedImage"){
+        overlay <- recolor(overlay)
+    }
+    
     if(colorBy == "sampleID"){
         pts <- as.data.frame(cbind(coords(overlay), 
                                    colorBy=coords(overlay)$sampleID))
@@ -48,10 +52,6 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
                                    colorBy=plotFactors(overlay)[match(coords(overlay)$sampleID, 
                                                                       rownames(plotFactors(overlay))), 
                                                                 colorBy]))
-    }
-    
-    if(class(image(overlay)) == "AnnotatedImage"){
-        overlay <- recolor(overlay)
     }
     
     if(!is.null(image(overlay)) & image == TRUE){
@@ -80,8 +80,9 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
     }
     
     if(!is.null(image(overlay)) & image == FALSE){
-        gp <- gp + scale_x_continuous(limits = c(0,image_info(image(overlay))$width))+
-            scale_y_continuous(limits = c(0,image_info(image(overlay))$height))+
+        info <- image_info(SpatialOmicsOverlay::image(overlay))
+        gp <- gp + coord_fixed(expand = FALSE, xlim = c(0, info$width), 
+                               ylim = c(0, info$height))+
             themeTransparent()
         
         scaleImage <- overlay@image

@@ -217,6 +217,7 @@ boundary <-  function(mat) {
 #' 
 #' @importFrom distinct dplyr
 #' @importFrom image_info magick
+#' @importFrom image_read magick
 #' 
 #' @export
 scaleCoords <- function(overlay){
@@ -230,6 +231,10 @@ scaleCoords <- function(overlay){
         warning("No image has been added to the SpatialOverlay object, no scaling will be done")
     }else{
         scaling <- 1/2^(overlay@image$resolution-1)
+        
+        if(class(image(overlay)) == "AnnotatedImage"){
+            overlay@image$imagePointer <- image_read(image(overlay))
+        }
         
         #scale and center y axis
         coords(overlay)$ycoor <- image_info(image(overlay))$height - 
