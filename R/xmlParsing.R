@@ -6,6 +6,12 @@
 #' 
 #' @examples
 #' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' xml <- xmlExtraction(ometiff = image)
+#' 
+#' scan_metadata <- parseScanMetatdata(omexml = xml)
+#' 
 #' @importFrom xmlToList XML
 #' 
 #' @export 
@@ -40,6 +46,19 @@ parseScanMetatdata <- function(omexml){
 #' @return list of AOIs containing metadata and base64encoded positions
 #' 
 #' @examples
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' xml <- xmlExtraction(ometiff = image)
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' overlay <- parseOverlayAttrs(omexml = xml, 
+#'                              annots = muBrainLW, 
+#'                              labworksheet = TRUE)
 #' 
 #' @importFrom xmlToList XML
 #' 
@@ -137,6 +156,12 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
 #' 
 #' @examples
 #' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' xml <- xmlExtraction(ometiff = image)
+#' 
+#' physicalSizes(xml)
+#' 
 #' @export 
 #' 
 physicalSizes <- function(omexml){
@@ -168,9 +193,15 @@ COLORS <- c(Blue  = "#0000feff",
 #' 
 #' @examples
 #' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' xml <- xmlExtraction(ometiff = image)
+#' 
+#' fluorData(xml)
+#' 
 #' @export 
 #' 
-fluorData<- function(omexml){
+fluorData <- function(omexml){
     Fluorescence <- NULL
     planeLine <- min(which(names(omexml$Image$Pixels) == "Plane"))-1
     addition <- 0
@@ -265,11 +296,7 @@ fluorData<- function(omexml){
 #' 
 #' @return binary mask image
 #' 
-#' @examples
-#' 
 #' @importFrom base64decode base64enc
-#' 
-#' @export 
 #' 
 decodeB64 <- function(b64string, width, height){
     # rawToBits returns the reverse of the actual binary sequence, needs to be reversed for real image

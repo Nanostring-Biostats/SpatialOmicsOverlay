@@ -17,4 +17,10 @@ Parse fluorescence data from xml
 }
 \examples{
 
+image <- downloadMouseBrainImage()
+
+xml <- xmlExtraction(ometiff = image)
+
+fluorData(xml)
+
 }

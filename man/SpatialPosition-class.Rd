@@ -72,11 +72,7 @@
 \seealso{
   \code{\link{SpatialOverlay-class}}
   
-  \code{\link{GeoMXmlParsing_AOIattrs}}
-}
-
-\examples{
-  
+  \code{\link{parseOverlayAttrs}}
 }
 
 \keyword{classes}

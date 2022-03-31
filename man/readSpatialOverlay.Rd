@@ -23,6 +23,8 @@ readSpatialOverlay(
 
 \item{image}{should image be extracted from OME-TIFF}
 
+\item{res}{resolution of image \code\link{imageExtraction}}
+
 \item{saveFile}{should xml & image be saved, file is saved in working directory 
 with same name as OME-TIFF}
 
@@ -37,6 +39,15 @@ Create an instance of class \code{\linkS4class{SpatialOverlay}}
 by reading data from OME-TIFF and annotation sheet.
 }
 \examples{
+
+muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                         package = "SpatialOmicsOverlay")
+
+image <- downloadMouseBrainImage()
+
+muBrain <- readSpatialOverlay(ometiff = image, annots = muBrainLW, 
+                              slideName = "4", image = TRUE, res = 7, 
+                              saveFile = FALSE, outline = FALSE)
 
 }
 \seealso{

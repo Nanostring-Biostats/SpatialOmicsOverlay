@@ -7,6 +7,7 @@
 #' @param annots path to annotation file: can be labWorksheet, DA excel file, or delimted file
 #' @param slideName name of slide
 #' @param image should image be extracted from OME-TIFF
+#' @param res resolution of image \code\link{imageExtraction}
 #' @param saveFile should xml & image be saved, file is saved in working directory 
 #'                     with same name as OME-TIFF 
 #' @param outline returned coordinates only contain outlinearies, 
@@ -15,6 +16,15 @@
 #' @return \code{\linkS4class{SpatialOverlay}} of slide
 #' 
 #' @examples
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- readSpatialOverlay(ometiff = image, annots = muBrainLW, 
+#'                               slideName = "4", image = TRUE, res = 7, 
+#'                               saveFile = FALSE, outline = FALSE)
 #' 
 #' @importFrom read_xlsx readxl
 #' @importFrom fread data.table
@@ -40,7 +50,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
        
        labWorksheet <- TRUE
        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
-    }else if(endsWith(annots, "_LabWorksheet.txt")){
+    }else if(endsWith(tolower(annots), "_labworksheet.txt")){
         annots <- readLabWorksheet(lw = annots, slideName = slideName)
         labWorksheet <- TRUE
     }else if(endsWith(annots, ".xlsx")){

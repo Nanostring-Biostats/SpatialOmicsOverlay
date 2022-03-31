@@ -8,6 +8,9 @@
 #' 
 #' @examples
 #' 
+#' image <- downloadMouseBrainImage()
+#' xml <- xmlExtraction(ometiff = image)
+#' 
 #' @importFrom read.omexml RBioFormats
 #' 
 #' @export 
@@ -56,10 +59,16 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #' @param saveFile should xml be saved, file is saved in working directory with 
 #'                 same name as OME-TIFF
 #' @param fileType type of image file. Options: tiff, png, jpeg
+#' @param color should image be colored RGB or 4-channel BW 
 #' 
 #' @return omeImage magick pointer
 #' 
 #' @examples
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' imageExt <- imageExtraction(ometiff = image, res = 7)
+#' imageExt
 #' 
 #' @importFrom read.omexml RBioFormats
 #' @importFrom read.image RBioFormats
@@ -143,7 +152,10 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' 
 #' @examples
 #' 
-#' @importFrom read.metadata RBioFormats::
+#' image <- downloadMouseBrainImage()
+#' checkValidRes(ometiff = image)
+#' 
+#' @importFrom read.metadata RBioFormats
 #' 
 #' @export
 #' 

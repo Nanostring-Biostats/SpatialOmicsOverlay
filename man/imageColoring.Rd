@@ -17,6 +17,3 @@ AnnotatedImage with RGB matrix
 \description{
 Turn 4-channel composite image into RGB
 }
-\examples{
-
-}

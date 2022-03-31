@@ -17,4 +17,10 @@ Parse the xml file for the scan metadata of GeoMx images
 }
 \examples{
 
+image <- downloadMouseBrainImage()
+
+xml <- xmlExtraction(ometiff = image)
+
+scan_metadata <- parseScanMetatdata(omexml = xml)
+
 }

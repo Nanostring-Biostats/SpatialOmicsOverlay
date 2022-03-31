@@ -1,12 +1,12 @@
 Package: SpatialOmicsOverlay
 Title: Spatial Overlay for Omic Data From Nanostring GeoMx data
-Description: Tools for NanoString Technologies GeoMx Technology. Package to easily graph on top of an image. 
-              Using OME-XML info to plot in the correct coordinates
-Version: 0.99
+Description: Tools for NanoString Technologies GeoMx Technology. Package to easily 
+              graph on top of an OME-TIFF image. 
+Version: 0.99.0
 Encoding: UTF-8
 Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", role = c("cre","aut")),
-             person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("aut")),
-             person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("aut")))
+             person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
+             person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
 Depends: R (>= 4.0)
 Imports: base64enc, EBImage, ggplot2, RBioFormats, XML, scattermore, dplyr, 
          pbapply, data.table, readxl, magick, grDevices, stringr, plotrix
@@ -16,7 +16,9 @@ Suggests:
     testthat (>= 3.0.0),
     stringi,
     qpdf,
-    GeomxTools
+    GeomxTools,
+    BiocFileCache,
+    pheatmap
 License: MIT
 Collate: addImage.R
          addPlottingFactor.R

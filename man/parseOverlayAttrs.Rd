@@ -21,4 +21,17 @@ Parse the xml file for AOI attributes in GeoMx images
 }
 \examples{
 
+image <- downloadMouseBrainImage()
+
+xml <- xmlExtraction(ometiff = image)
+
+muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                         package = "SpatialOmicsOverlay")
+
+muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+
+overlay <- parseOverlayAttrs(omexml = xml, 
+                             annots = muBrainLW, 
+                             labworksheet = TRUE)
+
 }

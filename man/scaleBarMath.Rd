@@ -12,6 +12,8 @@ scaleBarMath(scanMetadata, pts, scaleBarWidth = 0.2, image = NULL)
 \item{pts}{AOI coordinates}
 
 \item{scaleBarWidth}{percent of total figure the scale bar should take up}
+
+\item{image}{image from SpatialOverlay or NULL}
 }
 \value{
 values needed to print scale bar

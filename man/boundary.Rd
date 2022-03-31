@@ -19,7 +19,3 @@ Return points for boundary mask
 code modified from Stack Overflow
 https://stackoverflow.com/questions/29105175/find-neighbouring-elements-of-a-matrix-in-r
 }
-\examples{
-
-
-}

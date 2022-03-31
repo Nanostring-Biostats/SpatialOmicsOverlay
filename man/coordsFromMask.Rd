@@ -19,6 +19,3 @@ df of positive coordinates of AOI
 \description{
 Return positive coordinates from mask
 }
-\examples{
-
-}

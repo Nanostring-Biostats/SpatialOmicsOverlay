@@ -20,4 +20,11 @@ Create coordinate file for entire scan
 }
 \examples{
 
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+muBrain <- createCoordFile(muBrain, outline = FALSE)
+
+head(coords(muBrain))
+
 }

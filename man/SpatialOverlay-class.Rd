@@ -40,6 +40,11 @@
 \alias{fluor,SpatialOverlay-method}
 \alias{sampNames}
 \alias{sampNames,SpatialOverlay-method}
+\alias{showImage}
+\alias{showImage,SpatialOverlay-method}
+\alias{res}
+\alias{res,SpatialOverlay-method}
+
 
 \title{Class to Contain NanoString Spatial Overlay Images and Data}
 
@@ -55,9 +60,11 @@
                  coords = NULL,
                  plottingFactors = NULL,
                  workflow = list(outline=FALSE,
-                                 labWorksheet=TRUE),
+                                 labWorksheet=TRUE,
+                                 scaled=FALSE),
                  image = list(filePath = NULL,
-                              imagePointer = NULL))
+                              imagePointer = NULL,
+                              resolution = NULL))
 }
 
 \arguments{
@@ -71,11 +78,11 @@
   \item{plottingFactors}{An optional \code{data.frame} with annotations to plot on. 
                          These can be added using \code{\link{addPlottingFactor}}}
   \item{workflow}{A \code{list} containing meta-data on the processing workflow including
-                  \code{"outline"} & \code{"labWorksheet"}. These booleans are kept 
+                  \code{"outline"}, \code{"labWorksheet"}, & \code{"scaled"}. These booleans are kept 
                   automatically in \code{\link{readSpatialOverlay}} and are used 
                   for logic gates in downstream processing}
   \item{image}{A \code{list} containing location of and pointer to the image:
-               \code{"filePath"} & \code{"imagePointer"}}
+               \code{"filePath"}, \code{"imagePointer"}, & \code{"resolution"}}
 }
 
 \section{Accessing}{
@@ -141,10 +148,6 @@
 
 \seealso{
   \code{\link{readSpatialOverlay}}
-}
-
-\examples{
-
 }
 
 \keyword{classes}

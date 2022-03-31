@@ -21,4 +21,21 @@ Create a binary mask from a base 64 string
 }
 \examples{
 
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-B08")
+
+ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
+                      metadata = meta(overlay(muBrain))[samp,],
+                      outline = TRUE)
+
+pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
+
+ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
+                      metadata = meta(overlay(muBrain))[samp,],
+                      outline = FALSE)
+
+pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
+
 }

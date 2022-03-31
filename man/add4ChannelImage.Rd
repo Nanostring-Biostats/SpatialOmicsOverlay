@@ -2,25 +2,36 @@
 % Please edit documentation in R/addImage.R
 \name{add4ChannelImage}
 \alias{add4ChannelImage}
-\title{Add image to SpatialOverlay from disk}
+\title{Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring of image}
 \usage{
 add4ChannelImage(overlay, ometiff = NULL, res = NULL, ...)
 }
 \arguments{
 \item{overlay}{SpatialOverlay object}
 
+\item{ometiff}{File path to OME-TIFF. NULL indicates pull info from overlay}
+
 \item{res}{resolution layer, 1 = largest & higher values = smaller. The images increase 
 in resolution and memory. The largest image your environment 
-can hold is recommended. NULL indicates pull info from overlay}
+can hold is recommended.  NULL indicates pull info from overlay}
 
-\item{imageFile}{path to image. NULL indicates pull infor from overlay}
+\item{...}{Extra variables for \code{\link{imageExtraction}}}
 }
 \value{
 SpatialOverlay object with image
 }
 \description{
-Add image to SpatialOverlay from disk
+Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring of image
 }
 \examples{
+
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                              package = "SpatialOmicsOverlay"))
+image <- downloadMouseBrainImage()
+
+muBrain <- add4ChannelImage(overlay = muBrain, 
+                           ometiff = image, res = 7)
+
+dim(EBImage::imageData(showImage(muBrain)))
 
 }

@@ -17,4 +17,7 @@ Determine lowest resolution image in OME-TIFF
 }
 \examples{
 
+image <- downloadMouseBrainImage()
+checkValidRes(ometiff = image)
+
 }

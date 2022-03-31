@@ -34,6 +34,8 @@ Options: "bottomright"  "topright"
 
 \item{textDistance}{text's distance from scale bar.}
 
+\item{image}{image from SpatialOverlay or NULL}
+
 \item{...}{additional parameters for geom_line & geom_text, will apply to both}
 }
 \value{
@@ -41,7 +43,4 @@ gp with scale bar
 }
 \description{
 must run scaleBarMath() first
-}
-\examples{
-
 }

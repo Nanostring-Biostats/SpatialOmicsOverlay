@@ -11,6 +11,14 @@
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#' showImage(muBrain)
+#' 
 #' @export
 addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
     
@@ -47,13 +55,16 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #' 
 #' @param overlay SpatialOverlay object
 #' @param imageFile path to image
-#' @param res resolution layer, 1 = largest & higher values = smaller. The images increase 
-#'              in resolution and memory. The largest image your environment 
-#'              can hold is recommended.  
+#' @param res what resolution is the image given? 1 = largest, higher number = smaller
+#'              This value will affect the coordinates of the overlays. 
+#'              res = 2, resolution is 1/2 the size as the raw image
+#'              res = 3, resolution is 1/4 the size as the raw image
+#'              res = 4, resolution is 1/8 the size as the raw image 
+#'              resolution = 1/2^(res-1)
+#' @param ... Extra variables for \code{\link{imageExtraction}}
+#'              
 #'               
 #' @return SpatialOverlay object with image
-#' 
-#' @examples
 #' 
 #' @importFrom image_read magick
 #' 
@@ -66,17 +77,27 @@ addImageFile <- function(overlay, imageFile, res, ...){
     return(overlay)
 }
 
-#' Add image to SpatialOverlay from disk
+#' Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring of image
 #' 
 #' @param overlay SpatialOverlay object
-#' @param imageFile path to image. NULL indicates pull infor from overlay
+#' @param ometiff File path to OME-TIFF. NULL indicates pull info from overlay 
 #' @param res resolution layer, 1 = largest & higher values = smaller. The images increase 
 #'              in resolution and memory. The largest image your environment 
-#'              can hold is recommended. NULL indicates pull info from overlay  
+#'              can hold is recommended.  NULL indicates pull info from overlay 
+#' @param ... Extra variables for \code{\link{imageExtraction}}
 #'               
 #' @return SpatialOverlay object with image
 #' 
 #' @examples
+#' 
+#'muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                               package = "SpatialOmicsOverlay"))
+#'image <- downloadMouseBrainImage()
+#'
+#'muBrain <- add4ChannelImage(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#'
+#'dim(EBImage::imageData(showImage(muBrain)))
 #' 
 #' @export
 add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){

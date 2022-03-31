@@ -22,6 +22,28 @@
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                           ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#'                              
+#' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F)
+#' 
 #' @importFrom geom_scattermore scattermore
 #' @import ggplot2
 #' @importFrom image_ggplot magick
@@ -122,6 +144,29 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                           ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#'                              
+#' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F) + 
+#' themeTransparent()
+#' 
 #' @import ggplot2
 #' 
 #' @export 
@@ -148,6 +193,7 @@ themeTransparent <- function(){
 #' @param scanMetadata scan metadata including PhysicalSizeX/Y from xml
 #' @param pts AOI coordinates
 #' @param scaleBarWidth percent of total figure the scale bar should take up 
+#' @param image image from SpatialOverlay or NULL
 #' 
 #' @return values needed to print scale bar
 #' 
@@ -280,15 +326,12 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
 #' @param scaleBarLineSize scale bar width of line
 #' @param scaleBarColor scale bar color
 #' @param textDistance text's distance from scale bar.
+#' @param image image from SpatialOverlay or NULL
 #' @param ... additional parameters for geom_line & geom_text, will apply to both
 #' 
 #' @return gp with scale bar 
-#' 
-#' @examples
 #'
 #' @import ggplot2
-#' 
-#' @export 
 #' 
 scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright", 
                              scaleBarFontSize = 6, scaleBarLineSize = 1.5, 

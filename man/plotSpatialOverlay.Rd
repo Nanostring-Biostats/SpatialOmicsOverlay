@@ -61,4 +61,26 @@ overlay plots
 }
 \examples{
 
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                         package = "SpatialOmicsOverlay")
+
+muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+
+image <- downloadMouseBrainImage()
+
+muBrain <- addImageOmeTiff(overlay = muBrain, 
+                          ometiff = image, res = 7)
+
+muBrain <- scaleCoords(overlay = muBrain)
+
+muBrain <- addPlottingFactor(overlay = muBrain, 
+                             annots = muBrainLW, 
+                             plottingFactor = "segment")
+                             
+plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
+                   hiRes = TRUE, scaleBar = F)
+
 }

@@ -27,6 +27,8 @@ is automatically called.}
 same name as OME-TIFF}
 
 \item{fileType}{type of image file. Options: tiff, png, jpeg}
+
+\item{color}{should image be colored RGB or 4-channel BW}
 }
 \value{
 omeImage magick pointer
@@ -35,5 +37,10 @@ omeImage magick pointer
 Extract image from OME-TIFF
 }
 \examples{
+
+image <- downloadMouseBrainImage()
+
+imageExt <- imageExtraction(ometiff = image, res = 7)
+imageExt
 
 }

@@ -22,5 +22,25 @@ SpatialOverlay object with updated fluor data
 Update color intensities for changing to RGB image
 }
 \examples{
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+image <- downloadMouseBrainImage()
+
+muBrain <- add4ChannelImage(overlay = muBrain, 
+                            ometiff = image, res = 7)
+
+fluor(muBrain)
+
+showImage(recolor(muBrain))
+
+muBrainNewInten <- changeColoringIntensity(overlay = muBrain, 
+                                           minInten = 500, 
+                                           maxInten = 10000, 
+                                           dye = "Cy5")
+
+fluor(muBrainNewInten)
+
+showImage(recolor(muBrainNewInten))
 
 }

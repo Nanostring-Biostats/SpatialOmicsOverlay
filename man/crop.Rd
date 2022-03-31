@@ -25,6 +25,3 @@ df of coordinates for every AOI in the scan
 \description{
 Create coordinate file for entire scan
 }
-\examples{
-
-}

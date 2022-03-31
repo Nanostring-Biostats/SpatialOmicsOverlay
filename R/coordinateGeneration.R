@@ -9,6 +9,13 @@
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrain <- createCoordFile(muBrain, outline = FALSE)
+#' 
+#' head(coords(muBrain))
+#' 
 #' @importFrom bind_rows dplyr
 #' @importFrom pbapply pbapply 
 #' 
@@ -70,6 +77,23 @@ createCoordFile <- function(overlay, outline = TRUE){
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-B08")
+#' 
+#' ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
+#'                       metadata = meta(overlay(muBrain))[samp,],
+#'                       outline = TRUE)
+#' 
+#' pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
+#' 
+#' ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
+#'                       metadata = meta(overlay(muBrain))[samp,],
+#'                       outline = FALSE)
+#' 
+#' pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
+#' 
 #' @export 
 #' 
 createMask <- function(b64string, metadata, outline = TRUE){
@@ -107,10 +131,6 @@ createMask <- function(b64string, metadata, outline = TRUE){
 #' 
 #' @return df of positive coordinates of AOI
 #' 
-#' @examples
-#' 
-#' @export 
-#' 
 coordsFromMask <- function(mask, metadata, outline = TRUE){
     coords <- as.data.frame(which(mask != 0, arr.ind = TRUE))
     names(coords) <- c("ycoor", "xcoor")
@@ -140,11 +160,6 @@ coordsFromMask <- function(mask, metadata, outline = TRUE){
 #' 
 #' @return df of ordered coordinates
 #' 
-#' @examples
-#' 
-#' @export 
-#' 
-
 pencilCoordSorting <- function(coords, rangeWidth = 100){
     outlineCoords <- coords[1,]
     used <- NULL
@@ -188,9 +203,6 @@ pencilCoordSorting <- function(coords, rangeWidth = 100){
 #' 
 #' @return total number of neighbors for each pixel
 #' 
-#' @examples
-#' 
-#' 
 boundary <-  function(mat) {
     mat.pad <- rbind(NA, cbind(NA, mat, NA), NA)
     indrow <- 2:(nrow(mat) + 1) # row indices of the "middle"
@@ -214,6 +226,21 @@ boundary <-  function(mat) {
 #' @return SpatialOverlay object 
 #' 
 #' @examples
+#' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain,
+#'                            ometiff = image, res = 7)
+#' 
+#' summary(coords(muBrain))
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' #fewer and smaller points
+#' summary(coords(muBrain))
 #' 
 #' @importFrom distinct dplyr
 #' @importFrom image_info magick

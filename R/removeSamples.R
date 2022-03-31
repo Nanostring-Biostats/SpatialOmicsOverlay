@@ -7,6 +7,21 @@
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' samps <- muBrainLW$Sample_ID[muBrainLW$segment != "Full ROI"]
+#' 
+#' muBrainSub <- removeSample(overlay = muBrain, remove = samps)
+#' 
+#' muBrain
+#' muBrainSub
+#' 
 #' @export 
 #' 
 

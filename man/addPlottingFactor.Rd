@@ -26,4 +26,31 @@ Add plotting factor to \code{\link{SpatialOverlay}} object
 }
 \examples{
 
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                         package = "SpatialOmicsOverlay")
+
+muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+
+muBrain <- addPlottingFactor(overlay = muBrain, 
+                             annots = muBrainLW, 
+                             plottingFactor = "segment")
+
+library(GeomxTools)
+muBrainGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
+                                  package = "SpatialOmicsOverlay"))
+
+muBrain <- addPlottingFactor(overlay = muBrain, 
+                             annots = muBrainGxT, 
+                             plottingFactor = "Calm1",
+                             countMatrix = "exprs")
+
+muBrain <- addPlottingFactor(overlay = muBrain,
+                             annots = 1:length(sampNames(muBrain)),
+                             plottingFactor = "ROINum")
+
+head(plotFactors(muBrain))
+
 }

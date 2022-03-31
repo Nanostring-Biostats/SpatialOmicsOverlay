@@ -11,16 +11,18 @@ addImageFile(overlay, imageFile, res, ...)
 
 \item{imageFile}{path to image}
 
-\item{res}{resolution layer, 1 = largest & higher values = smaller. The images increase 
-in resolution and memory. The largest image your environment 
-can hold is recommended.}
+\item{res}{what resolution is the image given? 1 = largest, higher number = smaller
+This value will affect the coordinates of the overlays. 
+res = 2, resolution is 1/2 the size as the raw image
+res = 3, resolution is 1/4 the size as the raw image
+res = 4, resolution is 1/8 the size as the raw image 
+resolution = 1/2^(res-1)}
+
+\item{...}{Extra variables for \code{\link{imageExtraction}}}
 }
 \value{
 SpatialOverlay object with image
 }
 \description{
 Add image to SpatialOverlay from disk
-}
-\examples{
-
 }

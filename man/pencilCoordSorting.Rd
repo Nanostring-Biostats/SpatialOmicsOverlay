@@ -20,6 +20,3 @@ geom_polygon expects them to be in order like you are tracing the shape
 with a pencil. This function orders them by finding the closest x,y 
 coordinate to the previous point
 }
-\examples{
-
-}

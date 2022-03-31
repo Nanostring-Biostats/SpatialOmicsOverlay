@@ -5,8 +5,6 @@
 #' 
 #' @return AnnotatedImage with RGB matrix
 #' 
-#' @examples
-#' 
 #' @importFrom imageData EBImage
 #' @importFrom imageData<- EBImage
 #' @importFrom normalize EBImage
@@ -56,6 +54,25 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- add4ChannelImage(overlay = muBrain, 
+#'                             ometiff = image, res = 7)
+#' 
+#' fluor(muBrain)
+#' 
+#' muBrain <- changeImageColoring(overlay = muBrain, color = "magenta", 
+#'                                dye = "Cy5")
+#' muBrain <- changeImageColoring(overlay = muBrain, color = "#42f5ef", 
+#'                                dye = "Alexa 488")
+#' 
+#' fluor(muBrain)
+#' 
+#' showImage(recolor(muBrain))
+#' 
 #' @importFrom color.id plotrix
 #' @importFrom str_to_title stringr
 #' 
@@ -94,6 +111,26 @@ changeImageColoring <- function(overlay, color, dye){
 #' @return SpatialOverlay object with updated fluor data
 #' 
 #' @examples
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- add4ChannelImage(overlay = muBrain, 
+#'                             ometiff = image, res = 7)
+#' 
+#' fluor(muBrain)
+#' 
+#' showImage(recolor(muBrain))
+#' 
+#' muBrainNewInten <- changeColoringIntensity(overlay = muBrain, 
+#'                                            minInten = 500, 
+#'                                            maxInten = 10000, 
+#'                                            dye = "Cy5")
+#' 
+#' fluor(muBrainNewInten)
+#' 
+#' showImage(recolor(muBrainNewInten))
 #' 
 #' @export
 #'
@@ -148,6 +185,18 @@ changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, d
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#'
+#' image <- downloadMouseBrainImage()
+#'
+#' muBrain <- add4ChannelImage(overlay = muBrain, 
+#'                             ometiff = image, res = 7)
+#'
+#' muBrain <- changeImageColoring(overlay = muBrain, color = "magenta", 
+#'                                dye = "Cy5")
+#' showImage(recolor(muBrain))
+#' 
 #' @export
 #'
 recolor <- function(overlay){
@@ -174,6 +223,28 @@ recolor <- function(overlay){
 #' 
 #' @examples
 #' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#' 
+#' plotSpatialOverlay(overlay = flipY(muBrain), colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F)
+#' 
 #' @importFrom image_flip magick
 #' 
 #' @export 
@@ -194,6 +265,28 @@ flipY <- function(overlay){
 #' @return SpatialOverlay object with x axis flipped
 #' 
 #' @examples
+#' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#' 
+#' plotSpatialOverlay(overlay = flipX(muBrain), colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F)
 #' 
 #' @importFrom image_flop magick
 #' 
@@ -219,11 +312,8 @@ flipX <- function(overlay){
 #' 
 #' @return df of coordinates for every AOI in the scan
 #' 
-#' @examples
-#' 
 #' @importFrom image_crop magick
 #' @importFrom image_info magick
-#' 
 #' 
 crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
     if(class(xmin) != "numeric" | class(xmax) != "numeric" |
@@ -283,6 +373,34 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' @return SpatialOverlay object
 #' 
 #' @examples
+#' 
+#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#' 
+#' samps <- muBrainLW$Sample_ID[muBrainLW$segment == "Full ROI"]
+#' 
+#' muBrainCrop <- cropSamples(overlay = muBrain, 
+#'                            sampleIDs = samps, 
+#'                            sampsOnly = TRUE)
+#' 
+#' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F)
 #' 
 #' @importFrom image_info magick
 #' 
@@ -346,7 +464,32 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @return SpatialOverlay object 
 #' 
 #' @examples
+#' #' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+#'                                package = "SpatialOmicsOverlay"))
 #' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 7)
+#' 
+#' muBrain <- scaleCoords(overlay = muBrain)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#' 
+#' samps <- muBrainLW$Sample_ID[muBrainLW$segment == "Full ROI"]
+#' 
+#' muBrainCrop <- cropTissue(overlay = muBrain)
+#' 
+#' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
+#'                    hiRes = TRUE, scaleBar = F)
+#'                    
 #' @importFrom imageData EBImage
 #' @importFrom as_EBImage magick
 #' @importFrom image_read magick

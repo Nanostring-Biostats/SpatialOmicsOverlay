@@ -17,4 +17,16 @@ recolor images after changing colors and/or color intensities
 }
 \examples{
 
+muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
+                               package = "SpatialOmicsOverlay"))
+
+image <- downloadMouseBrainImage()
+
+muBrain <- add4ChannelImage(overlay = muBrain, 
+                            ometiff = image, res = 7)
+
+muBrain <- changeImageColoring(overlay = muBrain, color = "magenta", 
+                               dye = "Cy5")
+showImage(recolor(muBrain))
+
 }

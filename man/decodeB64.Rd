@@ -19,6 +19,3 @@ binary mask image
 \description{
 Decode a base 64 string into 8 bit binary image mask
 }
-\examples{
-
-}
