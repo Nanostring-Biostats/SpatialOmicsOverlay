@@ -1,8 +1,11 @@
 #' overlay plots
 #' 
+#' @note hiRes and outline ggplots use fill, lowRes uses color
+#' 
 #' @param overlay SpatialOverlay object
 #' @param colorBy annotation to color by
-#' @param hiRes generated figures are either high resolution or print quickly. 
+#' @param hiRes generated figures are either high resolution or print quickly.  
+#'                 Note: hiRes and outline ggplots use fill, lowRes uses color
 #' @param alpha opacity of overlays 
 #' @param legend should legend be plotted
 #' @param scaleBar should scale bar be plotted
@@ -34,8 +37,6 @@
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                           ometiff = image, res = 7)
-#' 
-#' muBrain <- scaleCoords(overlay = muBrain)
 #' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
@@ -156,8 +157,6 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                           ometiff = image, res = 7)
-#' 
-#' muBrain <- scaleCoords(overlay = muBrain)
 #' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 

@@ -85,7 +85,10 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
                          overlayData = AOIattrs, 
                          workflow = list(labWorksheet=labWorksheet,
                                          outline=NULL,
-                                         scaled=FALSE))
+                                         scaled=FALSE),
+                         image = list(filePath = NULL,
+                                      imagePointer = NULL,
+                                      resolution = NULL))
     
     if(image == TRUE){
         print("Adding Image")

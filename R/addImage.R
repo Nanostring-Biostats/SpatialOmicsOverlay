@@ -30,7 +30,7 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
     }
     
     if(is.null(overlay@image$resolution)){
-        difRes <- 0
+        difRes <- -1
     }else{
         difRes <- res - overlay@image$resolution
     }
@@ -110,7 +110,7 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
     }
     
     if(is.null(overlay@image$resolution)){
-        difRes <- 0
+        difRes <- -1
     }else{
         difRes <- res - overlay@image$resolution
     }

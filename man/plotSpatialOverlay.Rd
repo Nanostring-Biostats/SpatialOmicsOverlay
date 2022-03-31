@@ -26,7 +26,8 @@ plotSpatialOverlay(
 
 \item{colorBy}{annotation to color by}
 
-\item{hiRes}{generated figures are either high resolution or print quickly.}
+\item{hiRes}{generated figures are either high resolution or print quickly.
+Note: hiRes and outline ggplots use fill, lowRes uses color}
 
 \item{alpha}{opacity of overlays}
 
@@ -59,6 +60,9 @@ gp
 \description{
 overlay plots
 }
+\note{
+hiRes and outline ggplots use fill, lowRes uses color
+}
 \examples{
 
 muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
@@ -73,8 +77,6 @@ image <- downloadMouseBrainImage()
 
 muBrain <- addImageOmeTiff(overlay = muBrain, 
                           ometiff = image, res = 7)
-
-muBrain <- scaleCoords(overlay = muBrain)
 
 muBrain <- addPlottingFactor(overlay = muBrain, 
                              annots = muBrainLW, 

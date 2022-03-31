@@ -31,8 +31,6 @@ image <- downloadMouseBrainImage()
 muBrain <- addImageOmeTiff(overlay = muBrain, 
                            ometiff = image, res = 7)
 
-muBrain <- scaleCoords(overlay = muBrain)
-
 muBrain <- addPlottingFactor(overlay = muBrain, 
                              annots = muBrainLW, 
                              plottingFactor = "segment")

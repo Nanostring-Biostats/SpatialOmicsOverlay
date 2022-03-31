@@ -236,8 +236,6 @@ recolor <- function(overlay){
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 7)
 #' 
-#' muBrain <- scaleCoords(overlay = muBrain)
-#' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
 #'                              plottingFactor = "segment")
@@ -278,8 +276,6 @@ flipY <- function(overlay){
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 7)
-#' 
-#' muBrain <- scaleCoords(overlay = muBrain)
 #' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
@@ -387,8 +383,6 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 7)
 #' 
-#' muBrain <- scaleCoords(overlay = muBrain)
-#' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
 #'                              plottingFactor = "segment")
@@ -476,8 +470,6 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 7)
-#' 
-#' muBrain <- scaleCoords(overlay = muBrain)
 #' 
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
