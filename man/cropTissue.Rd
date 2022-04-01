@@ -40,6 +40,6 @@ samps <- muBrainLW$Sample_ID[muBrainLW$segment == "Full ROI"]
 muBrainCrop <- cropTissue(overlay = muBrain)
 
 plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = F)
+                   hiRes = TRUE, scaleBar = FALSE)
                    
 }

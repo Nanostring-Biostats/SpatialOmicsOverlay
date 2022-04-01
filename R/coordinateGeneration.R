@@ -225,28 +225,10 @@ boundary <-  function(mat) {
 #' 
 #' @return SpatialOverlay object 
 #' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' muBrain <- addImageOmeTiff(overlay = muBrain,
-#'                            ometiff = image, res = 7)
-#' 
-#' summary(coords(muBrain))
-#' 
-#' muBrain <- scaleCoords(overlay = muBrain)
-#' 
-#' #fewer and smaller points
-#' summary(coords(muBrain))
-#' 
 #' @importFrom distinct dplyr
 #' @importFrom image_info magick
 #' @importFrom image_read magick
 #' 
-#' @export
 scaleCoords <- function(overlay){
     if(class(overlay) != "SpatialOverlay"){
         stop("overlay must be a SpatialOverlay")

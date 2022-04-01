@@ -8,18 +8,18 @@ Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", rol
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
              person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
 Depends: R (>= 4.0)
-Imports: base64enc, EBImage, ggplot2, RBioFormats, XML, scattermore, dplyr, 
-         pbapply, data.table, readxl, magick, grDevices, stringr, plotrix, 
-         BiocFileCache
+Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, RBioFormats, XML, 
+         scattermore, dplyr, pbapply, data.table, readxl, magick, grDevices, 
+         stringr, plotrix, GeomxTools, BiocFileCache
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
     stringi,
     qpdf,
-    GeomxTools,
-    BiocFileCache,
-    pheatmap
+    pheatmap,
+    methods,
+    viridis
 License: MIT
 Collate: addImage.R
          addPlottingFactor.R

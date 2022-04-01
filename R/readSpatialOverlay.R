@@ -28,7 +28,7 @@
 #' 
 #' @importFrom read_xlsx readxl
 #' @importFrom fread data.table
-#' @importFrom pData GeomxTools
+#' @importFrom sData GeomxTools
 #' 
 #' @seealso \code{\link{SpatialOverlay-class}}
 #' 
@@ -39,7 +39,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
                                saveFile = FALSE, outline = TRUE){
     labWorksheet <- FALSE
     if(class(annots) == "NanoStringGeoMxSet"){
-       annots <- pData(annots)
+       annots <- sData(annots)
        annots <- annots[annots$`slide name` == slideName,]
        
        if(nrow(annots) == 0){

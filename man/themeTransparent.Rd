@@ -32,7 +32,7 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              plottingFactor = "segment")
                              
 plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = F) + 
+                   hiRes = TRUE, scaleBar = FALSE) + 
 themeTransparent()
 
 }

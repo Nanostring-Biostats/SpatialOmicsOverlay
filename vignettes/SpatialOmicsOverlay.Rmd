@@ -6,6 +6,10 @@ output:
     df_print: kable
   pdf_document: default
 date: 'Compiled: `r Sys.Date()`'
+vignette: >
+  %\VignetteIndexEntry{Introduction to SpatialOmicsOverlay}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE}

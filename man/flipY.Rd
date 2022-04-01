@@ -35,6 +35,6 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              plottingFactor = "segment")
 
 plotSpatialOverlay(overlay = flipY(muBrain), colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = F)
+                   hiRes = TRUE, scaleBar = FALSE)
 
 }

@@ -241,7 +241,7 @@ recolor <- function(overlay){
 #'                              plottingFactor = "segment")
 #' 
 #' plotSpatialOverlay(overlay = flipY(muBrain), colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F)
+#'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
 #' @importFrom image_flip magick
 #' 
@@ -282,7 +282,7 @@ flipY <- function(overlay){
 #'                              plottingFactor = "segment")
 #' 
 #' plotSpatialOverlay(overlay = flipX(muBrain), colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F)
+#'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
 #' @importFrom image_flop magick
 #' 
@@ -394,7 +394,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #'                            sampsOnly = TRUE)
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F)
+#'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
 #' @importFrom image_info magick
 #' 
@@ -480,7 +480,7 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' muBrainCrop <- cropTissue(overlay = muBrain)
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F)
+#'                    hiRes = TRUE, scaleBar = FALSE)
 #'                    
 #' @importFrom imageData EBImage
 #' @importFrom as_EBImage magick

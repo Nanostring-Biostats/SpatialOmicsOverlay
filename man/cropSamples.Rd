@@ -47,6 +47,6 @@ muBrainCrop <- cropSamples(overlay = muBrain,
                            sampsOnly = TRUE)
 
 plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = F)
+                   hiRes = TRUE, scaleBar = FALSE)
 
 }

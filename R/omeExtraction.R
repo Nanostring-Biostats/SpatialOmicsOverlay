@@ -76,6 +76,7 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #' @importFrom imageData EBImage
 #' @importFrom imageData<- EBImage
 #' @importFrom image_read magick
+#' @importFrom display EBImage
 #' 
 #' @export
 

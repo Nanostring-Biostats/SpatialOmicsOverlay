@@ -23,7 +23,7 @@
 \alias{coords}
 \alias{coords,SpatialOverlay-method}
 \alias{coords<-}
-\alias{coords<-,coords,data.frame-method}
+\alias{coords<-,SpatialOverlay,data.frame-method}
 \alias{plotFactors}
 \alias{plotFactors,SpatialOverlay-method}
 \alias{plotFactors<-}
@@ -104,14 +104,14 @@
         \code{coords(object)}: extracts the coordinates for the entire scan.
       }
       \item{}{
-        \code{coords(object) <- value}: replaces the \code{coords} of
+        \code{coords(object)<-value}: replaces the \code{coords} of
         the \code{object}.
       }
       \item{}{
         \code{plotFactors(object)}: extracts avaliable plotting factors.
       }
       \item{}{
-        \code{plotFactors(object) <- value}: replaces the \code{plotFactors} of
+        \code{plotFactors(object)<-value}: replaces the \code{plotFactors} of
         the \code{object}.
       }
       \item{}{

@@ -43,7 +43,7 @@
 #'                              plottingFactor = "segment")
 #'                              
 #' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F)
+#'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
 #' @importFrom geom_scattermore scattermore
 #' @import ggplot2
@@ -163,7 +163,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
 #'                              plottingFactor = "segment")
 #'                              
 #' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = F) + 
+#'                    hiRes = TRUE, scaleBar = FALSE) + 
 #' themeTransparent()
 #' 
 #' @import ggplot2
