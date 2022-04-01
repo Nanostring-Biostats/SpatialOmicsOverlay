@@ -7,7 +7,7 @@
 #' @param annots path to annotation file: can be labWorksheet, DA excel file, or delimted file
 #' @param slideName name of slide
 #' @param image should image be extracted from OME-TIFF
-#' @param res resolution of image \code\link{imageExtraction}
+#' @param res resolution of image \code{\link{imageExtraction}}
 #' @param saveFile should xml & image be saved, file is saved in working directory 
 #'                     with same name as OME-TIFF 
 #' @param outline returned coordinates only contain outlinearies, 

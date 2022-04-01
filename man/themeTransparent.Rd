@@ -14,8 +14,8 @@ transparent theme for plots
 }
 \examples{
 
-muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-                               package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")

@@ -11,8 +11,8 @@
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
@@ -90,14 +90,14 @@ addImageFile <- function(overlay, imageFile, res, ...){
 #' 
 #' @examples
 #' 
-#'muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                               package = "SpatialOmicsOverlay"))
-#'image <- downloadMouseBrainImage()
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
+#' image <- downloadMouseBrainImage()
 #'
-#'muBrain <- add4ChannelImage(overlay = muBrain, 
-#'                            ometiff = image, res = 7)
+#' muBrain <- add4ChannelImage(overlay = muBrain, 
+#'                             ometiff = image, res = 7)
 #'
-#'dim(EBImage::imageData(showImage(muBrain)))
+#' dim(EBImage::imageData(showImage(muBrain)))
 #' 
 #' @export
 add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){

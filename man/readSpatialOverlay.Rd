@@ -23,7 +23,7 @@ readSpatialOverlay(
 
 \item{image}{should image be extracted from OME-TIFF}
 
-\item{res}{resolution of image \code\link{imageExtraction}}
+\item{res}{resolution of image \code{\link{imageExtraction}}}
 
 \item{saveFile}{should xml & image be saved, file is saved in working directory 
 with same name as OME-TIFF}

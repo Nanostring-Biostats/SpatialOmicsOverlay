@@ -25,12 +25,12 @@ Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring of im
 }
 \examples{
 
-muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-                              package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 image <- downloadMouseBrainImage()
 
 muBrain <- add4ChannelImage(overlay = muBrain, 
-                           ometiff = image, res = 7)
+                            ometiff = image, res = 7)
 
 dim(EBImage::imageData(showImage(muBrain)))
 

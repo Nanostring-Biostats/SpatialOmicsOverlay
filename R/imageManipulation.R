@@ -54,8 +54,8 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
@@ -111,8 +111,8 @@ changeImageColoring <- function(overlay, color, dye){
 #' @return SpatialOverlay object with updated fluor data
 #' 
 #' @examples
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
@@ -185,8 +185,8 @@ changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, d
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #'
 #' image <- downloadMouseBrainImage()
 #'
@@ -223,8 +223,8 @@ recolor <- function(overlay){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
@@ -264,8 +264,8 @@ flipY <- function(overlay){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
@@ -370,8 +370,8 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
@@ -458,8 +458,8 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @return SpatialOverlay object 
 #' 
 #' @examples
-#' #' muBrain <- readRDS(system.file("extdata", "muBrain_SpatialOverlay.RDS", 
-#'                                package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
