@@ -84,7 +84,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
                          scanMetadata = scan_metadata, 
                          overlayData = AOIattrs, 
                          workflow = list(labWorksheet=labWorksheet,
-                                         outline=NULL,
+                                         outline=outline,
                                          scaled=FALSE),
                          image = list(filePath = NULL,
                                       imagePointer = NULL,
@@ -93,18 +93,12 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = 
     if(image == TRUE){
         print("Adding Image")
         so <- addImageOmeTiff(overlay = so, ometiff = ometiff, res = res, 
-                       scanMeta = scan_metadata, saveFile = saveFile)
-    }
-    
-    print("Generating Coordinates")
-    so <- createCoordFile(overlay = so, outline = outline)
-    
-    if(image == TRUE){
-        print("Scaling Coordinates")
-        so <- scaleCoords(overlay = so)
+                              scanMeta = scan_metadata, saveFile = saveFile)
         so <- cropTissue(overlay = so)
+    }else{
+        print("Generating Coordinates")
+        so <- createCoordFile(overlay = so, outline = outline)
     }
-     
     
     return(so)
 }

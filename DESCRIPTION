@@ -9,7 +9,8 @@ Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", rol
              person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
 Depends: R (>= 4.0)
 Imports: base64enc, EBImage, ggplot2, RBioFormats, XML, scattermore, dplyr, 
-         pbapply, data.table, readxl, magick, grDevices, stringr, plotrix
+         pbapply, data.table, readxl, magick, grDevices, stringr, plotrix, 
+         BiocFileCache
 Suggests: 
     knitr,
     rmarkdown,

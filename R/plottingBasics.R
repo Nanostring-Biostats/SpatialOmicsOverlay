@@ -351,7 +351,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
         annotate(geom = "text", 
                  x = mean(c(scaleBarPts$start,scaleBarPts$end)),
                  y = scaleBarPts$textY,
-                 label = paste(scaleBar$um, "um"),
+                 label = paste(scaleBar$um, paste0("\u03BC", "m")),
                  size = scaleBarFontSize,
                  color = scaleBarColor,
                  ...)
