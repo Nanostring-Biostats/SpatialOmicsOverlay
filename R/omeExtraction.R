@@ -51,11 +51,11 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #' Extract image from OME-TIFF
 #' 
 #' @param ometiff path to OME-TIFF
-#' @param res resolution layer, 1 = largest & higher values = smaller. The images increase 
-#'              in resolution and memory. The largest image your environment 
-#'              can hold is recommended.  
-#' @param scanMeta scan metadata from parseScanMetadata(). If NULL, that function 
-#'                   is automatically called.
+#' @param res resolution layer, 1 = largest & higher values = smaller. The 
+#'              images increase in resolution and memory. The largest image 
+#'              your environment can hold is recommended.  
+#' @param scanMeta scan metadata from parseScanMetadata(). If NULL, that 
+#'                   function is automatically called.
 #' @param saveFile should xml be saved, file is saved in working directory with 
 #'                 same name as OME-TIFF
 #' @param fileType type of image file. Options: tiff, png, jpeg
@@ -92,8 +92,10 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     
     lowRes <- checkValidRes(ometiff)
     
-    if(!res %in% c(1:lowRes)){
-        stop(paste("valid res integers for this image must be between 1 and", lowRes))
+    if(!res %in% c(seq_len(lowRes))){
+        msg <- paste("valid res integers for this image must be between 1 and", 
+                     lowRes)
+        stop(msg)
     }
     
     if(is.null(scanMeta)){
@@ -101,13 +103,14 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     }
     
     omeImage <- read.image(ometiff, resolution = res,
-                       read.metadata = F, normalize = F)
+                           read.metadata = FALSE, normalize = FALSE)
     
     if(color == TRUE){
         omeImage <- imageColoring(omeImage, scanMeta)
     }else{
         if(saveFile == TRUE){
-            warning("file can only be saved if color == TRUE, will not save file", immediate. = T)
+            warning("file can only be saved if color == TRUE, will not save file", 
+                    immediate. = TRUE)
             saveFile <- FALSE
         }
     }
@@ -117,8 +120,8 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
         height <- omeImage@metadata$coreMetadata$sizeY
         
         imageName <- gsub(pattern = ".ome", 
-                        replacement = "", 
-                        x = basename(ometiff))
+                          replacement = "", 
+                          x = basename(ometiff))
         
         imageName <- paste0(dirname(ometiff), "/", imageName)
         

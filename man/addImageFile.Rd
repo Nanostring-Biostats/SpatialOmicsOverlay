@@ -11,7 +11,8 @@ addImageFile(overlay, imageFile, res, ...)
 
 \item{imageFile}{path to image}
 
-\item{res}{what resolution is the image given? 1 = largest, higher number = smaller
+\item{res}{what resolution is the image given? 
+1 = largest, higher number = smaller
 This value will affect the coordinates of the overlays. 
 res = 2, resolution is 1/2 the size as the raw image
 res = 3, resolution is 1/4 the size as the raw image

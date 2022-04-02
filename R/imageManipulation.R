@@ -12,12 +12,15 @@
 #' 
 
 imageColoring <- function(omeImage, scanMeta){
-    red <- matrix(0, nrow = nrow(imageData(omeImage)), ncol = ncol(imageData(omeImage)))
-    green <- matrix(0, nrow = nrow(imageData(omeImage)), ncol = ncol(imageData(omeImage)))
-    blue <- matrix(0, nrow = nrow(imageData(omeImage)), ncol = ncol(imageData(omeImage)))
+    red <- matrix(0, nrow = nrow(imageData(omeImage)), 
+                  ncol = ncol(imageData(omeImage)))
+    green <- matrix(0, nrow = nrow(imageData(omeImage)), 
+                    ncol = ncol(imageData(omeImage)))
+    blue <- matrix(0, nrow = nrow(imageData(omeImage)), 
+                   ncol = ncol(imageData(omeImage)))
     
     if("MinIntensity" %in% colnames(scanMeta$Fluorescence)){
-        for(i in 1:nrow(scanMeta$Fluorescence)){
+        for(i in seq_len(nrow(scanMeta$Fluorescence))){
             imageData(omeImage)[,,i] <- normalize(imageData(omeImage)[,,i],
                                                   inputRange = 
                                                       c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
@@ -27,7 +30,7 @@ imageColoring <- function(omeImage, scanMeta){
     
     omeImage <- normalize(omeImage)
     
-    for(i in 1:nrow(scanMeta$Fluorescence)){
+    for(i in seq_len(nrow(scanMeta$Fluorescence))){
         imageLayer <- imageData(omeImage)[,,i]
         
         rgba <- col2rgb(scanMeta$Fluorescence$ColorCode[i], alpha = TRUE)
@@ -48,7 +51,8 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' @param overlay SpatialOverlay object, with 4channel image
 #' @param color color to change dye to, hex or color name
-#' @param dye which dye to change color, can be from Dye or DisplayName column from fluor(overlay)
+#' @param dye which dye to change color, can be from Dye or DisplayName column 
+#'               from fluor(overlay)
 #' 
 #' @return SpatialOverlay object with updated fluor data
 #' 
@@ -79,7 +83,7 @@ imageColoring <- function(omeImage, scanMeta){
 #' @export
 #'
 changeImageColoring <- function(overlay, color, dye){
-    if(class(showImage(overlay)) != "AnnotatedImage"){
+    if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
@@ -106,7 +110,8 @@ changeImageColoring <- function(overlay, color, dye){
 #' @param overlay SpatialOverlay object
 #' @param minInten value to change MinIntensity to; NULL indicates no change
 #' @param maxInten value to change MaxIntensity to; NULL indicates no change
-#' @param dye which dye to change color, can be from Dye or DisplayName column from fluor(overlay)
+#' @param dye which dye to change color, can be from Dye or DisplayName column 
+#'                from fluor(overlay)
 #' 
 #' @return SpatialOverlay object with updated fluor data
 #' 
@@ -134,8 +139,9 @@ changeImageColoring <- function(overlay, color, dye){
 #' 
 #' @export
 #'
-changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, dye){
-    if(class(showImage(overlay)) != "AnnotatedImage"){
+changeColoringIntensity <- function(overlay, minInten = NULL,
+                                    maxInten = NULL, dye){
+    if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
@@ -147,11 +153,11 @@ changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, d
         stop("changes must be made to minInten and/or maxInten")
     }
     
-    if(class(minInten) != "numeric"){
+    if(!is(minInten,"numeric")){
         stop("minInten must be numeric")
     }
     
-    if(class(maxInten) != "numeric"){
+    if(!is(maxInten,"numeric")){
         stop("maxInten must be numeric")
     }
     
@@ -200,7 +206,7 @@ changeColoringIntensity <- function(overlay, minInten = NULL, maxInten = NULL, d
 #' @export
 #'
 recolor <- function(overlay){
-    if(class(showImage(overlay)) != "AnnotatedImage"){
+    if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
@@ -312,8 +318,8 @@ flipX <- function(overlay){
 #' @importFrom image_info magick
 #' 
 crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
-    if(class(xmin) != "numeric" | class(xmax) != "numeric" |
-       class(ymin) != "numeric" | class(ymax) != "numeric"){
+    if(!is(xmin,"numeric") | !is(xmax,"numeric") |
+       !is(ymin,"numeric") | !is(ymax,"numeric")){
         stop("min/max coordinate values must be numeric")
     }
     
@@ -348,9 +354,9 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
     
     if(coords == TRUE){
         coords(overlay) <- coords(overlay)[coords(overlay)$xcoor >= xmin &
-                                               coords(overlay)$xcoor <= xmax &
-                                               coords(overlay)$ycoor >= (maxHeight - ymin) &
-                                               coords(overlay)$ycoor <= (maxHeight - ymax),]
+                                           coords(overlay)$xcoor <= xmax &
+                                           coords(overlay)$ycoor >= (maxHeight - ymin) &
+                                           coords(overlay)$ycoor <= (maxHeight - ymax),]
         
         coords(overlay)$xcoor <- coords(overlay)$xcoor - xmin
         coords(overlay)$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
@@ -444,7 +450,8 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
                     ymin = ymin, ymax = ymax)
     
     if(sampsOnly == TRUE){
-        coords(overlay) <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
+        coords(overlay) <- coords(overlay)[coords(overlay)$sampleID %in% 
+                                               sampleIDs,]
     }
     
     return(overlay)
@@ -489,7 +496,7 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @export 
 #'
 cropTissue <- function(overlay, buffer = 0.05){
-    if(class(showImage(overlay)) == "AnnotatedImage"){
+    if(is(showImage(overlay),"AnnotatedImage")){
         coords <- FALSE
         image_data <- imageData(showImage(overlay))
         overlay@image$imagePointer <- image_read(imageColoring(overlay@image$imagePointer,
@@ -520,7 +527,7 @@ cropTissue <- function(overlay, buffer = 0.05){
     ymax <- max(ymax-ybuf, 0)
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
-         ymin = ymin, ymax = ymax, coords = coords)
+                    ymin = ymin, ymax = ymax, coords = coords)
     
     return(overlay)
 }

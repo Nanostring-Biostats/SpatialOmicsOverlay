@@ -11,7 +11,8 @@ annotMatching(annots, ROInum, maskNum, maskText)
 
 \item{ROInum}{ROI number from xml file}
 
-\item{maskNum}{number of masks for ROI, used for AOI matching in software <= v2.4}
+\item{maskNum}{number of masks for ROI, used for AOI matching in software 
+<= v2.4}
 
 \item{maskText}{segment name, used for AOI matching in software v2.4+}
 }

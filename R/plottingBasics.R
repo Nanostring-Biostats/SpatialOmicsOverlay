@@ -9,7 +9,8 @@
 #' @param alpha opacity of overlays 
 #' @param legend should legend be plotted
 #' @param scaleBar should scale bar be plotted
-#' @param image should image be plotted, image must be added to SpatialOverlay object
+#' @param image should image be plotted, image must be added to SpatialOverlay 
+#'                object
 #' @param ... additional parameters for scale bar line & text, will affect both 
 #' @param corner where in the figure should the scale bar be printed. 
 #'               Options: "bottomright"  "topright"
@@ -52,13 +53,14 @@
 #' @export 
 #' 
 
-plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alpha = 1, 
-                               legend = TRUE, scaleBar = TRUE, image = TRUE, ... , 
-                               corner = "bottomright", scaleBarWidth = 0.2, 
-                               scaleBarColor = "red", scaleBarFontSize = 6, 
-                               scaleBarLineSize = 1.5, textDistance = 2){
+plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, 
+                               alpha = 1, legend = TRUE, scaleBar = TRUE, 
+                               image = TRUE, ... , corner = "bottomright", 
+                               scaleBarWidth = 0.2, scaleBarColor = "red", 
+                               scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
+                               textDistance = 2){
     
-    if(class(showImage(overlay)) == "AnnotatedImage"){
+    if(is(showImage(overlay),"AnnotatedImage")){
         overlay <- recolor(overlay)
     }
     
@@ -87,7 +89,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
     
     if(outline(overlay) == TRUE){
         gp <- gp +
-            geom_polygon(data = pts, aes(x=xcoor, y=ycoor, fill=colorBy, group=sampleID),
+            geom_polygon(data = pts, aes(x=xcoor, y=ycoor, fill=colorBy, 
+                                         group=sampleID),
                          alpha = alpha)+
             labs(fill = colorBy)
     }else if(hiRes == TRUE){
@@ -116,7 +119,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, alph
         
         scaleImage <- NULL
     }
- 
+    
     
     if(legend == FALSE){
         gp <- gp + theme(legend.position = "none")
@@ -228,7 +231,7 @@ scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
         minPtY <- 0
         maxPtY <- imageInfo$height
     }
-   
+    
     
     if(axis == "X"){
         givenPixels <- (maxPtX - minPtX) * scaleBarWidth
@@ -275,7 +278,8 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
     validCorners <- c("bottomright", "bottomleft", "bottomcenter", 
                       "topright", "topleft", "topcenter")
     if(!corner %in% validCorners){
-        stop("Provided corner is not valid. Options: ", paste(validCorners, collapse = ", "))
+        stop("Provided corner is not valid. Options: ", paste(validCorners, 
+                                                              collapse = ", "))
     }
     
     #preparation for other printing vertical scale bar
@@ -334,12 +338,16 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
 #' 
 scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright", 
                              scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
-                             scaleBarColor = "red", textDistance = 2, image = NULL, ...){
-    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = corner, textDistance)
+                             scaleBarColor = "red", textDistance = 2, 
+                             image = NULL, ...){
+    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = corner, 
+                                       textDistance)
     
     if(!is.null(image)){
-        scaleBarPts$lineY <- image_info(image$imagePointer)$height - (scaleBarPts$lineY)
-        scaleBarPts$textY <- image_info(image$imagePointer)$height - (scaleBarPts$textY)
+        scaleBarPts$lineY <- image_info(image$imagePointer)$height - 
+            (scaleBarPts$lineY)
+        scaleBarPts$textY <- image_info(image$imagePointer)$height - 
+            (scaleBarPts$textY)
     }
     
     df <- as.data.frame(rbind(c(scaleBarPts$start, scaleBarPts$lineY), 

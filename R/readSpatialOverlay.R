@@ -4,12 +4,13 @@
 #' by reading data from OME-TIFF and annotation sheet.
 #' 
 #' @param ometiff path to OME-TIFF 
-#' @param annots path to annotation file: can be labWorksheet, DA excel file, or delimted file
+#' @param annots path to annotation file: can be labWorksheet, DA excel file, or 
+#'                 delimted file
 #' @param slideName name of slide
 #' @param image should image be extracted from OME-TIFF
 #' @param res resolution of image \code{\link{imageExtraction}}
-#' @param saveFile should xml & image be saved, file is saved in working directory 
-#'                     with same name as OME-TIFF 
+#' @param saveFile should xml & image be saved, file is saved in working  
+#'                     directory with same name as OME-TIFF 
 #' @param outline returned coordinates only contain outlinearies, 
 #'                   will not work for segmented ROIs
 #' 
@@ -35,21 +36,21 @@
 #' @export 
 #' 
 
-readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, res = NULL,
-                               saveFile = FALSE, outline = TRUE){
+readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, 
+                               res = NULL, saveFile = FALSE, outline = TRUE){
     labWorksheet <- FALSE
-    if(class(annots) == "NanoStringGeoMxSet"){
-       annots <- sData(annots)
-       annots <- annots[annots$`slide name` == slideName,]
-       
-       if(nrow(annots) == 0){
-           stop("No ROIs match given slideName")
-       }
-       
-       annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
-       
-       labWorksheet <- TRUE
-       colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
+    if(is(annots,"NanoStringGeoMxSet")){
+        annots <- sData(annots)
+        annots <- annots[annots$`slide name` == slideName,]
+        
+        if(nrow(annots) == 0){
+            stop("No ROIs match given slideName")
+        }
+        
+        annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
+        
+        labWorksheet <- TRUE
+        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else if(endsWith(tolower(annots), "_labworksheet.txt")){
         annots <- readLabWorksheet(lw = annots, slideName = slideName)
         labWorksheet <- TRUE

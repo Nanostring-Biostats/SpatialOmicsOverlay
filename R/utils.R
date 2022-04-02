@@ -16,7 +16,7 @@
 #' 
 #' @export
 bookendStr <- function(x, bookend = 8){
-    if(class(x) != "character"){
+    if(!is(x,"character")){
         x <- as.character(x)
     }
     if(nchar(x) > bookend*2){
@@ -49,7 +49,8 @@ readLabWorksheet <- function(lw, slideName){
     
     startLine <- grep(readLines(lw), pattern = "^Annotations")
     
-    lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, fill = TRUE)
+    lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
+                     fill = TRUE)
     lw$ROILabel <- as.numeric(gsub("\"", "", gsub("=", "", lw$roi)))
     
     lw <- lw[lw$slide.name == slideName,]
@@ -81,9 +82,9 @@ downloadMouseBrainImage <- function(){
     url <- "https://external-soa-downloads-p-1.s3.us-west-2.amazonaws.com"
     images <- "mu_brain_image_files.tar.gz"
     imageFile <- "image_files/mu_brain_004.ome.tiff"
-
+    
     fileURL <- paste(url, images, sep = "/")
-
+    
     bfc <- .get_cache()
     rid <- bfcquery(bfc, imageFile)$rid
     
@@ -101,7 +102,8 @@ downloadMouseBrainImage <- function(){
               files = imageFile,
               exdir = bfc@cache)
         
-        rid <- names(bfcadd(bfc, rname = "mu_brain_004.ome.tiff", fpath = paste(bfc@cache, imageFile, sep = "/")))
+        rid <- names(bfcadd(bfc, rname = "mu_brain_004.ome.tiff", 
+                            fpath = paste(bfc@cache, imageFile, sep = "/")))
     }
     
     bfcrpath(bfc, rids=rid)

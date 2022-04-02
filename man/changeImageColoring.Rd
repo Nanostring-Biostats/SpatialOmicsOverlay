@@ -11,7 +11,8 @@ changeImageColoring(overlay, color, dye)
 
 \item{color}{color to change dye to, hex or color name}
 
-\item{dye}{which dye to change color, can be from Dye or DisplayName column from fluor(overlay)}
+\item{dye}{which dye to change color, can be from Dye or DisplayName column 
+from fluor(overlay)}
 }
 \value{
 SpatialOverlay object with updated fluor data

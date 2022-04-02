@@ -14,9 +14,11 @@ addPlottingFactor(overlay, annots, plottingFactor, ...)
 \code{character}, \code{factor}, or \code{numeric}}
 
 \item{plottingFactor}{column or row from annots to add as plotting factor, 
-if using vector this will be the name of the new plotting factor}
+if using vector this will be the name of the new 
+plotting factor}
 
-\item{...}{if using \code{NanoStringGeoMxSet}, name of count matrix to pull counts from}
+\item{...}{if using \code{NanoStringGeoMxSet}, name of count matrix to pull 
+counts from}
 }
 \value{
 \code{\link{SpatialOverlay}} object with new plotting factor
@@ -48,7 +50,7 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              countMatrix = "exprs")
 
 muBrain <- addPlottingFactor(overlay = muBrain,
-                             annots = 1:length(sampNames(muBrain)),
+                             annots = seq_len(length(sampNames(muBrain))),
                              plottingFactor = "ROINum")
 
 head(plotFactors(muBrain))

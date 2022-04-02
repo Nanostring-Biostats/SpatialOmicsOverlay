@@ -16,12 +16,12 @@ imageExtraction(
 \arguments{
 \item{ometiff}{path to OME-TIFF}
 
-\item{res}{resolution layer, 1 = largest & higher values = smaller. The images increase 
-in resolution and memory. The largest image your environment 
-can hold is recommended.}
+\item{res}{resolution layer, 1 = largest & higher values = smaller. The 
+images increase in resolution and memory. The largest image 
+your environment can hold is recommended.}
 
-\item{scanMeta}{scan metadata from parseScanMetadata(). If NULL, that function 
-is automatically called.}
+\item{scanMeta}{scan metadata from parseScanMetadata(). If NULL, that 
+function is automatically called.}
 
 \item{saveFile}{should xml be saved, file is saved in working directory with 
 same name as OME-TIFF}

@@ -7,7 +7,8 @@
 parseOverlayAttrs(omexml, annots, labworksheet)
 }
 \arguments{
-\item{omexml}{xml file from OME-TIFF, can provide path to OME-TIFF and xml will automatically be extracted}
+\item{omexml}{xml file from OME-TIFF, can provide path to OME-TIFF and xml 
+will automatically be extracted}
 
 \item{annots}{df of annotations}
 

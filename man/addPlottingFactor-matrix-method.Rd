@@ -12,7 +12,8 @@
 \item{annots}{\code{matrix} containing plottingFactor, column or column names 
 must contian matching sample names to overlay}
 
-\item{plottingFactor}{column or row name from annots to add as plotting factor}
+\item{plottingFactor}{column or row name from annots to add as plotting 
+factor}
 }
 \value{
 \code{\link{SpatialOverlay}} object with new plotting factor

@@ -27,7 +27,7 @@ muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip",
                                     package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain,
-                             annots = as.character(1:length(sampNames(muBrain))),
+                             annots = as.character(seq_len(length(sampNames(muBrain)))),
                              plottingFactor = "ROINum")
 
 head(plotFactors(muBrain))

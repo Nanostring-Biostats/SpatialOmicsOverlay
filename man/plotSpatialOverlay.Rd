@@ -35,7 +35,8 @@ Note: hiRes and outline ggplots use fill, lowRes uses color}
 
 \item{scaleBar}{should scale bar be plotted}
 
-\item{image}{should image be plotted, image must be added to SpatialOverlay object}
+\item{image}{should image be plotted, image must be added to SpatialOverlay 
+object}
 
 \item{...}{additional parameters for scale bar line & text, will affect both}
 

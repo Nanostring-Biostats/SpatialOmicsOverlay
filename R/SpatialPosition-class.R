@@ -1,5 +1,5 @@
 VALIDNAMES <- c("ROILabel", "Sample_ID", "Height", "Width", "X", "Y", 
-                   "Segmentation", "Position")
+                "Segmentation", "Position")
 
 # Class definition
 setClass("SpatialPosition",
@@ -19,7 +19,8 @@ setGeneric("SpatialPosition",
 setMethod("SpatialPosition", "missing",
           function(position)
           {
-              position <- data.frame(matrix(integer(), nrow = 0L, ncol = length(VALIDNAMES)))
+              position <- data.frame(matrix(integer(), nrow = 0L, 
+                                            ncol = length(VALIDNAMES)))
               colnames(position) <- VALIDNAMES
               new2("SpatialPosition",
                    position = position)
@@ -74,10 +75,12 @@ setValidity2("SpatialPosition", function(object){
 # Accessors
 setGeneric("meta", signature = "object",
            function(object) standardGeneric("meta"))
-setMethod("meta", "SpatialPosition", function(object) 
-    object@position[,-(which(colnames(object@position) == "Position"))])
+setMethod("meta", "SpatialPosition", function(object) {
+    object@position[,-(which(colnames(object@position) == "Position"))]})
 
 setGeneric("position", signature = "object",
            function(object) standardGeneric("position"))
-setMethod("position", "SpatialPosition", function(object) object@position[,which(colnames(object@position) == "Position")])
-
+setMethod("position", "SpatialPosition", function(object){
+    object@position[,which(colnames(object@position) == "Position")]})
+    
+    

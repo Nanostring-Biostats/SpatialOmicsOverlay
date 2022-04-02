@@ -2,9 +2,10 @@
 #' 
 #' @param overlay SpatialOverlay object
 #' @param ometiff File path to OME-TIFF. NULL indicates pull info from overlay 
-#' @param res resolution layer, 1 = largest & higher values = smaller. The images increase 
-#'              in resolution and memory. The largest image your environment 
-#'              can hold is recommended.  NULL indicates pull info from overlay 
+#' @param res resolution layer, 1 = largest & higher values = smaller. The 
+#'              images increase in resolution and memory. The largest image your 
+#'              environment can hold is recommended.  NULL indicates pull info 
+#'              from overlay 
 #' @param ... Extra variables for \code{\link{imageExtraction}}
 #' 
 #' @return SpatialOverlay object with image
@@ -53,7 +54,8 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #' 
 #' @param overlay SpatialOverlay object
 #' @param imageFile path to image
-#' @param res what resolution is the image given? 1 = largest, higher number = smaller
+#' @param res what resolution is the image given? 
+#'              1 = largest, higher number = smaller
 #'              This value will affect the coordinates of the overlays. 
 #'              res = 2, resolution is 1/2 the size as the raw image
 #'              res = 3, resolution is 1/4 the size as the raw image
@@ -75,13 +77,15 @@ addImageFile <- function(overlay, imageFile, res, ...){
     return(overlay)
 }
 
-#' Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring of image
+#' Add 4-channel image to SpatialOverlay from OME-TIFF. Allows for recoloring 
+#' of image
 #' 
 #' @param overlay SpatialOverlay object
 #' @param ometiff File path to OME-TIFF. NULL indicates pull info from overlay 
-#' @param res resolution layer, 1 = largest & higher values = smaller. The images increase 
-#'              in resolution and memory. The largest image your environment 
-#'              can hold is recommended.  NULL indicates pull info from overlay 
+#' @param res resolution layer, 1 = largest & higher values = smaller. The 
+#'              images increase in resolution and memory. The largest image your 
+#'              environment can hold is recommended.  NULL indicates pull info 
+#'              from overlay 
 #' @param ... Extra variables for \code{\link{imageExtraction}}
 #'               
 #' @return SpatialOverlay object with image
@@ -122,7 +126,7 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
     
     if(difRes != 0){
         print("Calculating and scaling coordinates", 
-                immediate. = TRUE)
+              immediate. = TRUE)
         overlay <- createCoordFile(overlay, overlay@workflow$outline)
         overlay <- scaleCoords(overlay)
     }

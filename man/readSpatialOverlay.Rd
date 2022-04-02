@@ -17,7 +17,8 @@ readSpatialOverlay(
 \arguments{
 \item{ometiff}{path to OME-TIFF}
 
-\item{annots}{path to annotation file: can be labWorksheet, DA excel file, or delimted file}
+\item{annots}{path to annotation file: can be labWorksheet, DA excel file, or 
+delimted file}
 
 \item{slideName}{name of slide}
 
@@ -25,8 +26,8 @@ readSpatialOverlay(
 
 \item{res}{resolution of image \code{\link{imageExtraction}}}
 
-\item{saveFile}{should xml & image be saved, file is saved in working directory 
-with same name as OME-TIFF}
+\item{saveFile}{should xml & image be saved, file is saved in working
+directory with same name as OME-TIFF}
 
 \item{outline}{returned coordinates only contain outlinearies, 
 will not work for segmented ROIs}

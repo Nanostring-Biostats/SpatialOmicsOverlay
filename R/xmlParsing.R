@@ -1,6 +1,7 @@
 #' Parse the xml file for the scan metadata of GeoMx images 
 #' 
-#' @param omexml xml file from OME-TIFF, can provide path to OME-TIFF and xml will automatically be extracted 
+#' @param omexml xml file from OME-TIFF, can provide path to OME-TIFF and 
+#'                   xml will automatically be extracted 
 #' 
 #' @return metadata for entire scan
 #' 
@@ -18,11 +19,11 @@
 #' 
 
 parseScanMetatdata <- function(omexml){
-    if(any(class(omexml) == "XMLInternalDocument")){
+    if(any(is(omexml,"XMLInternalDocument"))){
         omexml <- xmlToList(omexml)
     }
     
-    if(class(omexml) == "character" ){
+    if(is(omexml,"character")){
         if(endsWith(omexml, suffix = ".ome.tiff")){
             omexml <- xmlExtraction(ometiff = omexml)
         }
@@ -39,7 +40,8 @@ parseScanMetatdata <- function(omexml){
 
 #' Parse the xml file for AOI attributes in GeoMx images 
 #' 
-#' @param omexml xml file from OME-TIFF, can provide path to OME-TIFF and xml will automatically be extracted 
+#' @param omexml xml file from OME-TIFF, can provide path to OME-TIFF and xml 
+#'                   will automatically be extracted 
 #' @param annots df of annotations
 #' @param labworksheet annots are from lab worksheet file
 #' 
@@ -66,15 +68,15 @@ parseScanMetatdata <- function(omexml){
 #' 
 
 parseOverlayAttrs <- function(omexml, annots, labworksheet){
-    if(class(annots) != "data.frame"){
+    if(!is(annots,"data.frame")){
         stop("File must be read into R and passed as a dataframe")
     }
     
-    if(any(class(omexml) == "XMLInternalDocument")){
+    if(any(is(omexml,"XMLInternalDocument"))){
         omexml <- xmlToList(omexml)
     }
     
-    if(class(omexml) == "character" ){
+    if(is(omexml,"character")){
         if(endsWith(omexml, suffix = ".ome.tiff")){
             omexml <- xmlExtraction(ometiff = omexml)
         }
@@ -130,9 +132,6 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
             AOIattr$X <- as.numeric(AOIattr$X)
             AOIattr$Y <- as.numeric(AOIattr$Y)
             
-            # AOImask <- createMask(b64string = ROI[[mask]]$BinData$text, metadata = AOIattr)
-            # coords <- coordsFromMask(mask = AOImask, AOIattr)
-            
             AOIattrs <- rbind(AOIattrs, 
                               cbind(AOIattr,
                                     Position=ROI[[mask]]$BinData$text))
@@ -142,7 +141,8 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
     if(nrow(AOIattrs) < nrow(annots)){
         names(annots)[names(annots) == "SegmentID"] <- "Sample_ID"
         warning(paste("Some AOIs do no match annotation file. \nNot Matched:",
-                paste(annots$Sample_ID[!annots$Sample_ID %in% AOIattrs$Sample_ID], collapse = ", ")))
+                      paste(annots$Sample_ID[!annots$Sample_ID %in% AOIattrs$Sample_ID], 
+                            collapse = ", ")))
     }
     
     return(SpatialPosition(position = AOIattrs))
@@ -166,10 +166,12 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
 #' 
 physicalSizes <- function(omexml){
     PhysicalSizeX <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeX"]])
-    names(PhysicalSizeX) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeXUnit"]], "/pixel")
+    names(PhysicalSizeX) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeXUnit"]], 
+                                   "/pixel")
     
     PhysicalSizeY <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeY"]])
-    names(PhysicalSizeY) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeYUnit"]], "/pixel")
+    names(PhysicalSizeY) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeYUnit"]], 
+                                   "/pixel")
     
     return(list(X=PhysicalSizeX, 
                 Y=PhysicalSizeY))
@@ -206,7 +208,7 @@ fluorData <- function(omexml){
     planeLine <- min(which(names(omexml$Image$Pixels) == "Plane"))-1
     addition <- 0
     
-    for(chan in 1:length(which(names(omexml$Image$Pixels) == "Channel"))){
+    for(chan in seq_len(length(which(names(omexml$Image$Pixels) == "Channel")))){
         fluor <- omexml$Image$Pixels[chan]$Channel$.attrs
         exposure <- omexml$Image$Pixels[planeLine + chan]$Plane
         
@@ -299,16 +301,19 @@ fluorData <- function(omexml){
 #' @importFrom base64decode base64enc
 #' 
 decodeB64 <- function(b64string, width, height){
-    # rawToBits returns the reverse of the actual binary sequence, needs to be reversed for real image
+    # rawToBits returns the reverse of the actual binary sequence, needs to be 
+    #   reversed for real image
     # example from https://kb.iu.edu/d/afdl
-    # Dec	 Hex	Bin
-    # 192	 c0	  11000000
+    # Dec    Hex    Bin
+    # 192    c0     11000000
     # rawToBits(as.raw(192)) 
     # returns 00 00 00 00 00 00 01 01
     
-    base8 <- sapply(base64decode(b64string), function(x){rev(rawToBits(x))})
+    base8 <- vapply(X = base64decode(b64string), 
+                    FUN = function(x){rev(rawToBits(x))}, 
+                    FUN.VALUE = raw(8))
     
-    base8 <- base8[1:(width*height)]
+    base8 <- base8[seq_len((width*height))]
     
     return(base8)
 }
@@ -317,7 +322,8 @@ decodeB64 <- function(b64string, width, height){
 #' 
 #' @param annots df of annotations
 #' @param ROInum ROI number from xml file
-#' @param maskNum number of masks for ROI, used for AOI matching in software <= v2.4
+#' @param maskNum number of masks for ROI, used for AOI matching in software 
+#'                  <= v2.4
 #' @param maskText segment name, used for AOI matching in software v2.4+
 #' 
 #' @return df with ROI unique identifiers

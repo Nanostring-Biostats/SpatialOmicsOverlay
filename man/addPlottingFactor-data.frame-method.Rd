@@ -9,10 +9,11 @@
 \arguments{
 \item{overlay}{\code{\link{SpatialOverlay}} object}
 
-\item{annots}{\code{data.frame} containing plottingFactor, column or column names 
-must contian matching sample names to overlay}
+\item{annots}{\code{data.frame} containing plottingFactor, column or column 
+names must contian matching sample names to overlay}
 
-\item{plottingFactor}{column or row name from annots to add as plotting factor}
+\item{plottingFactor}{column or row name from annots to add as plotting 
+factor}
 }
 \value{
 \code{\link{SpatialOverlay}} object with new plotting factor

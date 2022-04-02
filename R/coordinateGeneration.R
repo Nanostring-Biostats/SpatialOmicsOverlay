@@ -23,7 +23,7 @@
 #' 
 
 createCoordFile <- function(overlay, outline = TRUE){
-    if(class(overlay) != "SpatialOverlay"){
+    if(!is(overlay,"SpatialOverlay")){
         stop("Overlay must be a SpatialOverlay object")
     }
     
@@ -38,22 +38,23 @@ createCoordFile <- function(overlay, outline = TRUE){
     
     numericCols <- c("Height", "Width", "X", "Y")
     
-    coordValues <- suppressWarnings(pbapply(overlayData@position, 1, function(x){
-        metadata <- as.data.frame(x[which(names(x) != "Position")])
-        if(nrow(metadata) > ncol(metadata)){
-            metadata <- as.data.frame(t(metadata))
-        }
-        for(i in numericCols){
-            metadata[[i]] <- as.numeric(metadata[[i]])
-        }
-       
-        cbind(sampleID=x["Sample_ID"],
-              coordsFromMask(mask = createMask(b64string = x["Position"],
-                                               metadata = metadata,
-                                               outline = outline),
-                             metadata = metadata,
-                             outline = outline))
-    }))
+    coordValues <- suppressWarnings(pbapply(overlayData@position, 1, 
+                                            function(x){
+                                                metadata <- as.data.frame(x[which(names(x) != "Position")])
+                                                if(nrow(metadata) > ncol(metadata)){
+                                                    metadata <- as.data.frame(t(metadata))
+                                                }
+                                                for(i in numericCols){
+                                                    metadata[[i]] <- as.numeric(metadata[[i]])
+                                                }
+                                                
+                                                cbind(sampleID=x["Sample_ID"],
+                                                      coordsFromMask(mask = createMask(b64string = x["Position"],
+                                                                                       metadata = metadata,
+                                                                                       outline = outline),
+                                                                     metadata = metadata,
+                                                                     outline = outline))
+                                            }))
     
     coordValues <- dplyr::bind_rows(coordValues)
     coordValues$ycoor <- as.numeric(coordValues$ycoor)
@@ -163,31 +164,33 @@ coordsFromMask <- function(mask, metadata, outline = TRUE){
 pencilCoordSorting <- function(coords, rangeWidth = 100){
     outlineCoords <- coords[1,]
     used <- NULL
-    for(i in 1:nrow(coords)){
+    for(i in seq_len(nrow(coords))){
         lastPoint <- as.numeric(rownames(outlineCoords)[nrow(outlineCoords)]) 
         used <- c(used, lastPoint)         
         range <- (lastPoint-rangeWidth):(lastPoint+rangeWidth)
-        available <- coords[range[-which(range %in% used | range <= 0 | range > nrow(coords))],] 
+        available <- coords[range[-which(range %in% used | 
+                                             range <= 0 | 
+                                             range > nrow(coords))],] 
         if(nrow(available) == 0){
             next
         }
         closest <- order(abs(coords$ycoor[lastPoint] - available$ycoor) +              
                              abs(coords$xcoor[lastPoint] - available$xcoor),           
-                         decreasing = F)[1]
+                         decreasing = FALSE)[1]
         if((abs(outlineCoords$ycoor[i] - available$ycoor[closest]) +
             abs(outlineCoords$xcoor[i] - available$xcoor[closest])) > 50){
-            range <- 1:nrow(coords)
+            range <- seq_len(nrow(coords))
             available <- coords[range[-which(range %in% used)],] 
             if(nrow(available) == 0){
                 next
             }
             closest <- order(abs(outlineCoords$ycoor[i] - available$ycoor) +
                                  abs(outlineCoords$xcoor[i] - available$xcoor),
-                             decreasing = F)[1]
+                             decreasing = FALSE)[1]
         }
         
         outlineCoords <- rbind(outlineCoords,                                     
-                             available[closest,])                                  
+                               available[closest,])                                  
     } 
     
     return(outlineCoords)
@@ -230,7 +233,7 @@ boundary <-  function(mat) {
 #' @importFrom image_read magick
 #' 
 scaleCoords <- function(overlay){
-    if(class(overlay) != "SpatialOverlay"){
+    if(!is(overlay,"SpatialOverlay")){
         stop("overlay must be a SpatialOverlay")
     }
     if(overlay@workflow$scaled == TRUE){
@@ -241,7 +244,7 @@ scaleCoords <- function(overlay){
     }else{
         scaling <- 1/2^(overlay@image$resolution-1)
         
-        if(class(showImage(overlay)) == "AnnotatedImage"){
+        if(is(showImage(overlay),"AnnotatedImage")){
             temp <- image_read(imageColoring(showImage(overlay),
                                              scanMeta(overlay)))
         }else{

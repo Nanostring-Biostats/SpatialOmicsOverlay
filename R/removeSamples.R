@@ -30,7 +30,7 @@ removeSample <- function(overlay, remove){
     
     if(length(w2kp) == length(sampNames(overlay))){
         warning("No valid sample names; returning original overlay")
-            return(overlay)
+        return(overlay)
     }else{
         AOIattrs <- SpatialPosition(overlay(overlay)@position[w2kp,])
         
@@ -53,8 +53,8 @@ removeSample <- function(overlay, remove){
             colnames(plotFacts) <- colnames(plotFactors(overlay))
             rownames(plotFacts) <- rownames(plotFactors(overlay))[w2kp]
             
-            for(i in 1:ncol(plotFacts)){
-                if(class(plotFacts[,i]) == "character"){
+            for(i in seq_len(ncol(plotFacts))){
+                if(is(plotFacts[,i],"character")){
                     plotFacts[,i] <- as.factor(plotFacts[,i])
                 }
             }
@@ -70,7 +70,4 @@ removeSample <- function(overlay, remove){
                               workflow = overlay@workflow,
                               image = overlay@image))
     }
-    
-    
 }
- 

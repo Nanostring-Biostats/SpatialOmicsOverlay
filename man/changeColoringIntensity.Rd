@@ -13,7 +13,8 @@ changeColoringIntensity(overlay, minInten = NULL, maxInten = NULL, dye)
 
 \item{maxInten}{value to change MaxIntensity to; NULL indicates no change}
 
-\item{dye}{which dye to change color, can be from Dye or DisplayName column from fluor(overlay)}
+\item{dye}{which dye to change color, can be from Dye or DisplayName column 
+from fluor(overlay)}
 }
 \value{
 SpatialOverlay object with updated fluor data

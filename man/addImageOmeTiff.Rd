@@ -11,9 +11,10 @@ addImageOmeTiff(overlay, ometiff = NULL, res = NULL, ...)
 
 \item{ometiff}{File path to OME-TIFF. NULL indicates pull info from overlay}
 
-\item{res}{resolution layer, 1 = largest & higher values = smaller. The images increase 
-in resolution and memory. The largest image your environment 
-can hold is recommended.  NULL indicates pull info from overlay}
+\item{res}{resolution layer, 1 = largest & higher values = smaller. The 
+images increase in resolution and memory. The largest image your 
+environment can hold is recommended.  NULL indicates pull info 
+from overlay}
 
 \item{...}{Extra variables for \code{\link{imageExtraction}}}
 }

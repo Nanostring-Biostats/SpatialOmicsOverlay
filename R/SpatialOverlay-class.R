@@ -23,30 +23,25 @@ setClass("SpatialOverlay",
 # Show method
 setMethod("show", signature = "SpatialOverlay",
           function(object) {
-            cat(class(object), "\n")
-            cat("Slide Name:", slideName(object), "\n")
-            rows <- nrow(meta(overlay(object)))
-            cat("Overlay Data:", rows, "samples", "\n")
-            cat("   Overlay Names:", sampNames(object)[1], "...",
-                sampNames(object)[rows], "(", rows, "total )", "\n")
-            # cat("    varLabels:", c(names(meta(overlay(object))), "Position"), "\n")
-            cat("Scan Metadata", "\n")
-            cat("   Panels:", paste(scanMeta(object)$Panels, sep = ", "), "\n")
-            # cat("   Pixel Size:", round(scaleBarRatio(object), 3), names(scaleBarRatio(object)), "\n")
-            # cat("   Fluorescence:", "\n")
-            cat("   Segmentation:", scanMeta(object)$Segmentation, "\n")
-            if(!is.null(plotFactors(object))){
-                cat("Plotting Factors:", "\n")
-                cat("   varLabels:", colnames(plotFactors(object)), "\n")
-                #cat("   varClasses:", apply(plotFactors(object), 2, class), "\n")
-            }
-            if(!is.null(coords(object))){
-                # cat("Coords:", nrow(coords(object)), "coordinates", "\n")
-                cat("Outline:", outline(object), "\n")
-            }
-            if(!is.null(object@image$filePath)){
-                cat("Image:", object@image$filePath,"\n")
-            }
+              cat(class(object), "\n")
+              cat("Slide Name:", slideName(object), "\n")
+              rows <- nrow(meta(overlay(object)))
+              cat("Overlay Data:", rows, "samples", "\n")
+              cat("   Overlay Names:", sampNames(object)[1], "...",
+                  sampNames(object)[rows], "(", rows, "total )", "\n")
+              cat("Scan Metadata", "\n")
+              cat("   Panels:", paste(scanMeta(object)$Panels, sep = ", "), "\n")
+              cat("   Segmentation:", scanMeta(object)$Segmentation, "\n")
+              if(!is.null(plotFactors(object))){
+                  cat("Plotting Factors:", "\n")
+                  cat("   varLabels:", colnames(plotFactors(object)), "\n")
+              }
+              if(!is.null(coords(object))){
+                  cat("Outline:", outline(object), "\n")
+              }
+              if(!is.null(object@image$filePath)){
+                  cat("Image:", object@image$filePath,"\n")
+              }
           })
 
 # Constructors
@@ -62,7 +57,7 @@ setGeneric("SpatialOverlay",
                     image = list(filePath = NULL,
                                  imagePointer = NULL,
                                  resolution = NULL))
-           standardGeneric("SpatialOverlay"))
+               standardGeneric("SpatialOverlay"))
 
 setMethod("SpatialOverlay", "missing",
           function(slideName, scanMetadata, overlayData, coords,
@@ -100,24 +95,25 @@ setMethod("SpatialOverlay", "character",
 # Validity
 setValidity2("SpatialOverlay", function(object){
     msg <- NULL
-    if (any(names(scanMeta(object)) != c("Panels", "PhysicalSizes", "Fluorescence", "Segmentation"))) {
+    if (any(names(scanMeta(object)) != c("Panels", "PhysicalSizes", 
+                                         "Fluorescence", "Segmentation"))) {
         msg <- c(msg, "Names in Scan Metadata are not valid")
     }
-    if(class(scanMeta(object)$Panels) != "character"){
+    if(!is(scanMeta(object)$Panels,"character")){
         msg <- c(msg, "Panels in Scan Metadata must be a character")
     }
     if(all(names(scanMeta(object)$PhysicalSizes) != c("X", "Y"))){
         msg <- c(msg, "PhysicalSizes in Scan Metadata does not contain X and Y ratio")
     }
-    if(class(scanMeta(object)$PhysicalSizes$X) != "numeric" | 
-       class(scanMeta(object)$PhysicalSizes$Y) != "numeric"){
+    if(!is(scanMeta(object)$PhysicalSizes$X,"numeric") | 
+           !is(scanMeta(object)$PhysicalSizes$Y,"numeric")){
         msg <- c(msg, "PhysicalSizes in Scan Metadata must be numeric")
     }
-    if(class(scanMeta(object)$Fluorescence) != "data.frame"){
+    if(!is(scanMeta(object)$Fluorescence,"data.frame")){
         msg <- c(msg, "Fluorescence in Scan Metadata must be a data.frame")
     }
     if(all(!c("Dye", "DisplayName", "Color", "WaveLength", 
-             "Target", "ExposureTime") %in% 
+              "Target", "ExposureTime") %in% 
            names(scanMeta(object)$Fluorescence))){
         msg <- c(msg, "Column names in Fluorescence do not match expected")
     }
@@ -127,8 +123,9 @@ setValidity2("SpatialOverlay", function(object){
             msg <- c(msg, "plotFactors and overlay are in a different order")
         }
         char <- NULL
-        for(i in 1:ncol(plotFactors(object))){
-             char <- c(char, class(plotFactors(object)[,i] %in% c("factor", "numeric")))
+        for(i in seq_len(ncol(plotFactors(object)))){
+            char <- c(char, class(plotFactors(object)[,i] %in% c("factor", 
+                                                                 "numeric")))
         }
         if(any(char == FALSE)){
             msg <- c(msg, "plotFactors classes must be either factors or numeric")
