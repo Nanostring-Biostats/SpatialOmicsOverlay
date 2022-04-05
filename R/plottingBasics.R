@@ -11,6 +11,7 @@
 #' @param scaleBar should scale bar be plotted
 #' @param image should image be plotted, image must be added to SpatialOverlay 
 #'                object
+#' @param fluorLegend should viz marker on the image be added to legend
 #' @param ... additional parameters for scale bar line & text, will affect both 
 #' @param corner where in the figure should the scale bar be printed. 
 #'               Options: "bottomright"  "topright"
@@ -49,16 +50,17 @@
 #' @importFrom geom_scattermore scattermore
 #' @import ggplot2
 #' @importFrom image_ggplot magick
+#' @importFrom element_markdown ggtext
 #' 
 #' @export 
 #' 
 
 plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE, 
                                alpha = 1, legend = TRUE, scaleBar = TRUE, 
-                               image = TRUE, ... , corner = "bottomright", 
-                               scaleBarWidth = 0.2, scaleBarColor = "red", 
-                               scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
-                               textDistance = 2){
+                               image = TRUE, fluorLegend = FALSE, ... , 
+                               corner = "bottomright", scaleBarWidth = 0.2, 
+                               scaleBarColor = "red", scaleBarFontSize = 6, 
+                               scaleBarLineSize = 1.5, textDistance = 2){
     
     if(is(showImage(overlay),"AnnotatedImage")){
         overlay <- recolor(overlay)
@@ -77,6 +79,12 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                    colorBy=plotFactors(overlay)[match(coords(overlay)$sampleID, 
                                                                       rownames(plotFactors(overlay))), 
                                                                 colorBy]))
+    }
+    
+    if(fluorLegend == TRUE & image == FALSE){
+        warning("fluorLegend can only be added with image", 
+                immediate. = TRUE)
+        fluorLegend <- FALSE
     }
     
     if(!is.null(showImage(overlay)) & image == TRUE){
@@ -103,6 +111,36 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
             geom_scattermore(data = pts, aes(x=xcoor, y=ycoor, color=colorBy),
                              alpha = alpha)+
             labs(color = colorBy)
+    }
+    
+    if(fluorLegend == TRUE){
+        cols <- fluor(overlay)$ColorCode
+        names(cols) <- fluor(overlay)$Target
+        
+        if(outline(overlay) == TRUE | hiRes == TRUE){
+            gp <- gp + geom_point(data = fluor(overlay), 
+                                  mapping = aes(x=-100,y=-100, color=Target))+
+                scale_color_manual(labels = paste("<span style='color:",
+                                                  cols, "'>", names(cols),
+                                                  "</span>"),
+                                   values = cols)+
+                theme(legend.text=element_markdown(size=12,"grey"))+
+                labs(color = "Fluorescence")+
+                guides(color = guide_legend(
+                    override.aes=list(shape = 15, size = 0)))
+            
+        }else{
+            gp <- gp + geom_point(data = fluor(overlay), 
+                                  mapping = aes(x=-100,y=-100, fill=Target))+
+                scale_fill_manual(labels = paste("<span style='color:",
+                                                  cols, "'>", names(cols),
+                                                  "</span>"),
+                                   values = cols)+
+                theme(legend.text=element_markdown(size=12,"grey"))+
+                labs(fill = "Fluorescence")+
+                guides(fill = guide_legend(
+                    override.aes=list(shape = 15, size = 0)))
+        }
     }
     
     if(!is.null(showImage(overlay)) & image == FALSE){
@@ -367,4 +405,108 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
     return(gp)
 }
 
-
+#' Add legend of fluorescence targets that make up image
+#' 
+#' @description Creates legend that can be overlayed on image using \code{cowplot}.
+#' 
+#' @param overlay SpatialOverlay
+#' @param nrow number of rows in the legend. Most studies have 4 which is 
+#'               where the values came from: 
+#'               1 = horizontal legend, 4 = vertical legend, 2 = box legend
+#' @param textSize font size
+#' @param boxColor color of box behind legend
+#' @param alpha alpha value of box behind legend
+#' 
+#' @return gp of fluorescence legend
+#'
+#' @import ggplot2
+#' 
+#' @examples
+#' 
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
+#' 
+#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+#'                          package = "SpatialOmicsOverlay")
+#' 
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' 
+#' image <- downloadMouseBrainImage()
+#' 
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                           ometiff = image, res = 7)
+#' 
+#' muBrain <- addPlottingFactor(overlay = muBrain, 
+#'                              annots = muBrainLW, 
+#'                              plottingFactor = "segment")
+#'                              
+#' gp <- plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
+#'                          hiRes = TRUE, scaleBar = FALSE)
+#'                          
+#' legend <- fluorLegend(muBrain, nrow = 2, textSize = 3, boxColor = "red")
+#' 
+#' cowplot::ggdraw() + 
+#'     cowplot::draw_plot(gp) +
+#'     cowplot::draw_plot(legend, scale = 0.12, x = 0.1, y = -0.25)
+#' 
+#' @export
+#' 
+fluorLegend <- function(overlay, nrow = 4, textSize = 10, 
+                        boxColor = "grey", alpha = 0.25){
+    if(!nrow %in% c(1,2,4)){
+        stop("legned can only have 1, 2, or 4 rows")
+    }
+    
+    gp <- ggplot()
+    
+    if(nrow == 4){
+        for(i in seq_len(nrow(fluor(overlay)))){
+            gp <- gp + annotate("text", x = 4, y = i, size=textSize, 
+                                label = fluor(overlay)$Target[i], 
+                                color = fluor(overlay)$ColorCode[i])
+        } 
+        gp <- gp + scale_y_continuous(limits = c(0.5,4.5))
+    }
+    
+    if(nrow == 1){
+        for(i in seq_len(nrow(fluor(overlay)))){
+            gp <- gp + annotate("text", y = 4, x = i, size=textSize, 
+                                label = fluor(overlay)$Target[i], 
+                                color = fluor(overlay)$ColorCode[i])
+        } 
+        gp <- gp + scale_x_continuous(limits = c(0.5,4.5))
+    }
+    
+    if(nrow == 2){
+        for(i in seq_len(nrow(fluor(overlay)))){
+            if(i %% 2 == 0){
+                gp <- gp + annotate("text", x = 2, y = ceiling(i/2), 
+                                    size=textSize, 
+                                    label = fluor(overlay)$Target[i], 
+                                    color = fluor(overlay)$ColorCode[i])
+            }else{
+                gp <- gp + annotate("text", x = 1, y = ceiling(i/2), 
+                                    size=textSize, 
+                                    label = fluor(overlay)$Target[i], 
+                                    color = fluor(overlay)$ColorCode[i])
+            }
+            
+        } 
+        gp <- gp + scale_x_continuous(limits = c(0.5,2.5))+ 
+            scale_y_continuous(limits = c(0.5,2.5))
+    }
+    
+    
+    
+    gp <- gp + theme(panel.background = element_rect(fill = alpha(boxColor, alpha), 
+                                                     color = NA), 
+                     panel.grid.minor = element_blank(), 
+                     panel.grid.major = element_blank(),
+                     plot.background = element_rect(fill = "transparent", 
+                                                    color = NA),
+                     axis.text = element_blank(),
+                     axis.title = element_blank(),
+                     axis.ticks = element_blank())
+    
+    return(gp)
+}

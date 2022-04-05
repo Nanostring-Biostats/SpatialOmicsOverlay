@@ -29,8 +29,8 @@ In this vignette, we will be walking through a mouse brain dataset from the [Spa
 # Data Ingestion 
 
 ```{r Load Libraries}
-library(SpatialOmicsOverlay)
-library(GeomxTools)
+library(SpatialOmicsOverlay, quietly = TRUE)
+library(GeomxTools, quietly = TRUE)
 ```
 
 Files needed:
@@ -151,6 +151,33 @@ showImage(muBrain)
 plotSpatialOverlay(overlay = muBrain, colorBy = "segment", corner = "topcenter", 
                    scaleBarWidth = 0.5, textDistance = 130, scaleBarColor = "cyan")
 ```
+
+### Visualization Marker Legends
+
+There are 2 options to add a legend of the visualization markers used. 
+
+The first is an easy way for data exploration, adding a legend to the ggplot object. 
+
+```{r fluorLegend in plotSpatialOverlay}
+plotSpatialOverlay(overlay = muBrain, colorBy = "segment", corner = "topcenter", 
+                   scaleBarWidth = 0.5, textDistance = 130, scaleBarColor = "cyan",
+                   fluorLegend = TRUE)
+```
+
+The second requires more user manipulation but creates a more publication ready figure. 
+
+```{r fluorLegend function}
+library(cowplot)
+gp <- plotSpatialOverlay(overlay = muBrain, colorBy = "segment", 
+                         corner = "bottomright")
+legend <- fluorLegend(muBrain, nrow = 2, textSize = 4, 
+                      boxColor = "grey", alpha = 0.3)
+
+cowplot::ggdraw() +
+    cowplot::draw_plot(gp) +
+    cowplot::draw_plot(legend, scale = 0.1, x = 0.1, y = -0.25)
+```
+
 
 # Image Manipulation
 
