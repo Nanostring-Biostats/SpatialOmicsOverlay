@@ -1,0 +1,79 @@
+Experiment Summary
+Readout group name	01SEPT2021_HWTA
+Date	29 Sep 2021  7:39 PM
+Readout mode	NGS
+Number of Collection Plates	1
+Number Of AOIs	63
+Library Prep Protocol Version
+
+Library Prep Summary
+Library Prep Plate	Collection Plate	Primer Plate	Rows
+01SEPT2021_HWTA-G	"=""1009880000092"""	GeoMx Seq Code G	A - F
+Total Area	6400139
+
+Annotations
+Sample_ID	slide name	scan name	panel	roi	segment	aoi	area	tags
+DSP-1009880000092-G-A01	No Template Control
+DSP-1009880000092-G-A02	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""001"""	Neuron	Neuron-aoi-001	15671.41
+DSP-1009880000092-G-A03	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""001"""	Iba1	Iba1-aoi-001	14745.13
+DSP-1009880000092-G-A04	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""001"""	Neuropil	Neuropil-aoi-001	114295.82
+DSP-1009880000092-G-A05	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""002"""	Full ROI	Full ROI-aoi-001	308421.43
+DSP-1009880000092-G-A06	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""003"""	Neuron	Neuron-aoi-001	20980.74
+DSP-1009880000092-G-A07	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""003"""	Iba1	Iba1-aoi-001	17778.95
+DSP-1009880000092-G-A08	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""003"""	Neuropil	Neuropil-aoi-001	137759.74
+DSP-1009880000092-G-A09	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""004"""	Full ROI	Full ROI-aoi-001	314502.92
+DSP-1009880000092-G-A10	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""005"""	Neuron	Neuron-aoi-001	10149.79
+DSP-1009880000092-G-A11	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""005"""	Iba1	Iba1-aoi-001	12949.96
+DSP-1009880000092-G-A12	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""005"""	Neuropil	Neuropil-aoi-001	118023.22
+DSP-1009880000092-G-B01	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""006"""	Full ROI	Full ROI-aoi-001	28215.45
+DSP-1009880000092-G-B02	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""007"""	Full ROI	Full ROI-aoi-001	40123.59
+DSP-1009880000092-G-B03	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""008"""	Full ROI	Full ROI-aoi-001	29860.17
+DSP-1009880000092-G-B04	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	Neuron	Neuron-aoi-001	31976.79
+DSP-1009880000092-G-B05	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	Neuropil	Neuropil-aoi-001	373251.24
+DSP-1009880000092-G-B06	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	Neuron	Neuron-aoi-001	43027.68
+DSP-1009880000092-G-B07	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	Neuropil	Neuropil-aoi-001	352200.22
+DSP-1009880000092-G-B08	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""011"""	Neuron	Neuron-aoi-001	31539.95
+DSP-1009880000092-G-B09	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""011"""	Neuropil	Neuropil-aoi-001	381950.43
+DSP-1009880000092-G-B10	hu_brain_004b	Hippocampus_84	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""012"""	Full ROI	Full ROI-aoi-001	308421.43
+DSP-1009880000092-G-B11	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""001"""	Full ROI	Full ROI-aoi-001	81534.12
+DSP-1009880000092-G-B12	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""002"""	Full ROI	Full ROI-aoi-001	79843.65
+DSP-1009880000092-G-C01	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""003"""	Full ROI	Full ROI-aoi-001	230949.71
+DSP-1009880000092-G-C02	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""004"""	Full ROI	Full ROI-aoi-001	133091.88
+DSP-1009880000092-G-C03	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""005"""	Full ROI	Full ROI-aoi-001	174730.15
+DSP-1009880000092-G-C04	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""006"""	Full ROI	Full ROI-aoi-001	174730.15
+DSP-1009880000092-G-C05	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""007"""	Neuron	Neuron-aoi-001	4236.76
+DSP-1009880000092-G-C06	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""007"""	Iba1	Iba1-aoi-001	13494.70
+DSP-1009880000092-G-C07	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""007"""	GFAP	GFAP-aoi-001	17775.44
+DSP-1009880000092-G-C08	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""007"""	Neuropil	Neuropil-aoi-001	11617.93
+DSP-1009880000092-G-C09	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""008"""	Neuron	Neuron-aoi-001	9675.50
+DSP-1009880000092-G-C10	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""008"""	Iba1	Iba1-aoi-001	16741.11
+DSP-1009880000092-G-C11	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""008"""	GFAP	GFAP-aoi-001	8837.84
+DSP-1009880000092-G-C12	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""008"""	Neuropil	Neuropil-aoi-001	73413.30
+DSP-1009880000092-G-D01	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	Neuron	Neuron-aoi-001	9322.65
+DSP-1009880000092-G-D02	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	Iba1	Iba1-aoi-001	23861.71
+DSP-1009880000092-G-D03	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	GFAP	GFAP-aoi-001	9029.88
+DSP-1009880000092-G-D04	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""009"""	Neuropil	Neuropil-aoi-001	79278.52
+DSP-1009880000092-G-D05	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	Neuron	Neuron-aoi-001	10066.76
+DSP-1009880000092-G-D06	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	Iba1	Iba1-aoi-001	15006.34
+DSP-1009880000092-G-D07	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	GFAP	GFAP-aoi-001	16427.95
+DSP-1009880000092-G-D08	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""010"""	Neuropil	Neuropil-aoi-001	34655.05
+DSP-1009880000092-G-D09	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""011"""	Full ROI	Full ROI-aoi-001	77782.17
+DSP-1009880000092-G-D10	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""012"""	Full ROI	Full ROI-aoi-001	117065.71
+DSP-1009880000092-G-D11	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""013"""	Full ROI	Full ROI-aoi-001	287615.20
+DSP-1009880000092-G-D12	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""014"""	Full ROI	Full ROI-aoi-001	158733.78
+DSP-1009880000092-G-E01	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""015"""	Full ROI	Full ROI-aoi-001	198942.80
+DSP-1009880000092-G-E02	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""016"""	Full ROI	Full ROI-aoi-001	278355.19
+DSP-1009880000092-G-E03	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""017"""	Neuron	Neuron-aoi-001	9491.90
+DSP-1009880000092-G-E04	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""017"""	Iba1	Iba1-aoi-001	21879.92
+DSP-1009880000092-G-E05	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""017"""	GFAP	GFAP-aoi-001	11179.34
+DSP-1009880000092-G-E06	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""017"""	Neuropil	Neuropil-aoi-001	89141.92
+DSP-1009880000092-G-E07	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""018"""	Neuron	Neuron-aoi-001	7878.57
+DSP-1009880000092-G-E08	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""018"""	Iba1	Iba1-aoi-001	14183.82
+DSP-1009880000092-G-E09	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""018"""	GFAP	GFAP-aoi-001	46531.48
+DSP-1009880000092-G-E10	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""018"""	Neuropil	Neuropil-aoi-001	10767.20
+DSP-1009880000092-G-E11	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""019"""	Full ROI	Full ROI-aoi-001	106973.14
+DSP-1009880000092-G-E12	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""020"""	Full ROI	Full ROI-aoi-001	126048.90
+DSP-1009880000092-G-F01	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""021"""	Full ROI	Full ROI-aoi-001	249769.84
+DSP-1009880000092-G-F02	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""022"""	Full ROI	Full ROI-aoi-001	146032.60
+DSP-1009880000092-G-F03	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""023"""	Full ROI	Full ROI-aoi-001	253799.41
+DSP-1009880000092-G-F04	hu_brain_004a	Cortex_29	(v1.0) Human NGS Whole Transcriptome Atlas RNA	"=""024"""	Full ROI	Full ROI-aoi-001	253799.41
