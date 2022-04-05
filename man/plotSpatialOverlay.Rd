@@ -12,6 +12,7 @@ plotSpatialOverlay(
   legend = TRUE,
   scaleBar = TRUE,
   image = TRUE,
+  fluorLegend = FALSE,
   ...,
   corner = "bottomright",
   scaleBarWidth = 0.2,
@@ -37,6 +38,8 @@ Note: hiRes and outline ggplots use fill, lowRes uses color}
 
 \item{image}{should image be plotted, image must be added to SpatialOverlay 
 object}
+
+\item{fluorLegend}{should viz marker on the image be added to legend}
 
 \item{...}{additional parameters for scale bar line & text, will affect both}
 
