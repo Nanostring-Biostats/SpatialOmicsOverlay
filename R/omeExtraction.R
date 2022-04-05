@@ -99,7 +99,7 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     }
     
     if(is.null(scanMeta)){
-        scanMeta <- parseScanMetatdata(xmlExtraction(ometiff)) 
+        scanMeta <- parseScanMetadata(xmlExtraction(ometiff)) 
     }
     
     omeImage <- read.image(ometiff, resolution = res,

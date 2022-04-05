@@ -1,12 +1,9 @@
-tifFile <- "testData/image_files/mu_brain_004.ome.tiff"
-annots <- "testData/workflow_and_count_files/workflow/readout_package/19July2021_MsWTA_20210804T2230/19July2021_MsWTA_20210804T2230_LabWorksheet.txt"
+overlay <- readRDS(unzip("testData/muBrain.zip"))
 
-annots <- readLabWorksheet(lw = annots, slideName = "4")
+annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                      package = "SpatialOmicsOverlay")
 
-extracted <- xmlExtraction(ometiff = tifFile, saveFile = T)
-
-AOIattrs <- suppressWarnings(parseOverlayAttrs(omexml = extracted, annots = annots, 
-                                         labworksheet = TRUE))
+AOIattrs <- overlay(overlay)
 
 testthat::test_that("SpatialPosition is formatted correctly",{
     expect_true(class(AOIattrs) == "SpatialPosition")

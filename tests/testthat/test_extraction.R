@@ -1,15 +1,14 @@
-
-tifFile <- "testData/image_files/mu_brain_004.ome.tiff"
+tifFile <- downloadMouseBrainImage()
 
 testthat::test_that("Error when xml path doesn't exist",{
     expect_error(xmlExtraction("fakeFilePath.ome.tiff"))
 })
 
-extracted <- xmlExtraction(ometiff = tifFile, saveFile = T)
+xml <- xmlExtraction(ometiff = tifFile, saveFile = T)
 xmlFile <- gsub(tifFile, pattern = "tiff", replacement = "xml")
 
 testthat::test_that("returned list is correct",{
-    expect_true(class(extracted) == "list")
+    expect_true(class(xml) == "list")
     expect_true(file.exists(xmlFile))
     expect_true(length(xml) > 0)
     expect_true(all(names(xml) %in% c("Plate", "Screen", "Instrument", "Image", 
@@ -19,7 +18,7 @@ testthat::test_that("returned list is correct",{
 
 unlink(xmlFile)
 
-extracted <- xmlExtraction(ometiff = tifFile, saveFile = F)
+xml <- xmlExtraction(ometiff = tifFile, saveFile = F)
 
 testthat::test_that("no file saved",{
     expect_false(file.exists(xmlFile))
@@ -28,7 +27,7 @@ testthat::test_that("no file saved",{
 fullSizeX <- 32768
 fullSizeY <- 32768
 
-scanMeta <- parseScanMetatdata(extracted)
+scanMeta <- parseScanMetadata(xml)
 
 testthat::test_that("correct image gets extracted", {
     expect_error(imageExtraction(ometiff = tifFile, res = 9))
@@ -72,4 +71,7 @@ testthat::test_that("saved images are as expected",{
     expect_error(imageExtraction(ometiff = tifFile, res = 8, scanMeta = scanMeta, 
                                  saveFile = T, fileType = "fakeFile"))
 })
-    
+
+testthat::test_that("checkValidRes is correct",{
+    expect_true(checkValidRes(tifFile) == 8)
+})    

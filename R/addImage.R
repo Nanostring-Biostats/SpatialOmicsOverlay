@@ -60,19 +60,33 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #'              res = 2, resolution is 1/2 the size as the raw image
 #'              res = 3, resolution is 1/4 the size as the raw image
 #'              res = 4, resolution is 1/8 the size as the raw image 
-#'              resolution = 1/2^(res-1)
-#' @param ... Extra variables for \code{\link{imageExtraction}}
-#'              
+#'              resolution = 1/2^(res-1)              
 #'               
 #' @return SpatialOverlay object with image
 #' 
 #' @importFrom image_read magick
 #' 
 #' @export
-addImageFile <- function(overlay, imageFile, res, ...){
+addImageFile <- function(overlay, imageFile = NULL, res = NULL){
+    if(is.null(res)){
+        res <- overlay@image$resolution
+    }
+    
+    if(is.null(overlay@image$resolution)){
+        difRes <- -1
+    }else{
+        difRes <- res - overlay@image$resolution
+    }
+    
     overlay@image <- list(filePath = imageFile, 
                           imagePointer = image_read(imageFile),
                           resolution = res)
+    
+    if(difRes != 0){
+        print("Calculating and scaling coordinates")
+        overlay <- createCoordFile(overlay, overlay@workflow$outline)
+        overlay <- scaleCoords(overlay)
+    }
     
     return(overlay)
 }
@@ -125,8 +139,7 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
                           resolution = res)
     
     if(difRes != 0){
-        print("Calculating and scaling coordinates", 
-              immediate. = TRUE)
+        print("Calculating and scaling coordinates")
         overlay <- createCoordFile(overlay, overlay@workflow$outline)
         overlay <- scaleCoords(overlay)
     }

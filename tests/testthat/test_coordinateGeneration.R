@@ -2,7 +2,7 @@ kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
                            header = T, sep = "\t")
 
-scanMetadataKidney <- parseScanMetatdata(kidneyXML)
+scanMetadataKidney <- parseScanMetadata(kidneyXML)
 
 kidneyAOIattrs <- parseOverlayAttrs(kidneyXML, kidneyAnnots, labworksheet = FALSE)
 
@@ -21,14 +21,17 @@ pythonTruth <- readRDS("testData/kidneyMaskTruth.RDS")
 
 mask <- createMask(b64string = AOIposition, metadata = AOImeta, 
                    outline = FALSE)
+
 testthat::test_that("createMask is correct - all coordinates",{
     expect_true(all(dim(mask) == c(AOImeta$Height,AOImeta$Width)))
     expect_true(all(mask == pythonTruth))
     expect_true(all(mask %in% c(0,1)))
     expect_true(class(mask)[1] == "matrix")
 })
+
 testthat::test_that("coordsFromMask is correct - all coordinates",{
-    coords <- coordsFromMask(mask, AOImeta)
+    coords <- coordsFromMask(mask = mask, metadata = AOImeta, 
+                             outline = FALSE)
     
     expectedCoords <- as.data.frame(which(mask == 1, arr.ind = T))
     colnames(expectedCoords) <- c("Y", "X")
@@ -40,6 +43,7 @@ testthat::test_that("coordsFromMask is correct - all coordinates",{
 
 outlineMask <- createMask(b64string = AOIposition, metadata = AOImeta, 
                           outline = TRUE)
+
 testthat::test_that("createMask is correct - outline coordinates",{
     expect_true(all(dim(outlineMask) == c(AOImeta$Height,AOImeta$Width)))
     propTrue <- table(outlineMask == pythonTruth)
@@ -49,6 +53,7 @@ testthat::test_that("createMask is correct - outline coordinates",{
     
     expect_true(length(which(boundary(outlineMask) >= 7)) < length(outlineMask)*0.001)
 })
+
 testthat::test_that("coordsFromMask is correct - outline coordinates",{
     coords <- coordsFromMask(outlineMask, AOImeta, outline = F)
     
@@ -81,7 +86,7 @@ testthat::test_that("Pencil Sorting works as expected",{
 })
 
 scanMetadataKidney[["Segmentation"]] <- ifelse(all(meta(kidneyAOIattrs)$Segmentation == "Geometric"),
-                                               yes = "Geometric",no = "Segmented")
+                                               yes = "Geometric", no = "Segmented")
 
 overlay <- createCoordFile(SpatialOverlay(slideName = "normal3", 
                                          scanMetadata = scanMetadataKidney, 
@@ -98,4 +103,34 @@ testthat::test_that("createCoordFile is correct",{
                                      pythonTruth$xcoor),]
     
     expect_true(all(coords == pythonTruth[,c("AOI","ycoor","xcoor")]))
+})
+
+testthat::test_that("Outline points on segemented data - warning",{
+    expect_warning(createCoordFile(SpatialOverlay(slideName = "normal3", 
+                                                  scanMetadata = scanMetadataKidney, 
+                                                  overlayData = kidneyAOIattrs), 
+                                   outline = TRUE))
+})
+
+
+testthat::test_that("Boundary is behaving as expected",{
+    testBound <- matrix(1, ncol = 3, nrow = 3)
+    expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
+                 matrix(c(3,5,3,5,8,5,3,5,3), ncol = 3, nrow = 3))
+    
+    testBound <- matrix(0, ncol = 3, nrow = 3)
+    expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
+                 matrix(0, ncol = 3, nrow = 3))
+    
+    testBound <- matrix(c(1,1,1,0,0,0,1,1,1), ncol = 3, nrow = 3)
+    expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
+                 matrix(c(1,2,1,4,6,4,1,2,1), ncol = 3, nrow = 3))
+    
+    testBound <- matrix(c(0,0,0,1,1,1,0,0,0), ncol = 3, nrow = 3)
+    expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
+                 matrix(c(2,3,2,1,2,1,2,3,2), ncol = 3, nrow = 3))
+    
+    testBound <- matrix(c(0,0,0,0,1,0,0,0,0), ncol = 3, nrow = 3)
+    expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
+                 matrix(c(1,1,1,1,0,1,1,1,1), ncol = 3, nrow = 3))
 })

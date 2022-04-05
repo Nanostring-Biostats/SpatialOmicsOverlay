@@ -1,23 +1,41 @@
-overlay <- readRDS("testData/AllSpatialOverlay.RData")
+overlay <- readRDS(unzip("testData/muBrain.zip"))
 
-annots <- "testData/workflow_and_count_files/workflow/readout_package/19July2021_MsWTA_20210804T2230/19July2021_MsWTA_20210804T2230_LabWorksheet.txt"
+annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                      package = "SpatialOmicsOverlay")
+
+overlay <- addImageOmeTiff(overlay,
+                           ometiff = downloadMouseBrainImage(), 
+                           res = 8)
+
 annots <- readLabWorksheet(annots, "4")
 
 overlay <- addPlottingFactor(overlay, annots, "segment")
 
 testthat::test_that("SpatialOverlay is formatted correctly",{
-    expect_true(all(names(scanMeta(overlay)) == c("Panels", "PhysicalSizes", "Fluorescence", "Segmentation")))
+    expect_true(all(names(scanMeta(overlay)) == c("Panels", "PhysicalSizes", 
+                                                  "Fluorescence", 
+                                                  "Segmentation")))
     expect_true(class(scanMeta(overlay)$Panels) == "character")
     expect_true(all(names(scanMeta(overlay)$PhysicalSizes) == c("X", "Y")))
     expect_true(class(scanMeta(overlay)$PhysicalSizes$X) == "numeric")
     expect_true(class(scanMeta(overlay)$PhysicalSizes$Y) == "numeric")
     expect_true(class(scanMeta(overlay)$Fluorescence) == "data.frame")
-    expect_true(all(names(scanMeta(overlay)$Fluorescence) == c("Dye", "DisplayName",
-                                                               "Color", "WaveLength",
-                                                               "Target", "ExposureTime")))
-    expect_true(all(names(overlay@workflow) %in% c("labWorksheet", "outline")))
+    expect_true(all(names(scanMeta(overlay)$Fluorescence) == c("Dye", 
+                                                               "DisplayName",
+                                                               "Color", 
+                                                               "WaveLength",
+                                                               "Target", 
+                                                               "ExposureTime",
+                                                               "MinIntensity", 
+                                                               "MaxIntensity",
+                                                               "ColorCode")))
+    expect_true(all(names(overlay@workflow) %in% c("labWorksheet", "outline", 
+                                                   "scaled")))
     expect_true(all(coords(overlay)$sampleID %in% sampNames(overlay)))
     expect_true(all(rownames(plotFactors(overlay)) == sampNames(overlay)))
+    
+    expect_true(all(names(overlay@image) %in% c("filePath", "imagePointer", 
+                                                "resolution")))
 })
 
 testthat::test_that("SpatialOverlay accessor work as expected",{
@@ -53,11 +71,19 @@ testthat::test_that("SpatialOverlay accessor work as expected",{
      
     expect_true(class(sampNames(overlay)) == "character")
     expect_identical(sampNames(overlay), meta(overlay(overlay))$Sample_ID)
+    
+    expect_true(class(res(overlay)) == "numeric")
+    expect_true(res(overlay) == overlay@image$resolution)
+    
+    expect_true(class(showImage(overlay)) == "magick-image")
+    expect_identical(showImage(overlay), overlay@image$imagePointer)
 })
 
 geometricOverlay <- removeSample(overlay, sampNames(overlay)[5:length(sampNames(overlay))])
 
 testthat::test_that("SpatialOverlay replacers work as expected",{
-    expect_false(ncol(plotFactors(geometricOverlay)) == ncol(plotFactors(addPlottingFactor(geometricOverlay, annots, "area"))))
-    expect_false(nrow(coords(geometricOverlay)) == nrow(coords(createCoordFile(geometricOverlay, outline = TRUE))))
+    expect_false(ncol(plotFactors(geometricOverlay)) == ncol(plotFactors(addPlottingFactor(geometricOverlay, 
+                                                                                           annots, "area"))))
+    expect_false(nrow(coords(geometricOverlay)) == nrow(coords(createCoordFile(geometricOverlay, 
+                                                                               outline = TRUE))))
 })

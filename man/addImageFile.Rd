@@ -4,7 +4,7 @@
 \alias{addImageFile}
 \title{Add image to SpatialOverlay from disk}
 \usage{
-addImageFile(overlay, imageFile, res, ...)
+addImageFile(overlay, imageFile = NULL, res = NULL)
 }
 \arguments{
 \item{overlay}{SpatialOverlay object}
@@ -18,8 +18,6 @@ res = 2, resolution is 1/2 the size as the raw image
 res = 3, resolution is 1/4 the size as the raw image
 res = 4, resolution is 1/8 the size as the raw image 
 resolution = 1/2^(res-1)}
-
-\item{...}{Extra variables for \code{\link{imageExtraction}}}
 }
 \value{
 SpatialOverlay object with image

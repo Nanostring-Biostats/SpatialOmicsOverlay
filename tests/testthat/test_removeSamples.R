@@ -2,7 +2,7 @@ kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
                            header = T, sep = "\t")
 
-scanMetadataKidney <- parseScanMetatdata(kidneyXML)
+scanMetadataKidney <- parseScanMetadata(kidneyXML)
 
 kidneyAOIattrs <- parseOverlayAttrs(kidneyXML, kidneyAnnots, labworksheet = FALSE)
 
@@ -18,7 +18,7 @@ segmentedROIs <- meta(overlay(overlay))$Sample_ID[which(meta(overlay(overlay))$S
 geometricOverlay <- removeSample(overlay, segmentedROIs)
 
 testthat::test_that("removeSamples only removes valid sample names", {
-    expect_warning(temp <- removeSample(object = overlay, remove = "fakeSample"))
+    expect_warning(temp <- removeSample(overlay = overlay, remove = "fakeSample"))
     expect_identical(overlay, temp)
 })
 

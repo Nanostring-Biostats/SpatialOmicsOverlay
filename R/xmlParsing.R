@@ -11,14 +11,14 @@
 #' 
 #' xml <- xmlExtraction(ometiff = image)
 #' 
-#' scan_metadata <- parseScanMetatdata(omexml = xml)
+#' scan_metadata <- parseScanMetadata(omexml = xml)
 #' 
 #' @importFrom xmlToList XML
 #' 
 #' @export 
 #' 
 
-parseScanMetatdata <- function(omexml){
+parseScanMetadata <- function(omexml){
     if(any(is(omexml,"XMLInternalDocument"))){
         omexml <- xmlToList(omexml)
     }

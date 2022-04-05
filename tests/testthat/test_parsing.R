@@ -1,18 +1,18 @@
-
 # load(unzip("testData/figureReady.zip"))
 
-tifFile <- "testData/image_files/mu_brain_004.ome.tiff"
-annots <- "testData/workflow_and_count_files/workflow/readout_package/19July2021_MsWTA_20210804T2230/19July2021_MsWTA_20210804T2230_LabWorksheet.txt"
+tifFile <- downloadMouseBrainImage()
+annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                      package = "SpatialOmicsOverlay")
 
 annots <- readLabWorksheet(lw = annots, slideName = "4")
 
 extracted <- xmlExtraction(ometiff = tifFile, saveFile = T)
 
-scanMetadata <- parseScanMetatdata(omexml = extracted)
+scanMetadata <- parseScanMetadata(omexml = extracted)
 
 testthat::test_that("scanMetadata works on non expected variables",{
     expect_identical(scanMetadata, 
-                     parseScanMetatdata(omexml = tifFile))
+                     parseScanMetadata(omexml = tifFile))
 })
 
 testthat::test_that("scanMetadata is formatted correctly",{
@@ -24,14 +24,15 @@ testthat::test_that("scanMetadata is formatted correctly",{
     expect_true(all(names(scanMetadata$Fluorescence) == c("Dye","DisplayName",
                                                           "Color","WaveLength",
                                                           "Target","ExposureTime",
-                                                          "MinIntensity", "MaxIntensity")))
+                                                          "MinIntensity", "MaxIntensity",
+                                                          "ColorCode")))
 })
 
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
                            header = T, sep = "\t")
 
-scanMetadataKidney <- parseScanMetatdata(kidneyXML)
+scanMetadataKidney <- parseScanMetadata(kidneyXML)
 
 testthat::test_that("fluorData works with 1 or 2 annotations in xml",{
     #E11 data, each fluor takes up 2 annotations

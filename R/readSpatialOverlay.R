@@ -69,7 +69,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
     xml <- xmlExtraction(ometiff = ometiff, saveFile = saveFile)
     
     print("Parsing XML - scan metadata")
-    scan_metadata <- parseScanMetatdata(omexml = xml)
+    scan_metadata <- parseScanMetadata(omexml = xml)
     
     print("Parsing XML - overlay data")
     AOIattrs <- parseOverlayAttrs(omexml = xml, annots = annots, 

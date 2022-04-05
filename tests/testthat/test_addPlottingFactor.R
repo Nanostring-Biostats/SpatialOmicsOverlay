@@ -1,6 +1,7 @@
-overlay <- readRDS("testData/AllSpatialOverlay.RData")
+overlay <- readRDS(unzip("testData/muBrain.zip", exdir = "testData/"))
 
-annots <- "workflow_and_count_files/workflow/readout_package/19July2021_MsWTA_20210804T2230/19July2021_MsWTA_20210804T2230_LabWorksheet.txt"
+annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                      package = "SpatialOmicsOverlay")
 annots <- readLabWorksheet(annots, "4")
 
 samples <- sampNames(overlay)[-c(1:4)]
@@ -98,7 +99,8 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
 
 library(GeomxTools)
 
-GxT <- readRDS("testData/muBrain_GxT.RDS")
+GxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
+                           package = "SpatialOmicsOverlay"))
 
 testthat::test_that("annotation GeoMxSet object can be added as plotting Factor",{
     overlay <- addPlottingFactor(overlay, GxT, "segment")
