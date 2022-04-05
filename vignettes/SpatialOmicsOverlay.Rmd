@@ -164,7 +164,7 @@ plotSpatialOverlay(overlay = muBrain, colorBy = "segment", corner = "topcenter",
                    fluorLegend = TRUE)
 ```
 
-The second requires more user manipulation but creates a more publication ready figure. 
+The second requires more user manipulation but creates a more publication-ready figure. 
 
 ```{r fluorLegend function}
 library(cowplot)
