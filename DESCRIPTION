@@ -22,6 +22,7 @@ Suggests:
     pheatmap,
     viridis,
     cowplot
+Remotes: aoles/RBioFormats
 License: MIT
 Collate: addImage.R
          addPlottingFactor.R
