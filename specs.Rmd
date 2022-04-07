@@ -1,6 +1,6 @@
 #### Specs for addImageOmeTiff:  
 1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/ad224d7a88e74148cbb06ff502476b77d240bd15/tests/testthat/test_addImage.R#L8
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L8
 2. The imagePointer is a magick-image with the correct dimensions.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/ad224d7a88e74148cbb06ff502476b77d240bd15/tests/testthat/test_addImage.R#L23
 3. The function scales the coordinates.
