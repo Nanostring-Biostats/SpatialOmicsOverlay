@@ -236,6 +236,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test:https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L88
 
 Without image
+
 2. The function returns a list with the expected names and values.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L92
 3. The function returns a um value in valid sizes.
@@ -244,6 +245,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L116
 
 With image
+
 2. The function returns a list with the expected names and values.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L248
 3. The function returns a um value in valid sizes.
@@ -256,25 +258,30 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L122
 
 Without image
+
 2. The function returns a list of numeric values.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L125
 3. The function calculates the scale bar points the same across the different corner options. 
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L129
 
 With image
+
 2. The function returns a list of numeric values.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L281
 3. The function calculates the scale bar points the same across the different corner options. 
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L285
 
 #### Specs for scaleBarPrinting:
+
 Without image
+
 1. The function only works with valid corner value.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L199
 2. The function produces a ggplot object.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L203
 
 With image
+
 2. The function produces a ggplot object.
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L355
 
