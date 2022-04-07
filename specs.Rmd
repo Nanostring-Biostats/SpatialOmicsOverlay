@@ -1,0 +1,337 @@
+#### Specs for addImageOmeTiff:  
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+test: 
+2. The imagePointer is a magick-image with the correct dimensions.  
+test: 
+3. The function scales the coordinates.
+test:
+
+#### Specs for add4ChannelImage:  
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+test: 
+2. The imagePointer is an AnnotatedImage with the correct dimensions.  
+test: 
+3. The function scales the coordinates.
+test:
+
+#### Specs for addImageFile:  
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+test: 
+2. The imagePointer is a magick-image with the correct dimensions.  
+test: 
+3. The function scales the coordinates.
+test:
+
+#### Specs for addPlottingFactor:  
+1. The function only works on one factor at a time regardless of input type.   
+test: 
+2. The function gives warning for annotation missing for samples in object regardless of input type.
+test: 
+3. The function works with a data.frame input, column name plotting factor.  
+test:
+4. The function works with a data.frame input, row name plotting factor.  
+test:
+5. The function works with a matrix input, column name plotting factor.  
+test:
+6. The function works with a matrix input, row name plotting factor.  
+test:
+7. If vectors aren't named they must be the same length as number of samples in object. 
+test:
+8. The function only matches vectors if they are named, otherwise assumed in correct order. 
+9. The function works with character vectors. 
+test:
+10. The function works with factor vectors. 
+test:
+11. The function works with numeric vectors. 
+test:
+12. The function works with a NanostringGeomxSet input, column name plotting factor.  
+test:
+13. The function works with a NanostringGeomxSet input, row name plotting factor.
+test:
+
+#### Specs for decodeB64:  
+1. The function produces same values as python truth. 
+test: (test in test_coordinateGeneration)
+
+#### Specs for createMask:  
+When outline == FALSE, 
+1. The function creates mask in correct dimension.
+test: 
+2. The function produces same values as python truth. 
+test: 
+3. The function produces mask of only 0 & 1.
+test: 
+4. The function creates matrix.
+test: 
+
+When outline == TRUE,
+1. The function creates mask in correct dimension.
+test: 
+2. The function has fewer matches with the python truth
+test: 
+3. The function produces mask of only 0 & 1.
+test: 
+4. The function creates matrix.
+test:
+5. The function create mask with < 0.1% of points with 7 or more neighbors.
+
+#### Specs for coordsFromMask:
+When outline == FALSE, 
+1. The function creates coordinates for mask = 1 points. Coordinates are put into full image range and changed from base1 to base0. 
+test:
+
+When outline == TRUE, 
+1. The function creates coordinates for mask = 1 points. Coordinates are put into full image range and changed from base1 to base0. 
+test:
+
+#### Specs for pencilSortingCoords:
+1. The function sorts outline coordinates by proximity. >99% of differences between adjacent coordinates is 1.
+test:
+2. The function sorts outline coordinates by proximity. The max difference is <100.
+test:
+
+#### Specs for createCoordFile:
+1. The function places coordinates in correct location. 
+test:
+2. The function produces same values as python truth. 
+test:
+3. The function only returns outline coordinates on Geometric data. 
+test:
+
+#### Specs for Boundary:
+1. The function returns expected number of neighbors. 
+test:
+
+#### Specs for scaleCoords: 
+1. The function scales the coordinates based on the size of the image.
+test: (test in test_addImage)
+2. The coordinates are all smaller than the image size.
+test: (test in test_addImage)
+3. There are no duplicated coordinates.
+test: (test in test_addImage)
+4. Coordinates can't be rescaled.
+test: (test in test_addImage)
+5. An image must be in object to scale coordinates.
+test: (test in test_addImage)
+
+#### Specs for xmlExtraction:
+1. The function only works with valid ometiff file.  
+test:
+2. The function returns a valid list with the expected names.
+test:
+3. The function saves xml file in expected location, if desired.
+test:
+4. The function doesn't save file when not asked. 
+test:
+
+#### Specs for imageExtraction:
+1. The function only extracts valid res layers.  
+test:
+2. The function extracts expected res layer. 
+test:
+3. The function saves file in expected location and in correct & valid fileType.
+test:
+
+#### Specs for checkValidRes:
+1. The function returns expected value.
+test:
+
+#### Specs for cropTissue:
+1. The function returns smaller image.
+test:
+2. The function returns all original coordinates.
+test:
+
+#### Specs for cropSamples:
+When sampsOnly = TRUE
+1. The function returns smaller image.
+test:
+2. The function returns all coordinates of only the given samples. 
+test:
+
+When sampsOnly = FALSE
+1. The function returns smaller image.
+test:
+2. The function returns all coordinates of the given samples. 
+test:
+3. The function returns coordinates within dimensions of cropped image. 
+test:
+4. The function only works with valid sampleIDs.
+test:
+
+#### Specs for flipX:
+1. The function returns expected coordinates.
+test:
+
+#### Specs for flipY:
+1. The function returns expected coordinates.
+test:
+
+#### Specs for changeColoringIntensity:
+1. The function only works on 4-channel images.
+test:
+2. The function changes min/max intensity values of only correct fluor.
+test:
+
+#### Specs for changeImageColoring:
+1. The function only works on 4-channel images.
+test:
+2. The function changes ColorCode values of only correct fluor.
+test:
+
+#### Specs for imageColoring:
+1. The function creates RGB image arrays.
+test:
+
+#### Specs for recolor:
+1. The function scales coordinates.
+test:
+2. The function creates RGB image arrays.
+test:
+
+#### Specs for parseScanMetadata:
+1. The function works on ometiff variable instead of expected xml.
+test:
+2. The function returns a list with all of the expected names.
+test:
+
+#### Specs for fluorData:
+1. The function works on xmls where fluor data takes up 1 or 2 lines.
+test:
+2. The function returns a data.frame with all of the expected values
+test:
+
+#### Specs for physicalSizes:
+1. The function works returns list with expected names & values.
+test:
+
+#### Specs for parseOverlayAttrs:
+1. The function requires correct labworksheet boolean.
+test:
+2. The function only works with valid sample names.
+test:
+3. The function returns SpatialPosition with correct column names. 
+test:
+
+#### Specs for annotMatching:
+1. The function matches sampleIDs correctly between xml and annots.
+test:
+
+#### Specs for plotSpatialOverlay:
+1. The function requires valid colorBy variable.
+test:
+2. The function returns a ggplot object for high resolution, low resolution and outline graphing.
+test:
+3. The function returns a ggplot object without legend if desired.
+test:
+4. The function returns a ggplot object with fluorescence legend if desired.
+test:
+5. The function works on with both 4-channel and RGB images. 
+test:
+
+#### Specs for scaleBarMath:
+1. The function expects size to be between 0-1.
+test:
+Without image
+2. The function returns a list with the expected names and values.
+test:
+3. The function returns a um value in valid sizes.
+test:
+4. The function calculates the number of pixels for scale bar correctly. 
+test:
+With image
+2. The function returns a list with the expected names and values.
+test:
+3. The function returns a um value in valid sizes.
+test:
+4. The function calculates the number of pixels for scale bar correctly. 
+test:
+
+#### Specs for scaleBarCalculation:
+1. The function only works with valid corner value.
+test:
+Without image
+2. The function returns a list of numeric values.
+test:
+3. The function calculates the scale bar points the same across the different corner options. 
+test:
+With image
+2. The function returns a list of numeric values.
+test:
+3. The function calculates the scale bar points the same across the different corner options. 
+test:
+
+#### Specs for scaleBarPrinting:
+Without image
+1. The function only works with valid corner value.
+test:
+2. The function produces a ggplot object.
+test:
+With image
+2. The function produces a ggplot object.
+test:
+
+#### Specs for readSpatialOverlay:
+1. The function works with either a labworksheet or a geomxset object as annotation.
+test:
+2. The function only returns samples in both xml and annotation
+test:
+With all points
+1. The function returns a SpatialOverlay object.
+test:
+2. The function returns a SpatialOverlay object with the expected values in the correct locations.
+test:
+With image
+1. The function returns a SpatialOverlay object.
+test:
+2. The function returns a SpatialOverlay object with the expected values in the correct locations.
+test:
+3. The function returns a SpatialOverlay object with image in expected location.
+test:
+4. The function returns a SpatialOverlay object with scaled coordinates to image. 
+test:
+With boundary points
+1. The function returns a SpatialOverlay object.
+test:
+2. The function returns a SpatialOverlay object with the expected values in the correct locations.
+test: 
+
+#### Specs for removeSamples:
+1. The function only works on valid sample names. 
+test:
+2. The function works before adding coordinates and plotting factors. 
+test:
+3. The function works after adding coordinates and before plotting factors. 
+test:
+4. The function works after adding coordinates and plotting factors. 
+test:
+
+#### Specs for SpatialOverlay-class:
+1. The class is formatted correctly. 
+test:
+2. The class accessors work as expected. 
+test:
+3. The class replacers work as expected. 
+test:
+
+#### Specs for SpatialPosition-class:
+1. The class is formatted correctly. 
+test:
+2. The class accessors work as expected. 
+test:
+
+#### Specs for bookendStr:
+1. The function returns a string in the expected format. 
+test:
+
+#### Specs for readLabWorksheet:
+1. The function only works on correct file paths. 
+test:
+2. The function only works on correct slide names. 
+test:
+3. The function only returns annotations from the specified slide.
+test:
+
+#### Specs for downloadMouseBrainImage:
+1. The function downloads the mouse brain tiff and returns a valid file path. 
+test:

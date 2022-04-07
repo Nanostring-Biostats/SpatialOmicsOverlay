@@ -19,6 +19,7 @@ overlay <- createCoordFile(SpatialOverlay(slideName = "normal3",
                            outline = FALSE)
 
 testthat::test_that("plotSpatialOverlay requires valid colorBy variable",{
+    #Spec 1. The function requires valid colorBy variable.
     expect_error(plotSpatialOverlay(overlay, colorBy = "tissue", 
                                     hiRes = F, scaleBar = F))
 })
@@ -26,6 +27,8 @@ testthat::test_that("plotSpatialOverlay requires valid colorBy variable",{
 overlay <- addPlottingFactor(overlay, kidneyAnnots, plottingFactor = "Segment_type")
 
 testthat::test_that("plotSpatialOverlay prints",{
+    #Spec 2. The function returns a ggplot object for high resolution, low 
+    #           resolution and outline graphing.
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                           hiRes = F, scaleBar = F), NA)
     expect_error(gp, NA)
@@ -38,8 +41,15 @@ testthat::test_that("plotSpatialOverlay prints",{
     
     expect_error(plotSpatialOverlay(overlay, hiRes = F, scaleBar = F), NA)
     
+    #Spec 3. The function returns a ggplot object without legend if desired.
     expect_error(plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                 hiRes = F, scaleBar = F, legend = F), NA)
+    
+    #Spec 4. The function returns a ggplot object with fluorescence legend if 
+    #           desired.
+    expect_error(plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                                    hiRes = F, scaleBar = F, 
+                                    fluorLegend = T), NA)
 })
 
 geometricOverlay <- removeSample(overlay, 
@@ -51,6 +61,8 @@ overlayOutline <- createCoordFile(geometricOverlay, outline = TRUE)
 
 
 testthat::test_that("plotSpatialOverlay prints",{
+    #Spec 2. The function returns a ggplot object for high resolution, low 
+    #           resolution and outline graphing.
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                           scaleBar = F), NA)
     expect_error(gp, NA)
@@ -58,11 +70,14 @@ testthat::test_that("plotSpatialOverlay prints",{
     
     expect_error(plotSpatialOverlay(overlay, scaleBar = F), NA)
     
+    #Spec 3. The function returns a ggplot object without legend if desired.
     expect_error(plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                     scaleBar = F, legend = F), NA)
     
+    #Spec 4. The function returns a ggplot object with fluorescence legend if 
+    #           desired.
     expect_error(plotSpatialOverlay(overlayOutline, colorBy = "Segment_type", 
-                                    scaleBar = F, legend = F), NA)
+                                    scaleBar = F, fluorLegend = T), NA)
 })
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
@@ -70,8 +85,11 @@ scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney,
                          scaleBarWidth = 0.2)
 
 testthat::test_that("scaleBarMath is correct",{
+    #Spec 1. The function expects size to be between 0-1.
     expect_error(scaleBarMath(scanMetadata = scanMetadataKidney, 
                               pts = coords(overlay), size = 10))
+    
+    #Spec 2. The function returns a list with the expected names and values.
     expect_true(class(scaleBar) == "list")
     
     expect_true(all(names(scaleBar) == c("um", "pixels", "axis", 
@@ -89,22 +107,29 @@ testthat::test_that("scaleBarMath is correct",{
     expect_true(scaleBar$maxX == max(coords(overlay)$xcoor))
     expect_true(scaleBar$maxY == max(coords(overlay)$ycoor))
     
+    #Spec 3. The function returns a um value in valid sizes.
     validSizes <- sort(c(seq(5,25,5), seq(30, 50, 10), 
                          seq(75,5000,25), seq(5100, 25000, 100)))
     
     expect_true(scaleBar$um %in% validSizes)
     
+    #Spec 4. The function calculates the number of pixels for scale bar 
+    #           correctly.
     expect_true(scaleBar$pixels == scaleBar$um / scanMetadataKidney$PhysicalSizes$X)
 })
 
 testthat::test_that("scaleBarCalculation is correct",{
-    validCorners <- c("bottomright", "bottomleft", "bottomcenter", 
-                      "topright", "topleft", "topcenter")
-    
-    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
+    #Spec 1. The function only works with valid corner value.
     expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"))
+    
+    #Spec 2. The function returns a list of numeric values.
+    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
     expect_true(all(lapply(scaleBarPts, class) == "numeric"))
     
+    #Spec 3. The function calculates the scale bar points the same across the 
+    #           different corner options. 
+    validCorners <- c("bottomright", "bottomleft", "bottomcenter", 
+                      "topright", "topleft", "topcenter")
     scaleBarPts <- list()
     
     for(i in validCorners){
@@ -171,11 +196,13 @@ testthat::test_that("scaleBarCalculation is correct",{
 })
 
 testthat::test_that("scaleBarPrinting is correct",{
-    expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
-                                          hiRes = F, scaleBar = T), NA)
+    #Spec 1. The function only works with valid corner value.
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                           hiRes = F, scaleBar = T, 
                                           corner = "fakeCorner"))
+    #Spec 2. The function produces a ggplot object.
+    expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                                          hiRes = F, scaleBar = T), NA)
 })
 
 tiff <- downloadMouseBrainImage()
@@ -190,6 +217,7 @@ annots <- readLabWorksheet(annots, "4")
 overlayImage8 <- addPlottingFactor(overlayImage8, annots, "segment")
 
 testthat::test_that("plotting occurs on images",{
+    #Spec 5. The function works on with both 4-channel and RGB images. 
     #4 channel
     expect_error(gp4 <- plotSpatialOverlay(overlayImage8, 
                                           colorBy = "segment", 
@@ -217,6 +245,7 @@ scaleBar <- scaleBarMath(scanMetadata = scanMeta(overlayImage8),
                          image = overlayImage8@image)
 
 testthat::test_that("scale bar math on images",{
+    #Spec 2. The function returns a list with the expected names and values.
     expect_true(class(scaleBar) == "list")
     
     expect_true(all(names(scaleBar) == c("um", "pixels", "axis", 
@@ -234,22 +263,29 @@ testthat::test_that("scale bar math on images",{
     expect_true(scaleBar$maxX == image_info(showImage(overlayImage8))$width * 0.98)
     expect_true(scaleBar$maxY == image_info(showImage(overlayImage8))$height * 0.98)
     
+    #Spec 3. The function returns a um value in valid sizes.
     validSizes <- sort(c(seq(5,25,5), seq(30, 50, 10), 
                          seq(75,5000,25), seq(5100, 25000, 100)))
     
     expect_true(scaleBar$um %in% validSizes)
     
+    #Spec 4. The function calculates the number of pixels for scale bar 
+    #           correctly.
     expect_true(scaleBar$pixels == scaleBar$um / (scaleBarRatio(overlayImage8) * 
                                                       2^(overlayImage8@image$resolution-1)))
 })
 
 testthat::test_that("scale bar calculation on images",{
+        expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"))
+    
+    #Spec 2. The function returns a list of numeric values.
+    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
+    expect_true(all(lapply(scaleBarPts, class) == "numeric"))
+    
+    #Spec 3. The function calculates the scale bar points the same across the 
+    #           different corner options.
     validCorners <- c("bottomright", "bottomleft", "bottomcenter", 
                       "topright", "topleft", "topcenter")
-    
-    scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
-    expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"))
-    expect_true(all(lapply(scaleBarPts, class) == "numeric"))
     
     scaleBarPts <- list()
     
@@ -316,6 +352,7 @@ testthat::test_that("scale bar calculation on images",{
 })
 
 testthat::test_that("scale bar prints",{
+    #Spec 2. The function produces a ggplot object.
     expect_error(gp <- plotSpatialOverlay(overlayImage8, colorBy = "segment", 
                                           hiRes = F, scaleBar = T), NA)
 })

@@ -6,6 +6,7 @@ annots <- system.file("extdata", "muBrain_LabWorksheet.txt",
 AOIattrs <- overlay(overlay)
 
 testthat::test_that("SpatialPosition is formatted correctly",{
+    #Spec 1. The class is formatted correctly. 
     expect_true(class(AOIattrs) == "SpatialPosition")
     expect_true(class(AOIattrs@position) == "data.frame")
     expect_true(all(names(AOIattrs) == c("ROILabel", "Sample_ID", "Height", 
@@ -26,6 +27,7 @@ testthat::test_that("SpatialPosition is formatted correctly",{
 })
 
 testthat::test_that("SpatialPosition accessors are correct",{
+    #Spec 2. The class accessors work as expected. 
     expect_identical(meta(AOIattrs), AOIattrs@position[,1:7]) 
     expect_true(class(meta(AOIattrs)) == "data.frame")
     expect_identical(position(AOIattrs), AOIattrs@position$Position)

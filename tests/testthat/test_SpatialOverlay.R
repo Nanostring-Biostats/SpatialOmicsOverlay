@@ -12,6 +12,7 @@ annots <- readLabWorksheet(annots, "4")
 overlay <- addPlottingFactor(overlay, annots, "segment")
 
 testthat::test_that("SpatialOverlay is formatted correctly",{
+    #Spec 1. The class is formatted correctly.
     expect_true(all(names(scanMeta(overlay)) == c("Panels", "PhysicalSizes", 
                                                   "Fluorescence", 
                                                   "Segmentation")))
@@ -39,6 +40,7 @@ testthat::test_that("SpatialOverlay is formatted correctly",{
 })
 
 testthat::test_that("SpatialOverlay accessor work as expected",{
+    #Spec 2. The class accessors work as expected.
     expect_true(slideName(overlay) == "4")
     expect_identical(slideName(overlay), overlay@slideName)
     
@@ -82,6 +84,7 @@ testthat::test_that("SpatialOverlay accessor work as expected",{
 geometricOverlay <- removeSample(overlay, sampNames(overlay)[5:length(sampNames(overlay))])
 
 testthat::test_that("SpatialOverlay replacers work as expected",{
+    #Spec 3. The class replacers work as expected. 
     expect_false(ncol(plotFactors(geometricOverlay)) == ncol(plotFactors(addPlottingFactor(geometricOverlay, 
                                                                                            annots, "area"))))
     expect_false(nrow(coords(geometricOverlay)) == nrow(coords(createCoordFile(geometricOverlay, 

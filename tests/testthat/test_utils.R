@@ -1,5 +1,6 @@
 
 testthat::test_that("bookendStr prints correctly",{
+    #Spec 1. The function returns a string in the expected format. 
     start_string <- stringi::stri_rand_strings(n = 1, length = 25)
     reps <- 10
     string <- paste(rep(start_string, reps), collapse = "")
@@ -17,9 +18,12 @@ testthat::test_that("bookendStr prints correctly",{
 })
 
 testthat::test_that("read labworksheet works",{
+    #Spec 1. The function only works on correct file paths.
     expect_error(readLabWorksheet("testData/test_LabWorksheet.txt", "fake_slide"))
+    #Spec 2. The function only works on correct slide names. 
     expect_error(readLabWorksheet("fake/file/path", "hu_brain_004b"))
     
+    #Spec 3. The function only returns annotations from the specified slide.
     annots4b <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004b")
     annots4a <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004a")
     
@@ -39,6 +43,8 @@ testthat::test_that("read labworksheet works",{
 })
 
 testthat::test_that("mouse brain tiff can be downloaded",{
+    #Spec 1. The function downloads the mouse brain tiff and returns a valid 
+    #           file path.
     tifFile <- downloadMouseBrainImage()
     
     expect_true(endsWith(tifFile, "mu_brain_004.ome.tiff"))

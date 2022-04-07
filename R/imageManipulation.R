@@ -429,6 +429,10 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
         stop("No image found. Run addImageOmeTiff() before running this function")
     }
     
+    if(is(showImage(overlay),"AnnotatedImage")){
+        stop("Image must be RGB. Run recolor() before running this function")
+    }
+    
     sampCoords <- coords(overlay)[coords(overlay)$sampleID %in% sampleIDs,]
     
     maxHeight <- image_info(showImage(overlay))$height
@@ -496,6 +500,10 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @export 
 #'
 cropTissue <- function(overlay, buffer = 0.05){
+    if(is.null(showImage(overlay))){
+        stop("No image found. Run addImageOmeTiff() before running this function")
+    }
+    
     if(is(showImage(overlay),"AnnotatedImage")){
         coords <- FALSE
         image_data <- imageData(showImage(overlay))
@@ -504,6 +512,10 @@ cropTissue <- function(overlay, buffer = 0.05){
     }else{
         coords <- TRUE
         image_data <- imageData(as_EBImage(showImage(overlay)))
+        
+        if(is.null(coords(overlay))){
+            stop("No coordinates found. Run createCoordFile() before running this function")
+        }
     }
     
     red <- image_data[,,1] > 0.05

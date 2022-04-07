@@ -45,7 +45,7 @@ parseScanMetadata <- function(omexml){
 #' @param annots df of annotations
 #' @param labworksheet annots are from lab worksheet file
 #' 
-#' @return list of AOIs containing metadata and base64encoded positions
+#' @return SpatialPosition of AOIs containing metadata and base64encoded positions
 #' 
 #' @examples
 #' 
@@ -296,7 +296,7 @@ fluorData <- function(omexml){
 #' @param width width of image
 #' @param height height of image
 #' 
-#' @return binary mask image
+#' @return binary vector mask 
 #' 
 #' @importFrom base64decode base64enc
 #' 

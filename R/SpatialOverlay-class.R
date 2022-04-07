@@ -113,7 +113,7 @@ setValidity2("SpatialOverlay", function(object){
         msg <- c(msg, "Fluorescence in Scan Metadata must be a data.frame")
     }
     if(all(!c("Dye", "DisplayName", "Color", "WaveLength", 
-              "Target", "ExposureTime") %in% 
+              "Target", "ExposureTime", "ColorCode") %in% 
            names(scanMeta(object)$Fluorescence))){
         msg <- c(msg, "Column names in Fluorescence do not match expected")
     }

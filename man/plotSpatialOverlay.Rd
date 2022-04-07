@@ -16,7 +16,7 @@ plotSpatialOverlay(
   ...,
   corner = "bottomright",
   scaleBarWidth = 0.2,
-  scaleBarColor = "red",
+  scaleBarColor = "black",
   scaleBarFontSize = 6,
   scaleBarLineSize = 1.5,
   textDistance = 2

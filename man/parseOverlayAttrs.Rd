@@ -15,7 +15,7 @@ will automatically be extracted}
 \item{labworksheet}{annots are from lab worksheet file}
 }
 \value{
-list of AOIs containing metadata and base64encoded positions
+SpatialPosition of AOIs containing metadata and base64encoded positions
 }
 \description{
 Parse the xml file for AOI attributes in GeoMx images

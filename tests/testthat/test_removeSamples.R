@@ -18,11 +18,13 @@ segmentedROIs <- meta(overlay(overlay))$Sample_ID[which(meta(overlay(overlay))$S
 geometricOverlay <- removeSample(overlay, segmentedROIs)
 
 testthat::test_that("removeSamples only removes valid sample names", {
+    #Spec 1. The function only works on valid sample names. 
     expect_warning(temp <- removeSample(overlay = overlay, remove = "fakeSample"))
     expect_identical(overlay, temp)
 })
 
 testthat::test_that("removeSamples works as intended before coords and plotFactors", {
+    #Spec 2. The function works before adding coordinates and plotting factors. 
     expect_false(length(sampNames(overlay)) == length(sampNames(geometricOverlay)))
     expect_true(all(sampNames(geometricOverlay) %in% sampNames(overlay)))
     expect_false(all(sampNames(overlay) %in% sampNames(geometricOverlay)))
@@ -40,6 +42,8 @@ overlay <- createCoordFile(overlay, outline = FALSE)
 geometricOverlay <- removeSample(overlay, segmentedROIs)
 
 testthat::test_that("removeSamples works as intended afer coords and before plotFactors", {
+    #Spec 3. The function works after adding coordinates and before plotting 
+    #           factors. 
     expect_false(length(sampNames(overlay)) == length(sampNames(geometricOverlay)))
     expect_true(all(sampNames(geometricOverlay) %in% sampNames(overlay)))
     expect_false(all(sampNames(overlay) %in% sampNames(geometricOverlay)))
@@ -56,6 +60,7 @@ overlay <- addPlottingFactor(overlay, kidneyAnnots, "Segment_type")
 geometricOverlay <- removeSample(overlay, segmentedROIs)
 
 testthat::test_that("removeSamples works as intended after coords and plotFactors", {
+    #Spec 4. The function works after adding coordinates and plotting factors. 
     expect_false(length(sampNames(overlay)) == length(sampNames(geometricOverlay)))
     expect_true(all(sampNames(geometricOverlay) %in% sampNames(overlay)))
     expect_false(all(sampNames(overlay) %in% sampNames(geometricOverlay)))

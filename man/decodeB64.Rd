@@ -14,7 +14,7 @@ decodeB64(b64string, width, height)
 \item{height}{height of image}
 }
 \value{
-binary mask image
+binary vector mask
 }
 \description{
 Decode a base 64 string into 8 bit binary image mask

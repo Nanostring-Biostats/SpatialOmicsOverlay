@@ -38,7 +38,8 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
     
     overlay@image <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
-                                                         res = res),
+                                                         res = res,
+                                                         ...),
                           resolution = res)
     
     if(difRes != 0){
