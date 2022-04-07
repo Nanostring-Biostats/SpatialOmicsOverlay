@@ -113,6 +113,7 @@ testthat::test_that("changeColorIntensity works",{
 })
 
 testthat::test_that("changeImageColoring works",{
+    #Spec 2. The function changes ColorCode values of only correct fluor.
     fluorChange <- changeImageColoring(overlay, "orange", dye = "Cy3")
     fluorChange <- changeImageColoring(fluorChange, "#03fcf8", dye = "Alexa 647")
     fluorChange <- changeImageColoring(fluorChange, "#03c6fc", dye = "FITC")
