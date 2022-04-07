@@ -1,41 +1,41 @@
 #### Specs for addImageOmeTiff:  
-1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L8
-2. The imagePointer is a magick-image with the correct dimensions.  
+2. The imagePointer is a magick-image with the correct dimensions.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L23
-3. The function scales the coordinates.
+3. The function scales the coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L35
 
 #### Specs for add4ChannelImage:  
-1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L70
-2. The imagePointer is an AnnotatedImage with the correct dimensions.  
+2. The imagePointer is an AnnotatedImage with the correct dimensions.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L85
-3. The function scales the coordinates.
+3. The function scales the coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L94
 
 #### Specs for addImageFile:  
-1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.   
+1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L123
-2. The imagePointer is a magick-image with the correct dimensions.  
+2. The imagePointer is a magick-image with the correct dimensions.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L133
-3. The function scales the coordinates.
+3. The function scales the coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addImage.R#L141
 
 #### Specs for addPlottingFactor:  
-1. The function only works on one factor at a time regardless of input type.   
+1. The function only works on one factor at a time regardless of input type.     
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L14
-2. The function gives warning for annotation missing for samples in object regardless of input type.
+2. The function gives warning for annotation missing for samples in object regardless of input type.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L28
-3. The function works with a data.frame input, column name plotting factor.  
+3. The function works with a data.frame input, column name plotting factor.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L16
-4. The function works with a data.frame input, row name plotting factor.  
+4. The function works with a data.frame input, row name plotting factor.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L30
-5. The function works with a matrix input, column name plotting factor.  
+5. The function works with a matrix input, column name plotting factor.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L44
-6. The function works with a matrix input, row name plotting factor.  
+6. The function works with a matrix input, row name plotting factor.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L57
-7. If vectors aren't named they must be the same length as number of samples in object.  
+7. If vectors aren't named they must be the same length as number of samples in object.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L69
 8. The function only matches vectors if they are named, otherwise assumed in correct order.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_addPlottingFactor.R#L75
