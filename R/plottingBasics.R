@@ -59,7 +59,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                alpha = 1, legend = TRUE, scaleBar = TRUE, 
                                image = TRUE, fluorLegend = FALSE, ... , 
                                corner = "bottomright", scaleBarWidth = 0.2, 
-                               scaleBarColor = "red", scaleBarFontSize = 6, 
+                               scaleBarColor = "black", scaleBarFontSize = 6, 
                                scaleBarLineSize = 1.5, textDistance = 2){
     
     if(is(showImage(overlay),"AnnotatedImage")){
@@ -127,7 +127,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                 theme(legend.text=element_markdown(size=12,"grey"))+
                 labs(color = "Fluorescence")+
                 guides(color = guide_legend(
-                    override.aes=list(shape = 15, size = 0)))
+                    override.aes=list(shape = 15)))
             
         }else{
             gp <- gp + geom_point(data = fluor(overlay), 
@@ -139,7 +139,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                 theme(legend.text=element_markdown(size=12,"grey"))+
                 labs(fill = "Fluorescence")+
                 guides(fill = guide_legend(
-                    override.aes=list(shape = 15, size = 0)))
+                    override.aes=list(shape = 15)))
         }
     }
     
@@ -453,8 +453,13 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' 
 fluorLegend <- function(overlay, nrow = 4, textSize = 10, 
                         boxColor = "grey", alpha = 0.25){
+    
+    if(class(overlay) != "SpatialOverlay"){
+        stop("overlay must be a SpatialOverlay object")
+    }
+    
     if(!nrow %in% c(1,2,4)){
-        stop("legned can only have 1, 2, or 4 rows")
+        stop("legend can only have 1, 2, or 4 rows")
     }
     
     gp <- ggplot()
