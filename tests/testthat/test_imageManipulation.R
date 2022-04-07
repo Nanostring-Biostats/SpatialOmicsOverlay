@@ -12,7 +12,7 @@ testthat::test_that("cropTissue works",{
     expect_true(image_info(showImage(overlayImage))$height >
                      image_info(showImage(tissue))$height)
     
-    #2. The function returns all original coordinates.
+    #Spec 2. The function returns all original coordinates.
     expect_true(nrow(coords(overlayImage)) == nrow(coords(tissue)))
 })
 
