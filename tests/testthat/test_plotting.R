@@ -39,7 +39,8 @@ testthat::test_that("plotSpatialOverlay prints",{
     expect_true(all(class(gp) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("hiRes no scaleBar", gp)
+    #resulting image is too large 
+    #expect_doppelganger("hiRes no scaleBar", gp)
     
     expect_error(plotSpatialOverlay(overlay, hiRes = F, scaleBar = F), NA)
     
@@ -77,7 +78,8 @@ testthat::test_that("plotSpatialOverlay prints",{
     expect_true(all(class(gp) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("outline no scaleBar", gp)
+    #resulting image too large
+    #expect_doppelganger("outline no scaleBar", gp)
     
     expect_error(plotSpatialOverlay(overlay, scaleBar = F), NA)
     
@@ -86,6 +88,7 @@ testthat::test_that("plotSpatialOverlay prints",{
                                     scaleBar = F, legend = F), NA)
     
     #Spec 6. The function produces reproducible figures.
+    #resulting image too large
     expect_doppelganger("outline no scaleBar no legend", gp)
     
     #Spec 4. The function returns a ggplot object with fluorescence legend if 
