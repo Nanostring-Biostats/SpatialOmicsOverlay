@@ -14,6 +14,9 @@ testthat::test_that("cropTissue works",{
     
     #Spec 2. The function returns all original coordinates.
     expect_true(nrow(coords(overlayImage)) == nrow(coords(tissue)))
+    
+    #Spec 3. The function produces reproducible results.
+    expect_doppelganger("cropTissue", showImage(tissue)) 
 })
 
 testthat::test_that("cropSamples works",{
@@ -31,6 +34,9 @@ testthat::test_that("cropSamples works",{
     expect_true(nrow(coords(overlayImage)) > nrow(coords(sampOnlyImage)))
     expect_true(nrow(coords(overlayImage)[coords(overlayImage)$sampleID %in% samps,]) ==
                 nrow(coords(sampOnlyImage)))
+    
+    #Spec 3. The function produces reproducible results.
+    expect_doppelganger("cropSamples sampsOnly", showImage(sampOnlyImage)) 
     
     sampImage <- cropSamples(overlayImage, sampleIDs = samps, sampsOnly = FALSE)
     
@@ -56,7 +62,10 @@ testthat::test_that("cropSamples works",{
     expect_true(all(coords(sampImage)$ycoor <
                         image_info(showImage(sampImage))$height + 1))
     
-    #Spec 4. The function only works with valid sampleIDs.
+    #Spec 4. The function produces reproducible results.
+    expect_doppelganger("cropSamples all ROIs", showImage(sampImage)) 
+    
+    #Spec 5. The function only works with valid sampleIDs.
     expect_error(expect_warning(cropSamples(overlayImage, 
                                             sampleIDs = "fakeID", 
                                             sampsOnly = TRUE)))
@@ -71,6 +80,9 @@ testthat::test_that("flipX works",{
     expect_true(all(abs(image_info(showImage(overlayImage))$width - 
                         coords(overlayImage)$xcoor) == 
                         coords(flipX(overlayImage))$xcoor))
+    
+    #Spec 2. The function produces reproducible results.
+    expect_doppelganger("flipX", showImage(flipX(overlayImage)))
 })
 
 testthat::test_that("flipY works",{
@@ -78,6 +90,9 @@ testthat::test_that("flipY works",{
     expect_true(all(abs(image_info(showImage(overlayImage))$height - 
                             coords(overlayImage)$ycoor) == 
                         coords(flipY(overlayImage))$ycoor))
+    
+    #Spec 2. The function produces reproducible results.
+    expect_doppelganger("flipY", showImage(flipY(overlayImage)))
 })
 
 testthat::test_that("coloring changes need 4 channel image",{
@@ -142,6 +157,9 @@ testthat::test_that("imageColoring works",{
     overlayRGB <- imageColoring(showImage(overlay), scanMeta(overlay))
     
     expect_true(dim(imageData(overlayRGB))[3] == 3)
+    
+    #Spec 2. The function produces reproducible results.
+    expect_doppelganger("imageColoring", image_read(overlayRGB))
 })
 
 testthat::test_that("recoloring works",{
@@ -161,4 +179,7 @@ testthat::test_that("recoloring works",{
                          imageData(as_EBImage(showImage(cropTissue(overlayImage))))))
     
     expect_true(dim(imageData(as_EBImage(showImage(overlayRGB))))[3] == 3)
+    
+    #Spec 3. The function produces reproducible results.
+    expect_doppelganger("recolor", showImage(overlayRGB))
 })

@@ -29,6 +29,10 @@ testthat::test_that("Image is added correctly",{
     
     expect_true(image_info(showImage(overlayImage8))$width == 256)
     expect_true(image_info(showImage(overlayImage8))$height == 256)
+    
+    #Spec 4. The function produces reproducible results
+    expect_doppelganger("add ometiff res 6", showImage(overlayImage6)) 
+    expect_doppelganger("add ometiff res 8", showImage(overlayImage8))
 })
 
 testthat::test_that("Coordinates are scaled",{
@@ -135,6 +139,9 @@ testthat::test_that("Image from file works", {
     
     expect_true(image_info(showImage(overlayImageFile))$width == 256)
     expect_true(image_info(showImage(overlayImageFile))$height == 256)
+    
+    #Spec 4. The function produces reproducible results
+    expect_doppelganger("add image file", showImage(overlayImageFile)) 
 })
 
 testthat::test_that("Coordinates are scaled",{
