@@ -132,6 +132,7 @@ createMask <- function(b64string, metadata, outline = TRUE){
 #' 
 #' @return df of positive coordinates of AOI
 #' 
+#' @noRd
 coordsFromMask <- function(mask, metadata, outline = TRUE){
     coords <- as.data.frame(which(mask != 0, arr.ind = TRUE))
     names(coords) <- c("ycoor", "xcoor")
@@ -161,6 +162,7 @@ coordsFromMask <- function(mask, metadata, outline = TRUE){
 #' 
 #' @return df of ordered coordinates
 #' 
+#' @noRd
 pencilCoordSorting <- function(coords, rangeWidth = 100){
     outlineCoords <- coords[1,]
     used <- NULL
@@ -206,6 +208,7 @@ pencilCoordSorting <- function(coords, rangeWidth = 100){
 #' 
 #' @return total number of neighbors for each pixel
 #' 
+#' @noRd
 boundary <-  function(mat) {
     mat.pad <- rbind(NA, cbind(NA, mat, NA), NA)
     indrow <- 2:(nrow(mat) + 1) # row indices of the "middle"
@@ -232,6 +235,7 @@ boundary <-  function(mat) {
 #' @importFrom image_info magick
 #' @importFrom image_read magick
 #' 
+#' @noRd
 scaleCoords <- function(overlay){
     if(!is(overlay,"SpatialOverlay")){
         stop("overlay must be a SpatialOverlay")

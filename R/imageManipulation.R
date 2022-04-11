@@ -10,6 +10,7 @@
 #' @importFrom normalize EBImage
 #' @importFrom col2rgb grDevices
 #' 
+#' @noRd
 
 imageColoring <- function(omeImage, scanMeta){
     red <- matrix(0, nrow = nrow(imageData(omeImage)), 
@@ -317,6 +318,7 @@ flipX <- function(overlay){
 #' @importFrom image_crop magick
 #' @importFrom image_info magick
 #' 
+#' @noRd
 crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
     if(!is(xmin,"numeric") | !is(xmax,"numeric") |
        !is(ymin,"numeric") | !is(ymax,"numeric")){

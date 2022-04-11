@@ -237,6 +237,7 @@ themeTransparent <- function(){
 #' 
 #' @return values needed to print scale bar
 #' 
+#' @noRd
 scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
     axis = "X"
     
@@ -311,6 +312,7 @@ scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
 #' 
 #' @return coordinates needed to print scale bar
 #' 
+#' @noRd
 scaleBarCalculation <- function(corner = "bottomright", scaleBar, 
                                 textDistance = 2){
     validCorners <- c("bottomright", "bottomleft", "bottomcenter", 
@@ -374,6 +376,7 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
 #'
 #' @import ggplot2
 #' 
+#' @noRd
 scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright", 
                              scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
                              scaleBarColor = "red", textDistance = 2, 

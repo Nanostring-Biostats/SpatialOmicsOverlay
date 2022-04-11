@@ -300,6 +300,7 @@ fluorData <- function(omexml){
 #' 
 #' @importFrom base64decode base64enc
 #' 
+#' @noRd
 decodeB64 <- function(b64string, width, height){
     # rawToBits returns the reverse of the actual binary sequence, needs to be 
     #   reversed for real image
@@ -328,6 +329,7 @@ decodeB64 <- function(b64string, width, height){
 #' 
 #' @return df with ROI unique identifiers
 #' 
+#' @noRd
 
 annotMatching <- function(annots, ROInum, maskNum, maskText){
     if(!"ROILabel" %in% colnames(annots)){
