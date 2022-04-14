@@ -6,9 +6,7 @@
 
 % constructors
 \alias{SpatialOverlay}
-\alias{SpatialOverlay,environment-method}
 \alias{SpatialOverlay,character-method}
-\alias{SpatialOverlay,missing-method}
 
 % show
 \alias{show,SpatialOverlay-method}
@@ -22,12 +20,8 @@
 \alias{scanMeta,SpatialOverlay-method}
 \alias{coords}
 \alias{coords,SpatialOverlay-method}
-\alias{coords<-}
-\alias{coords<-,SpatialOverlay,data.frame-method}
 \alias{plotFactors}
 \alias{plotFactors,SpatialOverlay-method}
-\alias{plotFactors<-}
-\alias{plotFactors<-,SpatialOverlay,data.frame-method}
 \alias{labWork}
 \alias{labWork,SpatialOverlay-method}
 \alias{outline}
@@ -44,6 +38,12 @@
 \alias{showImage,SpatialOverlay-method}
 \alias{res}
 \alias{res,SpatialOverlay-method}
+\alias{workflow}
+\alias{workflow,SpatialOverlay-method}
+\alias{scaled}
+\alias{scaled,SpatialOverlay-method}
+\alias{imageInfo}
+\alias{imageInfo,SpatialOverlay-method}
 
 
 \title{Class to Contain NanoString Spatial Overlay Images and Data}
@@ -104,15 +104,7 @@
         \code{coords(object)}: extracts the coordinates for the entire scan.
       }
       \item{}{
-        \code{coords(object)<-value}: replaces the \code{coords} of
-        the \code{object}.
-      }
-      \item{}{
         \code{plotFactors(object)}: extracts avaliable plotting factors.
-      }
-      \item{}{
-        \code{plotFactors(object)<-value}: replaces the \code{plotFactors} of
-        the \code{object}.
       }
       \item{}{
         \code{labWork(object)}: extracts the boolean if a lab worksheet was used.
@@ -136,6 +128,15 @@
       }
       \item{}{
         \code{res(object)}: extracts resolution of image.
+      }
+      \item{}{
+        \code{workflow(object)}: extracts workflow data.
+      }
+      \item{}{
+        \code{scaled(object)}: extracts if coordinates have been scaled.
+      }
+      \item{}{
+        \code{imageInfo(object)}: extracts image data.
       }
     }
 }

@@ -1,3 +1,13 @@
+COLORS <- c(Blue  = "#0000feff",
+            Red   = "#fe0000ff",
+            Green = "#00fe00ff",
+            Purple = "#7f00feff",
+            Yellow = "#fefe00ff",
+            GreenYellow = "#7ffe00ff",
+            Cyan = "#00fefeff",
+            Magenta = "#fe00feff",
+            Grey = "#7f7f7fff")
+
 #' Parse the xml file for the scan metadata of GeoMx images 
 #' 
 #' @param omexml xml file from OME-TIFF, can provide path to OME-TIFF and 
@@ -13,7 +23,7 @@
 #' 
 #' scan_metadata <- parseScanMetadata(omexml = xml)
 #' 
-#' @importFrom xmlToList XML
+#' @importFrom XML xmlToList
 #' 
 #' @export 
 #' 
@@ -62,7 +72,7 @@ parseScanMetadata <- function(omexml){
 #'                              annots = muBrainLW, 
 #'                              labworksheet = TRUE)
 #' 
-#' @importFrom xmlToList XML
+#' @importFrom XML xmlToList
 #' 
 #' @export 
 #' 
@@ -140,7 +150,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
     
     if(nrow(AOIattrs) < nrow(annots)){
         names(annots)[names(annots) == "SegmentID"] <- "Sample_ID"
-        warning(paste("Some AOIs do no match annotation file. \nNot Matched:",
+        warning(paste("Some AOIs do not match annotation file. \nNot Matched:",
                       paste(annots$Sample_ID[!annots$Sample_ID %in% AOIattrs$Sample_ID], 
                             collapse = ", ")))
     }
@@ -165,27 +175,17 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
 #' @export 
 #' 
 physicalSizes <- function(omexml){
-    PhysicalSizeX <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeX"]])
-    names(PhysicalSizeX) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeXUnit"]], 
+    physicalSizeX <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeX"]])
+    names(physicalSizeX) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeXUnit"]], 
                                    "/pixel")
     
-    PhysicalSizeY <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeY"]])
-    names(PhysicalSizeY) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeYUnit"]], 
+    physicalSizeY <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeY"]])
+    names(physicalSizeY) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeYUnit"]], 
                                    "/pixel")
     
-    return(list(X=PhysicalSizeX, 
-                Y=PhysicalSizeY))
+    return(list(X=physicalSizeX, 
+                Y=physicalSizeY))
 }
-
-COLORS <- c(Blue  = "#0000feff",
-            Red   = "#fe0000ff",
-            Green = "#00fe00ff",
-            Purple = "#7f00feff",
-            Yellow = "#fefe00ff",
-            GreenYellow = "#7ffe00ff",
-            Cyan = "#00fefeff",
-            Magenta = "#fe00feff",
-            Grey = "#7f7f7fff")
 
 #' Parse fluorescence data from xml 
 #' 
@@ -204,7 +204,7 @@ COLORS <- c(Blue  = "#0000feff",
 #' @export 
 #' 
 fluorData <- function(omexml){
-    Fluorescence <- NULL
+    fluorescence <- NULL
     planeLine <- min(which(names(omexml$Image$Pixels) == "Plane"))-1
     addition <- 0
     
@@ -242,7 +242,7 @@ fluorData <- function(omexml){
         }
         
         if(names(omexml$StructuredAnnotations[chan+1]$XMLAnnotation$Value) == "ChannelInfo"){
-            Fluorescence <- as.data.frame(rbind(Fluorescence, 
+            fluorescence <- as.data.frame(rbind(fluorescence, 
                                                 c(Dye = fluor[["Fluor"]],
                                                   DisplayName = fluorAnnots[["DyeDisplayName"]],
                                                   Color = col,
@@ -255,7 +255,7 @@ fluorData <- function(omexml){
             intensities <- omexml$StructuredAnnotations[chan+1]$XMLAnnotation$Value$ChannelIntensity
             
             if(is.null(intensities)){
-                Fluorescence <- as.data.frame(rbind(Fluorescence, 
+                fluorescence <- as.data.frame(rbind(fluorescence, 
                                                     c(Dye = fluor[["Fluor"]],
                                                       DisplayName = fluorAnnots[["DyeDisplayName"]],
                                                       Color = col,
@@ -265,7 +265,7 @@ fluorData <- function(omexml){
                                                                            exposure[["ExposureTimeUnit"]]),
                                                       ColorCode = colorCode)))
             }else{
-                Fluorescence <- as.data.frame(rbind(Fluorescence, 
+                fluorescence <- as.data.frame(rbind(fluorescence, 
                                                     c(Dye = fluor[["Fluor"]],
                                                       DisplayName = fluorAnnots[["DyeDisplayName"]],
                                                       Color = col,
@@ -287,7 +287,7 @@ fluorData <- function(omexml){
         }
     }
     
-    return(Fluorescence)
+    return(fluorescence)
 }
 
 #' Decode a base 64 string into 8 bit binary image mask
@@ -298,7 +298,7 @@ fluorData <- function(omexml){
 #' 
 #' @return binary vector mask 
 #' 
-#' @importFrom base64decode base64enc
+#' @importFrom base64enc base64decode
 #' 
 #' @noRd
 decodeB64 <- function(b64string, width, height){

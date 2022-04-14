@@ -59,28 +59,6 @@ setGeneric("SpatialOverlay",
                                  resolution = NULL))
                standardGeneric("SpatialOverlay"))
 
-setMethod("SpatialOverlay", "missing",
-          function(slideName, scanMetadata, overlayData, coords,
-                   plottingFactors, workflow, image)
-          {
-              new2("SpatialOverlay",
-                   slideName = slideName, scanMetadata = scanMetadata,
-                   overlayData = overlayData, coords = coords,
-                   plottingFactors = plottingFactors, workflow = workflow,
-                   image = image)
-          })
-
-setMethod("SpatialOverlay", "environment",
-          function(slideName, scanMetadata, overlayData, coords,
-                   plottingFactors, workflow, image)
-          {
-              new2("SpatialOverlay",
-                   slideName = slideName, scanMetadata = scanMetadata,
-                   overlayData = overlayData, coords = coords,
-                   plottingFactors = plottingFactors, workflow = workflow,
-                   image = image)
-          })
-
 setMethod("SpatialOverlay", "character",
           function(slideName, scanMetadata, overlayData, coords,
                    plottingFactors, workflow, image)
@@ -91,6 +69,28 @@ setMethod("SpatialOverlay", "character",
                    plottingFactors = plottingFactors, workflow = workflow,
                    image = image)
           })
+
+# setMethod("SpatialOverlay", "environment",
+#           function(slideName, scanMetadata, overlayData, coords,
+#                    plottingFactors, workflow, image)
+#           {
+#               new2("SpatialOverlay",
+#                    slideName = slideName, scanMetadata = scanMetadata,
+#                    overlayData = overlayData, coords = coords,
+#                    plottingFactors = plottingFactors, workflow = workflow,
+#                    image = image)
+#           })
+
+# setMethod("SpatialOverlay", "character",
+#           function(slideName, scanMetadata, overlayData, coords,
+#                    plottingFactors, workflow, image)
+#           {
+#               new2("SpatialOverlay",
+#                    slideName = slideName, scanMetadata = scanMetadata,
+#                    overlayData = overlayData, coords = coords,
+#                    plottingFactors = plottingFactors, workflow = workflow,
+#                    image = image)
+#           })
 
 # Validity
 setValidity2("SpatialOverlay", function(object){
@@ -169,24 +169,10 @@ setMethod("scanMeta", "SpatialOverlay", function(object)
 setGeneric("coords", signature = "object",
            function(object) standardGeneric("coords"))
 setMethod("coords", "SpatialOverlay", function(object) object@coords)
-setGeneric("coords<-", signature = c("object", "value"), 
-           function(object, value) standardGeneric("coords<-"))
-setReplaceMethod("coords", c("SpatialOverlay", "data.frame"),
-                 function(object, value) {
-                     object@coords <- value
-                     return(object)
-                 })
 
 setGeneric("plotFactors", signature = "object",
            function(object) standardGeneric("plotFactors"))
 setMethod("plotFactors", "SpatialOverlay", function(object) object@plottingFactors)
-setGeneric("plotFactors<-", signature = c("object", "value"), 
-           function(object, value) standardGeneric("plotFactors<-"))
-setReplaceMethod("plotFactors", c("SpatialOverlay", "data.frame"),
-                 function(object, value) {
-                     object@plottingFactors <- value
-                     return(object)
-                 })
 
 setGeneric("labWork", signature = "object",
            function(object) standardGeneric("labWork"))
@@ -227,3 +213,18 @@ setGeneric("res", signature = "object",
            function(object) standardGeneric("res"))
 setMethod("res", "SpatialOverlay", function(object) 
     object@image$resolution)
+
+setGeneric("workflow", signature = "object",
+           function(object) standardGeneric("workflow"))
+setMethod("workflow", "SpatialOverlay", function(object) 
+    object@workflow)
+
+setGeneric("scaled", signature = "object",
+           function(object) standardGeneric("scaled"))
+setMethod("scaled", "SpatialOverlay", function(object) 
+    object@workflow$scaled)
+
+setGeneric("imageInfo", signature = "object",
+           function(object) standardGeneric("imageInfo"))
+setMethod("imageInfo", "SpatialOverlay", function(object) 
+    object@image)

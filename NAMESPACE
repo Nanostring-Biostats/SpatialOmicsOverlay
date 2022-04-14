@@ -7,6 +7,7 @@ import(GeomxTools)
 
 importFrom(base64enc,base64decode)
 importFrom(BiocFileCache,bfcadd)
+importFrom(BiocFileCache,bfccache)
 importFrom(BiocFileCache,bfcrpath)
 importFrom(BiocFileCache,bfcquery)
 importFrom(Biobase,assayDataElement)
@@ -33,6 +34,7 @@ importFrom(magick,image_read)
 importFrom(methods,is)
 importFrom(pbapply,pbapply)
 importFrom(plotrix,color.id)
+importFrom(RBioFormats,coreMetadata)
 importFrom(RBioFormats,read.image)
 importFrom(RBioFormats,read.metadata)
 importFrom(RBioFormats,read.omexml)
@@ -53,17 +55,16 @@ exportClasses(SpatialPosition)
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 generics
 
-export(SpatialOverlay, SpatialPosition, position, meta, slideName, overlay, 
-       scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, 
-       seg,"plotFactors<-", "coords<-", sampNames, showImage, res)
+export(SpatialOverlay, SpatialPosition, position, meta, spatialPos, slideName, 
+       overlay, scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, 
+       fluor, seg, sampNames, showImage, res)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 methods
 
-exportMethods(SpatialOverlay, SpatialPosition, position, meta, show, slideName, 
-              overlay, scanMeta, coords, plotFactors, labWork, outline, 
-              scaleBarRatio, fluor, seg,"plotFactors<-", "coords<-", sampNames, 
-              showImage, res)
+exportMethods(SpatialOverlay, SpatialPosition, position, meta, spatialPos, show, 
+              slideName, overlay, scanMeta, coords, plotFactors, labWork, 
+              outline, scaleBarRatio, fluor, seg, sampNames, showImage, res)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export non-generic functions
@@ -87,7 +88,6 @@ export(fluorLegend)
 export(imageExtraction)
 export(parseOverlayAttrs)
 export(parseScanMetadata)
-export(pencilCoordSorting)
 export(physicalSizes)
 export(plotSpatialOverlay)
 export(readLabWorksheet)

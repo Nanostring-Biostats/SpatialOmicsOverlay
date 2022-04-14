@@ -16,7 +16,7 @@
 #' 
 #' head(coords(muBrain))
 #' 
-#' @importFrom bind_rows dplyr
+#' @importFrom dplyr bind_rows
 #' @importFrom pbapply pbapply 
 #' 
 #' @export 
@@ -38,7 +38,7 @@ createCoordFile <- function(overlay, outline = TRUE){
     
     numericCols <- c("Height", "Width", "X", "Y")
     
-    coordValues <- suppressWarnings(pbapply(overlayData@position, 1, 
+    coordValues <- suppressWarnings(pbapply(spatialPos(overlayData), 1, 
                                             function(x){
                                                 metadata <- as.data.frame(x[which(names(x) != "Position")])
                                                 if(nrow(metadata) > ncol(metadata)){
@@ -57,8 +57,8 @@ createCoordFile <- function(overlay, outline = TRUE){
                                             }))
     
     coordValues <- dplyr::bind_rows(coordValues)
-    coordValues$ycoor <- as.numeric(coordValues$ycoor)
     coordValues$xcoor <- as.numeric(coordValues$xcoor)
+    coordValues$ycoor <- as.numeric(coordValues$ycoor)
     
     overlay@coords <- coordValues
     
@@ -139,8 +139,8 @@ coordsFromMask <- function(mask, metadata, outline = TRUE){
     
     # put AOI in scheme of entire image
     # while R is 1-based, magick images are 0-based 
-    coords$ycoor <- coords$ycoor + metadata$Y - 1
     coords$xcoor <- coords$xcoor + metadata$X - 1
+    coords$ycoor <- coords$ycoor + metadata$Y - 1
     
     if(outline == TRUE){
         coords <- pencilCoordSorting(coords)
@@ -164,7 +164,7 @@ coordsFromMask <- function(mask, metadata, outline = TRUE){
 #' 
 #' @noRd
 pencilCoordSorting <- function(coords, rangeWidth = 100){
-    outlineCoords <- coords[1,]
+    outlineCoords <- coords[1L,]
     used <- NULL
     for(i in seq_len(nrow(coords))){
         lastPoint <- as.numeric(rownames(outlineCoords)[nrow(outlineCoords)]) 
@@ -231,22 +231,22 @@ boundary <-  function(mat) {
 #' 
 #' @return SpatialOverlay object 
 #' 
-#' @importFrom distinct dplyr
-#' @importFrom image_info magick
-#' @importFrom image_read magick
+#' @importFrom dplyr distinct
+#' @importFrom magick image_info
+#' @importFrom magick image_read
 #' 
 #' @noRd
 scaleCoords <- function(overlay){
     if(!is(overlay,"SpatialOverlay")){
         stop("overlay must be a SpatialOverlay")
     }
-    if(overlay@workflow$scaled == TRUE){
+    if(scaled(overlay) == TRUE){
         stop("Coordinates are already scaled and can't be scaled again")
     }
     if(is.null(showImage(overlay))){
         warning("No image has been added to the SpatialOverlay object, no scaling will be done")
     }else{
-        scaling <- 1/2^(overlay@image$resolution-1)
+        scaling <- 1/2^(res(overlay)-1)
         
         if(is(showImage(overlay),"AnnotatedImage")){
             temp <- image_read(imageColoring(showImage(overlay),
@@ -256,12 +256,12 @@ scaleCoords <- function(overlay){
         }
         
         #scale and center y axis
-        coords(overlay)$ycoor <- image_info(temp)$height - 
+        overlay@coords$ycoor <- image_info(temp)$height - 
             round(coords(overlay)$ycoor * scaling) 
         
-        coords(overlay)$xcoor <- round(coords(overlay)$xcoor * scaling)
+        overlay@coords$xcoor <- round(coords(overlay)$xcoor * scaling)
         
-        coords(overlay) <- distinct(coords(overlay))
+        overlay@coords <- distinct(coords(overlay))
         
         overlay@workflow$scaled <- TRUE
     }

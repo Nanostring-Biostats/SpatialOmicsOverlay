@@ -47,10 +47,10 @@
 #' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
 #'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
-#' @importFrom geom_scattermore scattermore
+#' @importFrom scattermore geom_scattermore
 #' @import ggplot2
-#' @importFrom image_ggplot magick
-#' @importFrom element_markdown ggtext
+#' @importFrom magick image_ggplot
+#' @importFrom ggtext element_markdown
 #' 
 #' @export 
 #' 
@@ -90,7 +90,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
     if(!is.null(showImage(overlay)) & image == TRUE){
         gp <- image_ggplot(showImage(overlay))
         
-        scaleImage <- overlay@image
+        scaleImage <- imageInfo(overlay)
     }else{
         gp <- ggplot()
     }
@@ -149,7 +149,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                ylim = c(0, info$height))+
             themeTransparent()
         
-        scaleImage <- overlay@image
+        scaleImage <- imageInfo(overlay)
     }else if(is.null(showImage(overlay))){
         gp <- gp + coord_fixed(ratio = 1)+
             scale_y_reverse()+
@@ -174,7 +174,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                scaleBarLineSize = scaleBarLineSize, 
                                corner = corner, 
                                textDistance = textDistance, 
-                               image = scaleImage)
+                               image = scaleImage,
+                               ...)
     }
     
     return(gp)
@@ -239,13 +240,14 @@ themeTransparent <- function(){
 #' 
 #' @noRd
 scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
-    axis = "X"
+    axis <- "X"
     
-    axis <- toupper(axis)
-    
-    if(!axis %in% c("X", "Y")){
-        stop("Axis can only be X or Y") 
-    }
+    # in prep for user defined axis
+    # axis <- toupper(axis)
+    # 
+    # if(!axis %in% c("X", "Y")){
+    #     stop("Axis can only be X or Y") 
+    # }
     
     if(scaleBarWidth <= 0 | scaleBarWidth >= 1){
         stop("scaleBarWidth must be a decimal number between 0 and 1")
@@ -457,17 +459,17 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 fluorLegend <- function(overlay, nrow = 4, textSize = 10, 
                         boxColor = "grey", alpha = 0.25){
     
-    if(class(overlay) != "SpatialOverlay"){
+    if(!is(overlay, "SpatialOverlay")){
         stop("overlay must be a SpatialOverlay object")
     }
     
-    if(!nrow %in% c(1,2,4)){
+    if(!nrow %in% c(1L,2L,4L)){
         stop("legend can only have 1, 2, or 4 rows")
     }
     
     gp <- ggplot()
     
-    if(nrow == 4){
+    if(nrow == 4L){
         for(i in seq_len(nrow(fluor(overlay)))){
             gp <- gp + annotate("text", x = 4, y = i, size=textSize, 
                                 label = fluor(overlay)$Target[i], 
@@ -476,7 +478,7 @@ fluorLegend <- function(overlay, nrow = 4, textSize = 10,
         gp <- gp + scale_y_continuous(limits = c(0.5,4.5))
     }
     
-    if(nrow == 1){
+    if(nrow == 1L){
         for(i in seq_len(nrow(fluor(overlay)))){
             gp <- gp + annotate("text", y = 4, x = i, size=textSize, 
                                 label = fluor(overlay)$Target[i], 
@@ -485,7 +487,7 @@ fluorLegend <- function(overlay, nrow = 4, textSize = 10,
         gp <- gp + scale_x_continuous(limits = c(0.5,4.5))
     }
     
-    if(nrow == 2){
+    if(nrow == 2L){
         for(i in seq_len(nrow(fluor(overlay)))){
             if(i %% 2 == 0){
                 gp <- gp + annotate("text", x = 2, y = ceiling(i/2), 

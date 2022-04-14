@@ -19,6 +19,8 @@
 \alias{meta,SpatialPosition-method}
 \alias{position}
 \alias{position,SpatialPosition-method}
+\alias{spatialPos}
+\alias{spatialPos,SpatialPosition-method}
 
 \title{Class to Contain NanoString Spatial Overlay ROI information}
 
@@ -54,6 +56,9 @@
 \section{Accessing}{
   \code{SpatialPosition} objects have the following accessor methods:
     \describe{
+      \item{}{
+        \code{spatialPos(object)}: returns SpatialPosition object
+      }
       \item{}{
         \code{meta(object)}: extracts the metadata for each ROI, does not include the base64 encoding.
       }

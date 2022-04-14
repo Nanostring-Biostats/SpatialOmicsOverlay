@@ -4,13 +4,15 @@
 \alias{xmlExtraction}
 \title{Extract xml from OME-TIFF}
 \usage{
-xmlExtraction(ometiff, saveFile = FALSE)
+xmlExtraction(ometiff, saveFile = FALSE, outdir = NULL)
 }
 \arguments{
 \item{ometiff}{path to OME-TIFF}
 
 \item{saveFile}{should xml be saved, file is saved in working directory with 
 same name as OME-TIFF}
+
+\item{outdir}{output directory for saved xml. If NULL, saved in same directory as OME-TIFF}
 }
 \value{
 list of xml data

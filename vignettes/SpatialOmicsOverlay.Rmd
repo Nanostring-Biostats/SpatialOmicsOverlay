@@ -222,7 +222,7 @@ plotSpatialOverlay(overlay = muBrain, colorBy = "ROILabel", legend = FALSE, scal
 2. `cropSamples` automatically crops the image around the ROIs given. Other ROIs in the cropped image can be kept in or ignored. Below we will crop to only ROIs that are unsegmented, hiding ROIs profiled which are segmented. Setting `sampsOnly = TRUE` hides the segmented ROIs which are within the plotted region. 
 
 ```{r crop samples}
-samps <- muBrainAnnots$Sample_ID[muBrainAnnots$segment == "Full ROI"]
+samps <- muBrainAnnots$Sample_ID[muBrainAnnots$segment == "Full ROI" & muBrainAnnots$slide.name == slideName(muBrain)]
 
 muBrainCrop <- cropSamples(overlay = muBrain, sampleIDs = samps, sampsOnly = TRUE)
 

@@ -3,6 +3,7 @@
 #' @param ometiff path to OME-TIFF 
 #' @param saveFile should xml be saved, file is saved in working directory with 
 #'                 same name as OME-TIFF 
+#' @param outdir output directory for saved xml. If NULL, saved in same directory as OME-TIFF
 #' 
 #' @return list of xml data
 #' 
@@ -11,14 +12,16 @@
 #' image <- downloadMouseBrainImage()
 #' xml <- xmlExtraction(ometiff = image)
 #' 
-#' @importFrom read.omexml RBioFormats
+#' @importFrom RBioFormats read.omexml
+#' @importFrom XML xmlInternalTreeParse
+#' @importFrom XML xmlToList
 #' 
 #' @export 
 #' 
 
 # Need to update error checking & saving for URIs
 
-xmlExtraction <- function(ometiff, saveFile = FALSE){
+xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -36,11 +39,17 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
     
     
     if(saveFile){
-        xmlName <- gsub(pattern = "tiff", 
-                        replacement = "xml", 
-                        x = basename(ometiff))
+        if(is.null(outdir)){
+            xmlName <- gsub(pattern = "tiff", 
+                            replacement = "xml", 
+                            x = basename(ometiff))
+            
+            xmlName <- paste0(dirname(ometiff), "/", xmlName)
+        }else{
+            xmlName <- paste0(outdir, "/", basename(ometiff))
+        }
         
-        saveXML(doc = omexml, file = paste0(dirname(ometiff), "/", xmlName))
+        saveXML(doc = omexml, file = xmlName)
     }
     
     omexml <- xmlToList(omexml, simplify = TRUE)
@@ -60,6 +69,7 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #'                 same name as OME-TIFF
 #' @param fileType type of image file. Options: tiff, png, jpeg
 #' @param color should image be colored RGB or 4-channel BW 
+#' @param outdir output directory for saved image. If NULL, saved in same directory as OME-TIFF
 #' 
 #' @return omeImage magick pointer
 #' 
@@ -70,18 +80,19 @@ xmlExtraction <- function(ometiff, saveFile = FALSE){
 #' imageExt <- imageExtraction(ometiff = image, res = 7)
 #' imageExt
 #' 
-#' @importFrom read.omexml RBioFormats
-#' @importFrom read.image RBioFormats
-#' @importFrom normalize EBImage
-#' @importFrom imageData EBImage
-#' @importFrom imageData<- EBImage
-#' @importFrom image_read magick
-#' @importFrom display EBImage
+#' @importFrom RBioFormats read.omexml
+#' @importFrom RBioFormats read.image
+#' @importFrom EBImage normalize
+#' @importFrom EBImage imageData
+#' @importFrom EBImage imageData<-
+#' @importFrom magick image_read
+#' @importFrom EBImage display
+#' @importFrom RBioFormats coreMetadata
 #' 
 #' @export
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
-                            fileType = "tiff", color = TRUE){
+                            fileType = "tiff", color = TRUE, outdir = NULL){
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -116,14 +127,18 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     }
     
     if(saveFile == TRUE){
-        width <- omeImage@metadata$coreMetadata$sizeX
-        height <- omeImage@metadata$coreMetadata$sizeY
+        width <- coreMetadata(omeImage)$sizeX
+        height <- coreMetadata(omeImage)$sizeY
         
-        imageName <- gsub(pattern = ".ome", 
-                          replacement = "", 
-                          x = basename(ometiff))
-        
-        imageName <- paste0(dirname(ometiff), "/", imageName)
+        if(is.null(outdir)){
+            imageName <- gsub(pattern = ".ome", 
+                              replacement = "", 
+                              x = basename(ometiff))
+            
+            imageName <- paste0(dirname(ometiff), "/", imageName)
+        }else{
+            imageName <- paste0(outdir, "/", imageName)
+        }
         
         if(fileType == "png"){
             imageName <- gsub(pattern = "tiff", replacement = "png", 
@@ -159,7 +174,7 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' image <- downloadMouseBrainImage()
 #' checkValidRes(ometiff = image)
 #' 
-#' @importFrom read.metadata RBioFormats
+#' @importFrom RBioFormats read.metadata
 #' 
 #' @export
 #' 
