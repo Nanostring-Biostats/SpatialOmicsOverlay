@@ -5,10 +5,10 @@
 #' 
 #' @return AnnotatedImage with RGB matrix
 #' 
-#' @importFrom imageData EBImage
-#' @importFrom imageData<- EBImage
-#' @importFrom normalize EBImage
-#' @importFrom col2rgb grDevices
+#' @importFrom EBImage imageData
+#' @importFrom EBImage imageData<-
+#' @importFrom EBImage normalize
+#' @importFrom grDevices col2rgb
 #' 
 #' @noRd
 
@@ -78,8 +78,8 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' showImage(recolor(muBrain))
 #' 
-#' @importFrom color.id plotrix
-#' @importFrom str_to_title stringr
+#' @importFrom plotrix color.id
+#' @importFrom stringr str_to_title
 #' 
 #' @export
 #'
@@ -98,7 +98,7 @@ changeImageColoring <- function(overlay, color, dye){
     overlay@scanMetadata$Fluorescence$ColorCode[dyeRow] <- color
     
     if(startsWith(color, "#")){
-        overlay@scanMetadata$Fluorescence$Color[dyeRow] <- str_to_title(color.id(color)[1])
+        overlay@scanMetadata$Fluorescence$Color[dyeRow] <- str_to_title(color.id(color)[1L])
     }else{
         overlay@scanMetadata$Fluorescence$Color[dyeRow] <- str_to_title(color)
     }
@@ -211,9 +211,9 @@ recolor <- function(overlay){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
     
-    overlay@image$imagePointer <- image_read(imageColoring(overlay@image$imagePointer, 
+    overlay@image$imagePointer <- image_read(imageColoring(showImage(overlay), 
                                                            scanMeta(overlay)))
-    if(overlay@workflow$scaled == FALSE){
+    if(scaled(overlay) == FALSE){
         overlay <- scaleCoords(overlay)
     }
     
@@ -250,14 +250,14 @@ recolor <- function(overlay){
 #' plotSpatialOverlay(overlay = flipY(muBrain), colorBy = "segment",  
 #'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
-#' @importFrom image_flip magick
+#' @importFrom magick image_flip
 #' 
 #' @export 
 #' 
 flipY <- function(overlay){
     overlay@image$imagePointer <- image_flip(showImage(overlay))
     
-    coords(overlay)$ycoor <- abs(image_info(showImage(overlay))$height - 
+    overlay@coords$ycoor <- abs(image_info(showImage(overlay))$height - 
                                      coords(overlay)$ycoor)
     
     return(overlay)
@@ -291,14 +291,14 @@ flipY <- function(overlay){
 #' plotSpatialOverlay(overlay = flipX(muBrain), colorBy = "segment",  
 #'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
-#' @importFrom image_flop magick
+#' @importFrom magick image_flop
 #' 
 #' @export 
 #' 
 flipX <- function(overlay){
     overlay@image$imagePointer <- image_flop(showImage(overlay))
     
-    coords(overlay)$xcoor <- abs(image_info(showImage(overlay))$width - 
+    overlay@coords$xcoor <- abs(image_info(showImage(overlay))$width - 
                                      coords(overlay)$xcoor)
     
     return(overlay)
@@ -315,8 +315,8 @@ flipX <- function(overlay){
 #' 
 #' @return df of coordinates for every AOI in the scan
 #' 
-#' @importFrom image_crop magick
-#' @importFrom image_info magick
+#' @importFrom magick image_crop
+#' @importFrom magick image_info
 #' 
 #' @noRd
 crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
@@ -336,8 +336,11 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
         stop("xmax must be greater than xmin")
     }
     if(ymax > ymin){
-        ymax <- maxHeight - ymax
-        ymin <- maxHeight - ymin
+        temp <- ymax
+        ymax <- ymin
+        ymin <- temp
+        
+        rm(temp)
     }
     
     width  <- xmax - xmin
@@ -350,18 +353,25 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
         ymin <- maxHeight
     }
     
-    overlay@image$imagePointer <- image_crop(overlay@image$imagePointer, 
+    overlay@image$imagePointer <- image_crop(showImage(overlay), 
                                              paste0(width,  "x", height,
                                                     "+", xmin, "+", ymax))
     
     if(coords == TRUE){
-        coords(overlay) <- coords(overlay)[coords(overlay)$xcoor >= xmin &
+        overlay@coords <- coords(overlay)[coords(overlay)$xcoor >= xmin &
                                            coords(overlay)$xcoor <= xmax &
                                            coords(overlay)$ycoor >= (maxHeight - ymin) &
                                            coords(overlay)$ycoor <= (maxHeight - ymax),]
         
-        coords(overlay)$xcoor <- coords(overlay)$xcoor - xmin
-        coords(overlay)$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
+        overlay@coords$xcoor <- coords(overlay)$xcoor - xmin
+        overlay@coords$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)
+        
+        remove <- sampNames(overlay)[which(!sampNames(overlay) %in% 
+                                               unique(coords(overlay)$sampleID))]
+        
+        if(length(remove) > 0){
+            overlay <- removeSample(overlay, remove)
+        }
     }
     
     return(overlay)
@@ -404,13 +414,15 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
 #'                    hiRes = TRUE, scaleBar = FALSE)
 #' 
-#' @importFrom image_info magick
+#' @importFrom magick image_info
 #' 
 #' @export 
 #' 
 cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
     if(!all(sampleIDs %in% sampNames(overlay))){
-        warning("invalid sampleIDs given, proceeding with only valid sampleIDs", 
+        missing <- sampleIDs[which(!sampleIDs %in% sampNames(overlay))]
+        warning(paste("invalid sampleIDs given, proceeding with only valid sampleIDs. 
+                      Ignored sampleIDs:", paste(missing, collapse = ", ")), 
                 immediate. = TRUE)
         
         sampleIDs <- sampleIDs[sampleIDs %in% sampNames(overlay)]
@@ -449,15 +461,19 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
     
     xmin <- max(xmin-xbuf, 0)
     xmax <- min(xmax+xbuf, image_info(showImage(overlay))$width)
-    ymin <- min(ymin+ybuf,maxHeight)
+    ymin <- min(ymin+ybuf, maxHeight)
     ymax <- max(ymax-ybuf, 0)
     
     overlay <- crop(overlay, xmin = xmin, xmax = xmax, 
                     ymin = ymin, ymax = ymax)
     
     if(sampsOnly == TRUE){
-        coords(overlay) <- coords(overlay)[coords(overlay)$sampleID %in% 
-                                               sampleIDs,]
+        
+        remove <- sampNames(overlay)[which(!sampNames(overlay) %in% sampleIDs)]
+        
+        if(length(remove) > 0){
+            overlay <- removeSample(overlay, remove)
+        }
     }
     
     return(overlay)
@@ -495,9 +511,10 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
 #'                    hiRes = TRUE, scaleBar = FALSE)
 #'                    
-#' @importFrom imageData EBImage
-#' @importFrom as_EBImage magick
-#' @importFrom image_read magick
+#' @importFrom EBImage imageData
+#' @importFrom magick as_EBImage
+#' @importFrom magick image_read
+#' @importFrom magick image_info
 #' 
 #' @export 
 #'
@@ -507,9 +524,9 @@ cropTissue <- function(overlay, buffer = 0.05){
     }
     
     if(is(showImage(overlay),"AnnotatedImage")){
-        coords <- FALSE
+        coords <- TRUE
         image_data <- imageData(showImage(overlay))
-        overlay@image$imagePointer <- image_read(imageColoring(overlay@image$imagePointer,
+        overlay@image$imagePointer <- image_read(imageColoring(showImage(overlay),
                                                                scanMeta(overlay)))
     }else{
         coords <- TRUE

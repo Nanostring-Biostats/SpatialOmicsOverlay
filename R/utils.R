@@ -1,3 +1,7 @@
+URL <- "https://external-soa-downloads-p-1.s3.us-west-2.amazonaws.com"
+IMAGES <- "mu_brain_image_files.tar.gz"
+IMAGEFILE <- "image_files/mu_brain_004.ome.tiff"
+
 #' Print long string in more managable fashion
 #' 
 #' @description 
@@ -69,9 +73,10 @@ readLabWorksheet <- function(lw, slideName){
 #' 
 #' @return mouse brain OME-TIFF
 #'
-#' @importFrom bfcquery BiocFileCache
-#' @importFrom bfcrpath BiocFileCache
-#' @importFrom bfcadd BiocFileCache
+#' @importFrom BiocFileCache bfcquery
+#' @importFrom BiocFileCache bfcrpath
+#' @importFrom BiocFileCache bfcadd
+#' @importFrom BiocFileCache bfccache
 #' 
 #' @examples 
 #' 
@@ -79,36 +84,43 @@ readLabWorksheet <- function(lw, slideName){
 #'
 #' @export
 downloadMouseBrainImage <- function(){
-    url <- "https://external-soa-downloads-p-1.s3.us-west-2.amazonaws.com"
-    images <- "mu_brain_image_files.tar.gz"
-    imageFile <- "image_files/mu_brain_004.ome.tiff"
-    
-    fileURL <- paste(url, images, sep = "/")
+    fileURL <- paste(URL, IMAGES, sep = "/")
     
     bfc <- .get_cache()
-    rid <- bfcquery(bfc, imageFile)$rid
+    rid <- bfcquery(bfc, IMAGEFILE)$rid
     
     if (!length(rid)) {
-        rid <- bfcquery(bfc, images)$rid
+        rid <- bfcquery(bfc, IMAGES)$rid
         if (!length(rid)) {
             message("Downloading file")
-            rid <- names(bfcadd(bfc, images, fileURL))
+            rid <- names(bfcadd(bfc, IMAGES, fileURL))
         }
-        
-        imageFile <- "image_files/mu_brain_004.ome.tiff"
         
         message( "Untaring file" )
         untar(bfcrpath(bfc, rids = rid),
-              files = imageFile,
-              exdir = bfc@cache)
+              files = IMAGEFILE,
+              exdir = bfccache(bfc))
         
-        rid <- names(bfcadd(bfc, rname = "mu_brain_004.ome.tiff", 
-                            fpath = paste(bfc@cache, imageFile, sep = "/")))
+        rid <- names(bfcadd(bfc, rname = basename(IMAGEFILE), 
+                            fpath = paste(bfccache(bfc), IMAGEFILE, sep = "/")))
     }
     
     bfcrpath(bfc, rids=rid)
 }
 
+#' get BiocFileCache
+#'
+#' @importFrom tools R_user_dir
+#' @importFrom BiocFileCache BiocFileCache
+#' 
+#' @return BioFileCache
+#' 
+#' @examples 
+#' 
+#' bfc <- .get_cache()
+#'
+#' @noRd
+#' 
 .get_cache <- function(){
     cache <- tools::R_user_dir("SpatialOmicsOverlay", which="cache")
     BiocFileCache::BiocFileCache(cache)

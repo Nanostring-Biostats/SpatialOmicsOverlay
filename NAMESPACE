@@ -7,13 +7,17 @@ import(GeomxTools)
 
 importFrom(base64enc,base64decode)
 importFrom(BiocFileCache,bfcadd)
+importFrom(BiocFileCache,bfccache)
 importFrom(BiocFileCache,bfcrpath)
 importFrom(BiocFileCache,bfcquery)
 importFrom(Biobase,assayDataElement)
 importFrom(data.table,fread)
 importFrom(dplyr,bind_rows)
 importFrom(dplyr,distinct)
+importFrom(EBImage,as.Image)
+importFrom(EBImage,Color)
 importFrom(EBImage,display)
+importFrom(EBImage,Image)
 importFrom(EBImage,imageData)
 importFrom(EBImage,"imageData<-")
 importFrom(EBImage,normalize)
@@ -30,17 +34,25 @@ importFrom(magick,image_flop)
 importFrom(magick,image_info)
 importFrom(magick,image_ggplot)
 importFrom(magick,image_read)
+importFrom(methods,as)
+importFrom(methods,callNextMethod)
 importFrom(methods,is)
+importFrom(methods,new)
 importFrom(pbapply,pbapply)
 importFrom(plotrix,color.id)
-importFrom(RBioFormats,read.image)
-importFrom(RBioFormats,read.metadata)
-importFrom(RBioFormats,read.omexml)
 importFrom(readxl,read_xlsx)
+importFrom(rJava,.jaddClassPath)
+importFrom(rJava,.jcall)
+importFrom(rJava,.jfield)
+importFrom(rJava,.jinit)
+importFrom(rJava,.jpackage)
+importFrom(rJava,.jsimplify)
+importFrom(rJava,J)
 importFrom(scattermore,geom_scattermore)
 importFrom(stats,setNames)
 importFrom(stringr,str_to_title)
 importFrom(utils,read.table)
+importFrom(utils,str)
 importFrom(utils,untar)
 
 importClassesFrom(GeomxTools,NanoStringGeoMxSet)
@@ -49,21 +61,25 @@ importClassesFrom(GeomxTools,NanoStringGeoMxSet)
 ### Export S4 classes
 exportClasses(SpatialOverlay)
 exportClasses(SpatialPosition)
+exportClasses(AnnotatedImage)
+exportClasses(AnnotatedImageList)
+exportClasses(ImageMetadata)
+exportClasses(ImageMetadataList)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 generics
 
-export(SpatialOverlay, SpatialPosition, position, meta, slideName, overlay, 
-       scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, fluor, 
-       seg,"plotFactors<-", "coords<-", sampNames, showImage, res)
+export(SpatialOverlay, SpatialPosition, position, meta, spatialPos, slideName, 
+       overlay, scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, 
+       fluor, seg, sampNames, showImage, res, scaled, imageInfo)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 methods
 
-exportMethods(SpatialOverlay, SpatialPosition, position, meta, show, slideName, 
-              overlay, scanMeta, coords, plotFactors, labWork, outline, 
-              scaleBarRatio, fluor, seg,"plotFactors<-", "coords<-", sampNames, 
-              showImage, res)
+exportMethods(SpatialOverlay, SpatialPosition, position, meta, spatialPos, show, 
+              slideName, overlay, scanMeta, coords, plotFactors, labWork, 
+              outline, scaleBarRatio, fluor, seg, sampNames, showImage, res, 
+              scaled, imageInfo)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export non-generic functions
@@ -85,9 +101,9 @@ export(flipY)
 export(fluorData)
 export(fluorLegend)
 export(imageExtraction)
+export(moveCoords)
 export(parseOverlayAttrs)
 export(parseScanMetadata)
-export(pencilCoordSorting)
 export(physicalSizes)
 export(plotSpatialOverlay)
 export(readLabWorksheet)
@@ -101,3 +117,4 @@ export(xmlExtraction)
 ### Export S3 methods
 
 exportMethods(addPlottingFactor)
+

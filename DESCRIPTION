@@ -9,7 +9,7 @@ Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", rol
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
              person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
 Depends: R (>= 4.1.0)
-Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, RBioFormats, XML, 
+Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, rJava (>= 0.9-6), XML, 
          scattermore, dplyr, pbapply, data.table, readxl, magick, grDevices, 
          stringr, plotrix, GeomxTools, BiocFileCache, stats, utils, methods,
          ggtext
@@ -23,7 +23,6 @@ Suggests:
     viridis,
     cowplot,
     vdiffr
-Remotes: aoles/RBioFormats
 License: MIT
 Collate: addImage.R
          addPlottingFactor.R
@@ -31,6 +30,7 @@ Collate: addImage.R
          imageManipulation.R
          omeExtraction.R
          plottingBasics.R
+         RBioFormatsFunctions.R
          readSpatialOverlay.R
          removeSamples.R
          SpatialPosition-class.R
@@ -40,6 +40,7 @@ Collate: addImage.R
 biocViews: GeneExpression, Transcription, CellBasedAssays, DataImport, 
            Transcriptomics, Proteomics, ProprietaryPlatforms, RNASeq, Spatial,
            DataRepresentation, Visualization
+BioFormats: 6.1.0
 VignetteEngine: knitr::rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2

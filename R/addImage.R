@@ -24,16 +24,16 @@
 addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
     
     if(is.null(ometiff)){
-        ometiff <- overlay@image$filePath
+        ometiff <- imageInfo(overlay)$filePath
     }
     if(is.null(res)){
-        res <- overlay@image$resolution
+        res <- res(overlay)
     }
     
-    if(is.null(overlay@image$resolution)){
+    if(is.null(res(overlay))){
         difRes <- -1
     }else{
-        difRes <- res - overlay@image$resolution
+        difRes <- res - res(overlay)
     }
     
     overlay@image <- list(filePath = ometiff, 
@@ -42,12 +42,10 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
                                                          ...),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, overlay@workflow$outline)
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }
 
@@ -65,30 +63,28 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #'               
 #' @return SpatialOverlay object with image
 #' 
-#' @importFrom image_read magick
+#' @importFrom magick image_read
 #' 
 #' @export
 addImageFile <- function(overlay, imageFile = NULL, res = NULL){
     if(is.null(res)){
-        res <- overlay@image$resolution
+        res <- res(overlay)
     }
     
-    if(is.null(overlay@image$resolution)){
+    if(is.null(res(overlay))){
         difRes <- -1
     }else{
-        difRes <- res - overlay@image$resolution
+        difRes <- res - res(overlay)
     }
     
     overlay@image <- list(filePath = imageFile, 
                           imagePointer = image_read(imageFile),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, overlay@workflow$outline)
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }
 
@@ -120,30 +116,22 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
     
     if(is.null(ometiff)){
-        ometiff <- overlay@image$filePath
+        ometiff <- imageInfo(overlay)$filePath
     }
     if(is.null(res)){
-        res <- overlay@image$resolution
+        res <- res(overlay)
     }
     
-    if(is.null(overlay@image$resolution)){
-        difRes <- -1
-    }else{
-        difRes <- res - overlay@image$resolution
-    }
-    
-    overlay@image <- list(filePath = ometiff, 
+    overlay@image  <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
                                                          res = res,
                                                          color = FALSE,
                                                          ...),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, overlay@workflow$outline)
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }

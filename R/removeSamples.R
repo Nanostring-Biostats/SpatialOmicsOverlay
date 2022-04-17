@@ -32,7 +32,7 @@ removeSample <- function(overlay, remove){
         warning("No valid sample names; returning original overlay")
         return(overlay)
     }else{
-        AOIattrs <- SpatialPosition(overlay(overlay)@position[w2kp,])
+        AOIattrs <- SpatialPosition(spatialPos(overlay(overlay))[w2kp,])
         
         scan_metadata <- scanMeta(overlay)
         
@@ -67,7 +67,7 @@ removeSample <- function(overlay, remove){
                               overlayData = AOIattrs,
                               coords = newCoords,
                               plottingFactors = plotFacts,
-                              workflow = overlay@workflow,
-                              image = overlay@image))
+                              workflow = workflow(overlay),
+                              image = imageInfo(overlay)))
     }
 }

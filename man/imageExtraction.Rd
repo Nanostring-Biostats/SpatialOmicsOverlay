@@ -10,7 +10,8 @@ imageExtraction(
   scanMeta = NULL,
   saveFile = FALSE,
   fileType = "tiff",
-  color = TRUE
+  color = TRUE,
+  outdir = NULL
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ same name as OME-TIFF}
 \item{fileType}{type of image file. Options: tiff, png, jpeg}
 
 \item{color}{should image be colored RGB or 4-channel BW}
+
+\item{outdir}{output directory for saved image. If NULL, saved in same directory as OME-TIFF}
 }
 \value{
 omeImage magick pointer

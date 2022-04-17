@@ -58,8 +58,10 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 1. The function produces same values as python truth.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L15
 
-#### Specs for createMask:  
+#### Specs for createMask:
+
 When outline == FALSE, 
+
 1. The function creates mask in correct dimension.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L27
 2. The function produces same values as python truth.   
@@ -70,6 +72,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L33
 
 When outline == TRUE,
+
 1. The function creates mask in correct dimension.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L55
 2. The function has fewer matches with the python truth.    
@@ -82,11 +85,15 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L65
 
 #### Specs for coordsFromMask:
+
+
 When outline == FALSE, 
+
 1. The function creates coordinates for mask = 1 points. Coordinates are put into full image range and changed from base1 to base0.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L38
 
 When outline == TRUE, 
+
 1. The function creates coordinates for mask = 1 points. Coordinates are put into full image range and changed from base1 to base0.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_coordinateGeneration.R#L70
 
@@ -151,7 +158,9 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/d94cf34ee71137b44a31efb5438d45b9073969e7/tests/testthat/test_imageManipulation.R#L18
 
 #### Specs for cropSamples:
-When sampsOnly = TRUE
+
+When sampsOnly = TRUE,
+
 1. The function returns smaller image.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_imageManipulation.R#L24
 2. The function returns all coordinates of only the given samples.   
@@ -160,6 +169,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/d94cf34ee71137b44a31efb5438d45b9073969e7/tests/testthat/test_imageManipulation.R#L18
 
 When sampsOnly = FALSE
+
 1. The function returns smaller image.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_imageManipulation.R#L37
 2. The function returns all coordinates of the given samples.   
@@ -293,7 +303,8 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 
 #### Specs for scaleBarPrinting:
 
-Without image
+
+Without image,
 
 1. The function only works with valid corner value.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_plotting.R#L199
@@ -322,12 +333,14 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L25
 
 With all points
+
 1. The function returns a SpatialOverlay object.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L32
 2. The function returns a SpatialOverlay object with the expected values in the correct locations.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L35
 
 With image
+
 1. The function returns a SpatialOverlay object.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L62
 2. The function returns a SpatialOverlay object with the expected values in the correct locations.  
@@ -338,6 +351,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d9
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L88
 
 With boundary points
+
 1. The function returns a SpatialOverlay object.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/49462965d97a8a0153cbd8c55962cb4c71d2be2d/tests/testthat/test_readSpatialOverlay.R#L97
 2. The function returns a SpatialOverlay object with the expected values in the correct locations.  

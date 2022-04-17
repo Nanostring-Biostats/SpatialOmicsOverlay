@@ -27,9 +27,9 @@
 #'                               slideName = "4", image = TRUE, res = 7, 
 #'                               saveFile = FALSE, outline = FALSE)
 #' 
-#' @importFrom read_xlsx readxl
-#' @importFrom fread data.table
-#' @importFrom sData GeomxTools
+#' @importFrom readxl read_xlsx
+#' @importFrom data.table fread
+#' @importFrom GeomxTools sData
 #' 
 #' @seealso \code{\link{SpatialOverlay-class}}
 #' 
