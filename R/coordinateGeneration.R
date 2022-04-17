@@ -1,3 +1,5 @@
+DIRECTIONS <- c("left", "right", "up", "down")
+
 
 #' Create coordinate file for entire scan
 #' 
@@ -21,7 +23,6 @@
 #' 
 #' @export 
 #' 
-
 createCoordFile <- function(overlay, outline = TRUE){
     if(!is(overlay,"SpatialOverlay")){
         stop("Overlay must be a SpatialOverlay object")
@@ -266,5 +267,36 @@ scaleCoords <- function(overlay){
         overlay@workflow$scaled <- TRUE
     }
     
+    return(overlay)
+}
+
+#' Move coordinates if they don't match image
+#' 
+#' @description If generated coordinates do not match the image use this 
+#' function to move coordinates. Coordinates are only changed 1 pixel at a time. 
+#' 
+#' @param overlay SpatialOverlay object
+#' @param direction which direction should coordinates move: left, right, up, down
+#' 
+#' @return SpatialOverlay object 
+#' 
+#' @export
+moveCoords <- function(overlay, direction = "right"){
+    direction <- tolower(direction)
+    if(!direction %in% DIRECTIONS){
+        stop(paste("direction is not valid: options -",
+                   paste(DIRECTIONS, collapse = ", ")))
+    }
+
+    if(direction == "right"){
+        overlay@coords$xcoor <- overlay@coords$xcoor + 1
+    }else if(direction == "left"){
+        overlay@coords$xcoor <- overlay@coords$xcoor - 1
+    }else if(direction == "up"){
+        overlay@coords$ycoor <- overlay@coords$ycoor + 1
+    }else{
+        overlay@coords$ycoor <- overlay@coords$ycoor - 1
+    }
+
     return(overlay)
 }

@@ -12,7 +12,6 @@
 #' image <- downloadMouseBrainImage()
 #' xml <- xmlExtraction(ometiff = image)
 #' 
-#' @importFrom RBioFormats read.omexml
 #' @importFrom XML xmlInternalTreeParse
 #' @importFrom XML xmlToList
 #' 
@@ -80,14 +79,11 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 #' imageExt <- imageExtraction(ometiff = image, res = 7)
 #' imageExt
 #' 
-#' @importFrom RBioFormats read.omexml
-#' @importFrom RBioFormats read.image
 #' @importFrom EBImage normalize
 #' @importFrom EBImage imageData
 #' @importFrom EBImage imageData<-
 #' @importFrom magick image_read
 #' @importFrom EBImage display
-#' @importFrom RBioFormats coreMetadata
 #' 
 #' @export
 
@@ -174,12 +170,10 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' image <- downloadMouseBrainImage()
 #' checkValidRes(ometiff = image)
 #' 
-#' @importFrom RBioFormats read.metadata
-#' 
 #' @export
 #' 
 checkValidRes <- function(ometiff){
-    meta <- RBioFormats::read.metadata(ometiff)
+    meta <- read.metadata(ometiff)
     
     return(length(meta))
 }

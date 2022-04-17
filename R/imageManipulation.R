@@ -369,7 +369,9 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
         remove <- sampNames(overlay)[which(!sampNames(overlay) %in% 
                                                unique(coords(overlay)$sampleID))]
         
-        overlay <- removeSample(overlay, remove)
+        if(length(remove) > 0){
+            overlay <- removeSample(overlay, remove)
+        }
     }
     
     return(overlay)
@@ -469,7 +471,9 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
         
         remove <- sampNames(overlay)[which(!sampNames(overlay) %in% sampleIDs)]
         
-        overlay <- removeSample(overlay, remove)
+        if(length(remove) > 0){
+            overlay <- removeSample(overlay, remove)
+        }
     }
     
     return(overlay)
@@ -520,7 +524,7 @@ cropTissue <- function(overlay, buffer = 0.05){
     }
     
     if(is(showImage(overlay),"AnnotatedImage")){
-        coords <- FALSE
+        coords <- TRUE
         image_data <- imageData(showImage(overlay))
         overlay@image$imagePointer <- image_read(imageColoring(showImage(overlay),
                                                                scanMeta(overlay)))

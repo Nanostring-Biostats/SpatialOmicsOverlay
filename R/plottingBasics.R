@@ -59,7 +59,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                alpha = 1, legend = TRUE, scaleBar = TRUE, 
                                image = TRUE, fluorLegend = FALSE, ... , 
                                corner = "bottomright", scaleBarWidth = 0.2, 
-                               scaleBarColor = "black", scaleBarFontSize = 6, 
+                               scaleBarColor = NULL, scaleBarFontSize = 6, 
                                scaleBarLineSize = 1.5, textDistance = 2){
     
     if(is(showImage(overlay),"AnnotatedImage")){
@@ -79,6 +79,14 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                    colorBy=plotFactors(overlay)[match(coords(overlay)$sampleID, 
                                                                       rownames(plotFactors(overlay))), 
                                                                 colorBy]))
+    }
+    
+    if(is.null(scaleBarColor)){
+        if(image == TRUE){
+            scaleBarColor <- "white"
+        }else{
+            scaleBarColor <- "black"
+        }
     }
     
     if(fluorLegend == TRUE & image == FALSE){

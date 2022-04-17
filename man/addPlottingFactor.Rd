@@ -2,23 +2,41 @@
 % Please edit documentation in R/addPlottingFactor.R
 \name{addPlottingFactor}
 \alias{addPlottingFactor}
+\alias{addPlottingFactor,NanoStringGeoMxSet-method}
+\alias{addPlottingFactor,matrix-method}
+\alias{addPlottingFactor,data.frame-method}
+\alias{addPlottingFactor,character-method}
+\alias{addPlottingFactor,numeric-method}
+\alias{addPlottingFactor,factor-method}
 \title{Add plotting factor to \code{\link{SpatialOverlay}} object}
 \usage{
 addPlottingFactor(overlay, annots, plottingFactor, ...)
+
+\S4method{addPlottingFactor}{NanoStringGeoMxSet}(overlay, annots, plottingFactor, countMatrix = "exprs")
+
+\S4method{addPlottingFactor}{matrix}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{data.frame}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{character}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{numeric}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{factor}(overlay, annots, plottingFactor)
 }
 \arguments{
 \item{overlay}{\code{\link{SpatialOverlay}} object}
 
-\item{annots}{object with annotation: can be \code{NanoStringGeoMxSet}, 
-\code{data.frame}, \code{matrix}, or vector containing 
-\code{character}, \code{factor}, or \code{numeric}}
+\item{annots}{factor vector with the plottingFactor. if names match sample 
+names in overlay vector will be matched on those, 
+otherwise assumed in the correct order}
 
-\item{plottingFactor}{column or row from annots to add as plotting factor, 
-if using vector this will be the name of the new 
-plotting factor}
+\item{plottingFactor}{name of the new plotting factor}
 
 \item{...}{if using \code{NanoStringGeoMxSet}, name of count matrix to pull 
 counts from}
+
+\item{countMatrix}{name of count matrix to pull counts from}
 }
 \value{
 \code{\link{SpatialOverlay}} object with new plotting factor
@@ -51,6 +69,16 @@ muBrain <- addPlottingFactor(overlay = muBrain,
 
 muBrain <- addPlottingFactor(overlay = muBrain,
                              annots = seq_len(length(sampNames(muBrain))),
+                             plottingFactor = "ROINum")
+
+head(plotFactors(muBrain))
+
+
+muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
+
+muBrain <- addPlottingFactor(overlay = muBrain,
+                             annots = as.factor(seq_len(length(sampNames(muBrain)))),
                              plottingFactor = "ROINum")
 
 head(plotFactors(muBrain))

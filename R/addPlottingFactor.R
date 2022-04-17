@@ -48,32 +48,16 @@ setGeneric("addPlottingFactor", signature = "annots",
            function(overlay, annots, plottingFactor, ...) 
                standardGeneric("addPlottingFactor"))
 
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots \code{NanoStringGeoMxSet} object
 #' @param plottingFactor  column or row from annots to add as plotting factor
 #' @param countMatrix name of count matrix to pull counts from
 #' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
-#' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
-#'
-#' muBrainGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-#'                                   package = "SpatialOmicsOverlay"))
-#'
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainGxT, 
-#'                              plottingFactor = "Calm1",
-#'                              countMatrix = "exprs")
-#' 
-#' head(plotFactors(muBrain))
-#' 
 #' @export 
-#' 
+#' @rdname addPlottingFactor
+#'
 #' @importFrom Biobase assayDataElement
 #' 
 
@@ -154,33 +138,16 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
     })
               
               
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots \code{matrix} containing plottingFactor, column or column names 
 #'                must contian matching sample names to overlay
 #' @param plottingFactor  column or row name from annots to add as plotting 
 #'                            factor
-#' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
-#' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
 #'
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#'
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#'
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = as.matrix(muBrainLW), 
-#'                              plottingFactor = "segment")
-#'
-#' 
 #' @export 
-#' 
+#' @rdname addPlottingFactor
 #' 
 setMethod("addPlottingFactor",  "matrix",
     function(overlay, annots, plottingFactor){
@@ -189,7 +156,7 @@ setMethod("addPlottingFactor",  "matrix",
                                  plottingFactor = plottingFactor))
     })    
 
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots \code{data.frame} containing plottingFactor, column or column 
@@ -197,25 +164,8 @@ setMethod("addPlottingFactor",  "matrix",
 #' @param plottingFactor  column or row name from annots to add as plotting 
 #'                           factor
 #' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
-#' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
-#'
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#'
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#'
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
-#'
-#' 
 #' @export 
-#' 
+#' @rdname addPlottingFactor
 #' 
 setMethod("addPlottingFactor",  "data.frame",
     function(overlay, annots, plottingFactor){
@@ -292,7 +242,7 @@ setMethod("addPlottingFactor",  "data.frame",
         return(overlay)
     }) 
 
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots character vector with the plottingFactor. if names match sample 
@@ -300,20 +250,8 @@ setMethod("addPlottingFactor",  "data.frame",
 #'               otherwise assumed in the correct order
 #' @param plottingFactor  name of the new plotting factor
 #' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
-#' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
-#'
-#' muBrain <- addPlottingFactor(overlay = muBrain,
-#'                              annots = as.character(seq_len(length(sampNames(muBrain)))),
-#'                              plottingFactor = "ROINum")
-#' 
-#' head(plotFactors(muBrain))
-#' 
 #' @export 
+#' @rdname addPlottingFactor
 #' 
 setMethod("addPlottingFactor",  "character",
     function(overlay, annots, plottingFactor){
@@ -375,7 +313,7 @@ setMethod("addPlottingFactor",  "character",
         return(overlay)
     }) 
 
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots numeric vector with the plottingFactor. if names match sample 
@@ -383,20 +321,8 @@ setMethod("addPlottingFactor",  "character",
 #'               otherwise assumed in the correct order
 #' @param plottingFactor  name of the new plotting factor
 #' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
-#' 
-#' @examples
-#' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
-#'
-#' muBrain <- addPlottingFactor(overlay = muBrain,
-#'                              annots = seq_len(length(sampNames(muBrain))),
-#'                              plottingFactor = "ROINum")
-#' 
-#' head(plotFactors(muBrain))
-#' 
 #' @export 
+#' @rdname addPlottingFactor
 #' 
 setMethod("addPlottingFactor",  "numeric",
     function(overlay, annots, plottingFactor){
@@ -410,15 +336,13 @@ setMethod("addPlottingFactor",  "numeric",
         return(overlay)
     }) 
 
-#' Add plotting factor to \code{\link{SpatialOverlay}} object
+#' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots factor vector with the plottingFactor. if names match sample 
 #'               names in overlay vector will be matched on those, 
 #'               otherwise assumed in the correct order
 #' @param plottingFactor  name of the new plotting factor
-#' 
-#' @return \code{\link{SpatialOverlay}} object with new plotting factor
 #' 
 #' @examples
 #' 
@@ -431,7 +355,8 @@ setMethod("addPlottingFactor",  "numeric",
 #' 
 #' head(plotFactors(muBrain))
 #' 
-#' @export 
+#' @export
+#' @rdname addPlottingFactor 
 #' 
 setMethod("addPlottingFactor",  "factor",
     function(overlay, annots, plottingFactor){

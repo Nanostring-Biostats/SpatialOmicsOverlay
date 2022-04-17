@@ -16,7 +16,7 @@ testthat::test_that("cropTissue works",{
     expect_true(nrow(coords(overlayImage)) == nrow(coords(tissue)))
     
     #Spec 3. The function produces reproducible results.
-    expect_doppelganger("cropTissue", showImage(tissue)) 
+    vdiffr::expect_doppelganger("cropTissue", showImage(tissue)) 
 })
 
 testthat::test_that("cropSamples works",{
@@ -36,7 +36,7 @@ testthat::test_that("cropSamples works",{
                 nrow(coords(sampOnlyImage)))
     
     #Spec 3. The function produces reproducible results.
-    expect_doppelganger("cropSamples sampsOnly", showImage(sampOnlyImage)) 
+    vdiffr::expect_doppelganger("cropSamples sampsOnly", showImage(sampOnlyImage)) 
     
     sampImage <- cropSamples(overlayImage, sampleIDs = samps, sampsOnly = FALSE)
     
@@ -63,7 +63,7 @@ testthat::test_that("cropSamples works",{
                         image_info(showImage(sampImage))$height + 1))
     
     #Spec 4. The function produces reproducible results.
-    expect_doppelganger("cropSamples all ROIs", showImage(sampImage)) 
+    vdiffr::expect_doppelganger("cropSamples all ROIs", showImage(sampImage)) 
     
     #Spec 5. The function only works with valid sampleIDs.
     expect_error(expect_warning(cropSamples(overlayImage, 
@@ -82,7 +82,7 @@ testthat::test_that("flipX works",{
                         coords(flipX(overlayImage))$xcoor))
     
     #Spec 2. The function produces reproducible results.
-    expect_doppelganger("flipX", showImage(flipX(overlayImage)))
+    vdiffr::expect_doppelganger("flipX", showImage(flipX(overlayImage)))
 })
 
 testthat::test_that("flipY works",{
@@ -92,7 +92,7 @@ testthat::test_that("flipY works",{
                         coords(flipY(overlayImage))$ycoor))
     
     #Spec 2. The function produces reproducible results.
-    expect_doppelganger("flipY", showImage(flipY(overlayImage)))
+    vdiffr::expect_doppelganger("flipY", showImage(flipY(overlayImage)))
 })
 
 testthat::test_that("coloring changes need 4 channel image",{
@@ -159,7 +159,7 @@ testthat::test_that("imageColoring works",{
     expect_true(dim(imageData(overlayRGB))[3] == 3)
     
     #Spec 2. The function produces reproducible results.
-    expect_doppelganger("imageColoring", image_read(overlayRGB))
+    vdiffr::expect_doppelganger("imageColoring", image_read(overlayRGB))
 })
 
 testthat::test_that("recoloring works",{
@@ -181,5 +181,5 @@ testthat::test_that("recoloring works",{
     expect_true(dim(imageData(as_EBImage(showImage(overlayRGB))))[3] == 3)
     
     #Spec 3. The function produces reproducible results.
-    expect_doppelganger("recolor", showImage(overlayRGB))
+    vdiffr::expect_doppelganger("recolor", showImage(overlayRGB))
 })

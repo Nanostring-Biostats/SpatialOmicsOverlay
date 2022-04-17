@@ -31,7 +31,7 @@ testthat::test_that("plotSpatialOverlay prints",{
     expect_true(all(class(gp) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("lowRes no scaleBar", gp)
+    vdiffr::expect_doppelganger("lowRes no scaleBar", gp)
     
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                       hiRes = T, scaleBar = F), NA)
@@ -40,7 +40,7 @@ testthat::test_that("plotSpatialOverlay prints",{
     
     #Spec 6. The function produces reproducible figures.
     #resulting image is too large 
-    #expect_doppelganger("hiRes no scaleBar", gp)
+    #vdiffr::expect_doppelganger("hiRes no scaleBar", gp)
     
     expect_error(plotSpatialOverlay(overlay, hiRes = F, scaleBar = F), NA)
     
@@ -49,7 +49,7 @@ testthat::test_that("plotSpatialOverlay prints",{
                                 hiRes = F, scaleBar = F, legend = F), NA)
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("lowRes no scaleBar no legend", gp)
+    vdiffr::expect_doppelganger("lowRes no scaleBar no legend", gp)
     
     #Spec 4. The function returns a ggplot object with fluorescence legend if 
     #           desired.
@@ -58,7 +58,7 @@ testthat::test_that("plotSpatialOverlay prints",{
                                     fluorLegend = T), NA)
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("lowRes fluorLegend", gp)
+    vdiffr::expect_doppelganger("lowRes fluorLegend", gp)
 })
 
 geometricOverlay <- removeSample(overlay, 
@@ -79,7 +79,7 @@ testthat::test_that("plotSpatialOverlay prints",{
     
     #Spec 6. The function produces reproducible figures.
     #resulting image too large
-    #expect_doppelganger("outline no scaleBar", gp)
+    #vdiffr::expect_doppelganger("outline no scaleBar", gp)
     
     expect_error(plotSpatialOverlay(overlay, scaleBar = F), NA)
     
@@ -89,7 +89,7 @@ testthat::test_that("plotSpatialOverlay prints",{
     
     #Spec 6. The function produces reproducible figures.
     #resulting image too large
-    expect_doppelganger("outline no scaleBar no legend", gp)
+    # vdiffr::expect_doppelganger("outline no scaleBar no legend", gp)
     
     #Spec 4. The function returns a ggplot object with fluorescence legend if 
     #           desired.
@@ -97,7 +97,7 @@ testthat::test_that("plotSpatialOverlay prints",{
                                     scaleBar = F, fluorLegend = T), NA)
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("outline fluorLegend", gp)
+    vdiffr::expect_doppelganger("outline fluorLegend", gp)
 })
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
@@ -225,7 +225,7 @@ testthat::test_that("scaleBarPrinting is correct",{
                                           hiRes = F, scaleBar = T), NA)
     
     #Spec 3. The function produces reproducible figures. 
-    expect_doppelganger("no image scaleBar", gp)
+    vdiffr::expect_doppelganger("no image scaleBar", gp)
 })
 
 tiff <- downloadMouseBrainImage()
@@ -250,7 +250,7 @@ testthat::test_that("plotting occurs on images",{
     expect_true(all(class(gp4) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("4-channel no scaleBar", gp4)
+    vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
     
     #RGB
     expect_error(gp <- plotSpatialOverlay(recolor(overlayImage8), 
@@ -261,7 +261,7 @@ testthat::test_that("plotting occurs on images",{
     expect_true(all(class(gp) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    expect_doppelganger("RGB no scaleBar", gp)
+    vdiffr::expect_doppelganger("RGB no scaleBar", gp)
     
     expect_true(all.equal(gp, gp4))
 })
@@ -388,7 +388,7 @@ testthat::test_that("scale bar prints",{
                                           hiRes = F, scaleBar = T), NA)
     
     #Spec 3. The function produces reproducible figures.
-    expect_doppelganger("image scaleBar", gp)
+    vdiffr::expect_doppelganger("image scaleBar", gp)
 })
 
 testthat::test_that("fluorLegend works",{
@@ -397,20 +397,20 @@ testthat::test_that("fluorLegend works",{
     expect_error(fluorLegend(overlayImage8, nrow = 6, textSize = 10, alpha = 1))
     
     #Spec 2. The function produces reproducible legends. 
-    expect_doppelganger("fluorLegend 1 row", fluorLegend(overlayImage8, nrow = 1, 
+    vdiffr::expect_doppelganger("fluorLegend 1 row", fluorLegend(overlayImage8, nrow = 1, 
                                                          textSize = 10, alpha = 1))
     
     overlay4chan <- changeImageColoring(overlay4chan, color = "magenta", 
                                         dye = "Texas Red")
     
-    expect_doppelganger("fluorLegend 2 row", fluorLegend(overlay4chan, nrow = 2, 
+    vdiffr::expect_doppelganger("fluorLegend 2 row", fluorLegend(overlay4chan, nrow = 2, 
                                                          textSize = 25, alpha = 0.1,
                                                          boxColor = "orange"))
     
     overlay4chan <- changeImageColoring(overlay4chan, color = "cyan", 
                                         dye = "FITC")
     
-    expect_doppelganger("fluorLegend 4 row", fluorLegend(overlay4chan, nrow = 4, 
+    vdiffr::expect_doppelganger("fluorLegend 4 row", fluorLegend(overlay4chan, nrow = 4, 
                                                          textSize = 5, alpha = 0.8,
                                                          boxColor = "blue"))
 })

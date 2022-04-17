@@ -42,12 +42,10 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
                                                          ...),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, outline(overlay))
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }
 
@@ -83,12 +81,10 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
                           imagePointer = image_read(imageFile),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, outline(overlay))
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }
 
@@ -126,12 +122,6 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- res(overlay)
     }
     
-    if(is.null(res(overlay))){
-        difRes <- -1
-    }else{
-        difRes <- res - res(overlay)
-    }
-    
     overlay@image  <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
                                                          res = res,
@@ -139,11 +129,9 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
                                                          ...),
                           resolution = res)
     
-    if(difRes != 0){
-        print("Calculating and scaling coordinates")
-        overlay <- createCoordFile(overlay, outline(overlay))
-        overlay <- scaleCoords(overlay)
-    }
-    
+    print("Calculating and scaling coordinates")
+    overlay <- createCoordFile(overlay, outline(overlay))
+    overlay <- scaleCoords(overlay)
+
     return(overlay)
 }

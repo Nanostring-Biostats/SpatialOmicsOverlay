@@ -29,8 +29,8 @@ In this vignette, we will be walking through a mouse brain dataset from the [Spa
 # Data Ingestion 
 
 ```{r Load Libraries}
-library(SpatialOmicsOverlay)
 library(GeomxTools)
+library(SpatialOmicsOverlay)
 ```
 
 Files needed:
