@@ -1,7 +1,5 @@
 # SpatialOmicsOverlay
 
-For Review
-
 ## Overview
 
 The GeoMxTools package contains tools for analyzing data on the image from
