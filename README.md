@@ -4,7 +4,7 @@
 
 ## Overview
 
-The GeoMxTools package contains tools for analyzing data on the image from
+The SpatialOmicsOverlay package contains tools for analyzing data on the image from
 NanoString GeoMx Digital Spatial Profiler (DSP). It provides functions
 to extract image and XML from OME-TIFFs, overlay Regions of Interest (ROIs) onto
 the image, and manipulate the image (coloring, orientiation, cropping). Output 
