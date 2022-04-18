@@ -105,7 +105,7 @@ downloadMouseBrainImage <- function(){
                             fpath = paste(bfccache(bfc), IMAGEFILE, sep = "/")))
     }
     
-    bfcrpath(bfc, rids=rid)
+    return(bfcrpath(bfc, rids=rid))
 }
 
 #' get BiocFileCache
