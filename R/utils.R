@@ -122,6 +122,6 @@ downloadMouseBrainImage <- function(){
 #' @noRd
 #' 
 .get_cache <- function(){
-    cache <- tools::R_user_dir("SpatialOmicsOverlay", which="cache")
-    BiocFileCache::BiocFileCache(cache)
+    cache <- R_user_dir("SpatialOmicsOverlay", which="cache")
+    return(BiocFileCache(cache))
 }

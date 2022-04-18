@@ -21,6 +21,8 @@
 # Need to update error checking & saving for URIs
 
 xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
+    attachJar()
+    
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -89,6 +91,8 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
                             fileType = "tiff", color = TRUE, outdir = NULL){
+    attachJar()
+    
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
