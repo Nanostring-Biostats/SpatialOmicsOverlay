@@ -1142,7 +1142,9 @@ setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
 
 #' Read Images
 #' 
-#' Read image files using the Bio-Formats library. A list of supported formats can be found on the \href{http://www.openmicroscopy.org/site/support/bio-formats5/supported-formats.html}{Bio-Formats website}.
+#' Read image files using the Bio-Formats library. A list of supported formats 
+#' can be found on the 
+#' \href{http://www.openmicroscopy.org/site/support/bio-formats5/supported-formats.html}{Bio-Formats website}.
 #' 
 #' @param file character, file name
 #' @param filter.metadata logical, specifies whether ugly metadata (entries with unprintable characters, and extremely large entries) should be discarded from the metadata table
@@ -1152,7 +1154,8 @@ setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
 #' @param resolution integer vector specifying resolution levels to read; if missing all levels read
 #' @param subset named list specifing image subsetting
 #' @param read.metadata logical, should image metadata be read
-#' @return A \code{\link{AnnotatedImage}} object or a \code{\link{AnnotatedImageList}} object in case of multi-series data.
+#' @return A \code{\link{AnnotatedImage}} object or a 
+#'           \code{\link{AnnotatedImageList}} object in case of multi-series data.
 #' @importFrom EBImage Color normalize
 #' @examples
 #' require(EBImage)
@@ -1162,7 +1165,8 @@ setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
 #' img
 #' 
 #' 
-#' @seealso \code{\link{read.metadata}} for reading image metadata, \code{\link{read.omexml}} for reading image metadata as OME-XML
+#' @seealso \code{\link{read.metadata}} for reading image metadata, 
+#'          \code{\link{read.omexml}} for reading image metadata as OME-XML
 #' @noRd
 read.image <- function(file, filter.metadata = FALSE, 
                        proprietary.metadata = TRUE, normalize = TRUE, series, 
@@ -1182,13 +1186,17 @@ read.image <- function(file, filter.metadata = FALSE,
     if ( isTRUE(read.metadata)) 
       .getMetadataList(reader, resolutions)
   else
-    .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", use.true.class = TRUE)
+    .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", 
+           use.true.class = TRUE)
   
   
   # create a list of (series, resolution) pairs
-  series_resolution = unlist(mapply(function(s, r) mapply(c, s, r, SIMPLIFY=FALSE), 
-                                    as.integer(names(resolutions)), resolutions, 
-                                    SIMPLIFY=FALSE, USE.NAMES=FALSE), recursive=FALSE)
+  series_resolution = unlist(mapply(function(s, r) mapply(c, s, r, 
+                                                          SIMPLIFY=FALSE), 
+                                    as.integer(names(resolutions)), 
+                                    resolutions, 
+                                    SIMPLIFY=FALSE, USE.NAMES=FALSE), 
+                             recursive=FALSE)
   
   # iterate over series and resolutions
   res = lapply(seq_along(series_resolution), function(i) {
@@ -1251,14 +1259,16 @@ read.image <- function(file, filter.metadata = FALSE,
     
     new("AnnotatedImage", 
         .Data = array(
-          data = unlist(lapply(indices-1L, function(i) .jcall("RBioFormats", 
-                                                              "Ljava/lang/Object;", 
-                                                              "readPixels", i, 
-                                                              xy[1L], xy[2L], 
-                                                              wh[1L], wh[2L], 
-                                                              isTRUE(normalize), 
-                                                              evalArray=TRUE, 
-                                                              use.true.class=TRUE) )),
+          data = unlist(lapply(indices-1L, 
+                               function(i) 
+                                   .jcall("RBioFormats", 
+                                          "Ljava/lang/Object;", 
+                                          "readPixels", i, 
+                                          xy[1L], xy[2L], 
+                                          wh[1L], wh[2L], 
+                                          isTRUE(normalize), 
+                                          evalArray=TRUE, 
+                                          use.true.class=TRUE) )),
           dim = setNames(dim, NULL),
           dimnames = setNames(vector("list", length(dim)), names(dim))
         ),
@@ -1412,7 +1422,9 @@ read.image <- function(file, filter.metadata = FALSE,
 
 #' Read Image Metadata
 #' 
-#' Read image metadata using the Bio-Formats library. The list of supported file formats can be found on the \href{http://www.openmicroscopy.org/site/support/bio-formats5/supported-formats.html}{Bio-Formats website}.
+#' Read image metadata using the Bio-Formats library. The list of supported file 
+#' formats can be found on the 
+#' \href{http://www.openmicroscopy.org/site/support/bio-formats5/supported-formats.html}{Bio-Formats website}.
 #' 
 #' @inheritParams read.image
 #' @return An \linkS4class{ImageMetadata} or \linkS4class{ImageMetadataList} object.
@@ -1424,7 +1436,8 @@ read.image <- function(file, filter.metadata = FALSE,
 #' str(metadata)
 #' @noRd
 #' 
-#' @seealso \code{\link{read.omexml}} for reading image metadata as OME-XML, \code{\link{read.image}} for reading image data
+#' @seealso \code{\link{read.omexml}} for reading image metadata as OME-XML, 
+#'          \code{\link{read.image}} for reading image data
 #' 
 read.metadata <- function(file, filter.metadata = FALSE, 
                           proprietary.metadata = TRUE) {
@@ -1462,7 +1475,8 @@ read.metadata <- function(file, filter.metadata = FALSE,
 #' omexml
 #' @noRd
 #' 
-#' @seealso \code{\link{read.metadata}} for reading image metadata, \code{\link{read.image}} for reading image data
+#' @seealso \code{\link{read.metadata}} for reading image metadata, 
+#'          \code{\link{read.image}} for reading image data
 #' 
 read.omexml <- function(file, filter.metadata = FALSE, 
                         proprietary.metadata = TRUE) {
@@ -1471,7 +1485,8 @@ read.omexml <- function(file, filter.metadata = FALSE,
   .setupReader(file, filter.metadata, proprietary.metadata, omexml=TRUE)
   
   # dump OME XML
-  .jcall(.jcall("RBioFormats", "Lloci/formats/meta/MetadataStore;", "getOMEXML"), "S", "dumpXML")
+  .jcall(.jcall("RBioFormats", "Lloci/formats/meta/MetadataStore;", "getOMEXML"), 
+         "S", "dumpXML")
 }
 
 ################################################################################
@@ -1484,18 +1499,18 @@ read.omexml <- function(file, filter.metadata = FALSE,
 #' Provides the version of the Bio-Formats library embedded in the package.
 #' @noRd
 #' 
-BioFormats.version = function() .jfield("loci/formats/FormatTools", "S", 
-                                        "VERSION")
+# BioFormats.version = function() .jfield("loci/formats/FormatTools", "S", 
+#                                         "VERSION")
 
 ################################################################################
 # zzz.R 
 # https://github.com/aoles/RBioFormats/blob/master/R/zzz.R
 ################################################################################
 
-.onAttach <- function(lib, pkg) {
-  msg <- sprintf("BioFormats library version %s", BioFormats.version())
-  packageStartupMessage(msg)
-}
+# .onAttach <- function(lib, pkg) {
+#   # msg <- sprintf("BioFormats library version %s", BioFormats.version())
+#   # packageStartupMessage(msg)
+# }
 
 .onLoad <- function(lib, pkg) {
   ## check whether called on a source package directory which has a different
@@ -1504,27 +1519,18 @@ BioFormats.version = function() .jfield("loci/formats/FormatTools", "S",
   pkg_dir <- file.path(lib, pkg)
   installed <- getwd() != pkg_dir
   
-  jar_dir <-
-    if (installed)
-      file.path(pkg_dir, "java")
-    else
-      jar_dir = file.path(pkg_dir, "inst", "java")
-  
-  tryCatch(download_bioformats(pkg_dir, jar_dir),
-           error = function(e) 
-             stop("failed to download Bio-Formats Java library.\n  
-                  Check your internet connection and try again.", call.=FALSE)
-           )
+  jar_dir <- download_bioformats(pkg_dir)[1L]
   
   jars =
-    if (installed)
-      "" 
-    else
-      list.files(jar_dir, pattern = ".*\\.jar", full.names = TRUE)
-  
+    if (installed){
+        jar_dir 
+    }else{
+        list.files(jar_dir, pattern = ".*\\.jar", full.names = TRUE)
+    }
+      
   .jpackage(pkg, lib.loc = lib, morePaths = jars)
   
-  FormatTools <<- J("loci.formats.FormatTools")
+  #FormatTools <<- J("loci.formats.FormatTools")
 }
 
 download_bioformats <- function (pkg_dir, jar_dir) {
@@ -1532,21 +1538,23 @@ download_bioformats <- function (pkg_dir, jar_dir) {
   jar <- "bioformats_package.jar"
   url_template <- "https://downloads.openmicroscopy.org/bio-formats/%s/artifacts/%s"
   jar_url <- sprintf(url_template, ver, jar)
-  jar_dst <- file.path(jar_dir, jar)
   
-  if ( file.exists(jar_dst) ) {
-    md5_file <- suppressWarnings(tryCatch(readLines(paste(jar_url, "md5", 
-                                                          sep=".")), 
-                                          error = function(e) ""))
-    if (nchar(md5_file)==0L)
-      return(FALSE)
-    md5_remote <- sub("([0-9a-z]+).*", "\\1", md5_file)
-    md5_local <- tools::md5sum(jar_dst)
-    if ( md5_local == md5_remote )
-      return(FALSE)
+  bfc <-  BiocFileCache::BiocFileCache(tools::R_user_dir("SpatialOmicsOverlay", 
+                                                         which="cache"))
+  rid <- BiocFileCache::bfcquery(bfc, jar_url)$rid
+  
+  if (!length(rid)) {
+      rid <- BiocFileCache::bfcquery(bfc, jar)$rid
+      if (!length(rid)) {
+          message("Downloading file")
+          rid <- names(BiocFileCache::bfcadd(bfc, rname = jar, fpath = jar_url))
+      }
+      
+      rid <- names(BiocFileCache::bfcadd(bfc, rname = jar, 
+                          fpath = jar_url))
   }
   
-  utils::download.file(jar_url, jar_dst, mode = "wb", quiet = FALSE)
+  jar_dst <- BiocFileCache::bfcrpath(bfc, rids=rid)
   
-  return(TRUE)
+  return(jar_dst)
 }
