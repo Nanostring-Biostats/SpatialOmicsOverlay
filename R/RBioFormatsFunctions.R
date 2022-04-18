@@ -1506,55 +1506,55 @@ read.omexml <- function(file, filter.metadata = FALSE,
 # zzz.R 
 # https://github.com/aoles/RBioFormats/blob/master/R/zzz.R
 ################################################################################
+VER <- "6.1.0"
+JAR <- "bioformats_package.jar"
+URLTEMPLATE <- "https://downloads.openmicroscopy.org/bio-formats/%s/artifacts/%s"
 
-# .onAttach <- function(lib, pkg) {
-#   # msg <- sprintf("BioFormats library version %s", BioFormats.version())
-#   # packageStartupMessage(msg)
-# }
 
-.onLoad <- function(lib, pkg) {
-  ## check whether called on a source package directory which has a different
-  ## path to .jar files compared to the installed package (this workaround is
-  ## needed, e.g., to run devtools::test)
-  pkg_dir <- file.path(lib, pkg)
-  installed <- getwd() != pkg_dir
-  
-  jar_dir <- download_bioformats(pkg_dir)[1L]
-  
-  jars =
-    if (installed){
-        jar_dir 
-    }else{
-        list.files(jar_dir, pattern = ".*\\.jar", full.names = TRUE)
-    }
-      
-  .jpackage(pkg, lib.loc = lib, morePaths = jars)
-  
-  #FormatTools <<- J("loci.formats.FormatTools")
+#' Attach Jar file for rJava to work as expected with RBioFormat functions
+#' 
+#' @noRd
+#' 
+attachJar <- function() {
+    ## check whether called on a source package directory which has a different
+    ## path to .jar files compared to the installed package (this workaround is
+    ## needed, e.g., to run devtools::test)
+    jar_dir <- download_bioformats()[1L]
+    
+    .jpackage("SpatialOmicsOverlay", morePaths = jar_dir)
 }
 
-download_bioformats <- function (pkg_dir, jar_dir) {
-  ver <- read.dcf(file.path(pkg_dir, "DESCRIPTION"), "BioFormats")
-  jar <- "bioformats_package.jar"
-  url_template <- "https://downloads.openmicroscopy.org/bio-formats/%s/artifacts/%s"
-  jar_url <- sprintf(url_template, ver, jar)
+#' Download jar file from openmicroscopy website
+#' 
+#' @return BioFileCache rid with jar file
+#' 
+#' @noRd
+#' 
+#' @importFrom BiocFileCache BiocFileCache
+#' @importFrom BiocFileCache bfcquery
+#' @importFrom BiocFileCache bfcadd
+#' @importFrom BiocFileCache bfcrpath
+#' @importFrom tools R_user_dir
+#'
+download_bioformats <- function () {
+  jar_url <- sprintf(URLTEMPLATE, VER, JAR)
   
-  bfc <-  BiocFileCache::BiocFileCache(tools::R_user_dir("SpatialOmicsOverlay", 
+  bfc <-  BiocFileCache(R_user_dir("SpatialOmicsOverlay", 
                                                          which="cache"))
-  rid <- BiocFileCache::bfcquery(bfc, jar_url)$rid
+  rid <- bfcquery(bfc, jar_url)$rid
   
   if (!length(rid)) {
-      rid <- BiocFileCache::bfcquery(bfc, jar)$rid
+      rid <- bfcquery(bfc, JAR)$rid
       if (!length(rid)) {
           message("Downloading file")
-          rid <- names(BiocFileCache::bfcadd(bfc, rname = jar, fpath = jar_url))
+          rid <- names(bfcadd(bfc, rname = JAR, fpath = jar_url))
       }
       
-      rid <- names(BiocFileCache::bfcadd(bfc, rname = jar, 
+      rid <- names(bfcadd(bfc, rname = JAR, 
                           fpath = jar_url))
   }
   
-  jar_dst <- BiocFileCache::bfcrpath(bfc, rids=rid)
+  jar_dst <- bfcrpath(bfc, rids=rid)
   
   return(jar_dst)
 }

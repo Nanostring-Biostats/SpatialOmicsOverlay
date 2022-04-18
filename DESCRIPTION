@@ -12,7 +12,7 @@ Depends: R (>= 4.1.0)
 Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, rJava (>= 0.9-6), XML, 
          scattermore, dplyr, pbapply, data.table, readxl, magick, grDevices, 
          stringr, plotrix, GeomxTools, BiocFileCache, stats, utils, methods,
-         ggtext
+         ggtext, tools
 Suggests: 
     knitr,
     rmarkdown,
