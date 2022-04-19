@@ -132,7 +132,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                                   cols, "'>", names(cols),
                                                   "</span>"),
                                    values = cols)+
-                theme(legend.text=element_markdown(size=12,"grey"))+
+                theme(legend.text=element_markdown(size=12,
+                                                   colour="grey"))+
                 labs(color = "Fluorescence")+
                 guides(color = guide_legend(
                     override.aes=list(shape = 15)))
@@ -144,7 +145,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                                   cols, "'>", names(cols),
                                                   "</span>"),
                                    values = cols)+
-                theme(legend.text=element_markdown(size=12,"grey"))+
+                theme(legend.text=element_markdown(size=12,
+                                                   colour="grey"))+
                 labs(fill = "Fluorescence")+
                 guides(fill = guide_legend(
                     override.aes=list(shape = 15)))
