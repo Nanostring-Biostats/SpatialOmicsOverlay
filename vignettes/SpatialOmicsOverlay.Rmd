@@ -74,7 +74,7 @@ muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt",
                          package = "SpatialOmicsOverlay")
 
 muBrain <- readSpatialOverlay(ometiff = tifFile, annots = muBrainLW, 
-                              slideName = "4",  
+                              slideName = "4", image = FALSE, 
                               saveFile = FALSE, outline = FALSE)
 ```
 The readSpatialOverlay function is a wrapper to walk through all of the necessary steps to store the OME-TIFF file components. This function automates XML extraction & parsing, image extraction, and coordinate generation. These functions can also be run separately if desired (`xmlExtraction`, `parseScanMetadata`, `parseOverlayAttrs`, `addImageOmeTiff`, `createCoordFile`). 
