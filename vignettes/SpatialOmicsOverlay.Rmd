@@ -242,7 +242,7 @@ samps <- muBrainAnnots$Sample_ID[muBrainAnnots$segment == "Full ROI" & muBrainAn
 muBrainCrop <- cropSamples(overlay = muBrain, sampleIDs = samps, sampsOnly = TRUE)
 
 plotSpatialOverlay(overlay = muBrainCrop, colorBy = "Calm1", scaleBar = TRUE, corner = "bottomleft", textDistance = 5)+
-    scale_fill_gradient2(low = "grey", high = "red", mid = "yellow", midpoint = 2500)
+    ggplot2::scale_fill_gradient2(low = "grey", high = "red", mid = "yellow", midpoint = 2500)
 
 muBrainCrop <- cropSamples(overlay = muBrain, sampleIDs = samps, sampsOnly = FALSE)
 
