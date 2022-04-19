@@ -1,7 +1,5 @@
 # SpatialOmicsOverlay
 
-# For review
-
 ## Overview
 
 The SpatialOmicsOverlay package contains tools for analyzing data on the image from
