@@ -414,3 +414,4 @@ testthat::test_that("fluorLegend works",{
                                                          textSize = 5, alpha = 0.8,
                                                          boxColor = "blue"))
 })
+

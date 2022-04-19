@@ -30,12 +30,6 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- res(overlay)
     }
     
-    if(is.null(res(overlay))){
-        difRes <- -1
-    }else{
-        difRes <- res - res(overlay)
-    }
-    
     overlay@image <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
                                                          res = res,
@@ -69,12 +63,6 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 addImageFile <- function(overlay, imageFile = NULL, res = NULL){
     if(is.null(res)){
         res <- res(overlay)
-    }
-    
-    if(is.null(res(overlay))){
-        difRes <- -1
-    }else{
-        difRes <- res - res(overlay)
     }
     
     overlay@image <- list(filePath = imageFile, 
@@ -122,7 +110,7 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
         res <- res(overlay)
     }
     
-    overlay@image  <- list(filePath = ometiff, 
+    overlay@image <- list(filePath = ometiff, 
                           imagePointer = imageExtraction(ometiff = ometiff,
                                                          res = res,
                                                          color = FALSE,

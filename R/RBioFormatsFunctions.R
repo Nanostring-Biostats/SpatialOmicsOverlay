@@ -728,11 +728,11 @@ setClass ("ImageMetadataList",
 
 #' @rdname ImageMetadata-class
 #' 
-ImageMetadata = function(...) new("ImageMetadata", ...)
+ImageMetadata <- function(...) new("ImageMetadata", ...)
 
 #' @rdname ImageMetadata-class
 #' 
-ImageMetadataList = function(...) new("ImageMetadataList", ...)
+ImageMetadataList <- function(...) new("ImageMetadataList", ...)
 
 #' @rdname ImageMetadata-class
 #' @param list.len numeric; maximum number of metadata entries to display
@@ -752,25 +752,25 @@ setMethod ("show", signature(object = "ImageMetadata"), function(object) {
 
 .printMetadata <- function(x, list.len, ...) {
     ## named metadata list
-    metadata = setNames(x@.Data, names(x))
+    metadata <- setNames(x@.Data, names(x))
     ## filter empty metadata
-    metadata = metadata[vapply(metadata, function(y) length(y)>0L, logical(1), USE.NAMES=FALSE)]
+    metadata <- metadata[vapply(metadata, function(y) length(y)>0L, logical(1), USE.NAMES=FALSE)]
     ## print structure
     max.level =
         if ( list.len == 0L ) {
-            list.len = 9999L
+            list.len <- 9999L
             1L
         } else {
             ## truncate to avoid huge horizontal spacing
-            metadata = lapply(metadata, function(y) { 
-                if ( list.len < length(y) ) names(y)[(list.len+1L):length(y)] = ""
+            metadata <- lapply(metadata, function(y) { 
+                if ( list.len < length(y) ) names(y)[(list.len+1L):length(y)] <- ""
                 y
             })
             2L
         }
     str(metadata, no.list=TRUE, list.len=list.len, max.level=max.level, ...)
     #   for (s in c("coreMetadata", "globalMetadata", "seriesMetadata")) {
-    #     meta = do.call(s, list(object))
+    #     meta <- do.call(s, list(object))
     #     if ( (l=length(meta)) > 0 ) {
     #       cat(s, ': ')
     #       str(meta, max.level = 0, list.len = l)
@@ -785,21 +785,21 @@ setMethod ("show", signature(object = "ImageMetadataList"), function(object) {
     
     #cat("coreMetadata:\n")
     
-    m = do.call(rbind, coreMetadata(object))
-    m = m[, c("series", "resolutionLevel", "sizeX", "sizeY", "sizeC", "sizeZ", 
+    m <- do.call(rbind, coreMetadata(object))
+    m <- m[, c("series", "resolutionLevel", "sizeX", "sizeY", "sizeC", "sizeZ", 
               "sizeT", "imageCount")]
     
-    cNames = c("series", "res", "sizeX", "sizeY", "sizeC", "sizeZ", "sizeT", 
+    cNames <- c("series", "res", "sizeX", "sizeY", "sizeC", "sizeZ", "sizeT", 
                "total")
     
-    sMeta = vapply(seriesMetadata(object), length, integer(1), USE.NAMES=FALSE)
+    sMeta <- vapply(seriesMetadata(object), length, integer(1), USE.NAMES=FALSE)
     if ( any(sMeta>0) ) {
-        cNames = c(cNames, "seriesMetadata")
-        m = cbind(m, paste("List of", sMeta))
+        cNames <- c(cNames, "seriesMetadata")
+        m <- cbind(m, paste("List of", sMeta))
     }
     
-    colnames(m) = cNames 
-    rownames(m) = rep("", nrow(m))
+    colnames(m) <- cNames 
+    rownames(m) <- rep("", nrow(m))
     
     print(m)
     
@@ -873,7 +873,7 @@ setClass ("AnnotatedImage",
 #'            from classes that this class extends.
 #'            
 #' 
-AnnotatedImage = function(...) new("AnnotatedImage", ...)
+AnnotatedImage <- function(...) new("AnnotatedImage", ...)
 
 #' AnnotatedImageList Class
 #' 
@@ -898,7 +898,7 @@ setClass ("AnnotatedImageList",
 #' @rdname AnnotatedImageList-class
 #' @param ... a list of \linkS4class{AnnotatedImage} objects to include in the new object.
 #' 
-AnnotatedImageList = function(...) new("AnnotatedImageList", ...)
+AnnotatedImageList <- function(...) new("AnnotatedImageList", ...)
 
 #' Image Frames Order
 #' 
@@ -908,14 +908,14 @@ AnnotatedImageList = function(...) new("AnnotatedImageList", ...)
 #' @return A character vector giving the dimension names.
 #' @examples
 #' # sample timelapse image
-#' f = mockFile(sizeC=2, sizeT=10)
-#' img = read.image(f)
+#' f <- mockFile(sizeC=2, sizeT=10)
+#' img <- read.image(f)
 #' 
 #' dimorder(img)
 #' 
 #' @noRd
 #' 
-dimorder = function(x) names(dimnames(x))
+dimorder <- function(x) names(dimnames(x))
 
 #' @rdname AnnotatedImage-class 
 #' @param x an \linkS4class{AnnotatedImage} object.
@@ -934,7 +934,7 @@ setMethod ("show", signature(object = "AnnotatedImage"), function(object) {
   .printImageMetadata(object)
 })
 
-.printImageMetadata = function(x) {
+.printImageMetadata <- function(x) {
   cat('\nmetadata\n')
   .printMetadata(x@metadata, list.len=0L)
 }
@@ -942,9 +942,9 @@ setMethod ("show", signature(object = "AnnotatedImage"), function(object) {
 #' @rdname AnnotatedImage-class
 #' @importFrom EBImage as.Image
 #' 
-as.Image.AnnotatedImage = function(x) {
-  y = as(x, "Image")
-  dimnames(y) = NULL
+as.Image.AnnotatedImage <- function(x) {
+  y <- as(x, "Image")
+  dimnames(y) <- NULL
   y
 }
 
@@ -967,7 +967,7 @@ as.Image.AnnotatedImage = function(x) {
 #' @param ... arguments passed to \code{\link[base]{grep}}
 #' @return Named list consisting of key value pairs.
 #' @examples
-#' img = read.image(system.file("images", "nuclei.tif", package="EBImage"))
+#' img <- read.image(system.file("images", "nuclei.tif", package="EBImage"))
 #'  
 #' coreMetadata(img)
 #' 
@@ -976,36 +976,36 @@ as.Image.AnnotatedImage = function(x) {
 #' globalMetadata(img, pattern="Image")
 #' 
 #' @noRd
-coreMetadata = function (x, series, ...) .getMetadata(x, series, ...)
+coreMetadata <- function (x, series, ...) .getMetadata(x, series, ...)
 
 #' @rdname metadataAccessors
 #' @inheritParams coreMetadata
 #' @noRd
-globalMetadata = function (x, series, ...) .getMetadata(x, series, ...)
+globalMetadata <- function (x, series, ...) .getMetadata(x, series, ...)
 
 #' @rdname metadataAccessors
 #' @inheritParams coreMetadata
 #' @noRd
-seriesMetadata = function (x, series, ...) .getMetadata(x, series, ...)
+seriesMetadata <- function (x, series, ...) .getMetadata(x, series, ...)
 
-.getMetadata = function (x, series, ...) {
+.getMetadata <- function (x, series, ...) {
   ## metadata type equals accessor name
-  type = as.character(sys.call(-1L)[[1L]])
+  type <- as.character(sys.call(-1L)[[1L]])
   
-  metadata = metadata(x)
+  metadata <- metadata(x)
   
   if ( inherits(x, "ImageMetadataList") ) {
-    if ( !missing(series) ) metadata = metadata[series]    
+    if ( !missing(series) ) metadata <- metadata[series]    
   }
-  else metadata = list(metadata)
+  else metadata <- list(metadata)
   
-  metadata = setNames(lapply(metadata, function(x) x[[type]]), seq_along(metadata))
+  metadata <- setNames(lapply(metadata, function(x) x[[type]]), seq_along(metadata))
   
   ## grep
   if ( length(list(...)) > 0L )
-    metadata = lapply(metadata, function(y) y[rev(grep(x=names(y), ...))])
+    metadata <- lapply(metadata, function(y) y[rev(grep(x=names(y), ...))])
   
-  if ( length(metadata)==1L ) metadata = metadata[[1L]]
+  if ( length(metadata)==1L ) metadata <- metadata[[1L]]
   
   metadata
 }
@@ -1016,29 +1016,29 @@ seriesMetadata = function (x, series, ...) .getMetadata(x, series, ...)
 #' @param x an \code{AnnotatedImage} or \code{ImageMetadataList} object
 #' 
 #' @noRd
-seriesCount = function(x) UseMethod("seriesCount")
+seriesCount <- function(x) UseMethod("seriesCount")
 
 #' 
-seriesCount.default = function(x) NA
+seriesCount.default <- function(x) NA
 
-.singleSeries = function(x) 1L
+.singleSeries <- function(x) 1L
 
-.seriesList = function(x) length(x)
-
-#' 
-seriesCount.matrix = .singleSeries
+.seriesList <- function(x) length(x)
 
 #' 
-seriesCount.array = .singleSeries
+seriesCount.matrix <- .singleSeries
 
 #' 
-seriesCount.ImageMetadata = .singleSeries
+seriesCount.array <- .singleSeries
 
 #' 
-seriesCount.AnnotatedImageList = .seriesList
+seriesCount.ImageMetadata <- .singleSeries
 
 #' 
-seriesCount.ImageMetadataList = .seriesList
+seriesCount.AnnotatedImageList <- .seriesList
+
+#' 
+seriesCount.ImageMetadataList <- .seriesList
 
 
 #' Image Metadata
@@ -1049,19 +1049,19 @@ seriesCount.ImageMetadataList = .seriesList
 metadata <- function(x) UseMethod("metadata")
 
 #' 
-metadata.default = function(x) NULL
+metadata.default <- function(x) NULL
 
 #' 
-metadata.AnnotatedImage = function(x) x@metadata
+metadata.AnnotatedImage <- function(x) x@metadata
 
 #' 
-metadata.AnnotatedImageList = function(x) ImageMetadataList(lapply(x, metadata))
+metadata.AnnotatedImageList <- function(x) ImageMetadataList(lapply(x, metadata))
 
 #' 
-metadata.ImageMetadata = identity
+metadata.ImageMetadata <- identity
 
 #' 
-metadata.ImageMetadataList = identity
+metadata.ImageMetadataList <- identity
 
 ## setters
 
@@ -1074,7 +1074,7 @@ setGeneric("metadata<-", function(y, value) standardGeneric("metadata<-"))
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("metadata", "AnnotatedImage", function (y, value) {
-  y@metadata = value
+  y@metadata <- value
   y
 })
 
@@ -1086,14 +1086,14 @@ setGeneric("coreMetadata<-", function(y, value) standardGeneric("coreMetadata<-"
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("coreMetadata", "AnnotatedImage", function (y, value) {
-  y@metadata$coreMetadata = value
+  y@metadata$coreMetadata <- value
   y
 })
 
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("coreMetadata", "ImageMetadata", function (y, value) {
-  y$coreMetadata = value
+  y$coreMetadata <- value
   y
 })
 
@@ -1105,14 +1105,14 @@ setGeneric("globalMetadata<-", function(y, value) standardGeneric("globalMetadat
 #' @rdname metadataAccessors
 #' 
 setReplaceMethod("globalMetadata", "AnnotatedImage", function (y, value) {
-  y@metadata$globalMetadata = value
+  y@metadata$globalMetadata <- value
   y
 })
 
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("globalMetadata", "ImageMetadata", function (y, value) {
-  y$globalMetadata = value
+  y$globalMetadata <- value
   y
 })
 
@@ -1124,14 +1124,14 @@ setGeneric("seriesMetadata<-", function(y, value) standardGeneric("seriesMetadat
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("seriesMetadata", "AnnotatedImage", function (y, value) {
-  y@metadata$seriesMetadata = value
+  y@metadata$seriesMetadata <- value
   y
 })
 
 #' @rdname metadataAccessors
 #' @noRd
 setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
-  y$seriesMetadata = value
+  y$seriesMetadata <- value
   y
 })
 
@@ -1159,9 +1159,9 @@ setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
 #' @importFrom EBImage Color normalize
 #' @examples
 #' require(EBImage)
-#' f = system.file("images", "sample-color.png", package="EBImage")
+#' f <- system.file("images", "sample-color.png", package="EBImage")
 #' 
-#' img = read.image(f)
+#' img <- read.image(f)
 #' img
 #' 
 #' 
@@ -1171,27 +1171,27 @@ setReplaceMethod("seriesMetadata", "ImageMetadata", function (y, value) {
 read.image <- function(file, filter.metadata = FALSE, 
                        proprietary.metadata = TRUE, normalize = TRUE, series, 
                        resolution, subset, read.metadata = TRUE) {
-  reader = .getReader()
+  reader <- .getReader()
   on.exit( .close(reader) )
   .setupReader(file, filter.metadata, proprietary.metadata)
   
   if ( missing(subset) )
-    subset = list()
+    subset <- list()
   else
-    names(subset) = tolower(names(subset)) 
+    names(subset) <- tolower(names(subset)) 
   
-  resolutions = .parseSeriesResolutions(reader, series, resolution)
+  resolutions <- .parseSeriesResolutions(reader, series, resolution)
   
-  metadata = 
-    if ( isTRUE(read.metadata)) 
-      .getMetadataList(reader, resolutions)
-  else
-    .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", 
-           use.true.class = TRUE)
-  
-  
+  metadata <-
+    if ( isTRUE(read.metadata)){
+        .getMetadataList(reader, resolutions)
+    }else{
+        .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", 
+               use.true.class = TRUE)
+    }
+     
   # create a list of (series, resolution) pairs
-  series_resolution = unlist(mapply(function(s, r) mapply(c, s, r, 
+  series_resolution <- unlist(mapply(function(s, r) mapply(c, s, r, 
                                                           SIMPLIFY=FALSE), 
                                     as.integer(names(resolutions)), 
                                     resolutions, 
@@ -1199,78 +1199,77 @@ read.image <- function(file, filter.metadata = FALSE,
                              recursive=FALSE)
   
   # iterate over series and resolutions
-  res = lapply(seq_along(series_resolution), function(i) {
-    sr = series_resolution[[i]]
+  res <- lapply(seq_along(series_resolution), function(i) {
+    sr <- series_resolution[[i]]
     .jcall(reader, , "setSeries", sr[1]-1L)
     .jcall(reader, , "setResolution", sr[2]-1L)
     
-    metadata =
+    metadata <-
       if ( isTRUE(read.metadata) ) {
         metadata[[i]]        
+      }else {
+          coreMetadata <- .jcall(metadata, "Ljava/lang/Object;", "get", 
+                                 .jcall(reader, "I", "getCoreIndex"), 
+                                 use.true.class = TRUE)
+          coreMetadata <- lapply(names(.coreMetadataFields), function(field) {
+              .jfield(coreMetadata, .coreMetadataFields[[field]], field, 
+                      true.class=FALSE)
+          })
+          names(coreMetadata) <- names(.coreMetadataFields)
+          ImageMetadata( list(
+              coreMetadata = coreMetadata,
+              seriesMetadata = NULL,
+              globalMetadata = NULL
+          ))
       }
-    else {
-      coreMetadata = .jcall(metadata, "Ljava/lang/Object;", "get", 
-                            .jcall(reader, "I", "getCoreIndex"), 
-                            use.true.class = TRUE)
-      coreMetadata = lapply(names(.coreMetadataFields), function(field) {
-        .jfield(coreMetadata, .coreMetadataFields[[field]], field, 
-                true.class=FALSE)
-      })
-      names(coreMetadata) = names(.coreMetadataFields)
-      ImageMetadata( list(
-        coreMetadata = coreMetadata,
-        seriesMetadata = NULL,
-        globalMetadata = NULL
-      ))
-    }
-    
-    coreMetadata = metadata[["coreMetadata"]]
+          
+    coreMetadata <- metadata[["coreMetadata"]]
     
     ## get indices of image planes to read    
-    xyczt = c(x = coreMetadata[["sizeX"]],
-              y = coreMetadata[["sizeY"]],
-              c = coreMetadata[["sizeC"]],
-              z = coreMetadata[["sizeZ"]],
-              t = coreMetadata[["sizeT"]])
+    xyczt <- c(x = coreMetadata[["sizeX"]],
+               y = coreMetadata[["sizeY"]],
+               c = coreMetadata[["sizeC"]],
+               z = coreMetadata[["sizeZ"]],
+               t = coreMetadata[["sizeT"]])
     
-    subset = sapply(names(xyczt), function(d) {
-      if ( is.null(subset[[d]]) )
-        seq_len(xyczt[d])
-      else {
-        sub = as.integer(subset[[d]])
-        sub[ sub >= 1L & sub <= xyczt[d] ]
-      }
+    subset <- sapply(names(xyczt), FUN = function(d) {
+        if ( is.null(subset[[d]]) )
+            seq_len(xyczt[d])
+        else {
+            sub <- as.integer(subset[[d]])
+            sub[ sub >= 1L & sub <= xyczt[d] ]
+        }
     }, simplify = FALSE)
     
-    indices = subset[[3L]]
+    indices <- subset[[3L]]
     for (d in 4:5) {
-      xyczt[d] = xyczt[d] * xyczt[d-1] # instead of cumprod to preserve integers
-      indices = as.vector(sapply( (subset[[d]] - 1L) * xyczt[d-1], function (i) 
-          i + indices))
+        xyczt[d] <- xyczt[d] * xyczt[d-1] # instead of cumprod to preserve integers
+        indices <- as.vector(sapply( (subset[[d]] - 1L) * xyczt[d-1], function (i) 
+            i + indices))
     }
     
     ## set Image parameters
-    colormode = if (length(subset$c) == 1) 0L else 2L
-    xyczt = vapply(subset, length, integer(1L))
-    xy = vapply(subset[c("x", "y")], function(x) x[1L], integer(1L)) - 1L
-    wh = xyczt[1:2]
-    czt = xyczt[3:5]
-    dim = c(wh, czt[czt > 1L])
+    colormode <- if (length(subset$c) == 1) 0L else 2L
+    xyczt <- vapply(subset, length, integer(1L))
+    xy <- vapply(subset[c("x", "y")], function(x) x[1L], integer(1L)) - 1L
+    wh <- xyczt[1:2]
+    czt <- xyczt[3:5]
+    dim <- c(wh, czt[czt > 1L])
     
     new("AnnotatedImage", 
         .Data = array(
-          data = unlist(lapply(indices-1L, 
-                               function(i) 
-                                   .jcall("RBioFormats", 
-                                          "Ljava/lang/Object;", 
-                                          "readPixels", i, 
-                                          xy[1L], xy[2L], 
-                                          wh[1L], wh[2L], 
-                                          isTRUE(normalize), 
-                                          evalArray=TRUE, 
-                                          use.true.class=TRUE) )),
-          dim = setNames(dim, NULL),
-          dimnames = setNames(vector("list", length(dim)), names(dim))
+            data = unlist(lapply(indices-1L, 
+                                 function(i) 
+                                     .jcall("RBioFormats", 
+                                            "Ljava/lang/Object;", 
+                                            "readPixels", i, 
+                                            xy[1L], xy[2L], 
+                                            wh[1L], wh[2L], 
+                                            isTRUE(normalize), 
+                                            evalArray=TRUE, 
+                                            use.true.class=TRUE) )),
+            dim = setNames(dim, NULL),
+            dimnames = setNames(vector("list", length(dim)), names(dim))
         ),
         colormode = colormode,
         metadata = metadata
@@ -1283,14 +1282,14 @@ read.image <- function(file, filter.metadata = FALSE,
 
 .setupReader <- function(file, filter.metadata = FALSE, 
                          proprietary.metadata = TRUE, omexml = FALSE) {
-  file = normalizePath(file, mustWork = FALSE)
+  file <- normalizePath(file, mustWork = FALSE)
   .jcall("RBioFormats", "V", "setupReader", file, filter.metadata, 
          proprietary.metadata, omexml)
 }
 
-.getMetadataList = function (reader, resolutions) {
-  if ( missing(resolutions) ) resolutions = .parseSeriesResolutions(reader)
-  coreMetadataFields = list(
+.getMetadataList <- function (reader, resolutions) {
+  if ( missing(resolutions) ) resolutions <- .parseSeriesResolutions(reader)
+  coreMetadataFields <- list(
     sizeX = "I",
     sizeY = "I",
     sizeZ = "I",
@@ -1309,35 +1308,35 @@ read.image <- function(file, filter.metadata = FALSE,
     thumbnail = "Z"
   )
   
-  series = as.integer(names(resolutions))
+  series <- as.integer(names(resolutions))
   
-  globalMetadata = .getGlobalMetadata(reader)
-  coreMetadataList = .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", 
+  globalMetadata <- .getGlobalMetadata(reader)
+  coreMetadataList <- .jcall(reader, "Ljava/util/List;", "getCoreMetadataList", 
                             use.true.class = TRUE)
   
   # iterate over series and resolutions
   
   ImageMetadataList(unlist(
     lapply(seq_along(series), function(i) {
-      s = series[[i]]
+      s <- series[[i]]
       .jcall(reader, , "setSeries", s-1L)
-      seriesMetadata = .getSeriesMetadata(reader)
+      seriesMetadata <- .getSeriesMetadata(reader)
       
       lapply(resolutions[[i]], function(r) {
         .jcall(reader, , "setResolution", r-1L)
-        coreMetadata = .jcall(coreMetadataList, "Ljava/lang/Object;", "get", 
+        coreMetadata <- .jcall(coreMetadataList, "Ljava/lang/Object;", "get", 
                               .jcall(reader, "I", "getCoreIndex"), 
                               use.true.class = TRUE)
-        coreMetadata = lapply(names(coreMetadataFields), function(field) {
+        coreMetadata <- lapply(names(coreMetadataFields), function(field) {
           .jfield(coreMetadata, coreMetadataFields[[field]], field, FALSE)
         })
-        names(coreMetadata) = names(coreMetadataFields)
+        names(coreMetadata) <- names(coreMetadataFields)
         
-        coreMetadata[["pixelType"]] = .jcall("loci/formats/FormatTools", "S", 
+        coreMetadata[["pixelType"]] <- .jcall("loci/formats/FormatTools", "S", 
                                              "getPixelTypeString", 
                                              coreMetadata[["pixelType"]])
-        coreMetadata[["series"]] = s
-        coreMetadata[["resolutionLevel"]] = r
+        coreMetadata[["series"]] <- s
+        coreMetadata[["resolutionLevel"]] <- r
         
         ImageMetadata( list(
           coreMetadata = coreMetadata,
@@ -1349,19 +1348,19 @@ read.image <- function(file, filter.metadata = FALSE,
   )
 }
 
-.getGlobalMetadata = function (reader) {
+.getGlobalMetadata <- function (reader) {
   .hashtableToList( .jcall(reader, "Ljava/util/Hashtable;", "getGlobalMetadata") )
 }
 
-.getSeriesMetadata = function (reader) {
+.getSeriesMetadata <- function (reader) {
   .hashtableToList( .jcall(reader, "Ljava/util/Hashtable;", "getSeriesMetadata") )
 }
 
-.hashtableToList = function (hashtable) {
-  entries = .jcall(hashtable, "Ljava/util/Set;", "entrySet")
+.hashtableToList <- function (hashtable) {
+  entries <- .jcall(hashtable, "Ljava/util/Set;", "entrySet")
   setNames(
     lapply(entries, function(e) {
-      val = .jsimplify(.jcall(e, "Ljava/lang/Object;", "getValue", 
+      val <- .jsimplify(.jcall(e, "Ljava/lang/Object;", "getValue", 
                               use.true.class=TRUE))
       if ( inherits(val, "jobjRef") ) .jcall(val, "S", "toString") else val
     }),
@@ -1370,7 +1369,7 @@ read.image <- function(file, filter.metadata = FALSE,
   )
 }
 
-.coreMetadataFields = list(
+.coreMetadataFields <- list(
   sizeX = "I",
   sizeY = "I",
   sizeZ = "I",
@@ -1378,33 +1377,33 @@ read.image <- function(file, filter.metadata = FALSE,
   sizeT = "I"
 )
 
-.getReader = function() .jcall("RBioFormats", "Lloci/formats/IFormatReader;", 
+.getReader <- function() .jcall("RBioFormats", "Lloci/formats/IFormatReader;", 
                                "getReader")
 
-.close = function(object) .jcall(object, "V", "close")
+.close <- function(object) .jcall(object, "V", "close")
 
-.parseSeriesResolutions = function(reader, series, resolution) {
-  .integerIndices = function(x, max, name) {
+.integerIndices <- function(x, max, name) {
     # fail if not coercible to an integer within the (1, max) range
-    w = options(warn=2L)
-    x = tryCatch(as.integer(x), silent=TRUE)
+    w <- options(warn=2L)
+    x <- tryCatch(as.integer(x), silent=TRUE)
     options(w)
     if ( inherits(x, "try-error") || !isTRUE(all(x > 0 & x <= max)) )
-      stop(sprintf("Invalid %s specification.", name))
+        stop(sprintf("Invalid %s specification.", name))
     else x
-  }
-  
+}
+
+.parseSeriesResolutions <- function(reader, series, resolution) {
   # check series specification
-  seriesCount = .jcall(reader, "I", "getSeriesCount") # number of series per file
-  series = 
+  seriesCount <- .jcall(reader, "I", "getSeriesCount") # number of series per file
+  series <- 
     if ( missing(series) )  # dafault case: read all series
       seq_len(seriesCount)
     else
       .integerIndices(series, seriesCount, "series")
   
-  resolutions = lapply(series, function (s, r) {
+  resolutions <- lapply(series, function (s, r) {
     .jcall(reader, , "setSeries", s-1L)
-    resolutionCount = .jcall(reader, "I", "getResolutionCount")
+    resolutionCount <- .jcall(reader, "I", "getResolutionCount")
     
     if ( missing(r) ) # dafault case: read all resolutions
       seq_len(resolutionCount)
@@ -1430,9 +1429,9 @@ read.image <- function(file, filter.metadata = FALSE,
 #' @return An \linkS4class{ImageMetadata} or \linkS4class{ImageMetadataList} object.
 #' @examples
 #' require(EBImage)
-#' f = system.file("images", "nuclei.tif", package="EBImage")
+#' f <- system.file("images", "nuclei.tif", package="EBImage")
 #' 
-#' metadata = read.metadata(f)
+#' metadata <- read.metadata(f)
 #' str(metadata)
 #' @noRd
 #' 
@@ -1441,12 +1440,12 @@ read.image <- function(file, filter.metadata = FALSE,
 #' 
 read.metadata <- function(file, filter.metadata = FALSE, 
                           proprietary.metadata = TRUE) {
-  reader = .getReader()
+  reader <- .getReader()
   on.exit( .close(reader) )
   .setupReader(file, filter.metadata, proprietary.metadata, omexml = FALSE)
   
   # harvest metadata
-  metadata = .getMetadataList(reader)
+  metadata <- .getMetadataList(reader)
   
   if ( length(metadata)==1L ) 
     # return ImageMetadata object
@@ -1469,9 +1468,9 @@ read.metadata <- function(file, filter.metadata = FALSE,
 #' @return A string containing a dumped OME-XML DOM tree.
 #' @examples
 #' require(EBImage)
-#' f = system.file("images", "nuclei.tif", package="EBImage")
+#' f <- system.file("images", "nuclei.tif", package="EBImage")
 #' 
-#' omexml = read.omexml(f)
+#' omexml <- read.omexml(f)
 #' omexml
 #' @noRd
 #' 
@@ -1488,19 +1487,6 @@ read.omexml <- function(file, filter.metadata = FALSE,
   .jcall(.jcall("RBioFormats", "Lloci/formats/meta/MetadataStore;", "getOMEXML"), 
          "S", "dumpXML")
 }
-
-################################################################################
-# utils.R 
-# https://github.com/aoles/RBioFormats/blob/master/R/utils.R
-################################################################################
-
-#' Bio-Formats Version Number
-#'
-#' Provides the version of the Bio-Formats library embedded in the package.
-#' @noRd
-#' 
-# BioFormats.version = function() .jfield("loci/formats/FormatTools", "S", 
-#                                         "VERSION")
 
 ################################################################################
 # zzz.R 
@@ -1539,19 +1525,12 @@ attachJar <- function() {
 download_bioformats <- function () {
   jar_url <- sprintf(URLTEMPLATE, VER, JAR)
   
-  bfc <-  BiocFileCache(R_user_dir("SpatialOmicsOverlay", 
-                                                         which="cache"))
+  bfc <- .get_cache()
   rid <- bfcquery(bfc, jar_url)$rid
   
   if (!length(rid)) {
-      rid <- bfcquery(bfc, JAR)$rid
-      if (!length(rid)) {
-          message("Downloading file")
-          rid <- names(bfcadd(bfc, rname = JAR, fpath = jar_url))
-      }
-      
-      rid <- names(bfcadd(bfc, rname = JAR, 
-                          fpath = jar_url))
+      message("Downloading jar file")
+      rid <- names(bfcadd(bfc, rname = JAR, fpath = jar_url))
   }
   
   jar_dst <- bfcrpath(bfc, rids=rid)
