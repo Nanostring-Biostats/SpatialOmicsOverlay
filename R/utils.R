@@ -123,5 +123,10 @@ downloadMouseBrainImage <- function(){
 #' 
 .get_cache <- function(){
     cache <- R_user_dir("SpatialOmicsOverlay", which="cache")
+    
+    if(.Platform$OS.type == "windows"){
+        cache <- gsub("/", "\\\\", cache)
+    }
+    
     return(BiocFileCache(cache))
 }

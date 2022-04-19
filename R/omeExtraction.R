@@ -113,7 +113,7 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
         scanMeta <- parseScanMetadata(xmlExtraction(ometiff)) 
     }
     
-    omeImage <- read.image(ometiff, resolution = res,
+    omeImage <- read.image(file = ometiff, resolution = res,
                            read.metadata = FALSE, normalize = FALSE)
     
     if(color == TRUE){
