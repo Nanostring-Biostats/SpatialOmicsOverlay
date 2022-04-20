@@ -7,8 +7,8 @@
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-#'                                     package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")

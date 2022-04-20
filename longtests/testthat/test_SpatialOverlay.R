@@ -1,4 +1,6 @@
-overlay <- readRDS(unzip("testData/muBrain.zip"))
+overlay <- readRDS(system.file("extdata", "testData", "muBrain.RDS", 
+                                     package = "SpatialOmicsOverlay"), 
+                         exdir = "testData")
 
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")

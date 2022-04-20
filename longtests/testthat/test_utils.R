@@ -17,15 +17,18 @@ testthat::test_that("bookendStr prints correctly",{
     }
 })
 
+lw <- system.file("extdata", "testData", "test_LabWorksheet.txt", 
+                  package = "SpatialOmicsOverlay")
+
 testthat::test_that("read labworksheet works",{
     #Spec 1. The function only works on correct file paths.
-    expect_error(readLabWorksheet("testData/test_LabWorksheet.txt", "fake_slide"))
+    expect_error(readLabWorksheet(lw, "fake_slide"))
     #Spec 2. The function only works on correct slide names. 
     expect_error(readLabWorksheet("fake/file/path", "hu_brain_004b"))
     
     #Spec 3. The function only returns annotations from the specified slide.
-    annots4b <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004b")
-    annots4a <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004a")
+    annots4b <- readLabWorksheet(lw, "hu_brain_004b")
+    annots4a <- readLabWorksheet(lw, "hu_brain_004a")
     
     expect_true(all(colnames(annots4b) == c("Sample_ID", "slide.name", "scan.name", 
                                         "panel", "roi", "segment", "aoi", 

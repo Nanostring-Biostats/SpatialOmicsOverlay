@@ -116,8 +116,8 @@ plotSpatialOverlay(overlay = muBrain, hiRes = FALSE, legend = FALSE)
 
 ```{r add plotting factors}
 muBrainAnnots <- readLabWorksheet(lw = muBrainLW, slideName = "4")
-muBrainGeomxSet <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-                                  package = "SpatialOmicsOverlay"))
+muBrainGeomxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+                                  package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainAnnots, 
                              plottingFactor = "segment")
@@ -129,6 +129,10 @@ muBrain <- addPlottingFactor(overlay = muBrain, annots = 1:length(sampNames(muBr
 muBrain
 
 head(plotFactors(muBrain))
+```
+
+```{r, echo = FALSE}
+unlink("muBrain_GxT.RDS")
 ```
 
 # Customizing the graph

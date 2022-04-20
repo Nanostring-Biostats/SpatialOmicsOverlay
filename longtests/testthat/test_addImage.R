@@ -1,5 +1,8 @@
 tiff <- downloadMouseBrainImage()
-overlay <- readRDS(unzip("testData/muBrain.zip", exdir = "testData/",))
+
+overlay <- readRDS(system.file("extdata", "testData", "muBrain.RDS", 
+                                     package = "SpatialOmicsOverlay"), 
+                         exdir = "testData")
 
 overlayImage6 <- addImageOmeTiff(overlay, tiff, res = 6)
 overlayImage8 <- addImageOmeTiff(overlay, tiff, res = 8)

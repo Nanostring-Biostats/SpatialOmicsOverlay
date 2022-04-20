@@ -17,8 +17,8 @@ recolor images after changing colors and/or color intensities
 }
 \examples{
 
-muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-                                    package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 
 image <- downloadMouseBrainImage()
 

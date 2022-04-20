@@ -1,5 +1,3 @@
-# load(unzip("testData/figureReady.zip"))
-
 tifFile <- downloadMouseBrainImage()
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
@@ -31,6 +29,10 @@ testthat::test_that("scanMetadata is formatted correctly",{
                                                           "MaxIntensity",
                                                           "ColorCode")))
 })
+
+unzip(system.file("extdata", "testData", "kidney.zip", 
+                  package = "SpatialOmicsOverlay"), 
+      exdir = "testData")
 
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
