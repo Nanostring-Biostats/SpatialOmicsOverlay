@@ -105,7 +105,7 @@ downloadMouseBrainImage <- function(){
                             fpath = paste(bfccache(bfc), IMAGEFILE, sep = "/")))
     }
     
-    return(bfcrpath(bfc, rids=rid))
+    return(normalizePath(bfcrpath(bfc, rids=rid)))
 }
 
 #' get BiocFileCache
@@ -123,10 +123,6 @@ downloadMouseBrainImage <- function(){
 #' 
 .get_cache <- function(){
     cache <- R_user_dir("SpatialOmicsOverlay", which="cache")
-    
-    if(.Platform$OS.type == "windows"){
-        cache <- gsub("/", "\\\\", cache)
-    }
     
     return(BiocFileCache(cache))
 }

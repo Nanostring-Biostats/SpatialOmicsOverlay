@@ -11,7 +11,7 @@ testthat::test_that("mouse brain tiff can be downloaded",{
     #           file path.
     expect_true(endsWith(tifFile, "mu_brain_004.ome.tiff"))
     if(.Platform$OS.type == "windows"){
-        expect_true(grepl("\\\\cache\\\\R\\\\SpatialOmicsOverlay/", tifFile))
+        expect_true(grepl("\\\\cache\\\\R\\\\SpatialOmicsOverlay\\\\", tifFile))
     }else{
         expect_true(grepl("/.cache/R/SpatialOmicsOverlay/", tifFile))
     }
