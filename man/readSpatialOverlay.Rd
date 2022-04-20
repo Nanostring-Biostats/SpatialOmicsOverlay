@@ -47,7 +47,7 @@ muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt",
 image <- downloadMouseBrainImage()
 
 muBrain <- readSpatialOverlay(ometiff = image, annots = muBrainLW, 
-                              slideName = "4", image = TRUE, res = 7, 
+                              slideName = "4", image = TRUE, res = 8, 
                               saveFile = FALSE, outline = FALSE)
 
 }

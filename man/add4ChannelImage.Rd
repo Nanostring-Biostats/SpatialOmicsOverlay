@@ -28,12 +28,13 @@ of image
 }
 \examples{
 
-muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-                                    package = "SpatialOmicsOverlay")))
+muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+                                    package = "SpatialOmicsOverlay"))
+
 image <- downloadMouseBrainImage()
 
 muBrain <- add4ChannelImage(overlay = muBrain, 
-                            ometiff = image, res = 7)
+                            ometiff = image, res = 8)
 
 dim(EBImage::imageData(showImage(muBrain)))
 
