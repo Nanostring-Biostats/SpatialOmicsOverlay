@@ -19,8 +19,8 @@ Remove sample(s) from SpatialOverlay
 }
 \examples{
 
-muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-                                    package = "SpatialOmicsOverlay")))
+muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+                                    package = "SpatialOmicsOverlay"))
 
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")

@@ -11,8 +11,8 @@ DIRECTIONS <- c("left", "right", "up", "down")
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
+#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+#'                                     package = "SpatialOmicsOverlay"))
 #' 
 #' muBrain <- createCoordFile(muBrain, outline = FALSE)
 #' 
@@ -79,10 +79,10 @@ createCoordFile <- function(overlay, outline = TRUE){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
+#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+#'                                     package = "SpatialOmicsOverlay"))
 #' 
-#' samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-B08")
+#' samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-F06")
 #' 
 #' ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
 #'                       metadata = meta(overlay(muBrain))[samp,],

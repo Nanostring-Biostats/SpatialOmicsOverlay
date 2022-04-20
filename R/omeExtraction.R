@@ -78,7 +78,7 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
-#' imageExt <- imageExtraction(ometiff = image, res = 7)
+#' imageExt <- imageExtraction(ometiff = image, res = 8)
 #' imageExt
 #' 
 #' @importFrom EBImage normalize

@@ -69,8 +69,8 @@ hiRes and outline ggplots use fill, lowRes uses color
 }
 \examples{
 
-muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-                                    package = "SpatialOmicsOverlay")))
+muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+                                    package = "SpatialOmicsOverlay"))
 
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")
@@ -80,7 +80,7 @@ muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
 image <- downloadMouseBrainImage()
 
 muBrain <- addImageOmeTiff(overlay = muBrain, 
-                          ometiff = image, res = 7)
+                          ometiff = image, res = 8)
 
 muBrain <- addPlottingFactor(overlay = muBrain, 
                              annots = muBrainLW, 

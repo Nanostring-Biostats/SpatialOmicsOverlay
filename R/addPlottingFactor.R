@@ -15,8 +15,8 @@
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
+#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+#'                                     package = "SpatialOmicsOverlay"))
 #'
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
@@ -27,7 +27,6 @@
 #'                              annots = muBrainLW, 
 #'                              plottingFactor = "segment")
 #'
-#' library(GeomxTools)
 #' muBrainGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
 #'                                   package = "SpatialOmicsOverlay"))
 #'
@@ -346,8 +345,8 @@ setMethod("addPlottingFactor",  "numeric",
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrain_SpatialOverlay.zip", 
-#'                                     package = "SpatialOmicsOverlay")))
+#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
+#'                                     package = "SpatialOmicsOverlay"))
 #'
 #' muBrain <- addPlottingFactor(overlay = muBrain,
 #'                              annots = as.factor(seq_len(length(sampNames(muBrain)))),
