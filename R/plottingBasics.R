@@ -462,7 +462,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' 
 #' cowplot::ggdraw() + 
 #'     cowplot::draw_plot(gp) +
-#'     cowplot::draw_plot(legend, scale = 0.12, x = 0.1, y = -0.25)
+#'     cowplot::draw_plot(legend, scale = 0.15, x = 0.1, y = -0.25)
 #' 
 #' @export
 #' 

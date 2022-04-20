@@ -504,8 +504,6 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #'                              annots = muBrainLW, 
 #'                              plottingFactor = "segment")
 #' 
-#' samps <- muBrainLW$Sample_ID[muBrainLW$segment == "Full ROI"]
-#' 
 #' muBrainCrop <- cropTissue(overlay = muBrain)
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
