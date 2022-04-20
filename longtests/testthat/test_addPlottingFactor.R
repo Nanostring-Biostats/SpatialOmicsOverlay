@@ -1,4 +1,6 @@
-overlay <- readRDS(unzip("testData/muBrain.zip", exdir = "testData/"))
+overlay <- readRDS(system.file("extdata", "testData", "muBrain.RDS", 
+                                     package = "SpatialOmicsOverlay"), 
+                         exdir = "testData")
 
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
@@ -130,8 +132,8 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
 
 library(GeomxTools)
 
-GxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-                           package = "SpatialOmicsOverlay"))
+GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+                           package = "SpatialOmicsOverlay")))
 
 testthat::test_that("annotation GeoMxSet object can be added as plotting Factor",{
     #Spec 12. The function works with a NanostringGeomxSet input, column name 

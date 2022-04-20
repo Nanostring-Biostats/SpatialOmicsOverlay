@@ -12,8 +12,8 @@
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-#'                                     package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
@@ -92,8 +92,8 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 #' 
 #' @examples
 #' 
-#' muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-#'                                     package = "SpatialOmicsOverlay"))
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' image <- downloadMouseBrainImage()
 #'

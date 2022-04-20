@@ -1,3 +1,7 @@
+unzip(system.file("extdata", "testData", "kidney.zip", 
+                  package = "SpatialOmicsOverlay"), 
+      exdir = "testData")
+
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
                            header = T, sep = "\t")
@@ -94,10 +98,11 @@ testthat::test_that("plotSpatialOverlay prints",{
     #Spec 4. The function returns a ggplot object with fluorescence legend if 
     #           desired.
     expect_error(gp <- plotSpatialOverlay(overlayOutline, colorBy = "Segment_type", 
-                                    scaleBar = F, fluorLegend = T), NA)
+                                    scaleBar = F, fluorLegend = T, hiRes = F), NA)
     
     #Spec 6. The function produces reproducible figures.
-    vdiffr::expect_doppelganger("outline fluorLegend", gp)
+    #resulting image too large
+    #vdiffr::expect_doppelganger("outline fluorLegend", gp)
 })
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
@@ -229,7 +234,9 @@ testthat::test_that("scaleBarPrinting is correct",{
 })
 
 tiff <- downloadMouseBrainImage()
-overlay <- readRDS(unzip("testData/muBrain.zip", exdir = "testData/"))
+overlay <- readRDS(system.file("extdata", "testData", "muBrain.RDS", 
+                                     package = "SpatialOmicsOverlay"), 
+                         exdir = "testData")
 
 overlayImage8 <- add4ChannelImage(overlay, tiff, res = 8)
 
@@ -250,7 +257,8 @@ testthat::test_that("plotting occurs on images",{
     expect_true(all(class(gp4) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
+    #resulting image too large
+    #vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
     
     #RGB
     expect_error(gp <- plotSpatialOverlay(recolor(overlayImage8), 
@@ -261,7 +269,8 @@ testthat::test_that("plotting occurs on images",{
     expect_true(all(class(gp) == c("gg","ggplot")))
     
     #Spec 6. The function produces reproducible figures.
-    vdiffr::expect_doppelganger("RGB no scaleBar", gp)
+    #resulting image too large
+    #vdiffr::expect_doppelganger("RGB no scaleBar", gp)
     
     expect_true(all.equal(gp, gp4))
 })

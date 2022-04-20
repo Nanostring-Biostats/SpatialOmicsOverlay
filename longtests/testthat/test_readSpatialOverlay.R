@@ -2,8 +2,8 @@ tifFile <- downloadMouseBrainImage()
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
 
-annotsGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-                                 package = "SpatialOmicsOverlay"))
+annotsGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+                                 package = "SpatialOmicsOverlay")))
 annotsGxT <- annotsGxT[,sData(annotsGxT)$segment == "Full ROI"]
 
 overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 

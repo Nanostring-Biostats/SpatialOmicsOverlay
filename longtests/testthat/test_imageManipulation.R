@@ -1,6 +1,7 @@
 tiff <- downloadMouseBrainImage()
-overlay <- readRDS(unzip("testData/muBrain.zip", exdir = "testData/"))
-
+overlay <- readRDS(system.file("extdata", "testData", "muBrain.RDS", 
+                                     package = "SpatialOmicsOverlay"), 
+                         exdir = "testData")
 overlayImage <- addImageOmeTiff(overlay, tiff, res = 8)
 
 testthat::test_that("cropTissue works",{

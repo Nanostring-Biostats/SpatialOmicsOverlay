@@ -1,3 +1,7 @@
+unzip(system.file("extdata", "testData", "kidney.zip", 
+                  package = "SpatialOmicsOverlay"), 
+      exdir = "testData")
+
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
                            header = T, sep = "\t")

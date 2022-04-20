@@ -46,8 +46,8 @@ Add plotting factor to \code{\link{SpatialOverlay}} object
 }
 \examples{
 
-muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-                                    package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")
@@ -58,8 +58,8 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              annots = muBrainLW, 
                              plottingFactor = "segment")
 
-muBrainGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-                                  package = "SpatialOmicsOverlay"))
+muBrainGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+                                  package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain, 
                              annots = muBrainGxT, 
@@ -73,8 +73,8 @@ muBrain <- addPlottingFactor(overlay = muBrain,
 head(plotFactors(muBrain))
 
 
-muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-                                    package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain,
                              annots = as.factor(seq_len(length(sampNames(muBrain)))),

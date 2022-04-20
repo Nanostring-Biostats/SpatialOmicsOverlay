@@ -18,15 +18,18 @@ testthat::test_that("mouse brain tiff can be downloaded",{
     expect_true(file.exists(tifFile))
 })
 
+lw <- system.file("extdata", "testData", "test_LabWorksheet.txt", 
+                  package = "SpatialOmicsOverlay")
+
 testthat::test_that("read labworksheet works",{
     #Spec 1. The function only works on correct file paths.
-    expect_error(readLabWorksheet("testData/test_LabWorksheet.txt", "fake_slide"))
+    expect_error(readLabWorksheet(lw, "fake_slide"))
     #Spec 2. The function only works on correct slide names. 
     expect_error(readLabWorksheet("fake/file/path", "hu_brain_004b"))
     
     #Spec 3. The function only returns annotations from the specified slide.
-    annots4b <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004b")
-    annots4a <- readLabWorksheet("testData/test_LabWorksheet.txt", "hu_brain_004a")
+    annots4b <- readLabWorksheet(lw, "hu_brain_004b")
+    annots4a <- readLabWorksheet(lw, "hu_brain_004a")
     
     expect_true(all(colnames(annots4b) == c("Sample_ID", "slide.name", "scan.name", 
                                             "panel", "roi", "segment", "aoi", 
@@ -84,6 +87,10 @@ testthat::test_that("scanMetadata is formatted correctly",{
                                                           "MaxIntensity",
                                                           "ColorCode")))
 })
+
+unzip(system.file("extdata", "testData", "kidney.zip", 
+                  package = "SpatialOmicsOverlay"), 
+      exdir = "testData")
 
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
@@ -382,8 +389,8 @@ testthat::test_that("Boundary is behaving as expected",{
 })
 
 ############################  readSpatialOverlay  ##############################
-annotsGxT <- readRDS(system.file("extdata", "muBrain_GxT.RDS", 
-                                 package = "SpatialOmicsOverlay"))
+annotsGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+                                 package = "SpatialOmicsOverlay")))
 annotsGxT <- annotsGxT[,which(sData(annotsGxT)$segment == "Full ROI")[1:3]]
 
 overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
@@ -656,11 +663,11 @@ testthat::test_that("annotation GeoMxSet object can be added as plotting Factor"
     
     #Spec 13. The function works with a NanostringGeomxSet input, row name 
     #           plotting factor.
-    overlayBound <- addPlottingFactor(overlayBound, annotsGxT, "Abr")
+    overlayBound <- addPlottingFactor(overlayBound, annotsGxT, "Calm1")
     
-    expect_true(class(plotFactors(overlayBound)$Abr) == "numeric")
-    expect_true(all(plotFactors(overlayBound)$Abr ==
-                        exprs(annotsGxT)["Abr", match(rownames(plotFactors(overlayBound)), 
+    expect_true(class(plotFactors(overlayBound)$Calm1) == "numeric")
+    expect_true(all(plotFactors(overlayBound)$Calm1 ==
+                        exprs(annotsGxT)["Calm1", match(rownames(plotFactors(overlayBound)), 
                                                 sData(annotsGxT)$SampleID, nomatch = 0)]))
 })
 

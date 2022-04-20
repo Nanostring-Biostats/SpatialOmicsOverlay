@@ -26,8 +26,8 @@ Add image to SpatialOverlay from OME-TIFF
 }
 \examples{
 
-muBrain <- readRDS(system.file("extdata", "muBrainSubset_SpatialOverlay.RDS", 
-                                    package = "SpatialOmicsOverlay"))
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+                                    package = "SpatialOmicsOverlay")))
 
 image <- downloadMouseBrainImage()
 
