@@ -78,9 +78,9 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120
 2. The function has fewer matches with the python truth.    
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L61
 3. The function produces mask of only 0 & 1.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L63
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L64
 4. The function creates matrix.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L65
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L66
 5. The function create mask with < 0.1% of points with 7 or more neighbors.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_coordinateGeneration.R#L69
 
@@ -166,20 +166,20 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120
 2. The function returns all coordinates of only the given samples.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L34
 3. The function produces reproducible results.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L18
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L19
 
 When sampsOnly = FALSE
 
 1. The function returns smaller image.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L45
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L44
 2. The function returns all coordinates of the given samples.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L50
 3. The function returns coordinates within dimensions of cropped image.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L55
 4. The function produces reproducible results.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L67
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L66
 5. The function only works with valid sampleIDs.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L70
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L69
 
 #### Specs for flipX:
 1. The function returns expected coordinates.  
@@ -191,17 +191,17 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120
 1. The function returns expected coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L90
 2. The function produces reproducible results.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L96
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L95
 
 #### Specs for changeColoringIntensity:
 1. The function only works on 4-channel images.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L101
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L100
 2. The function changes min/max intensity values of only correct fluor.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L110
 
 #### Specs for changeImageColoring:
 1. The function only works on 4-channel images.  
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L104
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L103
 2. The function changes ColorCode values of only correct fluor.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/c427265120cc9835f1443541d68a22901195e308/longtests/testthat/test_imageManipulation.R#L132
 
