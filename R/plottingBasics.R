@@ -132,11 +132,10 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                                   cols, "'>", names(cols),
                                                   "</span>"),
                                    values = cols)+
-                theme(legend.text=element_markdown(size=12,
-                                                   colour="grey"))+
+                theme(legend.text=element_markdown(size=12))+
                 labs(color = "Fluorescence")+
                 guides(color = guide_legend(
-                    override.aes=list(shape = 15)))
+                    override.aes=list(shape = 15, color = cols)))
             
         }else{
             gp <- gp + geom_point(data = fluor(overlay), 
@@ -145,11 +144,10 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                                   cols, "'>", names(cols),
                                                   "</span>"),
                                    values = cols)+
-                theme(legend.text=element_markdown(size=12,
-                                                   colour="grey"))+
+                theme(legend.text=element_markdown(size=12))+
                 labs(fill = "Fluorescence")+
                 guides(fill = guide_legend(
-                    override.aes=list(shape = 15)))
+                    override.aes=list(shape = 15, color = cols)))
         }
     }
     
