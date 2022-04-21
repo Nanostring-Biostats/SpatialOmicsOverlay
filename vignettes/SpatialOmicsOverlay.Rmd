@@ -165,10 +165,10 @@ Using too big of an image will cause a java memory error. If this error occurs, 
 muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = 1)
 ```
 
-The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial we will be using res = 6. 
+The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial, due to vignette size constraints, we will be using res = 8 which is the **lowest** resolution for this image. Feel free to increase the resolution when running in your own environment.  
 
 ```{r add image}
-res <- 6
+res <- 8
 checkValidRes(ometiff = tifFile)
 muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = res)
 
