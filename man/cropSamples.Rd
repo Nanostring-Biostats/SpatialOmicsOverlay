@@ -40,7 +40,7 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              annots = muBrainLW, 
                              plottingFactor = "segment")
 
-samps <- muBrainLW$Sample_ID[muBrainLW$ROILabel \%in\% c("61", "59")]
+samps <- sampNames(muBrain)
 
 muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain, 
                                             sampleIDs = samps, 

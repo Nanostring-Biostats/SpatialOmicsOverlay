@@ -39,11 +39,3 @@ omeImage magick pointer
 \description{
 Extract image from OME-TIFF
 }
-\examples{
-
-image <- downloadMouseBrainImage()
-
-imageExt <- imageExtraction(ometiff = image, res = 8)
-imageExt
-
-}

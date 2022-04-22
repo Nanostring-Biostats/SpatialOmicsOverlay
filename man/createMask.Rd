@@ -24,7 +24,7 @@ Create a binary mask from a base 64 string
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
-samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-F06")
+samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-F12")
 
 ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
                       metadata = meta(overlay(muBrain))[samp,],
