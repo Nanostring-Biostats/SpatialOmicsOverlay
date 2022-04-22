@@ -54,7 +54,7 @@ Files needed:
 2. Lab Worksheet from instrument readout
 3. Annotation file(s)
     - Lab Worksheet
-    - GeomxSet Object (see [GeomxTools](http://www.bioconductor.org/packages/release/bioc/html/GeomxTools.html) and [GeoMxWorkflows](https://www.bioconductor.org/packages/release/workflows/html/GeoMxWorkflows.html) for more info)
+    - GeoMxSet Object (see [GeomxTools](http://www.bioconductor.org/packages/release/bioc/html/GeomxTools.html) and [GeoMxWorkflows](https://www.bioconductor.org/packages/release/workflows/html/GeoMxWorkflows.html) for more info)
     - Annotations from DSPDA
 
 Reading in the SpatialOverlay object can be done with or without the image. In this example, we will start with the image. 
@@ -113,16 +113,16 @@ A scale bar is automatically calculated when plotting. This functionality can be
 plotSpatialOverlay(overlay = muBrain, hiRes = TRUE, legend = FALSE, image = FALSE)
 ```
 
-`colorBy`, by default, is Sample_ID but almost any annotation or data can be added instead, including gene expression, tissue morphology annotations, pathway score, etc. These annotations can come from a data.frame, matrix, GeomxSet object, or vector. Below we attach the gene expression for CALM1 from a GeomxSet object and color the segments by that value.
+`colorBy`, by default, is Sample_ID but almost any annotation or data can be added instead, including gene expression, tissue morphology annotations, pathway score, etc. These annotations can come from a data.frame, matrix, GeoMxSet object, or vector. Below we attach the gene expression for CALM1 from a GeoMxSet object and color the segments by that value.
 
 ```{r add plotting factors}
 muBrainAnnots <- readLabWorksheet(lw = muBrainLW, slideName = "4")
-muBrainGeomxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+muBrainGeoMxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
                                   package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainAnnots, 
                              plottingFactor = "segment")
-muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainGeomxSet, 
+muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainGeoMxSet, 
                              plottingFactor = "Calm1")
 muBrain <- addPlottingFactor(overlay = muBrain, annots = 1:length(sampNames(muBrain)), 
                              plottingFactor = "ROILabel")
