@@ -54,10 +54,10 @@ Files needed:
 2. Lab Worksheet from instrument readout
 3. Annotation file(s)
     - Lab Worksheet
-    - GeomxSet Object (see [GeomxTools](http://www.bioconductor.org/packages/release/bioc/html/GeomxTools.html) and [GeoMxWorkflows](https://www.bioconductor.org/packages/release/workflows/html/GeoMxWorkflows.html) for more info)
+    - GeoMxSet Object (see [GeomxTools](http://www.bioconductor.org/packages/release/bioc/html/GeomxTools.html) and [GeoMxWorkflows](https://www.bioconductor.org/packages/release/workflows/html/GeoMxWorkflows.html) for more info)
     - Annotations from DSPDA
 
-Reading in the SpatialOverlay object can be done with or without the image. We will start without the image as that can be added later. 
+Reading in the SpatialOverlay object can be done with or without the image. In this example, we will start with the image. 
 
 If `outline = TRUE`, only ROI outline points are saved. This decreases memory needed and figure rendering time downstream. If ANY ROIs are segmented in the study, outline will be FALSE. In this particular example, there are segmented ROIs, so we set `outline = FALSE`.
 
@@ -69,12 +69,13 @@ tifFile <- downloadMouseBrainImage()
 tifFile
 ```
 
+See the *Adding the Image* section for explanation on the res variable.
 ```{r Read in Data}
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")
 
 muBrain <- readSpatialOverlay(ometiff = tifFile, annots = muBrainLW, 
-                              slideName = "4", image = FALSE, 
+                              slideName = "4", image = TRUE, res = 8,
                               saveFile = FALSE, outline = FALSE)
 ```
 The readSpatialOverlay function is a wrapper to walk through all of the necessary steps to store the OME-TIFF file components. This function automates XML extraction & parsing, image extraction, and coordinate generation. These functions can also be run separately if desired (`xmlExtraction`, `parseScanMetadata`, `parseOverlayAttrs`, `addImageOmeTiff`, `createCoordFile`). 
@@ -102,26 +103,26 @@ head(coords(muBrain))
 
 # Plotting Without Image
 
-After parsing, ROIs can be plotted without the image in the object. These plots are the highest resolution versions since there is no scaling down to the image size, and might take a little time to render. If the image is attached to the object, coordinates are automatically scaled down to the image size and plotted as if they are on top of the image.
+After parsing, ROIs can be plotted without the image in the object. These plots are the highest resolution versions since there is no scaling down to the image size, and might take a little time to render. If the image is attached to the object, like in this example, coordinates are automatically scaled down to the image size and plotted as if they are on top of the image.
 
 While manipulating the figure, there is a low-resolution option for faster rendering times.
 
 A scale bar is automatically calculated when plotting. This functionality can be turned off using `scaleBar = FALSE`. Scale bars can be fully customized using `corner`, `textDistance`, and variables that start with scaleBar: `scaleBarWidth`, `scaleBarColor`, etc.
 
 ```{r plot w/o image Sample_ID}
-plotSpatialOverlay(overlay = muBrain, hiRes = FALSE, legend = FALSE)
+plotSpatialOverlay(overlay = muBrain, hiRes = TRUE, legend = FALSE, image = FALSE)
 ```
 
-`colorBy`, by default, is Sample_ID but almost any annotation or data can be added instead, including gene expression, tissue morphology annotations, pathway score, etc. These annotations can come from a data.frame, matrix, GeomxSet object, or vector. Below we attach the gene expression for CALM1 from a GeomxSet object and color the segments by that value.
+`colorBy`, by default, is Sample_ID but almost any annotation or data can be added instead, including gene expression, tissue morphology annotations, pathway score, etc. These annotations can come from a data.frame, matrix, GeoMxSet object, or vector. Below we attach the gene expression for CALM1 from a GeoMxSet object and color the segments by that value.
 
 ```{r add plotting factors}
 muBrainAnnots <- readLabWorksheet(lw = muBrainLW, slideName = "4")
-muBrainGeomxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+muBrainGeoMxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
                                   package = "SpatialOmicsOverlay")))
 
 muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainAnnots, 
                              plottingFactor = "segment")
-muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainGeomxSet, 
+muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainGeoMxSet, 
                              plottingFactor = "Calm1")
 muBrain <- addPlottingFactor(overlay = muBrain, annots = 1:length(sampNames(muBrain)), 
                              plottingFactor = "ROILabel")
@@ -141,9 +142,9 @@ All generated figures are ggplot based so they can be easily customized using fu
 
 **Note: hiRes and outline figures use fill, lowRes uses color**
 ```{r customizable ggplot}
-plotSpatialOverlay(overlay = muBrain, hiRes = FALSE, colorBy = "Calm1", 
-                   scaleBarWidth = 0.3, scaleBarColor = "green") +
-    viridis::scale_color_viridis()+
+plotSpatialOverlay(overlay = muBrain, hiRes = TRUE, colorBy = "Calm1", 
+                   scaleBarWidth = 0.3, scaleBarColor = "green", image = FALSE) +
+    viridis::scale_fill_viridis()+
     labs(title = "Calm1 Expression in Mouse Brain")
 ```
 
@@ -168,13 +169,7 @@ muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = 1)
 The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial, due to vignette size constraints, we will be using res = 8 which is the **lowest** resolution for this image. Feel free to increase the resolution when running in your own environment.  
 
 ```{r add image}
-res <- 8
 checkValidRes(ometiff = tifFile)
-muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = res)
-
-muBrain
-
-showImage(muBrain)
 ```
 
 ```{r plot with image}
