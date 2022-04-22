@@ -22,7 +22,4 @@ Extract xml from OME-TIFF
 }
 \examples{
 
-image <- downloadMouseBrainImage()
-xml <- xmlExtraction(ometiff = image)
-
 }

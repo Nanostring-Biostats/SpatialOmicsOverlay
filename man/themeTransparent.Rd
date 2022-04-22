@@ -12,27 +12,3 @@ ggplot theme
 \description{
 transparent theme for plots
 }
-\examples{
-
-muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
-                                    package = "SpatialOmicsOverlay")))
-
-muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-                         package = "SpatialOmicsOverlay")
-
-muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-
-image <- downloadMouseBrainImage()
-
-muBrain <- addImageOmeTiff(overlay = muBrain, 
-                          ometiff = image, res = 8)
-
-muBrain <- addPlottingFactor(overlay = muBrain, 
-                             annots = muBrainLW, 
-                             plottingFactor = "segment")
-                             
-plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = FALSE) + 
-themeTransparent()
-
-}

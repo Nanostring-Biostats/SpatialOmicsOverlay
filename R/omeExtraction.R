@@ -9,13 +9,9 @@
 #' 
 #' @examples
 #' 
-#' image <- downloadMouseBrainImage()
-#' xml <- xmlExtraction(ometiff = image)
-#' 
 #' @importFrom XML xmlInternalTreeParse
 #' @importFrom XML xmlToList
 #' 
-#' @export 
 #' 
 
 # Need to update error checking & saving for URIs
@@ -74,20 +70,13 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 #' 
 #' @return omeImage magick pointer
 #' 
-#' @examples
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' imageExt <- imageExtraction(ometiff = image, res = 8)
-#' imageExt
-#' 
 #' @importFrom EBImage normalize
 #' @importFrom EBImage imageData
 #' @importFrom EBImage imageData<-
 #' @importFrom magick image_read
 #' @importFrom EBImage display
 #' 
-#' @export
+
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
                             fileType = "tiff", color = TRUE, outdir = NULL){
