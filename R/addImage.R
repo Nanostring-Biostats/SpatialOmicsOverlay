@@ -6,7 +6,7 @@
 #'              images increase in resolution and memory. The largest image your 
 #'              environment can hold is recommended.  NULL indicates pull info 
 #'              from overlay 
-#' @param ... Extra variables for \code{\link{imageExtraction}}
+#' @param ... Extra variables 
 #' 
 #' @return SpatialOverlay object with image
 #' 
@@ -86,7 +86,7 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 #'              images increase in resolution and memory. The largest image your 
 #'              environment can hold is recommended.  NULL indicates pull info 
 #'              from overlay 
-#' @param ... Extra variables for \code{\link{imageExtraction}}
+#' @param ... Extra variables 
 #'               
 #' @return SpatialOverlay object with image
 #' 

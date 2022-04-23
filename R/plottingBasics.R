@@ -30,22 +30,13 @@
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                           ometiff = image, res = 8)
-#' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
 #'                              
-#' plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = FALSE)
+#' plotSpatialOverlay(overlay = muBrain, legend = FALSE,  
+#'                    hiRes = FALSE, scaleBar = FALSE)
 #' 
 #' @importFrom scattermore geom_scattermore
 #' @import ggplot2
@@ -195,7 +186,7 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
 #' 
 #' @import ggplot2
 #' 
-#' 
+#' @noRd
 
 themeTransparent <- function(){
     return(theme(panel.background = element_rect(fill = "white", 
@@ -415,22 +406,13 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                           ometiff = image, res = 8)
-#' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
 #'                              
-#' gp <- plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-#'                          hiRes = TRUE, scaleBar = FALSE)
+#' gp <- plotSpatialOverlay(overlay = muBrain,   
+#'                          hiRes = FALSE, scaleBar = FALSE)
 #'                          
 #' legend <- fluorLegend(muBrain, nrow = 2, textSize = 3, boxColor = "red")
 #' 

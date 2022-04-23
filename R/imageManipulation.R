@@ -233,22 +233,12 @@ recolor <- function(overlay){
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 8)
 #' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
-#' 
-#' plotSpatialOverlay(overlay = flipY(muBrain), colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = FALSE)
+#' showImage(flipY(muBrain))
 #' 
 #' @importFrom magick image_flip
 #' 
@@ -274,22 +264,12 @@ flipY <- function(overlay){
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 8)
 #' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
-#' 
-#' plotSpatialOverlay(overlay = flipX(muBrain), colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = FALSE)
+#' showImage(flipX(muBrain))
 #' 
 #' @importFrom magick image_flop
 #' 
@@ -391,19 +371,10 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 8)
-#' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
 #' 
 #' samps <- sampNames(muBrain)
 #' 
@@ -411,8 +382,8 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #'                                             sampleIDs = samps, 
 #'                                             sampsOnly = TRUE))
 #' 
-#' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = FALSE)
+#' plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
+#'                    hiRes = TRUE, legend = FALSE)
 #' 
 #' @importFrom magick image_info
 #' 
@@ -490,24 +461,15 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 8)
 #' 
-#' muBrain <- addPlottingFactor(overlay = muBrain, 
-#'                              annots = muBrainLW, 
-#'                              plottingFactor = "segment")
-#' 
 #' muBrainCrop <- cropTissue(overlay = muBrain)
 #' 
-#' plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-#'                    hiRes = TRUE, scaleBar = FALSE)
+#' plotSpatialOverlay(overlay = muBrainCrop, legend = FALSE, 
+#'                    hiRes = FALSE, scaleBar = FALSE)
 #'                    
 #' @importFrom EBImage imageData
 #' @importFrom magick as_EBImage

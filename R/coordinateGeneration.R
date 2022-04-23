@@ -280,6 +280,13 @@ scaleCoords <- function(overlay){
 #' 
 #' @return SpatialOverlay object 
 #' 
+#' @examples
+#' 
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+#'                                     package = "SpatialOmicsOverlay")))
+#' head(coords(muBrain), 3)
+#' head(coords(moveCoords(muBrain, direction = "up")), 3)                                    
+#' 
 #' @export
 moveCoords <- function(overlay, direction = "right"){
     direction <- tolower(direction)

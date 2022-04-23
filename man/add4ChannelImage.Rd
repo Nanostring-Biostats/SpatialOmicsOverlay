@@ -17,7 +17,7 @@ images increase in resolution and memory. The largest image your
 environment can hold is recommended.  NULL indicates pull info 
 from overlay}
 
-\item{...}{Extra variables for \code{\link{imageExtraction}}}
+\item{...}{Extra variables}
 }
 \value{
 SpatialOverlay object with image
