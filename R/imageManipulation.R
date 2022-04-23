@@ -367,8 +367,8 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
-#' # muBrain <- addImageOmeTiff(overlay = muBrain, 
-#' #                           ometiff = image, res = 8)
+#' muBrain <- addImageOmeTiff(overlay = muBrain, 
+#'                            ometiff = image, res = 8)
 #' 
 #' samps <- sampNames(muBrain)
 #' 
