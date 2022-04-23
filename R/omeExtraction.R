@@ -12,7 +12,7 @@
 #' @importFrom XML xmlInternalTreeParse
 #' @importFrom XML xmlToList
 #' 
-#' 
+#' @noRd
 
 # Need to update error checking & saving for URIs
 
@@ -76,7 +76,7 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 #' @importFrom magick image_read
 #' @importFrom EBImage display
 #' 
-
+#' @noRd
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
                             fileType = "tiff", color = TRUE, outdir = NULL){

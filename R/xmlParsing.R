@@ -164,16 +164,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
 #' 
 #' @return physicalSizes info from xml
 #' 
-#' @examples
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' xml <- xmlExtraction(ometiff = image)
-#' 
-#' physicalSizes(xml)
-#' 
-#' @export 
-#' 
+#' @noRd
 physicalSizes <- function(omexml){
     physicalSizeX <- as.numeric(omexml$Image$Pixels$.attrs[["PhysicalSizeX"]])
     names(physicalSizeX) <- paste0(omexml$Image$Pixels$.attrs[["PhysicalSizeXUnit"]], 
@@ -193,15 +184,7 @@ physicalSizes <- function(omexml){
 #' 
 #' @return fluorescence info from xml
 #' 
-#' @examples
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' xml <- xmlExtraction(ometiff = image)
-#' 
-#' fluorData(xml)
-#' 
-#' @export 
+#' @noRd 
 #' 
 fluorData <- function(omexml){
     fluorescence <- NULL

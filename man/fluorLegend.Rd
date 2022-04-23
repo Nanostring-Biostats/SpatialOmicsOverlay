@@ -30,22 +30,13 @@ Creates legend that can be overlayed on image using \code{cowplot}.
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
                                     package = "SpatialOmicsOverlay")))
 
-muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-                         package = "SpatialOmicsOverlay")
-
-muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-
 image <- downloadMouseBrainImage()
 
 muBrain <- addImageOmeTiff(overlay = muBrain, 
                           ometiff = image, res = 8)
-
-muBrain <- addPlottingFactor(overlay = muBrain, 
-                             annots = muBrainLW, 
-                             plottingFactor = "segment")
                              
-gp <- plotSpatialOverlay(overlay = muBrain, colorBy = "segment",  
-                         hiRes = TRUE, scaleBar = FALSE)
+gp <- plotSpatialOverlay(overlay = muBrain,   
+                         hiRes = FALSE, scaleBar = FALSE)
                          
 legend <- fluorLegend(muBrain, nrow = 2, textSize = 3, boxColor = "red")
 

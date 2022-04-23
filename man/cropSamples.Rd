@@ -26,19 +26,10 @@ Crop to zoom in on given ROIs
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
-muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-                         package = "SpatialOmicsOverlay")
-
-muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-
 image <- downloadMouseBrainImage()
 
 muBrain <- addImageOmeTiff(overlay = muBrain, 
                            ometiff = image, res = 8)
-
-muBrain <- addPlottingFactor(overlay = muBrain, 
-                             annots = muBrainLW, 
-                             plottingFactor = "segment")
 
 samps <- sampNames(muBrain)
 
@@ -46,7 +37,7 @@ muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain,
                                             sampleIDs = samps, 
                                             sampsOnly = TRUE))
 
-plotSpatialOverlay(overlay = muBrainCrop, colorBy = "segment",  
-                   hiRes = TRUE, scaleBar = FALSE)
+plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
+                   hiRes = TRUE, legend = FALSE)
 
 }

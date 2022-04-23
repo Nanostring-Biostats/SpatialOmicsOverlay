@@ -8,7 +8,13 @@
 #'                 delimted file
 #' @param slideName name of slide
 #' @param image should image be extracted from OME-TIFF
-#' @param res resolution of image \code{\link{imageExtraction}}
+#' @param res resolution of image 
+#'              1 = largest, higher number = smaller
+#'              This value will affect the coordinates of the overlays. 
+#'              res = 2, resolution is 1/2 the size as the raw image
+#'              res = 3, resolution is 1/4 the size as the raw image
+#'              res = 4, resolution is 1/8 the size as the raw image 
+#'              resolution = 1/2^(res-1)   
 #' @param saveFile should xml & image be saved, file is saved in working  
 #'                     directory with same name as OME-TIFF 
 #' @param outline returned coordinates only contain outlinearies, 
@@ -18,12 +24,12 @@
 #' 
 #' @examples
 #' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
+#' muBrain_GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+#'                          package = "SpatialOmicsOverlay")))
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
-#' muBrain <- readSpatialOverlay(ometiff = image, annots = muBrainLW, 
+#' muBrain <- readSpatialOverlay(ometiff = image, annots = muBrain_GxT[,1:5], 
 #'                               slideName = "4", image = TRUE, res = 8, 
 #'                               saveFile = FALSE, outline = FALSE)
 #' 
