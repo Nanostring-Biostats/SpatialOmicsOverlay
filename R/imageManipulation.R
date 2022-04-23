@@ -76,8 +76,6 @@ imageColoring <- function(omeImage, scanMeta){
 #' 
 #' fluor(muBrain)
 #' 
-#' showImage(recolor(muBrain))
-#' 
 #' @importFrom plotrix color.id
 #' @importFrom stringr str_to_title
 #' 
@@ -127,16 +125,12 @@ changeImageColoring <- function(overlay, color, dye){
 #' 
 #' fluor(muBrain)
 #' 
-#' showImage(recolor(muBrain))
-#' 
 #' muBrainNewInten <- changeColoringIntensity(overlay = muBrain, 
 #'                                            minInten = 500, 
 #'                                            maxInten = 10000, 
 #'                                            dye = "Cy5")
 #' 
 #' fluor(muBrainNewInten)
-#' 
-#' showImage(recolor(muBrainNewInten))
 #' 
 #' @export
 #'
@@ -383,7 +377,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #'                                             sampsOnly = TRUE))
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
-#'                    hiRes = TRUE, legend = FALSE)
+#'                    hiRes = FALSE, legend = FALSE)
 #' 
 #' @importFrom magick image_info
 #' 

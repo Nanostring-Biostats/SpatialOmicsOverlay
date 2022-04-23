@@ -38,6 +38,6 @@ muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain,
                                             sampsOnly = TRUE))
 
 plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
-                   hiRes = TRUE, legend = FALSE)
+                   hiRes = FALSE, legend = FALSE)
 
 }

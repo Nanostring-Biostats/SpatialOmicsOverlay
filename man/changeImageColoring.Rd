@@ -39,6 +39,4 @@ muBrain <- changeImageColoring(overlay = muBrain, color = "#42f5ef",
 
 fluor(muBrain)
 
-showImage(recolor(muBrain))
-
 }

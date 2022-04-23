@@ -71,11 +71,6 @@ hiRes and outline ggplots use fill, lowRes uses color
 
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
                                     package = "SpatialOmicsOverlay")))
-
-image <- downloadMouseBrainImage()
-
-muBrain <- addImageOmeTiff(overlay = muBrain, 
-                          ometiff = image, res = 8)
                              
 plotSpatialOverlay(overlay = muBrain, legend = FALSE,  
                    hiRes = FALSE, scaleBar = FALSE)
