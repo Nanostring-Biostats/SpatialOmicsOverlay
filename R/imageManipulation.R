@@ -377,7 +377,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #'                                             sampsOnly = TRUE))
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
-#'                    hiRes = FALSE, legend = FALSE)
+#'                    hiRes = TRUE, legend = FALSE)
 #' 
 #' @importFrom magick image_info
 #' 
