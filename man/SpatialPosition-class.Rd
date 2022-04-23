@@ -76,8 +76,6 @@
 
 \seealso{
   \code{\link{SpatialOverlay-class}}
-  
-  \code{\link{parseOverlayAttrs}}
 }
 
 \keyword{classes}

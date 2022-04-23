@@ -125,12 +125,12 @@ changeImageColoring <- function(overlay, color, dye){
 #' 
 #' fluor(muBrain)
 #' 
-#' muBrainNewInten <- changeColoringIntensity(overlay = muBrain, 
-#'                                            minInten = 500, 
-#'                                            maxInten = 10000, 
-#'                                            dye = "Cy5")
+#' muBrain <- changeColoringIntensity(overlay = muBrain, 
+#'                                    minInten = 500, 
+#'                                    maxInten = 10000, 
+#'                                    dye = "Cy5")
 #' 
-#' fluor(muBrainNewInten)
+#' fluor(muBrain)
 #' 
 #' @export
 #'
@@ -367,10 +367,10 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' 
 #' image <- downloadMouseBrainImage()
 #' 
-#' muBrain <- addImageOmeTiff(overlay = muBrain, 
-#'                            ometiff = image, res = 8)
+#' # muBrain <- addImageOmeTiff(overlay = muBrain, 
+#' #                           ometiff = image, res = 8)
 #' 
-#' samps <- sampNames(muBrain)
+#' # samps <- sampNames(muBrain)
 #' 
 #' muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain, 
 #'                                             sampleIDs = samps, 

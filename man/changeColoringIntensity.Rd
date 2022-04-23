@@ -33,11 +33,11 @@ muBrain <- add4ChannelImage(overlay = muBrain,
 
 fluor(muBrain)
 
-muBrainNewInten <- changeColoringIntensity(overlay = muBrain, 
-                                           minInten = 500, 
-                                           maxInten = 10000, 
-                                           dye = "Cy5")
+muBrain <- changeColoringIntensity(overlay = muBrain, 
+                                   minInten = 500, 
+                                   maxInten = 10000, 
+                                   dye = "Cy5")
 
-fluor(muBrainNewInten)
+fluor(muBrain)
 
 }
