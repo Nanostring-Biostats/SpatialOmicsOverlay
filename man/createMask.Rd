@@ -32,10 +32,4 @@ ROIMask <- createMask(b64string = position(overlay(muBrain))[samp],
 
 pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
 
-ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
-                      metadata = meta(overlay(muBrain))[samp,],
-                      outline = FALSE)
-
-pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
-
 }

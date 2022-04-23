@@ -15,17 +15,9 @@ COLORS <- c(Blue  = "#0000feff",
 #' 
 #' @return metadata for entire scan
 #' 
-#' @examples
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' xml <- xmlExtraction(ometiff = image)
-#' 
-#' scan_metadata <- parseScanMetadata(omexml = xml)
-#' 
 #' @importFrom XML xmlToList
 #' 
-#' @export 
+#' @noRd 
 #' 
 
 parseScanMetadata <- function(omexml){
@@ -57,24 +49,9 @@ parseScanMetadata <- function(omexml){
 #' 
 #' @return SpatialPosition of AOIs containing metadata and base64encoded positions
 #' 
-#' @examples
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' xml <- xmlExtraction(ometiff = image)
-#' 
-#' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
-#'                          package = "SpatialOmicsOverlay")
-#' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' 
-#' overlay <- parseOverlayAttrs(omexml = xml, 
-#'                              annots = muBrainLW, 
-#'                              labworksheet = TRUE)
-#' 
 #' @importFrom XML xmlToList
 #' 
-#' @export 
+#' @noRd
 #' 
 
 parseOverlayAttrs <- function(omexml, annots, labworksheet){

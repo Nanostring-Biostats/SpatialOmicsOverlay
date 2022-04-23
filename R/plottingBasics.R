@@ -29,11 +29,6 @@
 #' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
-#' 
-#' image <- downloadMouseBrainImage()
-#' 
-#' muBrain <- addImageOmeTiff(overlay = muBrain, 
-#'                           ometiff = image, res = 8)
 #'                              
 #' plotSpatialOverlay(overlay = muBrain, legend = FALSE,  
 #'                    hiRes = FALSE, scaleBar = FALSE)
@@ -406,10 +401,10 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' image <- downloadMouseBrainImage()
+#' # image <- downloadMouseBrainImage()
 #' 
-#' muBrain <- addImageOmeTiff(overlay = muBrain, 
-#'                           ometiff = image, res = 8)
+#' # muBrain <- addImageOmeTiff(overlay = muBrain, 
+#' #                           ometiff = image, res = 8)
 #'                              
 #' gp <- plotSpatialOverlay(overlay = muBrain,   
 #'                          hiRes = FALSE, scaleBar = FALSE)
@@ -418,7 +413,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' 
 #' cowplot::ggdraw() + 
 #'     cowplot::draw_plot(gp) +
-#'     cowplot::draw_plot(legend, scale = 0.15, x = 0.1, y = -0.25)
+#'     cowplot::draw_plot(legend, scale = 0.12, x = -0.3, y = -0.25)
 #' 
 #' @export
 #' 
