@@ -370,7 +370,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' # muBrain <- addImageOmeTiff(overlay = muBrain, 
 #' #                           ometiff = image, res = 8)
 #' 
-#' # samps <- sampNames(muBrain)
+#' samps <- sampNames(muBrain)
 #' 
 #' muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain, 
 #'                                             sampleIDs = samps, 

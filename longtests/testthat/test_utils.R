@@ -51,6 +51,5 @@ testthat::test_that("mouse brain tiff can be downloaded",{
     tifFile <- downloadMouseBrainImage()
     
     expect_true(endsWith(tifFile, "mu_brain_004.ome.tiff"))
-    expect_true(grepl("/.cache/R/SpatialOmicsOverlay/", tifFile))
     expect_true(file.exists(tifFile))
 })

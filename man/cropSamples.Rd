@@ -31,7 +31,7 @@ image <- downloadMouseBrainImage()
 # muBrain <- addImageOmeTiff(overlay = muBrain, 
 #                           ometiff = image, res = 8)
 
-# samps <- sampNames(muBrain)
+samps <- sampNames(muBrain)
 
 muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain, 
                                             sampleIDs = samps, 
