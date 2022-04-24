@@ -28,10 +28,10 @@ muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zi
 
 image <- downloadMouseBrainImage()
 
-# muBrain <- addImageOmeTiff(overlay = muBrain, 
-#                           ometiff = image, res = 8)
+muBrain <- addImageOmeTiff(overlay = muBrain, 
+                           ometiff = image, res = 8)
 
-# samps <- sampNames(muBrain)
+samps <- sampNames(muBrain)
 
 muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain, 
                                             sampleIDs = samps, 
