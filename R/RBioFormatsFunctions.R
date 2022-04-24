@@ -6,6 +6,8 @@
 # Version	 0.0.57
 # Package repository    https://github.com/aoles/RBioFormats/
 
+# Code modified by Maddy Griswold on April 19, 2022
+
 # GNU GENERAL PUBLIC LICENSE
 # Version 3, 29 June 2007
 # 
