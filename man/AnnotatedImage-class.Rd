@@ -7,7 +7,7 @@
 \alias{print.AnnotatedImage}
 \alias{show,AnnotatedImage-method}
 \alias{as.Image.AnnotatedImage}
-\title{AnnotatedImage Class}
+\title{AnnotatedImage Class, from RBioFormats package}
 \usage{
 AnnotatedImage(...)
 
@@ -32,7 +32,7 @@ from classes that this class extends.}
 Extends the \linkS4class{Image} class from the \pkg{EBImage} package.
 }
 \description{
-AnnotatedImage Class
+AnnotatedImage Class, from RBioFormats package
 }
 \section{Slots}{
 

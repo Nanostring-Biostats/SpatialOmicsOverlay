@@ -1,6 +1,8 @@
 URL <- "https://external-soa-downloads-p-1.s3.us-west-2.amazonaws.com"
 IMAGES <- "mu_brain_image_files.tar.gz"
 IMAGEFILE <- "image_files/mu_brain_004.ome.tiff"
+JAR <- "bioformats_package.jar"
+JARURL <- "https://downloads.openmicroscopy.org/bio-formats/6.1.0/artifacts/bioformats_package.jar"
 
 #' Print long string in more managable fashion
 #' 
@@ -89,7 +91,7 @@ downloadMouseBrainImage <- function(){
     bfc <- .get_cache()
     rid <- bfcquery(bfc, IMAGEFILE)$rid
     
-    if (!length(rid)) {
+    if (length(rid) == 0) {
         rid <- bfcquery(bfc, IMAGES)$rid
         if (!length(rid)) {
             message("Downloading file")
@@ -125,4 +127,39 @@ downloadMouseBrainImage <- function(){
     cache <- R_user_dir("SpatialOmicsOverlay", which="cache")
     
     return(BiocFileCache(cache))
+}
+
+#' Attach Jar file for rJava to work as expected with RBioFormats functions
+#' 
+#' @noRd
+#' 
+attachJar <- function() {
+    .jpackage("SpatialOmicsOverlay", 
+              morePaths = downloadBioformatsJar()[1L])
+}
+
+#' Download jar file from openmicroscopy website
+#' 
+#' @return BioFileCache rid with jar file
+#' 
+#' @noRd
+#' 
+#' @importFrom BiocFileCache BiocFileCache
+#' @importFrom BiocFileCache bfcquery
+#' @importFrom BiocFileCache bfcadd
+#' @importFrom BiocFileCache bfcrpath
+#' @importFrom tools R_user_dir
+#'
+downloadBioformatsJar <- function () {
+    bfc <- .get_cache()
+    rid <- bfcquery(bfc, JARURL)$rid
+    
+    if (length(rid) == 0) {
+        message("Downloading jar file")
+        rid <- names(bfcadd(bfc, rname = JAR, fpath = JARURL))
+    }
+    
+    jar_dst <- bfcrpath(bfc, rids=rid)
+    
+    return(jar_dst)
 }

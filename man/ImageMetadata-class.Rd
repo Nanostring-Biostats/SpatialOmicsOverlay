@@ -10,7 +10,7 @@
 \alias{show,ImageMetadata-method}
 \alias{show,ImageMetadataList-method}
 \alias{print.ImageMetadataList}
-\title{ImageMetadata and ImageMetadataList Class}
+\title{ImageMetadata and ImageMetadataList Class, from RBioFormats package}
 \usage{
 ImageMetadata(...)
 
@@ -37,7 +37,7 @@ ImageMetadataList(...)
 Formal representation of image metadata.
 }
 \description{
-ImageMetadata and ImageMetadataList Class
+ImageMetadata and ImageMetadataList Class, from RBioFormats package
 }
 \references{
 RBioFormats https://github.com/aoles/RBioFormats

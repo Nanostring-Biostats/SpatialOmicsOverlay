@@ -4,7 +4,7 @@
 \name{AnnotatedImageList-class}
 \alias{AnnotatedImageList-class}
 \alias{AnnotatedImageList}
-\title{AnnotatedImageList Class}
+\title{AnnotatedImageList Class, from RBioFormats package}
 \usage{
 AnnotatedImageList(...)
 }
@@ -15,7 +15,7 @@ AnnotatedImageList(...)
 A list of \linkS4class{AnnotatedImage} objects.
 }
 \description{
-AnnotatedImageList Class
+AnnotatedImageList Class, from RBioFormats package
 }
 \references{
 RBioFormats https://github.com/aoles/RBioFormats
