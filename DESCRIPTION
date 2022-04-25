@@ -8,7 +8,7 @@ Encoding: UTF-8
 Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", role = c("cre","aut")),
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
              person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")),
-             person("Andrzej", "Oleś", email = "andrzej.oles@embl.de", role = c("cph"),  
+             person("Andrzej", "Oleś", role = c("cph"),  
              comment = "Author of the RBioFormats package, code modified April 19, 2022"))
 Depends: R (>= 4.1.0)
 Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, rJava (>= 0.9-6), XML, 
