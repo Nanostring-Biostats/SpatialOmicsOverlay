@@ -29,10 +29,12 @@ In this vignette, we will be walking through a mouse brain dataset from the [Spa
 # Package installation
 
 ```{r, eval=FALSE}
-install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
 BiocManager::install("GeomxTools")
 
-install.packages("devtools")
+if (!requireNamespace("devtools", quietly=TRUE))
+    install.packages("devtools")
 devtools::install_github("Nanostring-Biostats/SpatialOmicsOverlay", 
                          ref = "main", build_vignettes = TRUE)
 ```
