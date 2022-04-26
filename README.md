@@ -17,7 +17,7 @@ if (!requireNamespace("devtools", quietly=TRUE))
     install.packages("devtools")
 
 devtools::install_github("Nanostring-Biostats/SpatialOmicsOverlay", 
-                         ref = "main", build_vignettes = TRUE)
+                         build_vignettes = TRUE, ref = "main")
 ```
 
 ### Install the development version from GitHub
