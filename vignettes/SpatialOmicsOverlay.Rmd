@@ -28,15 +28,15 @@ In this vignette, we will be walking through a mouse brain dataset from the [Spa
 
 # Package installation
 
+Download package tarball from NanoString's GeoScriptHub (link pending)
+
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 BiocManager::install("GeomxTools")
 
-if (!requireNamespace("devtools", quietly=TRUE))
-    install.packages("devtools")
-devtools::install_github("Nanostring-Biostats/SpatialOmicsOverlay", 
-                         ref = "main", build_vignettes = TRUE)
+install.packages("path/to/SpatialOmicsOverlay_0.99.11.tar.gz", 
+                 dependencies = TRUE, repos = NULL)
 ```
 
 # Load Libraries

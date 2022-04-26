@@ -9,15 +9,17 @@ the image, and manipulate the image (coloring, orientation, cropping). Output
 figures are ggplot based allowing for easy customization of images to include
 spatial images into data visualization. 
 
+## Download
+
+Download package from NanoString's GeoScriptHub 
+(link pending)
+
 ## Installation
 
-### Install the release version from GitHub
+### Install the release version from tarball
 ``` r
-if (!requireNamespace("devtools", quietly=TRUE))
-    install.packages("devtools")
-
-devtools::install_github("Nanostring-Biostats/SpatialOmicsOverlay", 
-                         build_vignettes = TRUE, ref = "main")
+install.packages("path/to/SpatialOmicsOverlay_0.99.11.tar.gz", 
+                 dependencies = TRUE, repos = NULL)
 ```
 
 ### Install the development version from GitHub
@@ -42,11 +44,12 @@ or download vignette from NanoString website
 (pending)
 
 ## Branches
-The release version on GitHub is the stable version.
-<https://github.com/Nanostring-Biostats/SpatialOmicsOverlay>
+The release version on GeoScriptHub is the stable version.
+(link pending)
 
 The dev branch on GitHub is under active development and no guarantee 
 is made on usability at any given time.
+<https://github.com/Nanostring-Biostats/SpatialOmicsOverlay>
 
 ## Citation
 Griswold, M.
