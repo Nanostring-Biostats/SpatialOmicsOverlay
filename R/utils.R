@@ -128,38 +128,4 @@ downloadMouseBrainImage <- function(){
     
     return(BiocFileCache(cache))
 }
-
-#' Attach Jar file for rJava to work as expected with RBioFormats functions
-#' 
-#' @noRd
-#' 
-attachJar <- function() {
-    .jpackage("SpatialOmicsOverlay", 
-              morePaths = downloadBioformatsJar()[1L])
-}
-
-#' Download jar file from openmicroscopy website
-#' 
-#' @return BioFileCache rid with jar file
-#' 
-#' @noRd
-#' 
-#' @importFrom BiocFileCache BiocFileCache
-#' @importFrom BiocFileCache bfcquery
-#' @importFrom BiocFileCache bfcadd
-#' @importFrom BiocFileCache bfcrpath
-#' @importFrom tools R_user_dir
-#'
-downloadBioformatsJar <- function () {
-    bfc <- .get_cache()
-    rid <- bfcquery(bfc, JARURL)$rid
-    
-    if (length(rid) == 0) {
-        message("Downloading jar file")
-        rid <- names(bfcadd(bfc, rname = JAR, fpath = JARURL))
-    }
-    
-    jar_dst <- bfcrpath(bfc, rids=rid)
-    
-    return(jar_dst)
-}
+ 

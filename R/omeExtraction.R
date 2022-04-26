@@ -9,16 +9,18 @@
 #' 
 #' @examples
 #' 
+#' image <- downloadMouseBrainImage()
+#' xml <- xmlExtraction(ometiff = image)
+#' 
 #' @importFrom XML xmlInternalTreeParse
 #' @importFrom XML xmlToList
+#' @importFrom RBioFormats read.omexml
 #' 
-#' @noRd
+#' @export
 
 # Need to update error checking & saving for URIs
 
 xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
-    # attachJar()
-    
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -75,13 +77,13 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
 #' @importFrom EBImage imageData<-
 #' @importFrom magick image_read
 #' @importFrom EBImage display
+#' @importFrom RBioFormats read.image
+#' @importFrom RBioFormats coreMetadata
 #' 
 #' @noRd
 
 imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE, 
                             fileType = "tiff", color = TRUE, outdir = NULL){
-    # attachJar()
-    
     if(!file.exists(ometiff)){
         stop("ometiff file does not exist")
     }
@@ -157,6 +159,8 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' @param ometiff path to OME-TIFF
 #' 
 #' @return value of lowest res image
+#' 
+#' @importFrom RBioFormats read.metadata
 #' 
 #' @examples
 #' 
