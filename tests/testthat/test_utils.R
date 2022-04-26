@@ -53,3 +53,4 @@ testthat::test_that("mouse brain tiff can be downloaded",{
     expect_true(endsWith(tifFile, "mu_brain_004.ome.tiff"))
     expect_true(file.exists(tifFile))
 })
+

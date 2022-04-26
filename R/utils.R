@@ -1,8 +1,6 @@
 URL <- "https://external-soa-downloads-p-1.s3.us-west-2.amazonaws.com"
 IMAGES <- "mu_brain_image_files.tar.gz"
 IMAGEFILE <- "image_files/mu_brain_004.ome.tiff"
-JAR <- "bioformats_package.jar"
-JARURL <- "https://downloads.openmicroscopy.org/bio-formats/6.1.0/artifacts/bioformats_package.jar"
 
 #' Print long string in more managable fashion
 #' 

@@ -39,7 +39,7 @@ browseVignettes("SpatialOmicsOverlay")
 ```
 
 or download vignette from NanoString website
-<>
+<pending>
 
 ## Branches
 The release version on GitHub is the stable version.
