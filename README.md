@@ -51,7 +51,7 @@ is made on usability at any given time.
 ## Citation
 Griswold, M.
 SpatialOmicsOverlay: Spatial Overlay for Omic Data From Nanostring GeoMx data. 
-R Package Version 1.0.0. 
+R Package Version 0.99.10. 
 NanoString Technologies Inc.; Seattle, WA 98109, USA. 2021. 
 
 ## License
