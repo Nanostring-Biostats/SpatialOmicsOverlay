@@ -89,7 +89,7 @@ downloadMouseBrainImage <- function(){
     bfc <- .get_cache()
     rid <- bfcquery(bfc, IMAGEFILE)$rid
     
-    if (!length(rid)) {
+    if (length(rid) == 0) {
         rid <- bfcquery(bfc, IMAGES)$rid
         if (!length(rid)) {
             message("Downloading file")
@@ -126,3 +126,4 @@ downloadMouseBrainImage <- function(){
     
     return(BiocFileCache(cache))
 }
+ 

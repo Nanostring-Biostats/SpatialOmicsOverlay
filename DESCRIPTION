@@ -1,5 +1,5 @@
 Package: SpatialOmicsOverlay
-Title: Spatial Overlay for Omic Data From Nanostring GeoMx data
+Title: Spatial Overlay for Omic Data from Nanostring GeoMx Data
 Description: Tools for NanoString Technologies GeoMx Technology. Package to 
               easily graph on top of an OME-TIFF image. Plotting annotations 
               can range from tissue segment to gene expression.
@@ -7,14 +7,12 @@ Version: 0.99.10
 Encoding: UTF-8
 Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", role = c("cre","aut")),
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
-             person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")),
-             person("Andrzej", "Oleś", role = c("cph"),  
-             comment = "Author of the RBioFormats package, code modified April 19, 2022"))
+             person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
 Depends: R (>= 4.1.0)
-Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, rJava (>= 0.9-6), XML, 
+Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, XML, 
          scattermore, dplyr, pbapply, data.table, readxl, magick, grDevices, 
          stringr, plotrix, GeomxTools, BiocFileCache, stats, utils, methods,
-         ggtext, tools
+         ggtext, tools, RBioFormats
 Suggests: 
     knitr,
     rmarkdown,
@@ -32,17 +30,17 @@ Collate: addImage.R
          imageManipulation.R
          omeExtraction.R
          plottingBasics.R
-         RBioFormatsFunctions.R
          readSpatialOverlay.R
          removeSamples.R
          SpatialPosition-class.R
          SpatialOverlay-class.R
          utils.R
          xmlParsing.R
+Remotes:  
+    aoles/RBioFormats
 biocViews: GeneExpression, Transcription, CellBasedAssays, DataImport, 
            Transcriptomics, Proteomics, ProprietaryPlatforms, RNASeq, Spatial,
            DataRepresentation, Visualization
-BioFormats: 6.1.0
 VignetteEngine: knitr::rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2

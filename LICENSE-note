@@ -1,5 +1,0 @@
-The SpatialOmicsOverlay package as a whole is distributed under MIT. The SpatialOmicsOverlay package includes other open source software components. The following is a list of these components:
-
-* RBioFormats: GPL3 (code modified on April 19, 2022)
-
-Full copies of the license agreement used by this component is included in `R/RBioFormatsFunctions.R`.

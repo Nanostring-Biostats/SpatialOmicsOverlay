@@ -41,14 +41,11 @@ importFrom(methods,is)
 importFrom(methods,new)
 importFrom(pbapply,pbapply)
 importFrom(plotrix,color.id)
+importFrom(RBioFormats,coreMetadata)
+importFrom(RBioFormats,read.image)
+importFrom(RBioFormats,read.metadata)
+importFrom(RBioFormats,read.omexml)
 importFrom(readxl,read_xlsx)
-importFrom(rJava,.jaddClassPath)
-importFrom(rJava,.jcall)
-importFrom(rJava,.jfield)
-importFrom(rJava,.jinit)
-importFrom(rJava,.jpackage)
-importFrom(rJava,.jsimplify)
-importFrom(rJava,J)
 importFrom(scattermore,geom_scattermore)
 importFrom(stats,setNames)
 importFrom(stringr,str_to_title)
@@ -58,16 +55,11 @@ importFrom(utils,str)
 importFrom(utils,untar)
 
 importClassesFrom(GeomxTools,NanoStringGeoMxSet)
-importClassesFrom(rJava,jclassName)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 classes
 exportClasses(SpatialOverlay)
 exportClasses(SpatialPosition)
-exportClasses(AnnotatedImage)
-exportClasses(AnnotatedImageList)
-exportClasses(ImageMetadata)
-exportClasses(ImageMetadataList)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 generics
@@ -103,11 +95,14 @@ export(flipX)
 export(flipY)
 export(fluorLegend)
 export(moveCoords)
+export(parseOverlayAttrs)
+export(parseScanMetadata)
 export(plotSpatialOverlay)
 export(readLabWorksheet)
 export(readSpatialOverlay)
 export(recolor)
 export(removeSample)
+export(xmlExtraction)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S3 methods
