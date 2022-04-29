@@ -78,7 +78,7 @@ overlayImage4Chan6 <- add4ChannelImage(overlay, tiff, res = 6)
 overlayImage4Chan8 <- add4ChannelImage(overlay, tiff, res = 8)
 
 testthat::test_that("4 channel image is added correctly",{
-    #Spec 4. The function must have SpatialOverlay object input.
+    #Spec 5. The function must have SpatialOverlay object input.
     expect_error(add4ChannelImage("overlay", tiff, res = 7),
                  regexp = "overlay must be a SpatialOverlay object")
     
