@@ -283,6 +283,10 @@ scaleCoords <- function(overlay){
 #' 
 #' @export
 moveCoords <- function(overlay, direction = "right"){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
+    
     direction <- tolower(direction)
     if(!direction %in% DIRECTIONS){
         stop(paste("direction is not valid: options -",

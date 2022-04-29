@@ -1,8 +1,14 @@
 tiff <- downloadMouseBrainImage()
 overlay <- readRDS("testData/muBrain.RDS")
 overlayImage <- addImageOmeTiff(overlay, tiff, res = 8)
+overlay4Chan <- add4ChannelImage(overlay, tiff, res = 8)
 
 testthat::test_that("cropTissue works",{
+    #Spec 4. The function requires valid input.
+    expect_error(cropTissue("overlay"), 
+                 regexp = "Overlay must be a SpatialOverlay object")
+    expect_error(cropTissue(overlay), regexp = "No image found")
+    
     tissue <- cropTissue(overlayImage)
     
     #Spec 1. The function returns smaller image.
@@ -16,11 +22,27 @@ testthat::test_that("cropTissue works",{
     
     #Spec 3. The function produces reproducible results.
     vdiffr::expect_doppelganger("cropTissue", showImage(tissue)) 
+    
+    tissue4chan <- cropTissue(overlay4Chan)
+    
+    expect_true(image_info(showImage(overlayImage))$width >
+                    image_info(showImage(tissue4chan))$width)
+    expect_true(image_info(showImage(overlayImage))$height >
+                    image_info(showImage(tissue4chan))$height)
+    
+    vdiffr::expect_doppelganger("cropTissue4Chan", showImage(tissue4chan)) 
 })
 
 testthat::test_that("cropSamples works",{
+    #Spec 1. The function requires valid input.
+    expect_error(cropSamples("overlay"), 
+                 regexp = "Overlay must be a SpatialOverlay object")
+    
     samps <- sampNames(overlayImage)[sample(x = 1:length(sampNames(overlayImage)),
                                             size = 2, replace = FALSE)]
+    
+    expect_error(cropSamples(overlay, samps), regexp = "No image found")
+    
     sampOnlyImage <- cropSamples(overlayImage, sampleIDs = samps, sampsOnly = TRUE)
     
     #Spec 1. The function returns smaller image.
@@ -67,14 +89,25 @@ testthat::test_that("cropSamples works",{
     #Spec 5. The function only works with valid sampleIDs.
     expect_error(expect_warning(cropSamples(overlayImage, 
                                             sampleIDs = "fakeID", 
-                                            sampsOnly = TRUE)))
+                                            sampsOnly = TRUE),
+                                regexp = "invalid sampleIDs given"),
+                 regexp = "No valid sampleIDs")
+    
+    expect_error(cropSamples(overlayImage, sampleIDs = NULL, sampsOnly = TRUE),
+                 regexp = "No valid sampleIDs")
     
     expect_warning(cropSamples(overlayImage, 
                                sampleIDs = c(samps,"fakeID"), 
-                               sampsOnly = TRUE))
+                               sampsOnly = TRUE),
+                   regexp = "invalid sampleIDs given")
 })
 
 testthat::test_that("flipX works",{
+    #Spec 3. The function requires valid input. 
+    expect_error(flipX("overlay"), 
+                 regexp = "Overlay must be a SpatialOverlay object")
+    expect_error(flipX(overlay), regexp = "No image is attached")
+    
     #Spec 1. The function returns expected coordinates.
     expect_true(all(abs(image_info(showImage(overlayImage))$width - 
                         coords(overlayImage)$xcoor) == 
@@ -85,6 +118,11 @@ testthat::test_that("flipX works",{
 })
 
 testthat::test_that("flipY works",{
+    #Spec 3. The function requires valid input. 
+    expect_error(flipX("overlay"), 
+                 regexp = "Overlay must be a SpatialOverlay object")
+    expect_error(flipX(overlay), regexp = "No image is attached")
+    
     #Spec 1. The function returns expected coordinates.
     expect_true(all(abs(image_info(showImage(overlayImage))$height - 
                             coords(overlayImage)$ycoor) == 
@@ -97,9 +135,11 @@ testthat::test_that("flipY works",{
 testthat::test_that("coloring changes need 4 channel image",{
     #Spec 1. The function only works on 4-channel images.
     expect_error(changeColoringIntensity(overlay, minInten = 0, 
-                                         maxInten = 100000, dye = "Cy3"))
+                                         maxInten = 100000, dye = "Cy3"),
+                 regexp = "Image in overlay must be the raw 4-channel image")
     #Spec 1. The function only works on 4-channel images.
-    expect_error(changeImageColoring(overlay, "orange", "Cy3"))
+    expect_error(changeImageColoring(overlay, "orange", "Cy3"),
+                 regexp = "Image in overlay must be the raw 4-channel image")
 })
 
 overlay <- add4ChannelImage(overlay, tiff, res = 8)
@@ -162,6 +202,10 @@ testthat::test_that("imageColoring works",{
 })
 
 testthat::test_that("recoloring works",{
+    #Spec 4. The function requires valid input. 
+    expect_error(recolor(overlayImage), 
+                 regexp = "Image in overlay must be the raw 4-channel image")
+    
     fluorChange <- changeImageColoring(overlay, "orange", dye = "Cy3")
     overlayRGB <- recolor(fluorChange)
     

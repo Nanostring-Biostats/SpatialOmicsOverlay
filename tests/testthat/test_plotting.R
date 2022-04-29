@@ -21,7 +21,8 @@ overlay <- createCoordFile(SpatialOverlay(slideName = "normal3",
 testthat::test_that("plotSpatialOverlay requires valid colorBy variable",{
     #Spec 1. The function requires valid colorBy variable.
     expect_error(plotSpatialOverlay(overlay, colorBy = "tissue", 
-                                    hiRes = F, scaleBar = F))
+                                    hiRes = F, scaleBar = F),
+                 regexp = "colorBy not in plotFactors")
 })
 
 overlay <- addPlottingFactor(overlay, kidneyAnnots, plottingFactor = "Segment_type")
@@ -110,9 +111,10 @@ scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney,
                          scaleBarWidth = 0.2)
 
 testthat::test_that("scaleBarMath is correct",{
-    #Spec 1. The function expects size to be between 0-1.
+    #Spec 1. The function expects scaleBarWidth to be between 0-1.
     expect_error(scaleBarMath(scanMetadata = scanMetadataKidney, 
-                              pts = coords(overlay), size = 10))
+                              pts = coords(overlay), scaleBarWidth = 10),
+                 regexp = "scaleBarWidth must be a decimal number between 0 and 1")
     
     #Spec 2. The function returns a list with the expected names and values.
     expect_true(class(scaleBar) == "list")
@@ -145,7 +147,8 @@ testthat::test_that("scaleBarMath is correct",{
 
 testthat::test_that("scaleBarCalculation is correct",{
     #Spec 1. The function only works with valid corner value.
-    expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"))
+    expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"),
+                 regexp = "Provided corner is not valid")
     
     #Spec 2. The function returns a list of numeric values.
     scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
@@ -224,7 +227,8 @@ testthat::test_that("scaleBarPrinting is correct",{
     #Spec 1. The function only works with valid corner value.
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                           hiRes = F, scaleBar = T, 
-                                          corner = "fakeCorner"))
+                                          corner = "fakeCorner"),
+                 regexp = "Provided corner is not valid")
     #Spec 2. The function produces a ggplot object.
     expect_error(gp <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
                                           hiRes = F, scaleBar = T), NA)
@@ -314,7 +318,8 @@ testthat::test_that("scale bar math on images",{
 })
 
 testthat::test_that("scale bar calculation on images",{
-        expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"))
+    expect_error(scaleBarCalculation(scaleBar = scaleBar, corner = "fakeCorner"),
+                 regexp = "Provided corner is not valid")
     
     #Spec 2. The function returns a list of numeric values.
     scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = "bottomright")
@@ -401,7 +406,8 @@ testthat::test_that("scale bar prints",{
 testthat::test_that("fluorLegend works",{
     
     #Spec 1. The function only works on valid nrow values.  
-    expect_error(fluorLegend(overlayImage8, nrow = 6, textSize = 10, alpha = 1))
+    expect_error(fluorLegend(overlayImage8, nrow = 6, textSize = 10, alpha = 1),
+                 regexp = "legend can only have")
     
     #Spec 2. The function produces reproducible legends. 
     vdiffr::expect_doppelganger("fluorLegend 1 row", fluorLegend(overlayImage8, nrow = 1, 

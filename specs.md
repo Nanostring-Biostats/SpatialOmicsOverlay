@@ -7,6 +7,8 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L40
 4. The function produces reproducible results.       
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L34
+5. The function must have SpatialOverlay object input.
+test:
 
 #### Specs for add4ChannelImage:  
 1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
@@ -15,6 +17,8 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L90
 3. The function scales the coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L99
+4. The function must have SpatialOverlay object input.
+test: 
 
 #### Specs for addImageFile:  
 1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
@@ -25,6 +29,8 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L149
 4. The function produces reproducible results.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_addImage.R#L144
+5. The function must have SpatialOverlay object input.
+test:
 
 #### Specs for addPlottingFactor:  
 1. The function only works on one factor at a time regardless of input type.     
@@ -97,7 +103,7 @@ When outline == TRUE,
 1. The function creates coordinates for mask = 1 points. Coordinates are put into full image range and changed from base1 to base0.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_coordinateGeneration.R#L74
 
-#### Specs for pencilSortingCoords:
+#### Specs for pencilCoordSorting:
 1. The function sorts outline coordinates by proximity. >99% of differences between adjacent coordinates is 1.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_coordinateGeneration.R#L101
 2. The function sorts outline coordinates by proximity. The max difference is <100.  
@@ -114,6 +120,10 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 #### Specs for Boundary:
 1. The function returns expected number of neighbors.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_coordinateGeneration.R#L145
+
+### Specs for moveCoords:
+1. The function moves only expected coordinate by 1.     
+test:
 
 #### Specs for scaleCoords: 
 1. The function scales the coordinates based on the size of the image.  
@@ -156,8 +166,12 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L14
 3. The function produces reproducible results.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L17
+4. The function requires valid input.     
+test:
 
 #### Specs for cropSamples:
+1. The function requires valid input.     
+test:
 
 When sampsOnly = TRUE,
 
@@ -186,12 +200,16 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L78
 2. The function produces reproducible results.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L83
+3. The function requires valid input.      
+test:
 
 #### Specs for flipY:
 1. The function returns expected coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L88
 2. The function produces reproducible results.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L93
+3. The function requires valid input.      
+test:
 
 #### Specs for changeColoringIntensity:
 1. The function only works on 4-channel images.  
@@ -218,6 +236,8 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L176
 3. The function produces reproducible results.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_imageManipulation.R#L182
+4. The function requires valid input.      
+test:
 
 #### Specs for parseScanMetadata:
 1. The function works on ometiff variable instead of expected xml.  
@@ -236,7 +256,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_parsing.R#L91
 
 #### Specs for parseOverlayAttrs:
-1. The function requires correct labworksheet boolean.  
+1. The function requires correct inputs..  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_parsing.R#L105
 2. The function only works with valid sample names.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_parsing.R#L112
@@ -372,8 +392,6 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebe
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_SpatialOverlay.R#L15
 2. The class accessors work as expected.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_SpatialOverlay.R#L43
-3. The class replacers work as expected.   
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/2a68865ebee908a149de508b5f0ccc92220e8fca/tests/testthat/test_SpatialOverlay.R#L87
 
 #### Specs for SpatialPosition-class:
 1. The class is formatted correctly.   

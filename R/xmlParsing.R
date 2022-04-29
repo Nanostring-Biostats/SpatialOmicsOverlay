@@ -148,7 +148,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
     }
     
     if(nrow(AOIattrs) < nrow(annots)){
-        names(annots)[names(annots) == "SegmentID"] <- "Sample_ID"
+        names(annots)[names(annots) == "SegmentDisplayName"] <- "Sample_ID"
         warning(paste("Some AOIs do not match annotation file. \nNot Matched:",
                       paste(annots$Sample_ID[!annots$Sample_ID %in% AOIattrs$Sample_ID], 
                             collapse = ", ")))
@@ -346,7 +346,7 @@ annotMatching <- function(annots, ROInum, maskNum, maskText){
         
         annots <- annots[maskNum,]
         annots <- annots[,c("SegmentDisplayName", "SegmentID")]
-        colnames(annots) <- c("SegmentDisplayName", "Sample_ID")
+        colnames(annots) <- c("Sample_ID", "SegmentID")
     }
     
     return(annots)

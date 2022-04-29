@@ -2,7 +2,8 @@ tifFile <- downloadMouseBrainImage()
 
 testthat::test_that("Error when xml path doesn't exist",{
     #Spec 1. The function only works with valid ometiff file.  
-    expect_error(xmlExtraction("fakeFilePath.ome.tiff"))
+    expect_error(xmlExtraction("fakeFilePath.ome.tiff"),
+                 regexp = "ometiff file does not exist")
 })
 
 xml <- xmlExtraction(ometiff = tifFile, saveFile = T)
@@ -36,7 +37,8 @@ scanMeta <- parseScanMetadata(xml)
 
 testthat::test_that("correct image gets extracted", {
     #Spec 1. The function only extracts valid res layers.
-    expect_error(imageExtraction(ometiff = tifFile, res = 9))
+    expect_error(imageExtraction(ometiff = tifFile, res = 9),
+                 regexp = "valid res integers for this image must be between")
     #Spec 2. The function extracts expected res layer.
     for(i in 5:8){
         image <- imageExtraction(ometiff = tifFile, res = i, scanMeta = scanMeta)
@@ -78,7 +80,8 @@ testthat::test_that("saved images are as expected",{
     unlink(imageFile)
     
     expect_error(imageExtraction(ometiff = tifFile, res = 8, scanMeta = scanMeta, 
-                                 saveFile = T, fileType = "fakeFile"))
+                                 saveFile = T, fileType = "fakeFile"),
+                 regexp = "fileType not valid")
 })
 
 testthat::test_that("checkValidRes is correct",{

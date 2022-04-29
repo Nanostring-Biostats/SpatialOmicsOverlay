@@ -6,6 +6,10 @@ overlayImage6 <- addImageOmeTiff(overlay, tiff, res = 6)
 overlayImage8 <- addImageOmeTiff(overlay, tiff, res = 8)
 
 testthat::test_that("Image is added correctly",{
+    #Spec 5. The function must have SpatialOverlay object input.
+    expect_error(addImageOmeTiff("overlay", tiff, res = 7),
+                 regexp = "overlay must be a SpatialOverlay object")
+    
     #Spec 1. The function outputs a list in the image slot containing the 
     #           expected filePath, imagePointer, and resolution.
     expect_true(all(names(overlayImage6@image) == c("filePath", 
@@ -63,15 +67,21 @@ testthat::test_that("Coordinates are scaled",{
 
 testthat::test_that("scaleCoords errors",{
     #Spec 4. Coordinates can't be rescaled.
-    expect_error(scaleCoords(overlayImage6))
+    expect_error(scaleCoords(overlayImage6), 
+                 regexp = "Coordinates are already scaled and can't be scaled again")
     #Spec 5. An image must be in object to scale coordinates.
-    expect_warning(scaleCoords(overlay))
+    expect_warning(scaleCoords(overlay),
+                   regexp = "No image has been added")
 })
 
 overlayImage4Chan6 <- add4ChannelImage(overlay, tiff, res = 6)
 overlayImage4Chan8 <- add4ChannelImage(overlay, tiff, res = 8)
 
 testthat::test_that("4 channel image is added correctly",{
+    #Spec 4. The function must have SpatialOverlay object input.
+    expect_error(add4ChannelImage("overlay", tiff, res = 7),
+                 regexp = "overlay must be a SpatialOverlay object")
+    
     #Spec 1. The function outputs a list in the image slot containing the 
     #           expected filePath, imagePointer, and resolution.
     expect_true(all(names(overlayImage4Chan6@image) == c("filePath", 
@@ -115,6 +125,10 @@ testthat::test_that("Coordinates are scaled",{
     
     expect_false(any(duplicated(coords(overlayImage4Chan6))))
     expect_false(any(duplicated(coords(overlayImage4Chan8))))
+    
+    #Spec 4. The function produces reproducible results
+    expect_true(all(coords(overlayImage4Chan6) == coords(overlayImage6)))
+    expect_true(all(coords(overlayImage4Chan8) == coords(overlayImage8)))
 })
 
 image <- imageExtraction(ometiff = tiff, res = 8, scanMeta = scanMeta(overlay), 
@@ -125,6 +139,10 @@ pngFile <- gsub(".ome.tiff", ".png", tiff)
 overlayImageFile <- addImageFile(overlay, imageFile = pngFile, res = 8)
 
 testthat::test_that("Image from file works", {
+    #Spec 5. The function must have SpatialOverlay object input.
+    expect_error(addImageFile("overlay", tiff, res = 7),
+                 regexp = "overlay must be a SpatialOverlay object")
+    
     #Spec 1. The function outputs a list in the image slot containing the 
     #           expected filePath, imagePointer, and resolution. 
     expect_true(all(names(overlayImageFile@image) == c("filePath", 
@@ -153,4 +171,6 @@ testthat::test_that("Coordinates are scaled",{
     expect_true(all(coords(overlayImageFile)$ycoor < 256))
     
     expect_false(any(duplicated(coords(overlayImageFile))))
+    
+    expect_true(all(coords(overlayImageFile) == coords(overlayImage8)))
 })
