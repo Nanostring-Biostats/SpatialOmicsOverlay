@@ -17,10 +17,10 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_addImage.R#L100
 3. The function scales the coordinates.  
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_addImage.R#L109
-4. The function must have SpatialOverlay object input.               
-test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_addImage.R#L81
-5. The function produces reproducible results.            
+4. The function produces reproducible results.            
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_addImage.R#L129
+5. The function must have SpatialOverlay object input.               
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_addImage.R#L81
 
 #### Specs for addImageFile:  
 1. The function outputs a list in the image slot containing the expected filePath, imagePointer, and resolution.     
