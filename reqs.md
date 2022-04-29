@@ -90,6 +90,13 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
 
 Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-boundary
 
+#### Reqs for moveCoords:
+- The user input overlay, SpatialOverlay object
+- The user input direction, direction to move coordinates
+- The function outputs a SpatialOverlay object
+
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-moveCoords
+
 #### Reqs for scaleCoords:
 - The user input overlay, a SpatialOverlay object
 - The function outputs a SpatialOverlay object  
