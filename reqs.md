@@ -7,7 +7,7 @@
     - The function outputs extracted RGB image in object
     - The function outputs calculates and scales coordinates if initial image or at a different resolution
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-addimageometiff
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-addimageometiff
 
 #### Reqs for addImageFile:
 - The user input overlay, a SpatialOverlay object
@@ -17,7 +17,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs image in object
     - The function outputs calculates and scales coordinates if initial image or at a different resolution
     
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-addimagefile
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-addimagefile
 
 #### Reqs for add4ChannelImage:
 - The user input overlay, a SpatialOverlay object
@@ -28,7 +28,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs extracted 4-channel image in object
     - The function outputs calculates and scales coordinates if initial image or at a different resolution
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-add4channelimage
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-add4channelimage
 
 #### Reqs for addPlottingFactor:
 - The user input overlay, a SpatialOverlay object
@@ -39,7 +39,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs plottingFactor in plotFactors
     - The function matches on SampleID or if unnamed vector assumes correct order
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-addplottingfactor
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-addplottingfactor
 
 #### Reqs for createCoordFile:
 - The user input overlay, a SpatialOverlay object
@@ -50,7 +50,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only returns outline coords on Geometric datasets
     - The function wraps all coordinate generating functions together to add to SpatialOverlay object
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-createcoordfile
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-createcoordfile
 
 #### Reqs for createMask:
 - The user input b64string, a base64 encoded string containing AOI position
@@ -61,7 +61,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs matrix in metadata specified height and width
     - The function outputs only outline coordinates if specified, else all coordinates are output
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-createmask
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-createmask
 
 #### Reqs for coordsFromMask:
 - The user input mask, binary mask matrix
@@ -72,7 +72,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function changes coordinates from 1 base to 0 base
     - The function sorts coordinates if returning outline coords
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-coordsfrommask
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-coordsfrommask
 
 #### Reqs for pencilCoordSorting:
 - The user input coords for an AOI
@@ -81,21 +81,21 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs data.frame containing X,Y coordinates of all AOIs in slide ordered by proximity to the previous coordinate
     - The function does not repeat coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-pencilsortingcoords
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-pencilsortingcoords
 
 #### Reqs for boundary:
 - The user input mat, binary mask matrix
 - The function outputs an vector  
     - The function outputs vector of number of neighbors each point has 
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-boundary
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-boundary
 
 #### Reqs for moveCoords:
 - The user input overlay, SpatialOverlay object
 - The user input direction, direction to move coordinates
 - The function outputs a SpatialOverlay object
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-moveCoords
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-moveCoords
 
 #### Reqs for scaleCoords:
 - The user input overlay, a SpatialOverlay object
@@ -105,7 +105,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function does not scale coordinates if no image in object
     - The function only returns unique coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-scalecoords
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-scalecoords
 
 #### Reqs for imageColoring:
 - The user input omeImage, a 4-channel AnnotatedImage object
@@ -116,7 +116,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function adds 4-channel RGB together for final RGB matrix
     - The function normalizes RGB matrix
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-imagecoloring
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-imagecoloring
 
 #### Reqs for changeImageColoring:
 - The user input overlay, a SpatialOverlay object with 4-channel image
@@ -127,7 +127,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works on objects with 4-channel images
     - The function only changes valid dye colors
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-changeimagecoloring
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-changeimagecoloring
 
 #### Reqs for changeColoringIntensity:
 - The user input overlay, a SpatialOverlay object with 4-channel image
@@ -139,7 +139,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works on objects with 4-channel images
     - The function only changes valid dye colors
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-changecoloringintensity
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-changecoloringintensity
 
 #### Reqs for recolor:
 - The user input overlay, a SpatialOverlay object with 4-channel image
@@ -149,7 +149,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only scales coordinates if needed
     - The function crops to tissue
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-recolor
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-recolor
 
 #### Reqs for flipY:
 - The user input overlay, a SpatialOverlay object
@@ -157,7 +157,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs SpatialOverlay object with Y axis flipped
     - The function flips image and coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-flipy
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-flipy
 
 #### Reqs for flipX:
 - The user input overlay, a SpatialOverlay object
@@ -165,7 +165,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function outputs SpatialOverlay object with X axis flipped
     - The function flips image and coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-flipx
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-flipx
 
 #### Reqs for cropSamples:
 - The user input overlay, a SpatialOverlay object
@@ -181,7 +181,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function generates min/max coords to crop on given sampleIDs 
     - The function filters coordinates to only given sampleIDs if desired
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-cropsamples
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-cropsamples
 
 #### Reqs for cropTissue:
 - The user input overlay, a SpatialOverlay object
@@ -193,7 +193,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function requires image in overlay
     - The function generates min/max coords to crop on tissue 
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-croptissue
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-croptissue
 
 #### Reqs for xmlExtraction:
 - The user input ometiff, file path
@@ -203,7 +203,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works on valid paths
     - The function saves file to same folder as ometiff if desired
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-xmlextraction
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-xmlextraction
 
 #### Reqs for imageExtraction:
 - The user input ometiff, file path
@@ -224,14 +224,14 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only extracts valid res layers
     - The function extracts scanMeta if NULL
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-imageextraction
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-imageextraction
 
 #### Reqs for checkValidRes:
 - The user input ometiff, file path
 - The function outputs an numeric 
     - The function returns highest valid res(olution) value for ometiff
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-checkvalidres
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-checkvalidres
  
 #### Reqs for plotSpatialOverlay:
 - The user input overlay, file path
@@ -259,7 +259,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function adds scalebar if desired
     - The function customizes scale bar 
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-plotspatialoverlay
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-plotspatialoverlay
 
 #### Reqs for scaleBarMath:
 - The user input scanMetadata, scan metadata from XML specifically PhysicalX/Y
@@ -273,7 +273,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function works on all resolutions
     - The function only creates scale bars with round values
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-scalebarmath
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-scalebarmath
 
 #### Reqs for scaleBarCalculation:
 - The user input corner, location for scale bar (default = "bottomright")
@@ -284,7 +284,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works with valid corner 
     - The function calculates scale bar coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-scalebarcalculation
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-scalebarcalculation
 
 #### Reqs for scaleBarPrinting:
 - The user input gp, ggplot object 
@@ -301,7 +301,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function works with or without image
     - The function customizes scale bar
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-scalebarprinting
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-scalebarprinting
 
 #### Reqs for fluorLegend:
 - The user input overlay, SpatialOverlay object 
@@ -330,7 +330,7 @@ Specifications:
     - The function annotations can be NanostringGeomxSet, labWorksheet, or DSPDA output
     - The function is a wrapper for extracting XML, add scan metadata, add overlay attrs, determine dataset segmentation, add image, generate coordinates
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-readspatialoverlay
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-readspatialoverlay
 
 #### Reqs for removeSample:
 - The user input overlay, SpatialOverlay object
@@ -341,7 +341,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function removes samples across all parts of the SpatialOverlay object
     - The function determines if dataset segmentation type
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-removesamples
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-removesamples
 
 #### Reqs for bookendStr:
 - The user input x, string
@@ -350,7 +350,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function returns a string small enough to be legible
     - The function returns first bookend ... last bookend (# total char)
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-bookendstr
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-bookendstr
  
 #### Reqs for readLabWorksheet:
 - The user input lw, labworksheet file path
@@ -360,14 +360,14 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works on valid lw
     - The function only works with valid slide name
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-readlabworksheet
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-readlabworksheet
 
 #### Reqs for downloadMouseBrainImage:
 - The function outputs a tiff file path
     - The function returns a cached tiff file path for Spatial Organ Atlas Mouse Brain OMETIFF
     - The function downloads and untars file if not already cached
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-downloadmousebrainimage
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-downloadmousebrainimage
 
 #### Reqs for parseScanMetadata:
 - The user input omexml, xml list
@@ -375,7 +375,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function returns a list of scan metadata including panel, physical size and fluorescence data
     - The function can handle omexml being the file path to ometiff
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-downloadmousebrainimage
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-downloadmousebrainimage
 
 #### Reqs for parseOverlayAttrs:
 - The user input omexml, xml list
@@ -386,14 +386,14 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function can handle xml files from multiple software versions
     - The function only returns AOIs in both XML and annots
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-parseoverlayattrs
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-parseoverlayattrs
 
 #### Reqs for physicalSizes:
 - The user input omexml, xml list
 - The function outputs a list
     - The function returns a list of PhysicalSizes from xml
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-physicalsizes
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-physicalsizes
 
 #### Reqs for fluorData:
 - The user input omexml, xml list
@@ -401,7 +401,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function returns a data.frame of fluorescence data from xml including: dye, displayname, color, wavelength, target, exposuretime, colorcode, and min/max intensities if avaliable. 
     - The function can work if fluorescence data takes 1 or 2 slots in XML
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-fluordata
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-fluordata
 
 #### Reqs for decodeB64:
 - The user input b64string, base 64 location string
@@ -410,7 +410,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
 - The function outputs a vector
     - The function returns a binary vector of AOI position
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-decodeb64
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-decodeb64
 
 #### Reqs for annotMatching:
 - The user input annots, data.frame of annotations
@@ -422,7 +422,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function only works on valid ROInums
     - The function can work on multiple versions of the software
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-annotmatching
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-annotmatching
 
 #### Reqs for SpatialOverlay-class:
 - The class contains all info pertaining to image
@@ -440,7 +440,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
         - list of image related info: filePath, imagePointer, resolution
 - The class contains accessors and replacers where neccesary 
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-spatialoverlay-class
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-spatialoverlay-class
 
 
 #### Reqs for SpatialPosition-class:
@@ -456,4 +456,4 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
         - Base64 encoded string
 - The class contains accessors and replacers where neccesary 
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-spatialposition-class
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-spatialposition-class
