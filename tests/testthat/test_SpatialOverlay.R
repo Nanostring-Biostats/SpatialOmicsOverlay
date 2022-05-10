@@ -85,6 +85,9 @@ testthat::test_that("SpatialOverlay accessor work as expected",{
     
     expect_true(class(imageInfo(overlay)) == "list")
     expect_identical(imageInfo(overlay), overlay@image)
+    
+    expect_true(class(workflow(overlay)) == "list")
+    expect_identical(workflow(overlay), overlay@workflow)
 })
 
 

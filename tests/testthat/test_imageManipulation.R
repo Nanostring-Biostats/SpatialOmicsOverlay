@@ -25,9 +25,9 @@ testthat::test_that("cropTissue works",{
     
     tissue4chan <- cropTissue(overlay4Chan)
     
-    expect_true(image_info(showImage(overlayImage))$width >
+    expect_true(dim(imageData(showImage(overlay4Chan)))[2] >
                     image_info(showImage(tissue4chan))$width)
-    expect_true(image_info(showImage(overlayImage))$height >
+    expect_true(dim(imageData(showImage(overlay4Chan)))[1] >
                     image_info(showImage(tissue4chan))$height)
     
     vdiffr::expect_doppelganger("cropTissue4Chan", showImage(tissue4chan)) 

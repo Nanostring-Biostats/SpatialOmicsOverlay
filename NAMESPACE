@@ -66,7 +66,7 @@ exportClasses(SpatialPosition)
 
 export(SpatialOverlay, SpatialPosition, position, meta, spatialPos, slideName, 
        overlay, scanMeta, coords, plotFactors, labWork, outline, scaleBarRatio, 
-       fluor, seg, sampNames, showImage, res, scaled, imageInfo)
+       fluor, seg, sampNames, showImage, res, scaled, imageInfo, workflow)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export S4 methods
@@ -74,7 +74,7 @@ export(SpatialOverlay, SpatialPosition, position, meta, spatialPos, slideName,
 exportMethods(SpatialOverlay, SpatialPosition, position, meta, spatialPos, show, 
               slideName, overlay, scanMeta, coords, plotFactors, labWork, 
               outline, scaleBarRatio, fluor, seg, sampNames, showImage, res, 
-              scaled, imageInfo)
+              scaled, imageInfo, workflow)
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### Export non-generic functions
