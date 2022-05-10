@@ -32,5 +32,7 @@ testthat::test_that("SpatialPosition accessors are correct",{
     expect_true(class(meta(AOIattrs)) == "data.frame")
     expect_identical(position(AOIattrs), AOIattrs@position$Position)
     expect_true(class(position(AOIattrs)) == "character")
+    expect_identical(spatialPos(AOIattrs), AOIattrs@position)
+    expect_true(class(spatialPos(AOIattrs)) == "data.frame")
 })
 

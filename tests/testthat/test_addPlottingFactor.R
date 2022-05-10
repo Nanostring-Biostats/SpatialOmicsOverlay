@@ -16,7 +16,8 @@ testthat::test_that("annotation dataframe can be added as plotting Factor",{
     #Spec 3. The function works with a data.frame input, column name 
     #           plotting factor.
     expect_warning(overlay <- addPlottingFactor(overlay, as.data.frame(annots), 
-                                                c("segment", "area")))
+                                                c("segment", "area")),
+                   regexp = "Plotting factors must be added 1 at a time")
     expect_true(names(plotFactors(overlay)) == "segment")
     expect_true(class(plotFactors(overlay)$segment) == "factor")
     expect_identical(as.character(plotFactors(overlay)$segment),
@@ -30,12 +31,18 @@ testthat::test_that("annotation dataframe can be added as plotting Factor",{
     #Spec 4. The function works with a data.frame input, row name plotting 
     #           factor. 
     expect_warning(overlay <- addPlottingFactor(overlay, as.data.frame(counts), 
-                                                geneName))
+                                                geneName),
+                   regexp = "Missing annotations in annots")
     expect_true(all(names(plotFactors(overlay)) == c("segment", geneName)))
     expect_true(class(plotFactors(overlay)[[geneName]]) == "numeric")
     expect_identical(plotFactors(overlay)[[geneName]],
                      as.numeric(counts[geneName, match(rownames(plotFactors(overlay)), 
                                             colnames(counts), nomatch = 0)]))
+    
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, as.data.frame(counts), 
+                                   NULL),
+                 regexp = "Please provide valid plottingFactor")
 })
 
 testthat::test_that("annotation matrix can be added as plotting Factor",{
@@ -43,7 +50,8 @@ testthat::test_that("annotation matrix can be added as plotting Factor",{
     #           type. 
     #Spec 5. The function works with a matrix input, column name plotting factor.
     expect_warning(overlay <- addPlottingFactor(overlay, as.matrix(annots),
-                                                c("segment", "area")))
+                                                c("segment", "area")),
+                   regexp = "Plotting factors must be added 1 at a time")
     expect_true(names(plotFactors(overlay)) == "segment")
     expect_true(class(plotFactors(overlay)$segment) == "factor")
     expect_identical(as.character(plotFactors(overlay)$segment),
@@ -56,13 +64,19 @@ testthat::test_that("annotation matrix can be added as plotting Factor",{
     #           in object regardless of input type.
     #Spec 6. The function works with a matrix input, row name plotting factor.  
     expect_warning(overlay <- addPlottingFactor(overlay, as.matrix(counts), 
-                                                geneName))
+                                                geneName),
+                   regexp = "Missing annotations in annots")
     expect_true(all(names(plotFactors(overlay)) == c("segment", geneName)))
     expect_true(class(plotFactors(overlay)[[geneName]]) == "numeric")
     expect_identical(plotFactors(overlay)[[geneName]],
                      as.numeric(counts[geneName, match(rownames(plotFactors(overlay)), 
                                                        colnames(counts), 
                                                        nomatch = 0)]))
+    
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, as.matrix(counts), 
+                                   NULL),
+                 regexp = "Please provide valid plottingFactor")
 })
 
 testthat::test_that("annotation vectors can be added as plotting Factor",{
@@ -70,14 +84,16 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
     #           samples in object.
     expect_error(suppressWarnings(addPlottingFactor(overlay, 
                                                     annots$segment[1:4],
-                                                    "test")))
+                                                    "test")),
+                 regexp = "Length of annots does not match samples in overlay")
     
     #Spec 8. The function only matches vectors if they are named, otherwise 
     #           assumed in correct order.
     #Spec 9. The function works with character vectors.
     expect_warning(overlay <- addPlottingFactor(overlay, 
                                                 as.character(annots$segment), 
-                                                "segmentNonNamed"))
+                                                "segmentNonNamed"),
+                   regexp = "No names on vector")
     annot <- as.character(annots$segment)
     names(annot) <- annots$Sample_ID
     expect_warning(overlay <- addPlottingFactor(overlay, annot, "segmentNamed"), 
@@ -90,12 +106,19 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
                      annots$segment[match(rownames(plotFactors(overlay)), 
                                           annots$Sample_ID, nomatch = 0)])
     
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, 
+                                   as.character(annots$segment), 
+                                   NULL),
+                 regexp = "Please provide valid plottingFactor")
+    
     #Spec 8. The function only matches vectors if they are named, otherwise 
     #           assumed in correct order.
     #Spec 10. The function works with factor vectors.
     expect_warning(overlay <- addPlottingFactor(overlay, 
                                                 as.factor(annots$segment), 
-                                                "segmentNonNamedFactor"))
+                                                "segmentNonNamedFactor"),
+                   regexp = "No names on vector")
     annot <- as.factor(annots$segment)
     names(annot) <- annots$Sample_ID
     expect_warning(overlay <- addPlottingFactor(overlay, annot, "segmentNamedFactor"), NA)
@@ -109,12 +132,19 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
                      annots$segment[match(rownames(plotFactors(overlay)), 
                                           annots$Sample_ID, nomatch = 0)])
     
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, 
+                                   as.factor(annots$segment), 
+                                   NULL),
+                 regexp = "Please provide valid plottingFactor")
+    
     #Spec 8. The function only matches vectors if they are named, otherwise 
     #           assumed in correct order.
     #Spec 11. The function works with numeric vectors.
     expect_warning(overlay <- addPlottingFactor(overlay, 
                                                 as.numeric(annots$area), 
-                                                "areaNonNamed"))
+                                                "areaNonNamed"),
+                   regexp = "No names on vector")
     annot <-  as.numeric(annots$area)
     names(annot) <- annots$Sample_ID
     expect_warning(overlay <- addPlottingFactor(overlay, annot, "areaNamed"), NA)
@@ -126,6 +156,12 @@ testthat::test_that("annotation vectors can be added as plotting Factor",{
     expect_identical(plotFactors(overlay)$areaNamed,
                      annots$area[match(rownames(plotFactors(overlay)), 
                                        annots$Sample_ID, nomatch = 0)])
+    
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, 
+                                   as.numeric(annots$area), 
+                                   NULL),
+                 regexp = "Please provide valid plottingFactor")
 })
 
 library(GeomxTools)
@@ -151,4 +187,8 @@ testthat::test_that("annotation GeoMxSet object can be added as plotting Factor"
     expect_true(all(plotFactors(overlay)$Cryab ==
                      exprs(GxT)["Cryab", match(rownames(plotFactors(overlay)), 
                                              sData(GxT)$SampleID, nomatch = 0)]))
+    
+    #Spec 14. The function can handle NULL inputs. 
+    expect_error(addPlottingFactor(overlay, GxT, NULL),
+                 regexp = "Please provide valid plottingFactor")
 })

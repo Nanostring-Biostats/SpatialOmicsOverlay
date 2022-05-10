@@ -82,6 +82,9 @@ imageColoring <- function(omeImage, scanMeta){
 #' @export
 #'
 changeImageColoring <- function(overlay, color, dye){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
     if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
@@ -136,6 +139,9 @@ changeImageColoring <- function(overlay, color, dye){
 #'
 changeColoringIntensity <- function(overlay, minInten = NULL,
                                     maxInten = NULL, dye){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
     if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
@@ -201,6 +207,9 @@ changeColoringIntensity <- function(overlay, minInten = NULL,
 #' @export
 #'
 recolor <- function(overlay){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
     if(!is(showImage(overlay),"AnnotatedImage")){
         stop("Image in overlay must be the raw 4-channel image, please run add4ChannelImage()")
     }
@@ -239,10 +248,19 @@ recolor <- function(overlay){
 #' @export 
 #' 
 flipY <- function(overlay){
-    overlay@image$imagePointer <- image_flip(showImage(overlay))
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
     
-    overlay@coords$ycoor <- abs(image_info(showImage(overlay))$height - 
-                                     coords(overlay)$ycoor)
+    if(!is.null(showImage(overlay))){
+        overlay@image$imagePointer <- image_flip(showImage(overlay))
+        
+        overlay@coords$ycoor <- abs(image_info(showImage(overlay))$height - 
+                                        coords(overlay)$ycoor)
+    }else{
+        stop("No image is attached, please attach image before running")
+    }
+    
     
     return(overlay)
 }
@@ -270,10 +288,18 @@ flipY <- function(overlay){
 #' @export 
 #' 
 flipX <- function(overlay){
-    overlay@image$imagePointer <- image_flop(showImage(overlay))
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
     
-    overlay@coords$xcoor <- abs(image_info(showImage(overlay))$width - 
-                                     coords(overlay)$xcoor)
+    if(!is.null(showImage(overlay))){
+        overlay@image$imagePointer <- image_flop(showImage(overlay))
+
+        overlay@coords$xcoor <- abs(image_info(showImage(overlay))$width - 
+                                         coords(overlay)$xcoor)
+    }else{
+        stop("No image is attached, please attach image before running")
+    }
     
     return(overlay)
 }
@@ -384,6 +410,10 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' @export 
 #' 
 cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
+    
     if(!all(sampleIDs %in% sampNames(overlay))){
         missing <- sampleIDs[which(!sampleIDs %in% sampNames(overlay))]
         warning(paste("invalid sampleIDs given, proceeding with only valid sampleIDs. 
@@ -473,6 +503,10 @@ cropSamples <- function(overlay, sampleIDs, buffer = 0.1, sampsOnly = TRUE){
 #' @export 
 #'
 cropTissue <- function(overlay, buffer = 0.05){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("Overlay must be a SpatialOverlay object")
+    }
+    
     if(is.null(showImage(overlay))){
         stop("No image found. Run addImageOmeTiff() before running this function")
     }

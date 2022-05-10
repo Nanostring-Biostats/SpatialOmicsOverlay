@@ -10,9 +10,9 @@ scanMetadataKidney <- parseScanMetadata(kidneyXML)
 
 kidneyAOIattrs <- parseOverlayAttrs(kidneyXML, kidneyAnnots, labworksheet = FALSE)
 
-AOImeta <- meta(kidneyAOIattrs)[meta(kidneyAOIattrs)$SegmentDisplayName == 
+AOImeta <- meta(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == 
                                     "normal3_scan | 002 | neg",]
-AOIposition <- position(kidneyAOIattrs)[meta(kidneyAOIattrs)$SegmentDisplayName == 
+AOIposition <- position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == 
                                             "normal3_scan | 002 | neg"]
 
 testthat::test_that("decodeB64 is correct",{
@@ -114,6 +114,12 @@ overlay <- createCoordFile(SpatialOverlay(slideName = "normal3",
                                           overlayData = kidneyAOIattrs), 
                            outline = FALSE)
 
+testthat::test_that("createCoordFile expects SpatialOverlay object",{
+    #Spec 4. The function must have SpatialOverlay object input.
+    expect_error(createCoordFile("overlay"),
+                 regexp = "Overlay must be a SpatialOverlay object")
+})
+
 testthat::test_that("createCoordFile puts data in correct spot",{
     #Spec 1. The function places coordinates in correct location. 
     expect_true(!is.null(coords(overlay)))
@@ -129,7 +135,8 @@ testthat::test_that("createCoordFile is correct",{
                                      pythonTruth$AOI,
                                      pythonTruth$xcoor),]
     
-    expect_true(all(coords == pythonTruth[,c("AOI","ycoor","xcoor")]))
+    expect_true(all(coords[,c("ycoor", "xcoor")] == 
+                        pythonTruth[,c("ycoor","xcoor")]))
 })
 
 testthat::test_that("Outline points on segemented data - warning",{
@@ -137,7 +144,8 @@ testthat::test_that("Outline points on segemented data - warning",{
     expect_warning(createCoordFile(SpatialOverlay(slideName = "normal3", 
                                                   scanMetadata = scanMetadataKidney, 
                                                   overlayData = kidneyAOIattrs), 
-                                   outline = TRUE))
+                                   outline = TRUE),
+                   regexp = "Outline coordinates do not work in segmented data")
 })
 
 
@@ -162,4 +170,19 @@ testthat::test_that("Boundary is behaving as expected",{
     testBound <- matrix(c(0,0,0,0,1,0,0,0,0), ncol = 3, nrow = 3)
     expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                  matrix(c(1,1,1,1,0,1,1,1,1), ncol = 3, nrow = 3))
+})
+
+testthat::test_that("moveCoords works as expected",{
+    #Spec 1. The function moves only expected coordinate by 1. 
+    expect_identical(coords$xcoor, coords(moveCoords(overlay, "up"))$xcoor)
+    expect_identical(coords$ycoor+1, coords(moveCoords(overlay, "up"))$ycoor)
+    
+    expect_identical(coords$xcoor, coords(moveCoords(overlay, "down"))$xcoor)
+    expect_identical(coords$ycoor-1, coords(moveCoords(overlay, "down"))$ycoor)
+    
+    expect_identical(coords$xcoor-1, coords(moveCoords(overlay, "left"))$xcoor)
+    expect_identical(coords$ycoor, coords(moveCoords(overlay, "left"))$ycoor)
+    
+    expect_identical(coords$xcoor+1, coords(moveCoords(overlay, "right"))$xcoor)
+    expect_identical(coords$ycoor, coords(moveCoords(overlay, "right"))$ycoor)
 })

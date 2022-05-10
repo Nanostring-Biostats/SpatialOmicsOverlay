@@ -23,6 +23,9 @@
 #' 
 #' @export
 addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("overlay must be a SpatialOverlay object")
+    }
     
     if(is.null(ometiff)){
         ometiff <- imageInfo(overlay)$filePath
@@ -62,6 +65,10 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #' 
 #' @export
 addImageFile <- function(overlay, imageFile = NULL, res = NULL){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("overlay must be a SpatialOverlay object")
+    }
+    
     if(is.null(res)){
         res <- res(overlay)
     }
@@ -104,6 +111,9 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 #' 
 #' @export
 add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
+    if(!is(overlay,"SpatialOverlay")){
+        stop("overlay must be a SpatialOverlay object")
+    }
     
     if(is.null(ometiff)){
         ometiff <- imageInfo(overlay)$filePath

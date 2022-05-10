@@ -101,10 +101,15 @@ testthat::test_that("Physical Sizes returns correctly",{
     expect_equal(ps$Y, c("µm/pixel"=0.4003363), tolerance = 1e-6)
 })
 
-testthat::test_that("Errors when incorrect boolean for labworksheet",{
-    #Spec 1. The function requires correct labworksheet boolean
+testthat::test_that("Errors with invalid inputs",{
+    #Spec 1. The function requires correct inputs.
     expect_error(parseOverlayAttrs(omexml = extracted, annots = annots, 
-                                         labworksheet = FALSE))
+                                         labworksheet = FALSE),
+                 regexp = "Please change labWorksheet")
+    
+    expect_error(parseOverlayAttrs(omexml = extracted, annots = "annots", 
+                                   labworksheet = TRUE),
+                 regexp = "File must be read into R and passed as a dataframe")
 })
 
 
@@ -112,7 +117,8 @@ testthat::test_that("Warnings occur when AOIs are missing or mislabeled",{
     #Spec 2. The function only works with valid sample names.
     expect_warning(AOIattrs <- parseOverlayAttrs(omexml = extracted, 
                                                  annots = annots, 
-                                                 labworksheet = TRUE))
+                                                 labworksheet = TRUE),
+                   regexp = "Some AOIs do not match annotation file")
 })
 
 AOIattrs <- suppressWarnings(parseOverlayAttrs(omexml = extracted, annots = annots, 
@@ -150,11 +156,11 @@ testthat::test_that("annotMatching is correct",{
                 totalPixels[j] <- pixels/scanMetadataKidney$PhysicalSizes$X
             }
             
-            subsetAnnots <- kidneyAnnots[kidneyAnnots$SegmentID %in% ROI$Sample_ID,]
+            subsetAnnots <- kidneyAnnots[kidneyAnnots$SegmentDisplayName %in% ROI$Sample_ID,]
             
-            expect_true(all(names(sort(totalPixels)) == subsetAnnots$SegmentID[order(subsetAnnots$AOISurfaceArea)]))
+            expect_true(all(names(sort(totalPixels)) == subsetAnnots$SegmentDisplayName[order(subsetAnnots$AOISurfaceArea)]))
         }else{
-            expect_true(ROI$Sample_ID == kidneyAnnots$SegmentID[kidneyAnnots$ROILabel == i])
+            expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == i])
         }
     }
 })

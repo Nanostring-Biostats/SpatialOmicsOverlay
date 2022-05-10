@@ -79,14 +79,15 @@ testthat::test_that("SpatialOverlay accessor work as expected",{
     
     expect_true(class(showImage(overlay)) == "magick-image")
     expect_identical(showImage(overlay), overlay@image$imagePointer)
+    
+    expect_true(class(scaled(overlay)) == "logical")
+    expect_identical(scaled(overlay), overlay@workflow$scaled)
+    
+    expect_true(class(imageInfo(overlay)) == "list")
+    expect_identical(imageInfo(overlay), overlay@image)
+    
+    expect_true(class(workflow(overlay)) == "list")
+    expect_identical(workflow(overlay), overlay@workflow)
 })
 
-geometricOverlay <- removeSample(overlay, sampNames(overlay)[5:length(sampNames(overlay))])
 
-testthat::test_that("SpatialOverlay replacers work as expected",{
-    #Spec 3. The class replacers work as expected. 
-    expect_false(ncol(plotFactors(geometricOverlay)) == ncol(plotFactors(addPlottingFactor(geometricOverlay, 
-                                                                                           annots, "area"))))
-    expect_false(nrow(coords(geometricOverlay)) == nrow(coords(createCoordFile(geometricOverlay, 
-                                                                               outline = TRUE))))
-})

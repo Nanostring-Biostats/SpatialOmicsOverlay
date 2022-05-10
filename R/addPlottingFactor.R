@@ -62,9 +62,15 @@ setGeneric("addPlottingFactor", signature = "annots",
 
 setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
     function(overlay, annots, plottingFactor, countMatrix = "exprs"){
+        if(!is(overlay,"SpatialOverlay")){
+            stop("overlay must be a SpatialOverlay object")
+        }
         if(length(plottingFactor) > 1){
           warning("Plotting factors must be added 1 at a time, continuing with only the first factor")
           plottingFactor <- plottingFactor[1]
+        }
+        if(is.null(plottingFactor)){
+            stop("Please provide valid plottingFactor")
         }
         if(!plottingFactor %in% colnames(sData(annots)) & 
          !plottingFactor %in% rownames(annots)){
@@ -168,9 +174,15 @@ setMethod("addPlottingFactor",  "matrix",
 #' 
 setMethod("addPlottingFactor",  "data.frame",
     function(overlay, annots, plottingFactor){
+        if(!is(overlay,"SpatialOverlay")){
+            stop("overlay must be a SpatialOverlay object")
+        }
         if(length(plottingFactor) > 1){
             warning("Plotting factors must be added 1 at a time, continuing with only the first factor")
             plottingFactor <- plottingFactor[1]
+        }
+        if(is.null(plottingFactor)){
+            stop("Please provide valid plottingFactor")
         }
         if(!plottingFactor %in% colnames(annots) & 
            !plottingFactor %in% rownames(annots)){
@@ -179,8 +191,10 @@ setMethod("addPlottingFactor",  "data.frame",
         
         if(plottingFactor %in% colnames(annots)){
             axis <- "col"
-        }else{
+        }else if(plottingFactor %in% rownames(annots)){
             axis <- "row"
+        }else{
+            stop("plottingFactor must be in row or column names of annots")
         }
         
         samples <- sampNames(overlay)
@@ -254,6 +268,12 @@ setMethod("addPlottingFactor",  "data.frame",
 #' 
 setMethod("addPlottingFactor",  "character",
     function(overlay, annots, plottingFactor){
+        if(!is(overlay,"SpatialOverlay")){
+            stop("overlay must be a SpatialOverlay object")
+        }
+        if(is.null(plottingFactor)){
+            stop("Please provide valid plottingFactor")
+        }
         if(is.null(names(annots))){
           warning("No names on vector, assuming data is in same order as overlay", 
                   immediate. = TRUE)

@@ -19,19 +19,19 @@ setGeneric("SpatialPosition",
 setMethod("SpatialPosition", "missing",
           function(position)
           {
-              position <- data.frame(matrix(integer(), nrow = 0L, 
+              position <- data.frame(matrix(integer(), nrow = 0L,
                                             ncol = length(VALIDNAMES)))
               colnames(position) <- VALIDNAMES
               new2("SpatialPosition",
                    position = position)
           })
-
-setMethod("SpatialPosition", "environment",
-          function(position)
-          {
-              new2("SpatialPosition",
-                   position = position)
-          })
+# 
+# setMethod("SpatialPosition", "environment",
+#           function(position)
+#           {
+#               new2("SpatialPosition",
+#                    position = position)
+#           })
 
 setMethod("SpatialPosition", "matrix",
           function(position)

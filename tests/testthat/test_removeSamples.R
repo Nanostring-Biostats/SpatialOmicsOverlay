@@ -23,7 +23,8 @@ geometricOverlay <- removeSample(overlay, segmentedROIs)
 
 testthat::test_that("removeSamples only removes valid sample names", {
     #Spec 1. The function only works on valid sample names. 
-    expect_warning(temp <- removeSample(overlay = overlay, remove = "fakeSample"))
+    expect_warning(temp <- removeSample(overlay = overlay, remove = "fakeSample"),
+                   regexp = "No valid sample names")
     expect_identical(overlay, temp)
 })
 
