@@ -16,6 +16,7 @@ plotSpatialOverlay(
   ...,
   corner = "bottomright",
   scaleBarWidth = 0.2,
+  scaleBarMicrons = NULL,
   scaleBarColor = NULL,
   scaleBarFontSize = 6,
   scaleBarLineSize = 1.5,
@@ -49,6 +50,8 @@ Options: "bottomright"  "topright"
          "bottomcenter" "topcenter"}
 
 \item{scaleBarWidth}{percent of total figure the scale bar should take up}
+
+\item{scaleBarMicrons}{specific microns to set scale bar at, overrides scaleBarWidth if set}
 
 \item{scaleBarColor}{scale bar & text color}
 
