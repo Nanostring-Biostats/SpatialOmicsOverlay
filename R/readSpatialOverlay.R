@@ -62,7 +62,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
         labWorksheet <- TRUE
         colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else if(endsWith(annots, ".xlsx")){
-        annots <- readxl::read_xlsx(annots, sheet = "SegmentProperties")
+        annots <- readxl::read_xlsx(annots, sheet = 1)
         labWorksheet <- TRUE
         colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else{
