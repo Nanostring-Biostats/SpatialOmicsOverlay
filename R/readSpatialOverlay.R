@@ -60,10 +60,15 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
     }else if(endsWith(tolower(annots), "_labworksheet.txt")){
         annots <- readLabWorksheet(lw = annots, slideName = slideName)
         labWorksheet <- TRUE
+        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else if(endsWith(annots, ".xlsx")){
         annots <- readxl::read_xlsx(annots, sheet = "SegmentProperties")
+        labWorksheet <- TRUE
+        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else{
         annots <- as.data.frame(data.table::fread(file = annots))
+        labWorksheet <- TRUE
+        colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }
     
     if(image == TRUE & is.null(res)){
