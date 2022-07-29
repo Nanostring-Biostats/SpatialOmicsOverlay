@@ -51,13 +51,23 @@ readLabWorksheet <- function(lw, slideName){
         stop("Lab worksheet path is invalid")
     }
     
-    startLine <- grep(readLines(lw), pattern = "^Annotations")
+    if (endsWith(lw, ".xlsx")) {
+        lw <- readxl::read_xlsx(lw, sheet = 1)
+        
+        lw <-  lw[lw$`slide name` == slideName, ]
+    } 
+    else if (endsWith(tolower(lw), "_labworksheet.txt")) {
+        startLine <- grep(readLines(lw), pattern = "^Annotations")
+        
+        lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
+                         fill = TRUE)
+        
+        lw <- lw[lw$slide.name == slideName,]
+    }
     
-    lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
-                     fill = TRUE)
-    lw$ROILabel <- as.numeric(gsub("\"", "", gsub("=", "", lw$roi)))
+    lw$ROILabel <- gsub("\"", "", gsub("=", "", lw$roi))
     
-    lw <- lw[lw$slide.name == slideName,]
+    
     
     if(nrow(lw) == 0){
         stop("No ROIs match given slideName")
