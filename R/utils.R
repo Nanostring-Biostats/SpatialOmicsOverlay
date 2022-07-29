@@ -52,7 +52,7 @@ readLabWorksheet <- function(lw, slideName){
     }
     
     if (endsWith(lw, ".xlsx")) {
-        lw <- readxl::read_xlsx(lw, sheet = 1)
+        lw <- as.data.frame(readxl::read_xlsx(lw, sheet = 1))
         
         lw <-  lw[lw$`slide name` == slideName, ]
     } 
