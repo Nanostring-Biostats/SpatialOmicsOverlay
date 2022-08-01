@@ -88,14 +88,13 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
         gxtSamples <- gsub(".dcc", "", rownames(sData(annots)))
         
         if(any(!samples %in% gxtSamples)){
-          sampIDs <- which(apply(as.matrix(sData(annots)), 2, 
-                                 function(x){any(samples %in% x)}))
+           sampIDs <- which(gxtSamples %in% samples)
           
           if(length(sampIDs) == 0){
               stop("Sample IDs in SpatialOverlay do not match given annots")
           }
           
-          gxtSamples <- sData(annots)[[sampIDs]]
+          gxtSamples <- rownames(sData(annots))[sampIDs]
         }
         
         annots <- annots[,match(samples, gxtSamples, nomatch = 0)]
