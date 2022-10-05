@@ -104,7 +104,33 @@ testthat::test_that("plotSpatialOverlay prints",{
     #Spec 6. The function produces reproducible figures.
     #resulting image too large
     #vdiffr::expect_doppelganger("outline fluorLegend", gp)
+    
+    
 })
+
+
+testthat::test_that("scaleBarMicrons works as intended", {
+ 
+ # Should have "2075" labeled
+ gp1 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black")
+ 
+ # Should have "2000" labled
+ gp2 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+                           scaleBarMicrons = 2000)
+ # Should have "2075" labeled AND have a warning that the bar was set to high
+ expect_warning(gp3 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                                          scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+                                          scaleBarMicrons = 2000000), 
+                "scaleBarMicrons is bigger than image, will use given scaleBarWidth value instead")
+ 
+ # doppelgangers from the above
+ vdiffr::expect_doppelganger("scale bar check 1", gp1)
+ vdiffr::expect_doppelganger("scale bar check 2", gp2)
+ vdiffr::expect_doppelganger("scale bar check 3", gp3)
+})
+
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
                          pts = coords(overlay), 
