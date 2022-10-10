@@ -245,6 +245,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
 - The user input ..., extra values for scale bar plotting
 - The user input corner, scale bar corner (default = "bottomright")
 - The user input scaleBarWidth, scale bar width of image percentage (default = 0.2)
+- The user input scaleBarMicrons, scale bar width in microns (default = NULL)
 - The user input scaleBarColor, scale bar color (default = "black")
 - The user input scaleBarFontSize, scale bar font size value (default = 6)
 - The user input scaleBarLineSize, scale bar line size value (default = 1.5)
