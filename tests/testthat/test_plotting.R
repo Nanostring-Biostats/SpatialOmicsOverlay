@@ -126,8 +126,11 @@ testthat::test_that("scaleBarMicrons works as intended", {
                 "scaleBarMicrons is bigger than image, will use given scaleBarWidth value instead")
  
  # doppelgangers from the above
+ #Spec 1. The function uses scaleBarWidth if scaleBarMicrons is not set.
  vdiffr::expect_doppelganger("scale bar check 1", gp1)
+ #Spec 2. The function sets scale bar to be equal to scaleBarMicrons.
  vdiffr::expect_doppelganger("scale bar check 2", gp2)
+ #Spec 3. The function uses scaleBarWidth if scaleBarMicrons is not valid. 
  vdiffr::expect_doppelganger("scale bar check 3", gp3)
 })
 
