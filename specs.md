@@ -288,6 +288,7 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_plotting.R#L38
 
 #### Specs for scaleBarMath:
+Using scaleBarWidth
 1. The function expects size to be between 0-1.  
 test:https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_plotting.R#L114
 
@@ -308,6 +309,14 @@ test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_plotting.R#L308
 4. The function calculates the number of pixels for scale bar correctly.   
 test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/tests/testthat/test_plotting.R#L314
+
+Using scaleBarMicrons
+1. The function uses scaleBarWidth if scaleBarMicrons is not set.  
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/fc532b5aaa10d3f0aed6354c38b18a8b86cf2434/tests/testthat/test_plotting.R#L129
+2. The function sets scale bar to be equal to scaleBarMicrons.  
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/fc532b5aaa10d3f0aed6354c38b18a8b86cf2434/tests/testthat/test_plotting.R#L131
+3. The function uses scaleBarWidth if scaleBarMicrons is not valid.   
+test: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/fc532b5aaa10d3f0aed6354c38b18a8b86cf2434/tests/testthat/test_plotting.R#L133
 
 #### Specs for scaleBarCalculation:
 1. The function only works with valid corner value.  
