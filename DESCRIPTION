@@ -36,8 +36,6 @@ Collate: addImage.R
          SpatialOverlay-class.R
          utils.R
          xmlParsing.R
-Remotes:  
-    aoles/RBioFormats
 biocViews: GeneExpression, Transcription, CellBasedAssays, DataImport, 
            Transcriptomics, Proteomics, ProprietaryPlatforms, RNASeq, Spatial,
            DataRepresentation, Visualization
