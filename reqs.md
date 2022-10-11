@@ -245,6 +245,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
 - The user input ..., extra values for scale bar plotting
 - The user input corner, scale bar corner (default = "bottomright")
 - The user input scaleBarWidth, scale bar width of image percentage (default = 0.2)
+- The user input scaleBarMicrons, scale bar width in microns (default = NULL)
 - The user input scaleBarColor, scale bar color (default = "black")
 - The user input scaleBarFontSize, scale bar font size value (default = 6)
 - The user input scaleBarLineSize, scale bar line size value (default = 1.5)
@@ -265,6 +266,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
 - The user input scanMetadata, scan metadata from XML specifically PhysicalX/Y
 - The user input pts, coordinate data.frame
 - The user input scaleBarWidth, percent of image value (default = 0.2)
+- The user input scaleBarMicrons, scale bar width in microns (default = NULL)
 - The user input image, image from SpatialOverlay (default = NULL)
 - The function outputs a list
     - The function returns list of values to print scale bar
@@ -273,7 +275,7 @@ Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/
     - The function works on all resolutions
     - The function only creates scale bars with round values
 
-Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/8d0039f4f5f676885cded726703212875d5abcd2/specs.md#specs-for-scalebarmath
+Specifications: https://github.com/Nanostring-Biostats/SpatialOmicsOverlay/blob/main/specs.md#specs-for-scalebarmath
 
 #### Reqs for scaleBarCalculation:
 - The user input corner, location for scale bar (default = "bottomright")

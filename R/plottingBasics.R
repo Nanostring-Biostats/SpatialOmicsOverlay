@@ -17,7 +17,8 @@
 #'               Options: "bottomright"  "topright"
 #'                        "bottomleft"   "topleft"
 #'                        "bottomcenter" "topcenter" 
-#' @param scaleBarWidth percent of total figure the scale bar should take up 
+#' @param scaleBarWidth percent of total figure the scale bar should take up
+#' @param scaleBarMicrons specific microns to set scale bar at, overrides scaleBarWidth if set 
 #' @param scaleBarColor scale bar & text color
 #' @param scaleBarFontSize font size
 #' @param scaleBarLineSize width of line
@@ -45,8 +46,9 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
                                alpha = 1, legend = TRUE, scaleBar = TRUE, 
                                image = TRUE, fluorLegend = FALSE, ... , 
                                corner = "bottomright", scaleBarWidth = 0.2, 
-                               scaleBarColor = NULL, scaleBarFontSize = 6, 
-                               scaleBarLineSize = 1.5, textDistance = 2){
+                               scaleBarMicrons = NULL, scaleBarColor = NULL, 
+                               scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
+                               textDistance = 2){
     
     if(is(showImage(overlay),"AnnotatedImage")){
         overlay <- recolor(overlay)
@@ -161,7 +163,8 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
         scaleBar <- scaleBarMath(scanMetadata = scanMeta(overlay), 
                                  pts = pts, 
                                  scaleBarWidth = scaleBarWidth,
-                                 image = scaleImage)
+                                 image = scaleImage,
+                                 scaleBarMicrons = scaleBarMicrons)
         gp <- scaleBarPrinting(gp = gp, scaleBar = scaleBar, 
                                scaleBarColor = scaleBarColor, 
                                scaleBarFontSize = scaleBarFontSize, 
@@ -203,13 +206,15 @@ themeTransparent <- function(){
 #' 
 #' @param scanMetadata scan metadata including PhysicalSizeX/Y from xml
 #' @param pts AOI coordinates
-#' @param scaleBarWidth percent of total figure the scale bar should take up 
+#' @param scaleBarWidth percent of total figure the scale bar should take up
+#' @param scaleBarMicrons specific microns to set scale bar at, overrides scaleBarWidth if set 
 #' @param image image from SpatialOverlay or NULL
 #' 
 #' @return values needed to print scale bar
 #' 
 #' @noRd
-scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
+scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, 
+                         scaleBarMicrons = NULL, image = NULL){
     axis <- "X"
     
     # in prep for user defined axis
@@ -263,6 +268,14 @@ scaleBarMath <- function(scanMetadata, pts, scaleBarWidth = 0.20, image = NULL){
     um <- givenPixels * ratio
     
     um <- validSizes[which.min(abs(validSizes - um))]
+    
+    if(!is.null(scaleBarMicrons)){
+        if(scaleBarMicrons > ((maxPtX - minPtX)*ratio)){
+            warning("scaleBarMicrons is bigger than image, will use given scaleBarWidth value instead")
+        }else{
+            um <- scaleBarMicrons
+        }
+    }
     
     pixels <- um / ratio
     names(pixels) <- NULL

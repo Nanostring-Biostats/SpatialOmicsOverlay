@@ -104,7 +104,36 @@ testthat::test_that("plotSpatialOverlay prints",{
     #Spec 6. The function produces reproducible figures.
     #resulting image too large
     #vdiffr::expect_doppelganger("outline fluorLegend", gp)
+    
+    
 })
+
+
+testthat::test_that("scaleBarMicrons works as intended", {
+ 
+ # Should have "2075" labeled
+ gp1 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black")
+ 
+ # Should have "2000" labled
+ gp2 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+                           scaleBarMicrons = 2000)
+ # Should have "2075" labeled AND have a warning that the bar was set to high
+ expect_warning(gp3 <- plotSpatialOverlay(overlay, colorBy = "Segment_type", 
+                                          scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+                                          scaleBarMicrons = 2000000), 
+                "scaleBarMicrons is bigger than image, will use given scaleBarWidth value instead")
+ 
+ # doppelgangers from the above
+ #Spec 1. The function uses scaleBarWidth if scaleBarMicrons is not set.
+ vdiffr::expect_doppelganger("scale bar check 1", gp1)
+ #Spec 2. The function sets scale bar to be equal to scaleBarMicrons.
+ vdiffr::expect_doppelganger("scale bar check 2", gp2)
+ #Spec 3. The function uses scaleBarWidth if scaleBarMicrons is not valid. 
+ vdiffr::expect_doppelganger("scale bar check 3", gp3)
+})
+
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
                          pts = coords(overlay), 
@@ -238,7 +267,20 @@ testthat::test_that("scaleBarPrinting is correct",{
 })
 
 tiff <- downloadMouseBrainImage()
-overlay <- readRDS("testData/muBrain.RDS")
+
+if(!file.exists("muBrain.RDS")){
+  tifFile <- downloadMouseBrainImage()
+  annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                        package = "SpatialOmicsOverlay")
+  
+  overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
+                                                 slideName = "4", outline = FALSE))
+  
+  saveRDS(overlay, "muBrain.RDS")
+}else{
+  overlay <- readRDS( "muBrain.RDS")
+}
+
 
 overlayImage8 <- add4ChannelImage(overlay, tiff, res = 8)
 
