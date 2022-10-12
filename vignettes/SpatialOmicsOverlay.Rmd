@@ -33,10 +33,9 @@ Download package tarball from NanoString's GeoScriptHub (link pending)
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
-BiocManager::install("GeomxTools")
 
-install.packages("path/to/SpatialOmicsOverlay_0.99.11.tar.gz", 
-                 dependencies = TRUE, repos = NULL)
+BiocManager::install("GeomxTools")
+BiocManager::install("SpatialOmicsOverlay")
 ```
 
 # Load Libraries
