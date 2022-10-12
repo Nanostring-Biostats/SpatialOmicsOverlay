@@ -142,7 +142,7 @@ testthat::test_that("fluorData works",{
 
 testthat::test_that("Physical Sizes returns correctly",{
   #Spec 1. The function works returns list with expected names & values.
-  ps <- SpatialOmicsOverlay:::physicalSizes(xml)
+  ps <- physicalSizes(xml)
   expect_true(all(names(ps) == c("X", "Y")))
   expect_true(class(ps) == "list")
   expect_true(class(ps$X) == "numeric")
@@ -182,7 +182,7 @@ testthat::test_that("annotMatching is correct",{
     if(nrow(ROI) > 1){
       totalPixels <- NULL
       for(j in ROI$Sample_ID){
-        pixels <- nrow(SpatialOmicsOverlay:::coordsFromMask(SpatialOmicsOverlay:::createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
+        pixels <- nrow(coordsFromMask(createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
                                                  metadata = ROI[ROI$Sample_ID == j,], 
                                                  outline = FALSE), 
                                       metadata = ROI[ROI$Sample_ID == j,],
@@ -238,7 +238,7 @@ AOIposition <- position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID ==
 testthat::test_that("decodeB64 is correct",{
   #Spec 1. The function produces same values as python truth. 
   pythonTruth <- readRDS("testData/kidneyDecodedTruth.RDS")
-  expect_true(all(as.numeric(SpatialOmicsOverlay:::decodeB64(b64string = AOIposition, width = AOImeta$Width,
+  expect_true(all(as.numeric(decodeB64(b64string = AOIposition, width = AOImeta$Width,
                                        height = AOImeta$Height)) == as.numeric(pythonTruth)))
 })
 
@@ -261,7 +261,7 @@ testthat::test_that("createMask is correct - all coordinates",{
 testthat::test_that("coordsFromMask is correct - all coordinates",{
   #Spec 1. The function creates coordinates for mask = 1 points. Coordinates 
   #           are put into full image range and changed from base1 to base0.
-  coords <- SpatialOmicsOverlay:::coordsFromMask(mask = mask, metadata = AOImeta, 
+  coords <- coordsFromMask(mask = mask, metadata = AOImeta, 
                            outline = FALSE)
   
   expectedCoords <- as.data.frame(which(mask == 1, arr.ind = T))
@@ -287,13 +287,13 @@ testthat::test_that("createMask is correct - outline coordinates",{
   expect_true(class(outlineMask)[1] == "matrix")
   
   #Spec 5. The function create mask with < 0.1% of points with 7 or more neighbors.
-  expect_true(length(which(SpatialOmicsOverlay:::boundary(outlineMask) >= 7)) < length(outlineMask)*0.001)
+  expect_true(length(which(boundary(outlineMask) >= 7)) < length(outlineMask)*0.001)
 })
 
 testthat::test_that("coordsFromMask is correct - outline coordinates",{
   #Spec 1. The function creates coordinates for mask = 1 points. Coordinates 
   #           are put into full image range and changed from base1 to base0.
-  coords <- SpatialOmicsOverlay:::coordsFromMask(outlineMask, AOImeta, outline = F)
+  coords <- coordsFromMask(outlineMask, AOImeta, outline = F)
   
   expectedCoords <- as.data.frame(which(outlineMask == 1, arr.ind = T))
   colnames(expectedCoords) <- c("Y", "X")
@@ -304,7 +304,7 @@ testthat::test_that("coordsFromMask is correct - outline coordinates",{
 })
 
 testthat::test_that("Pencil Sorting works as expected",{
-  sortedCoords <- SpatialOmicsOverlay:::coordsFromMask(outlineMask, AOImeta, outline = T)
+  sortedCoords <- coordsFromMask(outlineMask, AOImeta, outline = T)
   
   sortedCoords$dif <- NA
   
@@ -364,23 +364,23 @@ testthat::test_that("Outline points on segemented data - warning",{
 testthat::test_that("boundary is behaving as expected",{
   #Spec 1. The function returns expected number of neighbors. 
   testBound <- matrix(1, ncol = 3, nrow = 3)
-  expect_equal(matrix(SpatialOmicsOverlay:::boundary(testBound), ncol = 3, nrow = 3),
+  expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                matrix(c(3,5,3,5,8,5,3,5,3), ncol = 3, nrow = 3))
   
   testBound <- matrix(0, ncol = 3, nrow = 3)
-  expect_equal(matrix(SpatialOmicsOverlay:::boundary(testBound), ncol = 3, nrow = 3),
+  expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                matrix(0, ncol = 3, nrow = 3))
   
   testBound <- matrix(c(1,1,1,0,0,0,1,1,1), ncol = 3, nrow = 3)
-  expect_equal(matrix(SpatialOmicsOverlay:::boundary(testBound), ncol = 3, nrow = 3),
+  expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                matrix(c(1,2,1,4,6,4,1,2,1), ncol = 3, nrow = 3))
   
   testBound <- matrix(c(0,0,0,1,1,1,0,0,0), ncol = 3, nrow = 3)
-  expect_equal(matrix(SpatialOmicsOverlay:::boundary(testBound), ncol = 3, nrow = 3),
+  expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                matrix(c(2,3,2,1,2,1,2,3,2), ncol = 3, nrow = 3))
   
   testBound <- matrix(c(0,0,0,0,1,0,0,0,0), ncol = 3, nrow = 3)
-  expect_equal(matrix(SpatialOmicsOverlay:::boundary(testBound), ncol = 3, nrow = 3),
+  expect_equal(matrix(boundary(testBound), ncol = 3, nrow = 3),
                matrix(c(1,1,1,1,0,1,1,1,1), ncol = 3, nrow = 3))
 })
 
@@ -463,10 +463,10 @@ fullSizeY <- 32768
 
 testthat::test_that("correct image gets xml", {
   #Spec 1. The function only extracts valid res layers.
-  expect_error(SpatialOmicsOverlay:::imageExtraction(ometiff = tifFile, res = 9),
+  expect_error(imageExtraction(ometiff = tifFile, res = 9),
                regexp = "valid res integers for this image must be between 1 and")
   #Spec 2. The function extracts expected res layer.
-  image <- SpatialOmicsOverlay:::imageExtraction(ometiff = tifFile, res = 8, 
+  image <- imageExtraction(ometiff = tifFile, res = 8, 
                            scanMeta = scanMetadata)
   expect_true(class(image) == "magick-image")
   expect_true(image_info(image)$width == fullSizeX/2^(8-1))
@@ -516,9 +516,9 @@ testthat::test_that("Coordinates are scaled",{
 
 testthat::test_that("scaleCoords errors",{
   #Spec 4. Coordinates can't be rescaled.
-  expect_error(SpatialOmicsOverlay:::scaleCoords(overlayImage))
+  expect_error(scaleCoords(overlayImage))
   #Spec 5. An image must be in object to scale coordinates.
-  expect_warning(SpatialOmicsOverlay:::scaleCoords(overlayBound))
+  expect_warning(scaleCoords(overlayBound))
 })
 
 overlay4chan <- add4ChannelImage(overlayBound, tifFile, res = 8)
@@ -926,7 +926,7 @@ testthat::test_that("changeImageColoring works",{
 # need help writing a test that isn't just a copy of the function
 testthat::test_that("imageColoring works",{
   #Spec 1. The function creates RGB image arrays.
-  overlayRGB <- SpatialOmicsOverlay:::imageColoring(showImage(overlay4chan), scanMeta(overlay4chan))
+  overlayRGB <- imageColoring(showImage(overlay4chan), scanMeta(overlay4chan))
   
   expect_true(dim(imageData(overlayRGB))[3] == 3)
   
