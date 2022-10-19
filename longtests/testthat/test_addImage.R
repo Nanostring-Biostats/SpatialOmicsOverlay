@@ -1,6 +1,17 @@
 tiff <- downloadMouseBrainImage()
 
-overlay <- readRDS( "testData/muBrain.RDS")
+if(!file.exists("muBrain.RDS")){
+  tifFile <- downloadMouseBrainImage()
+  annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+                        package = "SpatialOmicsOverlay")
+  
+  overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
+                                                 slideName = "4", outline = FALSE))
+  
+  saveRDS(overlay, "muBrain.RDS")
+}else{
+  overlay <- readRDS( "muBrain.RDS")
+}
 
 overlayImage6 <- addImageOmeTiff(overlay, tiff, res = 6)
 overlayImage8 <- addImageOmeTiff(overlay, tiff, res = 8)

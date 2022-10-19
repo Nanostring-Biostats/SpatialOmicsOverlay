@@ -33,10 +33,9 @@ Download package tarball from NanoString's GeoScriptHub (link pending)
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
-BiocManager::install("GeomxTools")
 
-install.packages("path/to/SpatialOmicsOverlay_0.99.11.tar.gz", 
-                 dependencies = TRUE, repos = NULL)
+BiocManager::install("GeomxTools")
+BiocManager::install("SpatialOmicsOverlay")
 ```
 
 # Load Libraries
@@ -151,12 +150,12 @@ Using too big of an image will cause a java memory error. If this error occurs, 
 muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = 1)
 ```
 
-The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial we will be using res = 6. 
+The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial we will be using res = 8 for vignette size restrictions, but res 4-6 is recommended. 
 
 ```{r add image}
 #lowest resolution = fastest speeds
 checkValidRes(ometiff = tifFile)
-res <- 6
+res <- 8
 muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = res)
 muBrain
 showImage(muBrain)
