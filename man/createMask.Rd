@@ -20,7 +20,7 @@ binary mask image
 Create a binary mask from a base 64 string
 }
 \examples{
-
+\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -31,5 +31,5 @@ ROIMask <- createMask(b64string = position(overlay(muBrain))[samp],
                       outline = TRUE)
 
 pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
-
+}
 }

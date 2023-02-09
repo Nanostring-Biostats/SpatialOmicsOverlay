@@ -19,10 +19,10 @@ If generated coordinates do not match the image use this
 function to move coordinates. Coordinates are only changed 1 pixel at a time.
 }
 \examples{
-
+\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 head(coords(muBrain), 3)
 head(coords(moveCoords(muBrain, direction = "up")), 3)                                    
-
+}
 }
