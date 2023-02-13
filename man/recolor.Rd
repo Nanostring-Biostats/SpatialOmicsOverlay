@@ -16,7 +16,7 @@ SpatialOverlay object with RGB image
 recolor images after changing colors and/or color intensities
 }
 \examples{
-
+\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -28,5 +28,5 @@ muBrain <- add4ChannelImage(overlay = muBrain,
 muBrain <- changeImageColoring(overlay = muBrain, color = "magenta", 
                                dye = "Cy5")
 showImage(recolor(muBrain))
-
+}
 }

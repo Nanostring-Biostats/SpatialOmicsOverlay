@@ -8,10 +8,10 @@
 #' @return list of xml data
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' image <- downloadMouseBrainImage()
 #' xml <- xmlExtraction(ometiff = image)
-#' 
+#' }
 #' @importFrom XML xmlInternalTreeParse
 #' @importFrom XML xmlToList
 #' @importFrom RBioFormats read.omexml
@@ -163,10 +163,10 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
 #' @importFrom RBioFormats read.metadata
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' image <- downloadMouseBrainImage()
 #' checkValidRes(ometiff = image)
-#' 
+#' }
 #' @export
 #' 
 checkValidRes <- function(ometiff){

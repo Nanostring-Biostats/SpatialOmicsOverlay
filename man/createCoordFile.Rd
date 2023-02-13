@@ -19,12 +19,12 @@ df of coordinates for every AOI in the scan
 Create coordinate file for entire scan
 }
 \examples{
-
+\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
 muBrain <- createCoordFile(muBrain, outline = FALSE)
 
 head(coords(muBrain))
-
+}
 }

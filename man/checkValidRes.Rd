@@ -16,8 +16,8 @@ value of lowest res image
 Determine lowest resolution image in OME-TIFF
 }
 \examples{
-
+\dontrun{
 image <- downloadMouseBrainImage()
 checkValidRes(ometiff = image)
-
+}
 }

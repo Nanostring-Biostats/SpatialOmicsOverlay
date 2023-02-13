@@ -46,7 +46,7 @@ Create an instance of class \code{\linkS4class{SpatialOverlay}}
 by reading data from OME-TIFF and annotation sheet.
 }
 \examples{
-
+\dontrun{
 muBrain_GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
                          package = "SpatialOmicsOverlay")))
 
@@ -55,7 +55,7 @@ image <- downloadMouseBrainImage()
 muBrain <- readSpatialOverlay(ometiff = image, annots = muBrain_GxT[,1:5], 
                               slideName = "4", image = TRUE, res = 8, 
                               saveFile = FALSE, outline = FALSE)
-
+}
 }
 \seealso{
 \code{\link{SpatialOverlay-class}}

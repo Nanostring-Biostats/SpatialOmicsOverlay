@@ -10,14 +10,14 @@ DIRECTIONS <- c("left", "right", "up", "down")
 #' @return df of coordinates for every AOI in the scan
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrain <- createCoordFile(muBrain, outline = FALSE)
 #' 
 #' head(coords(muBrain))
-#' 
+#' }
 #' @importFrom dplyr bind_rows
 #' @importFrom pbapply pbapply 
 #' 
@@ -78,7 +78,7 @@ createCoordFile <- function(overlay, outline = TRUE){
 #' @return binary mask image 
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -89,7 +89,7 @@ createCoordFile <- function(overlay, outline = TRUE){
 #'                       outline = TRUE)
 #' 
 #' pheatmap::pheatmap(ROIMask, cluster_rows = FALSE, cluster_cols = FALSE)
-#' 
+#' }
 #' @export 
 #' 
 createMask <- function(b64string, metadata, outline = TRUE){
@@ -275,12 +275,12 @@ scaleCoords <- function(overlay){
 #' @return SpatialOverlay object 
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' head(coords(muBrain), 3)
 #' head(coords(moveCoords(muBrain, direction = "up")), 3)                                    
-#' 
+#' }
 #' @export
 moveCoords <- function(overlay, direction = "right"){
     if(!is(overlay,"SpatialOverlay")){

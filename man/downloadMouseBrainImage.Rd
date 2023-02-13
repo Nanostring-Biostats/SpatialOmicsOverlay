@@ -16,7 +16,7 @@ Download Mouse Brain OME-TIFF from NanoString's Spatial Organ Atlas
 https://nanostring.com/products/geomx-digital-spatial-profiler/spatial-organ-atlas/mouse-brain/
 }
 \examples{
-
+\dontrun{
 image <- downloadMouseBrainImage()
-
+}
 }

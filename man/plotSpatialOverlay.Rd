@@ -71,11 +71,11 @@ overlay plots
 hiRes and outline ggplots use fill, lowRes uses color
 }
 \examples{
-
+\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
                                     package = "SpatialOmicsOverlay")))
                              
 plotSpatialOverlay(overlay = muBrain, legend = FALSE,  
                    hiRes = FALSE, scaleBar = FALSE)
-
+}
 }
