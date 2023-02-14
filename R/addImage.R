@@ -11,7 +11,7 @@
 #' @return SpatialOverlay object with image
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -20,7 +20,7 @@
 #' muBrain <- addImageOmeTiff(overlay = muBrain, 
 #'                            ometiff = image, res = 8)
 #' showImage(muBrain)
-#' }
+#' 
 #' @export
 addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
     if(!is(overlay,"SpatialOverlay")){
@@ -98,7 +98,7 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 #' @return SpatialOverlay object with image
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -108,7 +108,7 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
 #'                             ometiff = image, res = 8)
 #'
 #' dim(EBImage::imageData(showImage(muBrain)))
-#' }
+#' 
 #' @export
 add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
     if(!is(overlay,"SpatialOverlay")){

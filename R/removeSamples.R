@@ -6,7 +6,7 @@
 #' @return SpatialOverlay object without samples in remove
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -21,7 +21,7 @@
 #' 
 #' muBrain
 #' muBrainSub
-#' }
+#' 
 #' @export 
 #' 
 

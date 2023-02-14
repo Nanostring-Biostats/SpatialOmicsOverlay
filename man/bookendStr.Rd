@@ -19,8 +19,8 @@ Print first and last n characters of string in this format:
 "### ... ### (x total char)"
 }
 \examples{
-\dontrun{
+
 start_string <- stringi::stri_rand_strings(n = 1, length = 250)
 bookendStr(start_string, bookend = 6)
-}
+
 }

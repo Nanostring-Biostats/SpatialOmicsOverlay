@@ -21,8 +21,8 @@ list of xml data
 Extract xml from OME-TIFF
 }
 \examples{
-\dontrun{
+
 image <- downloadMouseBrainImage()
 xml <- xmlExtraction(ometiff = image)
-}
+
 }

@@ -21,7 +21,7 @@ SpatialPosition of AOIs containing metadata and base64encoded positions
 Parse the xml file for AOI attributes in GeoMx images
 }
 \examples{
-\dontrun{
+
 image <- downloadMouseBrainImage()
 
 xml <- xmlExtraction(ometiff = image)
@@ -34,5 +34,5 @@ muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
 overlay <- parseOverlayAttrs(omexml = xml, 
                              annots = muBrainLW, 
                              labworksheet = TRUE)
-}
+
 }
