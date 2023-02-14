@@ -27,13 +27,13 @@
 #' @return gp 
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
 #'                              
 #' plotSpatialOverlay(overlay = muBrain, legend = FALSE,  
 #'                    hiRes = FALSE, scaleBar = FALSE)
-#' }
+#' 
 #' @importFrom scattermore geom_scattermore
 #' @import ggplot2
 #' @importFrom magick image_ggplot
@@ -410,7 +410,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' @import ggplot2
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -427,7 +427,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
 #' cowplot::ggdraw() + 
 #'     cowplot::draw_plot(gp) +
 #'     cowplot::draw_plot(legend, scale = 0.12, x = -0.3, y = -0.25)
-#' }
+#' 
 #' @export
 #' 
 fluorLegend <- function(overlay, nrow = 4, textSize = 10, 

@@ -18,7 +18,6 @@ SpatialOverlay object
 Crop to remove black boundary around tissue.
 }
 \examples{
-\dontrun{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -31,5 +30,5 @@ muBrainCrop <- cropTissue(overlay = muBrain)
 
 plotSpatialOverlay(overlay = muBrainCrop, legend = FALSE, 
                    hiRes = FALSE, scaleBar = FALSE)
-}              
+                   
 }

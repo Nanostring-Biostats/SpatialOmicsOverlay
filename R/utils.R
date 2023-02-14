@@ -14,10 +14,10 @@ IMAGEFILE <- "image_files/mu_brain_004.ome.tiff"
 #' @return reformatted string
 #' 
 #' @examples 
-#' \dontrun{
+#' 
 #' start_string <- stringi::stri_rand_strings(n = 1, length = 250)
 #' bookendStr(start_string, bookend = 6)
-#' }
+#' 
 #' @export
 bookendStr <- function(x, bookend = 8){
     if(!is(x,"character")){
@@ -40,12 +40,11 @@ bookendStr <- function(x, bookend = 8){
 #' @return df of ROI annotations
 #' 
 #' @examples 
-#' \dontrun{
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
 #' 
 #' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-#' }
+#' 
 #' @export
 readLabWorksheet <- function(lw, slideName){
     if(!file.exists(lw)){
@@ -80,9 +79,9 @@ readLabWorksheet <- function(lw, slideName){
 #' @importFrom BiocFileCache bfccache
 #' 
 #' @examples 
-#' \dontrun{
+#' 
 #' image <- downloadMouseBrainImage()
-#' }
+#'
 #' @export
 downloadMouseBrainImage <- function(){
     fileURL <- paste(URL, IMAGES, sep = "/")
@@ -116,6 +115,10 @@ downloadMouseBrainImage <- function(){
 #' 
 #' @return BioFileCache
 #' 
+#' @examples 
+#' 
+#' bfc <- .get_cache()
+#'
 #' @noRd
 #' 
 .get_cache <- function(){

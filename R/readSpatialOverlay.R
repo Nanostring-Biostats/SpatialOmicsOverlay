@@ -23,7 +23,7 @@
 #' @return \code{\linkS4class{SpatialOverlay}} of slide
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain_GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
 #'                          package = "SpatialOmicsOverlay")))
 #' 
@@ -32,7 +32,7 @@
 #' muBrain <- readSpatialOverlay(ometiff = image, annots = muBrain_GxT[,1:5], 
 #'                               slideName = "4", image = TRUE, res = 8, 
 #'                               saveFile = FALSE, outline = FALSE)
-#' }
+#' 
 #' @importFrom readxl read_xlsx
 #' @importFrom data.table fread
 #' @importFrom GeomxTools sData

@@ -18,13 +18,13 @@ COLORS <- c(Blue  = "#0000feff",
 #' @importFrom XML xmlToList
 #' 
 #' @examples 
-#' \dontrun{
+#' 
 #' image <- downloadMouseBrainImage()
 #' 
 #' xml <- xmlExtraction(ometiff = image)
 #' 
 #' scan_metadata <- parseScanMetadata(omexml = xml)
-#' }
+#' 
 #' @export
 #' 
 
@@ -60,7 +60,6 @@ parseScanMetadata <- function(omexml){
 #' @importFrom XML xmlToList
 #' 
 #' @examples 
-#' \dontrun{
 #' image <- downloadMouseBrainImage()
 #' 
 #' xml <- xmlExtraction(ometiff = image)
@@ -73,7 +72,7 @@ parseScanMetadata <- function(omexml){
 #' overlay <- parseOverlayAttrs(omexml = xml, 
 #'                              annots = muBrainLW, 
 #'                              labworksheet = TRUE)
-#' }
+#' 
 #' @export
 #' 
 

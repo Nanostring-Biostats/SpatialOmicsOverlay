@@ -45,7 +45,7 @@ counts from}
 Add plotting factor to \code{\link{SpatialOverlay}} object
 }
 \examples{
-\dontrun{
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -71,8 +71,8 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              plottingFactor = "ROINum")
 
 head(plotFactors(muBrain))
-}
-\dontrun{
+
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -81,5 +81,5 @@ muBrain <- addPlottingFactor(overlay = muBrain,
                              plottingFactor = "ROINum")
 
 head(plotFactors(muBrain))
-}
+
 }

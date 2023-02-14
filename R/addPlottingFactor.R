@@ -14,7 +14,7 @@
 #' @return \code{\link{SpatialOverlay}} object with new plotting factor
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #'
@@ -40,7 +40,7 @@
 #'                              plottingFactor = "ROINum")
 #' 
 #' head(plotFactors(muBrain))
-#' }
+#' 
 #' @export 
 #' 
 setGeneric("addPlottingFactor", signature = "annots",
@@ -364,7 +364,7 @@ setMethod("addPlottingFactor",  "numeric",
 #' @param plottingFactor  name of the new plotting factor
 #' 
 #' @examples
-#' \dontrun{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #'
@@ -373,7 +373,7 @@ setMethod("addPlottingFactor",  "numeric",
 #'                              plottingFactor = "ROINum")
 #' 
 #' head(plotFactors(muBrain))
-#' }
+#' 
 #' @export
 #' @rdname addPlottingFactor 
 #' 

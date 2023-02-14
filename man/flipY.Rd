@@ -16,7 +16,7 @@ SpatialOverlay object with y axis flipped
 Flip y axis in image and overlay points
 }
 \examples{
-\dontrun{
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -26,5 +26,5 @@ muBrain <- addImageOmeTiff(overlay = muBrain,
                            ometiff = image, res = 8)
 
 showImage(flipY(muBrain))
-}
+
 }
