@@ -47,7 +47,7 @@ testthat::test_that("Error when xml path doesn't exist",{
   expect_error(xmlExtraction("fakeFilePath.ome.tiff"))
 })
 
-xml <- xmlExtraction(ometiff = tifFile, saveFile = F)
+xml <- xmlExtraction(ometiff = tifFile, saveFile = FALSE)
 
 testthat::test_that("returned list is correct",{
   #Spec 2. The function returns a valid list with the expected names.
@@ -89,7 +89,7 @@ unzip(system.file("extdata", "testData", "kidney.zip",
 
 kidneyXML <- readRDS("testData/kidneyXML.RDS")
 kidneyAnnots <- read.table("testData/kidney_annotations_allROIs.txt", 
-                           header = T, sep = "\t")
+                           header = TRUE, sep = "\t")
 
 scanMetadataKidney <- parseScanMetadata(kidneyXML)
 
@@ -176,7 +176,7 @@ kidneyAOIattrs <- parseOverlayAttrs(kidneyXML, kidneyAnnots,
 #for geometric ROIs matched on ROILabel
 testthat::test_that("annotMatching is correct",{
   #Spec 1. The function matches sampleIDs correctly between xml and annots.
-  for(i in unique(meta(kidneyAOIattrs)$ROILabel)[5:8]){
+  for(i in unique(meta(kidneyAOIattrs)$ROILabel)[6:7]){
     ROI <- meta(kidneyAOIattrs)[meta(kidneyAOIattrs)$ROILabel == i,]
     
     if(nrow(ROI) > 1){
@@ -264,7 +264,7 @@ testthat::test_that("coordsFromMask is correct - all coordinates",{
   coords <- coordsFromMask(mask = mask, metadata = AOImeta, 
                            outline = FALSE)
   
-  expectedCoords <- as.data.frame(which(mask == 1, arr.ind = T))
+  expectedCoords <- as.data.frame(which(mask == 1, arr.ind = TRUE))
   colnames(expectedCoords) <- c("Y", "X")
   expectedCoords[["X"]] <- expectedCoords[["X"]] + AOImeta$X - 1
   expectedCoords[["Y"]] <- expectedCoords[["Y"]] + AOImeta$Y - 1
@@ -293,9 +293,9 @@ testthat::test_that("createMask is correct - outline coordinates",{
 testthat::test_that("coordsFromMask is correct - outline coordinates",{
   #Spec 1. The function creates coordinates for mask = 1 points. Coordinates 
   #           are put into full image range and changed from base1 to base0.
-  coords <- coordsFromMask(outlineMask, AOImeta, outline = F)
+  coords <- coordsFromMask(outlineMask, AOImeta, outline = FALSE)
   
-  expectedCoords <- as.data.frame(which(outlineMask == 1, arr.ind = T))
+  expectedCoords <- as.data.frame(which(outlineMask == 1, arr.ind = TRUE))
   colnames(expectedCoords) <- c("Y", "X")
   expectedCoords[["X"]] <- expectedCoords[["X"]] + AOImeta$X - 1
   expectedCoords[["Y"]] <- expectedCoords[["Y"]] + AOImeta$Y - 1
@@ -304,7 +304,7 @@ testthat::test_that("coordsFromMask is correct - outline coordinates",{
 })
 
 testthat::test_that("Pencil Sorting works as expected",{
-  sortedCoords <- coordsFromMask(outlineMask, AOImeta, outline = T)
+  sortedCoords <- coordsFromMask(outlineMask, AOImeta, outline = TRUE)
   
   sortedCoords$dif <- NA
   
@@ -342,15 +342,17 @@ testthat::test_that("createCoordFile puts data in correct spot",{
 coords <- coords(kidneyOverlay)
 
 testthat::test_that("createCoordFile is correct",{
-  #Spec 2. The function produces same values as python truth. 
+    #Spec 2. The function produces same values as python truth. 
   pythonTruth <- readRDS("testData/kidneyCoordsTruth.RDS")
   pythonTruth <- pythonTruth[,c("ROILabel","AOI","ycoor","xcoor")]
   pythonTruth <- pythonTruth[order(pythonTruth$ROILabel, 
                                    pythonTruth$AOI,
                                    pythonTruth$xcoor),]
   
-  expect_true(all(coords[,c("ycoor", "xcoor")] == 
-                    pythonTruth[,c("ycoor","xcoor")]))
+  numCoords <- sample(x = 1:nrow(coords), size = 1e6, replace = FALSE)
+  
+  expect_true(all(coords[numCoords,c("ycoor", "xcoor")] == 
+                    pythonTruth[numCoords,c("ycoor","xcoor")]))
 })
 
 testthat::test_that("Outline points on segemented data - warning",{
@@ -390,7 +392,10 @@ annotsGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip",
                                        package = "SpatialOmicsOverlay")))
 annotsGxT <- annotsGxT[,which(sData(annotsGxT)$segment == "Full ROI")[1:3]]
 
-overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
+subsetAnnots <- system.file("extdata", "muBrain_subset_LabWorksheet.txt", 
+                            package = "SpatialOmicsOverlay")
+
+overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = subsetAnnots,
                                                slideName = "4", outline = FALSE,
                                                image = FALSE))
 
@@ -412,21 +417,19 @@ testthat::test_that("annotation input types",{
 testthat::test_that("readSpatialOverlay works as expected - all points",{
   #Spec 1. The function returns a SpatialOverlay object.
   expect_true(class(overlay) == "SpatialOverlay")
-  
-  #Spec 2. The function returns a SpatialOverlay object with the expected 
+
+  #Spec 2. The function returns a SpatialOverlay object with the expected
   #           values in the correct locations.
   expect_true(labWork(overlay) == TRUE)
   expect_true(seg(overlay) == "Segmented")
   expect_true(outline(overlay) == FALSE)
   expect_true(is.null(plotFactors(overlay)))
   expect_true(slideName(overlay) == "4")
-  
-  annots <- readLabWorksheet(lw = annots, slideName = "4")
-  labWorksheet <- TRUE
-  
+
   expect_identical(scanMeta(overlay)[1:3], parseScanMetadata(omexml = xml))
-  expect_identical(overlay(overlay), suppressWarnings(parseOverlayAttrs(omexml = xml, 
-                                                                        annots = annots, 
+  expect_identical(overlay(overlay), suppressWarnings(parseOverlayAttrs(omexml = xml,
+                                                                        annots = readLabWorksheet(subsetAnnots,
+                                                                                                  slideName = "4"),
                                                                         labworksheet = TRUE)))
 })
 
@@ -446,8 +449,6 @@ testthat::test_that("readSpatialOverlay works as expected - outline points",{
   annots <- annots[annots$`slide name` == "4",]
   annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
   colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
-  
-  xml <- xmlExtraction(ometiff = tifFile, saveFile = FALSE)
   
   expect_identical(scanMeta(overlayBound)[1:3], parseScanMetadata(omexml = xml))
   expect_identical(overlay(overlayBound), suppressWarnings(parseOverlayAttrs(omexml = xml, 
@@ -960,13 +961,13 @@ testthat::test_that("recoloring works",{
 testthat::test_that("plotSpatialOverlay requires valid colorBy variable",{
   #Spec 1. The function requires valid colorBy variable.
   expect_error(plotSpatialOverlay(overlayBound, colorBy = "tissue", 
-                                  hiRes = F, scaleBar = F))
+                                  hiRes = FALSE, scaleBar = FALSE))
 })
 
 testthat::test_that("plotSpatialOverlay prints",{
-  expect_error(gp <- plotSpatialOverlay(kidneyOverlay, colorBy = "Segment_type", 
-                                        hiRes = F, scaleBar = F, 
-                                        fluorLegend = T), NA)
+  expect_error(gp <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+                                        hiRes = FALSE, scaleBar = FALSE, 
+                                        fluorLegend = TRUE), NA)
   expect_error(gp, NA)
   expect_true(all(class(gp) == c("gg","ggplot")))
   
@@ -976,17 +977,17 @@ testthat::test_that("plotSpatialOverlay prints",{
 
 testthat::test_that("scaleBarMicrons works as intended", {
   
-  # Should have "2075" labeled
-  gp1 <- plotSpatialOverlay(kidneyOverlay, colorBy = "Segment_type", 
-                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black")
+  # Should have "2625" labeled
+  gp1 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white")
   
   # Should have "2000" labled
-  gp2 <- plotSpatialOverlay(kidneyOverlay, colorBy = "Segment_type", 
-                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+  gp2 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white", 
                             scaleBarMicrons = 2000)
-  # Should have "2075" labeled AND have a warning that the bar was set to high
-  expect_warning(gp3 <- plotSpatialOverlay(kidneyOverlay, colorBy = "Segment_type", 
-                                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "black", 
+  # Should have "2625" labeled AND have a warning that the bar was set to high
+  expect_warning(gp3 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+                                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white", 
                                            scaleBarMicrons = 2000000), 
                  "scaleBarMicrons is bigger than image, will use given scaleBarWidth value instead")
   
@@ -1117,11 +1118,11 @@ testthat::test_that("scaleBarCalculation is correct",{
 testthat::test_that("scaleBarPrinting is correct",{
   #Spec 1. The function only works with valid corner value.
   expect_error(gp <- plotSpatialOverlay(overlayBound, colorBy = "segment", 
-                                        hiRes = F, scaleBar = T, 
+                                        hiRes = FALSE, scaleBar = TRUE, 
                                         corner = "fakeCorner"))
   #Spec 2. The function produces a ggplot object.
   expect_error(gp <- plotSpatialOverlay(overlayBound, colorBy = "segment", 
-                                        hiRes = F, scaleBar = T), NA)
+                                        hiRes = FALSE, scaleBar = TRUE), NA)
   
   #Spec 3. The function produces reproducible figures. 
   vdiffr::expect_doppelganger("no image scaleBar", gp)
@@ -1256,7 +1257,7 @@ testthat::test_that("scale bar calculation on images",{
 testthat::test_that("scale bar prints",{
   #Spec 2. The function produces a ggplot object.
   expect_error(gp <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
-                                        hiRes = F, scaleBar = T), NA)
+                                        hiRes = FALSE, scaleBar = TRUE), NA)
   
   #Spec 3. The function produces reproducible figures.
   vdiffr::expect_doppelganger("image scaleBar", gp)

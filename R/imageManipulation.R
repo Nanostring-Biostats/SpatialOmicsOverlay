@@ -58,8 +58,8 @@ imageColoring <- function(omeImage, scanMeta){
 #' @return SpatialOverlay object with updated fluor data
 #' 
 #' @examples
-#' \donttest{
-#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay_Image.zip", 
+#' 
+#' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
 #' muBrain <- add4ChannelImage(overlay = muBrain, 
@@ -73,7 +73,7 @@ imageColoring <- function(omeImage, scanMeta){
 #'                                dye = "Alexa 488")
 #' 
 #' fluor(muBrain)
-#' }
+#' 
 #' @importFrom plotrix color.id
 #' @importFrom stringr str_to_title
 #' 
@@ -116,7 +116,7 @@ changeImageColoring <- function(overlay, color, dye){
 #' @return SpatialOverlay object with updated fluor data
 #' 
 #' @examples
-#' \donttest{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -133,7 +133,7 @@ changeImageColoring <- function(overlay, color, dye){
 #'                                    dye = "Cy5")
 #' 
 #' fluor(muBrain)
-#' }
+#' 
 #' @export
 #'
 changeColoringIntensity <- function(overlay, minInten = NULL,
@@ -231,7 +231,6 @@ recolor <- function(overlay){
 #' @return SpatialOverlay object with y axis flipped
 #' 
 #' @examples
-#' \donttest{
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -241,7 +240,7 @@ recolor <- function(overlay){
 #'                            ometiff = image, res = 8)
 #' 
 #' showImage(flipY(muBrain))
-#' }
+#' 
 #' @importFrom magick image_flip
 #' 
 #' @export 
@@ -271,7 +270,7 @@ flipY <- function(overlay){
 #' @return SpatialOverlay object with x axis flipped
 #' 
 #' @examples
-#' \donttest{
+#' 
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -281,7 +280,7 @@ flipY <- function(overlay){
 #'                            ometiff = image, res = 8)
 #' 
 #' showImage(flipX(muBrain))
-#' }
+#' 
 #' @importFrom magick image_flop
 #' 
 #' @export 
@@ -386,7 +385,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' @return SpatialOverlay object
 #' 
 #' @examples
-#' \donttest{
+#'
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
@@ -403,7 +402,7 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
 #' 
 #' plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
 #'                    hiRes = TRUE, legend = FALSE)
-#' }
+#' 
 #' @importFrom magick image_info
 #' 
 #' @export 

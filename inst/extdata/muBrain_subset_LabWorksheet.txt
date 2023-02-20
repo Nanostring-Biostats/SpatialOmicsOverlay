@@ -1,0 +1,26 @@
+Experiment Summary								
+Readout group name	19July2021_MsWTA							
+Date	8/4/2021 22:30							
+Readout mode	NGS							
+Number of Collection Plates	3							
+Number Of AOIs	267							
+Library Prep Protocol Version								
+								
+Library Prep Summary								
+Library Prep Plate	Collection Plate	Primer Plate	Rows	Area				
+19July2021_MsWTA-F	1.013E+12	GeoMx Seq Code F	A - H	5627357.19				
+19July2021_MsWTA-G	1.013E+12	GeoMx Seq Code G	A - G	4434260.1				
+19July2021_MsWTA-H	1.013E+12	GeoMx Seq Code H	A - H	5330410.34				
+Total Area	15392028							
+								
+Annotations								
+Sample_ID	slide name	scan name	panel	roi	segment	aoi	area	tags	
+DSP-1012996073013-H-A01	No Template Control							
+DSP-1012996073013-H-A02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	1	Full ROI	Full ROI-aoi-001	70624.23	
+DSP-1012996073013-H-A03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	2	Full ROI	Full ROI-aoi-001	93228.8	
+DSP-1012996073013-H-A04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	3	Full ROI	Full ROI-aoi-001	82528.56	
+DSP-1012996073013-H-E01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	NeuN+	NeuN+-aoi-001	6455.89	
+DSP-1012996073013-H-E02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	DNA	DNA-aoi-001	36697.57	
+DSP-1012996073013-H-E03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	NeuN+	NeuN+-aoi-001	16393.1	
+DSP-1012996073013-H-E04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	DNA	DNA-aoi-001	42705.2	
+	
