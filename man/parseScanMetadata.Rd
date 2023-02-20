@@ -17,11 +17,11 @@ metadata for entire scan
 Parse the xml file for the scan metadata of GeoMx images
 }
 \examples{
-\dontrun{
+
 image <- downloadMouseBrainImage()
 
 xml <- xmlExtraction(ometiff = image)
 
 scan_metadata <- parseScanMetadata(omexml = xml)
-}
+
 }

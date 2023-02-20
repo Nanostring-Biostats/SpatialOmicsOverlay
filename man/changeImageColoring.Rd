@@ -21,14 +21,12 @@ SpatialOverlay object with updated fluor data
 Update color scheme for changing to RGB image
 }
 \examples{
-\dontrun{
-muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
+\donttest{
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay_Image.zip", 
                                     package = "SpatialOmicsOverlay")))
 
-image <- downloadMouseBrainImage()
-
 muBrain <- add4ChannelImage(overlay = muBrain, 
-                            ometiff = image, res = 8)
+                            ometiff = downloadMouseBrainImage(), res = 8)
 
 fluor(muBrain)
 

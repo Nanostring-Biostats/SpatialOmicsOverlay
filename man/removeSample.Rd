@@ -18,7 +18,7 @@ SpatialOverlay object without samples in remove
 Remove sample(s) from SpatialOverlay
 }
 \examples{
-\dontrun{
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -33,5 +33,5 @@ muBrainSub <- removeSample(overlay = muBrain, remove = samps)
 
 muBrain
 muBrainSub
-}
+
 }

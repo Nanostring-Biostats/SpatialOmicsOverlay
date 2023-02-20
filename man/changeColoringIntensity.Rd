@@ -23,7 +23,7 @@ SpatialOverlay object with updated fluor data
 Update color intensities for changing to RGB image
 }
 \examples{
-\dontrun{
+\donttest{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 

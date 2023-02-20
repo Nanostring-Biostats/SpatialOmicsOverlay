@@ -16,7 +16,7 @@ SpatialOverlay object with x axis flipped
 Flip x axis in image and overlay points
 }
 \examples{
-\dontrun{
+\donttest{
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 

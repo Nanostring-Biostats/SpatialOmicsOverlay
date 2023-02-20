@@ -26,7 +26,7 @@ gp of fluorescence legend
 Creates legend that can be overlayed on image using \code{cowplot}.
 }
 \examples{
-\dontrun{
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip",
                                     package = "SpatialOmicsOverlay")))
 
@@ -43,5 +43,5 @@ legend <- fluorLegend(muBrain, nrow = 2, textSize = 3, boxColor = "red")
 cowplot::ggdraw() + 
     cowplot::draw_plot(gp) +
     cowplot::draw_plot(legend, scale = 0.12, x = -0.3, y = -0.25)
-}
+
 }

@@ -18,10 +18,10 @@ df of ROI annotations
 Read lab worksheet into dataframe of annotations
 }
 \examples{
-\dontrun{
+
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")
 
 muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
-}
+
 }
