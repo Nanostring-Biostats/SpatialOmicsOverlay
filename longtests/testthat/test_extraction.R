@@ -6,7 +6,7 @@ testthat::test_that("Error when xml path doesn't exist",{
                  regexp = "ometiff file does not exist")
 })
 
-xml <- xmlExtraction(ometiff = tifFile, saveFile = T)
+xml <- xmlExtraction(ometiff = tifFile, saveFile = TRUE)
 xmlFile <- gsub(tifFile, pattern = "tiff", replacement = "xml")
 
 testthat::test_that("returned list is correct",{
@@ -23,7 +23,7 @@ testthat::test_that("returned list is correct",{
 
 unlink(xmlFile)
 
-xml <- xmlExtraction(ometiff = tifFile, saveFile = F)
+xml <- xmlExtraction(ometiff = tifFile, saveFile = FALSE)
 
 testthat::test_that("no file saved",{
     #Spec 4. The function doesn't save file when not asked. 

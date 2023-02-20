@@ -22,7 +22,7 @@ SpatialOverlay object
 Crop to zoom in on given ROIs
 }
 \examples{
-\donttest{
+
 muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
@@ -39,5 +39,5 @@ muBrainCrop <- suppressWarnings(cropSamples(overlay = muBrain,
 
 plotSpatialOverlay(overlay = muBrainCrop, scaleBar = FALSE,
                    hiRes = TRUE, legend = FALSE)
-}
+
 }

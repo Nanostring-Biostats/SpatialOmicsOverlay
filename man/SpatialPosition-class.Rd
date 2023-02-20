@@ -56,14 +56,12 @@
 \section{Accessing}{
   \code{SpatialPosition} objects have the following accessor methods:
     \describe{
-      \item{}{
-        \code{spatialPos(object)}: returns SpatialPosition object
+      \item{spatialPos(object)}{returns SpatialPosition object}
+      \item{meta(object)}{
+        extracts the metadata for each ROI, does not include the base64 encoding.
       }
-      \item{}{
-        \code{meta(object)}: extracts the metadata for each ROI, does not include the base64 encoding.
-      }
-      \item{}{
-        \code{position(object)}: extracts the base64 encoding for each ROI, CAUTION: very long strings.
+      \item{position(object)}{
+        extracts the base64 encoding for each ROI, CAUTION: very long strings.
       }
     }
 }
@@ -71,8 +69,6 @@
 \value{
   An S4 class containing image data from a NanoString GeoMx experiment
 }
-
-\author{Maddy Griswold}
 
 \seealso{
   \code{\link{SpatialOverlay-class}}

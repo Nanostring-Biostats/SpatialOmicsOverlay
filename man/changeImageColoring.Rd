@@ -21,8 +21,8 @@ SpatialOverlay object with updated fluor data
 Update color scheme for changing to RGB image
 }
 \examples{
-\donttest{
-muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay_Image.zip", 
+
+muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
                                     package = "SpatialOmicsOverlay")))
 
 muBrain <- add4ChannelImage(overlay = muBrain, 
@@ -36,5 +36,5 @@ muBrain <- changeImageColoring(overlay = muBrain, color = "#42f5ef",
                                dye = "Alexa 488")
 
 fluor(muBrain)
-}
+
 }

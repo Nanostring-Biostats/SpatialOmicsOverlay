@@ -88,55 +88,54 @@
 \section{Accessing}{
   \code{SpatialOverlay} objects have the following accessor methods:
     \describe{
-      \item{}{
-        \code{sampNames(object)}: extracts the sample names of each ROI in the slide.
+      \item{sampNames(object)}{
+        extracts the sample names of each ROI in the slide.
       }
-      \item{}{
-        \code{slideName(object)}: extracts the slide name.
+      \item{slideName(object)}{
+        extracts the slide name.
       }
-      \item{}{
-        \code{overlay(object)}: extracts the \code{SpatialPosition} information for each ROI.
+      \item{overlay(object)}{
+        extracts the \code{SpatialPosition} information for each ROI.
       }
-      \item{}{
-        \code{scanMeta(object)}: extracts the scan metadata.
+      \item{scanMeta(object)}{
+        extracts the scan metadata.
       }
-      \item{}{
+      \item{scanMeta(object)}{
         \code{coords(object)}: extracts the coordinates for the entire scan.
       }
-      \item{}{
-        \code{plotFactors(object)}: extracts avaliable plotting factors.
+      \item{plotFactors(object)}{
+        extracts avaliable plotting factors.
       }
-      \item{}{
-        \code{labWork(object)}: extracts the boolean if a lab worksheet was used.
+      \item{labWork(object)}{
+        extracts the boolean if a lab worksheet was used.
       }
-      \item{}{
-        \code{outline(object)}: extracts the boolena if only the outline points 
+      \item{outline(object)}{
+        extracts the boolena if only the outline points 
         were generated.
       }
-      \item{}{
-        \code{seg(object)}: extracts if there are any segmented ROIs in the slide.
+      \item{seg(object)}{
+        extracts if there are any segmented ROIs in the slide.
       }
-      \item{}{
-        \code{scaleBarRatio(object)}: extracts the scale bar ratio from \code{scanMeta} 
-        for the X axis
+      \item{scaleBarRatio(object)}{
+        extracts the scale bar ratio from \code{scanMeta} for the X axis
       }
-      \item{}{
-        \code{fluor(object)}: extracts fluorenscence information for the scan.
+      \item{fluor(object)}{
+        extracts fluorenscence information for the scan.
       }
-      \item{}{
-        \code{showImage(object)}: prints image.
+      \item{showImage(object)}{
+        prints image.
       }
-      \item{}{
-        \code{res(object)}: extracts resolution of image.
+      \item{res(object)}{
+        extracts resolution of image.
       }
-      \item{}{
-        \code{workflow(object)}: extracts workflow data.
+      \item{workflow(object)}{
+        extracts workflow data.
       }
-      \item{}{
-        \code{scaled(object)}: extracts if coordinates have been scaled.
+      \item{scaled(object)}{
+        extracts if coordinates have been scaled.
       }
-      \item{}{
-        \code{imageInfo(object)}: extracts image data.
+      \item{imageInfo(object)}{
+        extracts image data.
       }
     }
 }
@@ -144,8 +143,6 @@
 \value{
   An S4 class containing image data from a NanoString GeoMx experiment
 }
-
-\author{Maddy Griswold}
 
 \seealso{
   \code{\link{readSpatialOverlay}}
