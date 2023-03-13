@@ -60,7 +60,8 @@ Reading in the SpatialOverlay object can be done with or without the image. We w
 If `outline = TRUE`, only ROI outline points are saved. This decreases memory needed and figure rendering time downstream. If ANY ROIs are segmented in the study, outline will be FALSE. In this particular example, there are segmented ROIs, so we set `outline = FALSE`.
 
 
-In this example, we are downloading a tiff image from a Box folder but this variable is simply the file path to a OME-TIFF. 
+In this example, we are downloading a TIFF image from S3 but this variable is simply the file path to a OME-TIFF. 
+*This function will be downloading a 13 GB file and will keep a 4 GB file in BiocFileCache*
 ```{r tiff file}
 tifFile <- downloadMouseBrainImage()
 tifFile
@@ -146,9 +147,10 @@ The `res` variable says which resolution of the image to extract. 1 = largest im
 
 Using too big of an image will cause a java memory error. If this error occurs, increase your `res` value. Below is an example of the error you will receive if the resolution is too high for your system.
 
-```{r java error, error=TRUE}
-muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = 1)
 ```
+Error in .jcall("RBioFormats", "Ljava/lang/Object;", "readPixels", i,  : 
+  java.lang.NegativeArraySizeException: -2147483648
+```  
 
 The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial we will be using res = 8 for vignette size restrictions, but res 4-6 is recommended. 
 
@@ -264,7 +266,6 @@ In future releases of SpatialOmicsOverlay, we will be
 2. Adding ability to add graphing features on top of the image
 3. Adding image analysis capabilities 
 4. Adding extraction of image data to use in ML/AI applications
-5. Submit to Bioconductor
 
 ```{r}
 sessionInfo()

@@ -102,8 +102,14 @@ downloadMouseBrainImage <- function(){
               files = IMAGEFILE,
               exdir = bfccache(bfc))
         
+        bfcremove(x = bfc, rid)
+        
+        imageFile <- paste(bfccache(bfc), IMAGEFILE, sep = "/")
+        
         rid <- names(bfcadd(bfc, rname = basename(IMAGEFILE), 
-                            fpath = paste(bfccache(bfc), IMAGEFILE, sep = "/")))
+                            fpath = imageFile))
+        
+        unlink(dirname(imageFile), recursive = TRUE)
     }
     
     return(normalizePath(bfcrpath(bfc, rids=rid)))
