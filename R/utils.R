@@ -78,6 +78,7 @@ readLabWorksheet <- function(lw, slideName){
 #' @importFrom BiocFileCache bfcrpath
 #' @importFrom BiocFileCache bfcadd
 #' @importFrom BiocFileCache bfccache
+#' @importFrom BiocFileCache bfcremove
 #' 
 #' @examples 
 #' 
@@ -91,22 +92,37 @@ downloadMouseBrainImage <- function(){
     rid <- bfcquery(bfc, IMAGEFILE)$rid
     
     if (length(rid) == 0) {
-        rid <- bfcquery(bfc, IMAGES)$rid
-        if (!length(rid)) {
-            message("Downloading file")
-            rid <- names(bfcadd(bfc, IMAGES, fileURL))
-        }
+      if(interactive()){
+        continue <- readline(prompt = "This function will temporarily download a 13 GB tar file and keep a 4 GB OME-TIFF in BiocFileCache, should we continue? (y/n): ")
+      }else{
+        continue <- "y"
+      }
+      
+      if(tolower(continue) %in% c("y", "yes", "true")){
+        message("Downloading file")
+        rid <- names(bfcadd(bfc, IMAGES, fileURL))
         
         message( "Untaring file" )
         untar(bfcrpath(bfc, rids = rid),
               files = IMAGEFILE,
               exdir = bfccache(bfc))
         
+        bfcremove(x = bfc, rid)
+        
+        imageFile <- paste(bfccache(bfc), IMAGEFILE, sep = "/")
+        
         rid <- names(bfcadd(bfc, rname = basename(IMAGEFILE), 
-                            fpath = paste(bfccache(bfc), IMAGEFILE, sep = "/")))
+                            fpath = imageFile))
+        
+        unlink(dirname(imageFile), recursive = TRUE)
+      }else{
+        message("Mouse Brain file not downloaded, please provide your own NanoString GeoMx OME-TIFF to use this package")
+      }
     }
     
-    return(normalizePath(bfcrpath(bfc, rids=rid)))
+    if(length(rid) >0){
+      return(normalizePath(bfcrpath(bfc, rids=rid)))
+    }
 }
 
 #' get BiocFileCache
