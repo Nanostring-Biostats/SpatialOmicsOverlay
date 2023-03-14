@@ -106,7 +106,7 @@ setValidity2("SpatialOverlay", function(object){
         msg <- c(msg, "PhysicalSizes in Scan Metadata does not contain X and Y ratio")
     }
     if(!is(scanMeta(object)$PhysicalSizes$X,"numeric") | 
-           !is(scanMeta(object)$PhysicalSizes$Y,"numeric")){
+       !is(scanMeta(object)$PhysicalSizes$Y,"numeric")){
         msg <- c(msg, "PhysicalSizes in Scan Metadata must be numeric")
     }
     if(!is(scanMeta(object)$Fluorescence,"data.frame")){

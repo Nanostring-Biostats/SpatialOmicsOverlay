@@ -292,9 +292,9 @@ flipX <- function(overlay){
     
     if(!is.null(showImage(overlay))){
         overlay@image$imagePointer <- image_flop(showImage(overlay))
-
+        
         overlay@coords$xcoor <- abs(image_info(showImage(overlay))$width - 
-                                         coords(overlay)$xcoor)
+                                        coords(overlay)$xcoor)
     }else{
         stop("No image is attached, please attach image before running")
     }
@@ -357,9 +357,9 @@ crop <- function(overlay, xmin, xmax, ymin, ymax, coords = TRUE){
     
     if(coords == TRUE){
         overlay@coords <- coords(overlay)[coords(overlay)$xcoor >= xmin &
-                                           coords(overlay)$xcoor <= xmax &
-                                           coords(overlay)$ycoor >= (maxHeight - ymin) &
-                                           coords(overlay)$ycoor <= (maxHeight - ymax),]
+                                              coords(overlay)$xcoor <= xmax &
+                                              coords(overlay)$ycoor >= (maxHeight - ymin) &
+                                              coords(overlay)$ycoor <= (maxHeight - ymax),]
         
         overlay@coords$xcoor <- coords(overlay)$xcoor - xmin
         overlay@coords$ycoor <- coords(overlay)$ycoor - (maxHeight - ymin)

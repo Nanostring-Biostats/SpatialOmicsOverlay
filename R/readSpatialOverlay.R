@@ -71,13 +71,13 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
         res <- 6
     }
     
-    print("Extracting XML")
+    message("Extracting XML")
     xml <- xmlExtraction(ometiff = ometiff, saveFile = saveFile)
     
-    print("Parsing XML - scan metadata")
+    message("Parsing XML - scan metadata")
     scan_metadata <- parseScanMetadata(omexml = xml)
     
-    print("Parsing XML - overlay data")
+    message("Parsing XML - overlay data")
     AOIattrs <- parseOverlayAttrs(omexml = xml, annots = annots, 
                                   labworksheet = labWorksheet)
     
@@ -98,12 +98,12 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
                                       resolution = NULL))
     
     if(image == TRUE){
-        print("Adding Image")
+        message("Adding Image")
         so <- addImageOmeTiff(overlay = so, ometiff = ometiff, res = res, 
                               scanMeta = scan_metadata, saveFile = saveFile)
         so <- cropTissue(overlay = so)
     }else{
-        print("Generating Coordinates")
+        message("Generating Coordinates")
         so <- createCoordFile(overlay = so, outline = outline)
     }
     

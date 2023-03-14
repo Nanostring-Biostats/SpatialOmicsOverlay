@@ -82,7 +82,7 @@ setGeneric("position", signature = "object",
            function(object) standardGeneric("position"))
 setMethod("position", "SpatialPosition", function(object){
     object@position[,which(colnames(object@position) == "Position")]})
-    
+
 setGeneric("spatialPos", signature = "object",
            function(object) standardGeneric("spatialPos"))
 setMethod("spatialPos", "SpatialPosition", function(object){
