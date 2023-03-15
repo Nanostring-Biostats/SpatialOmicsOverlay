@@ -381,7 +381,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
     names(df) <- c("X", "Y")
     
     gp <- gp + geom_line(data = df, mapping = aes(x=X, y=Y, fill = NULL), 
-                         color = scaleBarColor, size = scaleBarLineSize, ...)+
+                         color = scaleBarColor, linewidth = scaleBarLineSize, ...)+
         annotate(geom = "text", 
                  x = mean(c(scaleBarPts$start,scaleBarPts$end)),
                  y = scaleBarPts$textY,
