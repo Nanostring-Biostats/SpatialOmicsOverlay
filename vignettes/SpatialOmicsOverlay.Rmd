@@ -60,7 +60,7 @@ Reading in the SpatialOverlay object can be done with or without the image. We w
 If `outline = TRUE`, only ROI outline points are saved. This decreases memory needed and figure rendering time downstream. If ANY ROIs are segmented in the study, outline will be FALSE. In this particular example, there are segmented ROIs, so we set `outline = FALSE`.
 
 
-In this example, we are downloading a TIFF image from S3 but this variable is simply the file path to a OME-TIFF.
+In this example, we are downloading a TIFF image from AWS S3 but this variable is simply the file path to a OME-TIFF.
 
 ***This function will be downloading a 13 GB file and will keep a 4 GB file in BiocFileCache. This download will take ~15 minutes but you will only have to download once***
 ```{r tiff file}
