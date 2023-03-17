@@ -40,10 +40,10 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
                                                          ...),
                           resolution = res)
     
-    print("Calculating and scaling coordinates")
+    message("Calculating and scaling coordinates")
     overlay <- createCoordFile(overlay, outline(overlay))
     overlay <- scaleCoords(overlay)
-
+    
     return(overlay)
 }
 
@@ -77,10 +77,10 @@ addImageFile <- function(overlay, imageFile = NULL, res = NULL){
                           imagePointer = image_read(imageFile),
                           resolution = res)
     
-    print("Calculating and scaling coordinates")
+    message("Calculating and scaling coordinates")
     overlay <- createCoordFile(overlay, outline(overlay))
     overlay <- scaleCoords(overlay)
-
+    
     return(overlay)
 }
 
@@ -129,9 +129,9 @@ add4ChannelImage <- function(overlay, ometiff = NULL, res = NULL, ...){
                                                          ...),
                           resolution = res)
     
-    print("Calculating and scaling coordinates")
+    message("Calculating and scaling coordinates")
     overlay <- createCoordFile(overlay, outline(overlay))
     overlay <- scaleCoords(overlay)
-
+    
     return(overlay)
 }

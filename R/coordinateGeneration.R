@@ -292,7 +292,7 @@ moveCoords <- function(overlay, direction = "right"){
         stop(paste("direction is not valid: options -",
                    paste(DIRECTIONS, collapse = ", ")))
     }
-
+    
     if(direction == "right"){
         overlay@coords$xcoor <- overlay@coords$xcoor + 1
     }else if(direction == "left"){
@@ -302,6 +302,6 @@ moveCoords <- function(overlay, direction = "right"){
     }else{
         overlay@coords$ycoor <- overlay@coords$ycoor - 1
     }
-
+    
     return(overlay)
 }

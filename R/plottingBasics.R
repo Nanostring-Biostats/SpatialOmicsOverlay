@@ -129,9 +129,9 @@ plotSpatialOverlay <- function(overlay, colorBy = "sampleID", hiRes = TRUE,
             gp <- gp + geom_point(data = fluor(overlay), 
                                   mapping = aes(x=-100,y=-100, fill=Target))+
                 scale_fill_manual(labels = paste("<span style='color:",
-                                                  cols, "'>", names(cols),
-                                                  "</span>"),
-                                   values = cols)+
+                                                 cols, "'>", names(cols),
+                                                 "</span>"),
+                                  values = cols)+
                 theme(legend.text=element_markdown(size=12))+
                 labs(fill = "Fluorescence")+
                 guides(fill = guide_legend(
@@ -331,10 +331,10 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
     
     if(grepl("bottom", corner)){
         lineY <- scaleBar[[paste0("max",otherAxis)]]
-        textY = lineY - (lineY*(0.01 * textDistance)) 
+        textY <- lineY - (lineY*(0.01 * textDistance)) 
     }else{
         lineY <- scaleBar[[paste0("min",otherAxis)]]
-        textY = lineY + (lineY*(0.01 * textDistance)) 
+        textY <- lineY + (lineY*(0.01 * textDistance)) 
     }
     
     return(list(start=start, end=end, lineY=lineY, textY=textY))
@@ -381,7 +381,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
     names(df) <- c("X", "Y")
     
     gp <- gp + geom_line(data = df, mapping = aes(x=X, y=Y, fill = NULL), 
-                         color = scaleBarColor, size = scaleBarLineSize, ...)+
+                         color = scaleBarColor, linewidth = scaleBarLineSize, ...)+
         annotate(geom = "text", 
                  x = mean(c(scaleBarPts$start,scaleBarPts$end)),
                  y = scaleBarPts$textY,

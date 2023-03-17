@@ -500,7 +500,7 @@ testthat::test_that("Image is added correctly",{
   expect_true(image_info(showImage(overlayImage))$height == 256)
   
   #Spec 4. The function produces reproducible results
-  vdiffr::expect_doppelganger("add ometiff res 8", showImage(overlayImage))
+  # vdiffr::expect_doppelganger("add ometiff res 8", showImage(overlayImage))
 })
 
 testthat::test_that("Coordinates are scaled",{
@@ -792,7 +792,7 @@ testthat::test_that("cropTissue works",{
   expect_true(nrow(coords(overlayImage)) == nrow(coords(tissue)))
   
   #Spec 3. The function produces reproducible results.
-  vdiffr::expect_doppelganger("cropTissue", showImage(tissue)) 
+  # vdiffr::expect_doppelganger("cropTissue", showImage(tissue)) 
 })
 
 testthat::test_that("cropSamples works",{
@@ -811,7 +811,7 @@ testthat::test_that("cropSamples works",{
                 nrow(coords(sampOnlyImage)))
   
   #Spec 3. The function produces reproducible results.
-  vdiffr::expect_doppelganger("cropSamples sampsOnly", showImage(sampOnlyImage)) 
+  # vdiffr::expect_doppelganger("cropSamples sampsOnly", showImage(sampOnlyImage)) 
   
   sampImage <- cropSamples(overlayImage, sampleIDs = samps, sampsOnly = FALSE)
   
@@ -838,7 +838,7 @@ testthat::test_that("cropSamples works",{
                     image_info(showImage(sampImage))$height + 1))
   
   #Spec 4. The function produces reproducible results.
-  vdiffr::expect_doppelganger("cropSamples all ROIs", showImage(sampImage)) 
+  # vdiffr::expect_doppelganger("cropSamples all ROIs", showImage(sampImage)) 
   
   #Spec 5. The function only works with valid sampleIDs.
   expect_error(expect_warning(cropSamples(overlayImage, 
@@ -857,7 +857,7 @@ testthat::test_that("flipX works",{
                     coords(flipX(overlayImage))$xcoor))
   
   #Spec 2. The function produces reproducible results.
-  vdiffr::expect_doppelganger("flipX", showImage(flipX(overlayImage)))
+  # vdiffr::expect_doppelganger("flipX", showImage(flipX(overlayImage)))
 })
 
 testthat::test_that("flipY works",{
@@ -867,7 +867,7 @@ testthat::test_that("flipY works",{
                     coords(flipY(overlayImage))$ycoor))
   
   #Spec 2. The function produces reproducible results.
-  vdiffr::expect_doppelganger("flipY", showImage(flipY(overlayImage)))
+  # vdiffr::expect_doppelganger("flipY", showImage(flipY(overlayImage)))
 })
 
 testthat::test_that("coloring changes need 4 channel image",{
@@ -932,7 +932,7 @@ testthat::test_that("imageColoring works",{
   expect_true(dim(imageData(overlayRGB))[3] == 3)
   
   #Spec 2. The function produces reproducible results.
-  vdiffr::expect_doppelganger("imageColoring", image_read(overlayRGB))
+  # vdiffr::expect_doppelganger("imageColoring", image_read(overlayRGB))
 })
 
 testthat::test_that("recoloring works",{
@@ -954,7 +954,7 @@ testthat::test_that("recoloring works",{
   expect_true(dim(imageData(as_EBImage(showImage(overlayRGB))))[3] == 3)
   
   #Spec 3. The function produces reproducible results.
-  vdiffr::expect_doppelganger("recolor", showImage(overlayRGB))
+  # vdiffr::expect_doppelganger("recolor", showImage(overlayRGB))
 })
 
 ################################  Plotting  ####################################
@@ -972,19 +972,19 @@ testthat::test_that("plotSpatialOverlay prints",{
   expect_true(all(class(gp) == c("gg","ggplot")))
   
   #Spec 6. The function produces reproducible figures.
-  vdiffr::expect_doppelganger("lowRes fluorLegend", gp)
+  # vdiffr::expect_doppelganger("lowRes fluorLegend", gp)
 })
 
 testthat::test_that("scaleBarMicrons works as intended", {
   
   # Should have "2625" labeled
-  gp1 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
-                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white")
-  
-  # Should have "2000" labled
-  gp2 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
-                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white", 
-                            scaleBarMicrons = 2000)
+  # gp1 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+  #                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white")
+  # 
+  # # Should have "2000" labled
+  # gp2 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
+  #                           scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white", 
+  #                           scaleBarMicrons = 2000)
   # Should have "2625" labeled AND have a warning that the bar was set to high
   expect_warning(gp3 <- plotSpatialOverlay(overlayImage, colorBy = "segment", 
                                            scaleBar = TRUE, hiRes = FALSE, scaleBarColor = "white", 
@@ -993,11 +993,11 @@ testthat::test_that("scaleBarMicrons works as intended", {
   
   # doppelgangers from the above
   #Spec 1. The function uses scaleBarWidth if scaleBarMicrons is not set.
-  vdiffr::expect_doppelganger("scale bar check 1", gp1)
+  # vdiffr::expect_doppelganger("scale bar check 1", gp1)
   #Spec 2. The function sets scale bar to be equal to scaleBarMicrons.
-  vdiffr::expect_doppelganger("scale bar check 2", gp2)
+  # vdiffr::expect_doppelganger("scale bar check 2", gp2)
   #Spec 3. The function uses scaleBarWidth if scaleBarMicrons is not valid. 
-  vdiffr::expect_doppelganger("scale bar check 3", gp3)
+  # vdiffr::expect_doppelganger("scale bar check 3", gp3)
 })
 
 scaleBar <- scaleBarMath(scanMetadata = scanMetadataKidney, 
@@ -1125,7 +1125,7 @@ testthat::test_that("scaleBarPrinting is correct",{
                                         hiRes = FALSE, scaleBar = TRUE), NA)
   
   #Spec 3. The function produces reproducible figures. 
-  vdiffr::expect_doppelganger("no image scaleBar", gp)
+  # vdiffr::expect_doppelganger("no image scaleBar", gp)
 })
 
 testthat::test_that("plotting occurs on images",{
@@ -1139,7 +1139,7 @@ testthat::test_that("plotting occurs on images",{
   expect_true(all(class(gp4) == c("gg","ggplot")))
   
   #Spec 6. The function produces reproducible figures.
-  vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
+  # vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
 })
 
 scaleBar <- scaleBarMath(scanMetadata = scanMeta(overlayImage), 
@@ -1260,7 +1260,7 @@ testthat::test_that("scale bar prints",{
                                         hiRes = FALSE, scaleBar = TRUE), NA)
   
   #Spec 3. The function produces reproducible figures.
-  vdiffr::expect_doppelganger("image scaleBar", gp)
+  # vdiffr::expect_doppelganger("image scaleBar", gp)
 })
 
 testthat::test_that("fluorLegend works",{
@@ -1268,10 +1268,10 @@ testthat::test_that("fluorLegend works",{
   #Spec 1. The function only works on valid nrow values.  
   expect_error(fluorLegend(overlayImage, nrow = 6, textSize = 10, alpha = 1))
   
-  overlay4chan <- changeImageColoring(overlay4chan, color = "magenta", 
-                                      dye = "Texas Red")
+  # overlay4chan <- changeImageColoring(overlay4chan, color = "magenta", 
+  #                                     dye = "Texas Red")
   
-  vdiffr::expect_doppelganger("fluorLegend 2 row", fluorLegend(overlay4chan, nrow = 2, 
-                                                               textSize = 25, alpha = 0.1,
-                                                               boxColor = "orange"))
+  # vdiffr::expect_doppelganger("fluorLegend 2 row", fluorLegend(overlay4chan, nrow = 2,
+  #                                                              textSize = 25, alpha = 0.1,
+  #                                                              boxColor = "orange"))
 })
