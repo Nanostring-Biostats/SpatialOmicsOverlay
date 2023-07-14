@@ -102,7 +102,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
         ROInum <- ROIs[[ROI]]$AnnotationRef
         ROInum <- as.numeric(gsub("Annotation:", "", ROInum))
         
-        ROInum <- as.numeric(omexml$StructuredAnnotations[ROInum]$XMLAnnotation$Value$ChannelThresholds$RoiName)
+        ROInum <- omexml$StructuredAnnotations[ROInum]$XMLAnnotation$Value$ChannelThresholds$RoiName
         
         ROI <- ROIs[[ROI]]$Union
         
@@ -318,8 +318,13 @@ annotMatching <- function(annots, ROInum, maskNum, maskText){
     if(!"ROILabel" %in% colnames(annots)){
         stop("The column ROILabel is not in annots. ")
     }
+  
+    if(suppressWarnings(!is.na(as.numeric(ROInum)))){
+      ROInum <- as.numeric(ROInum)
+      annots$ROILabel <- as.numeric(annots$ROILabel)
+    }
     
-    w2kp <- which(as.numeric(annots$ROILabel) == as.numeric(ROInum))
+    w2kp <- which(annots$ROILabel == ROInum)
     
     if(length(w2kp) == 0){
         return(NULL)
