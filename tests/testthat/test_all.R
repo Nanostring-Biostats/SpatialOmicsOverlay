@@ -182,7 +182,7 @@ testthat::test_that("annotMatching is correct",{
     if(nrow(ROI) > 1){
       totalPixels <- NULL
       for(j in ROI$Sample_ID){
-        pixels <- nrow(coordsFromMask(createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
+        pixels <- nrow(SpatialOmicsOverlay:::coordsFromMask(SpatialOmicsOverlay:::createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
                                                  metadata = ROI[ROI$Sample_ID == j,], 
                                                  outline = FALSE), 
                                       metadata = ROI[ROI$Sample_ID == j,],
@@ -194,7 +194,7 @@ testthat::test_that("annotMatching is correct",{
       
       expect_true(all(names(sort(totalPixels)) == subsetAnnots$SegmentDisplayName[order(subsetAnnots$AOISurfaceArea)]))
     }else{
-      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == i])
+      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == as.numeric(i)])
     }
   }
 })
@@ -207,7 +207,7 @@ testthat::test_that("SpatialPosition is formatted correctly",{
   expect_true(all(names(AOIattrs) == c("ROILabel", "Sample_ID", "Height", 
                                        "Width", "X", "Y", "Segmentation", 
                                        "Position")))
-  expect_true(class(AOIattrs@position$ROILabel) == "numeric")
+  expect_true(class(AOIattrs@position$ROILabel) == "character")
   expect_true(class(AOIattrs@position$Sample_ID) == "character")
   expect_true(class(AOIattrs@position$Height) == "numeric")
   expect_true(class(AOIattrs@position$Width) == "numeric")
