@@ -38,11 +38,11 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
     
     
     if(saveFile){
+        xmlName <- gsub(pattern = "tiff", 
+                        replacement = "xml", 
+                        x = basename(ometiff))
+      
         if(is.null(outdir)){
-            xmlName <- gsub(pattern = "tiff", 
-                            replacement = "xml", 
-                            x = basename(ometiff))
-            
             xmlName <- paste0(dirname(ometiff), "/", xmlName)
         }else{
             xmlName <- paste0(outdir, "/", basename(ometiff))
