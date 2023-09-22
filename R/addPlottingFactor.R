@@ -92,6 +92,13 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
                   
                   if(length(sampIDs) == 0){
                       stop("Sample IDs in SpatialOverlay do not match given annots")
+                  }else if(length(sampIDs) > 1){
+                    matchingSamps <- NULL
+                    for(i in names(sampIDs)){
+                      matchingSamps[i] <- length(sData(annots)[[i]] %in% samples)
+                    }
+                    
+                    sampIDs <- names(sort(matchingSamps, decreasing = TRUE)[1L])
                   }
                   
                   gxtSamples <- sData(annots)[[sampIDs]]
@@ -204,6 +211,13 @@ setMethod("addPlottingFactor",  "data.frame",
                   
                   if(length(sampIDs) == 0){
                       stop("Sample IDs in SpatialOverlay do not match given annots")
+                  }else if(length(sampIDs) > 1){
+                    matchingSamps <- NULL
+                    for(i in names(sampIDs)){
+                      matchingSamps[i] <- length(annots[[i]] %in% samples)
+                    }
+                    
+                    sampIDs <- names(sort(matchingSamps, decreasing = TRUE)[1L])
                   }
                   
                   annots <- annots[match(samples, annots[,sampIDs], 
