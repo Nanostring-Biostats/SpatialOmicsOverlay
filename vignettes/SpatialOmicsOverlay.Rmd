@@ -170,7 +170,7 @@ The resolution size will affect speed and image resolution through the rest of t
 ```{r add image}
 #lowest resolution = fastest speeds
 checkValidRes(ometiff = tifFile)
-res <- 4
+res <- 8
 muBrain <- addImageOmeTiff(overlay = muBrain, ometiff = tifFile, res = res)
 muBrain
 showImage(muBrain)
