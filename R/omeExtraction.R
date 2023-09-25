@@ -45,6 +45,9 @@ xmlExtraction <- function(ometiff, saveFile = FALSE, outdir = NULL){
         if(is.null(outdir)){
             xmlName <- paste0(dirname(ometiff), "/", xmlName)
         }else{
+            if(!exists(outdir)){
+              dir.create(outdir, recursive = TRUE)
+            }
             xmlName <- paste0(outdir, "/", basename(ometiff))
         }
         
