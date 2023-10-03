@@ -170,6 +170,42 @@ setMethod("addPlottingFactor",  "matrix",
 #' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
+#' @param annots \code{matrix} containing plottingFactor, column or column names 
+#'                must contian matching sample names to overlay
+#' @param plottingFactor  column or row name from annots to add as plotting 
+#'                            factor
+#'
+#' @export 
+#' @rdname addPlottingFactor
+#' 
+setMethod("addPlottingFactor",  "tbl_df",
+          function(overlay, annots, plottingFactor){
+            return(addPlottingFactor(annots = as.data.frame(annots), 
+                                     overlay = overlay, 
+                                     plottingFactor = plottingFactor))
+          }) 
+
+#' 
+#' 
+#' @param overlay \code{\link{SpatialOverlay}} object
+#' @param annots \code{matrix} containing plottingFactor, column or column names 
+#'                must contian matching sample names to overlay
+#' @param plottingFactor  column or row name from annots to add as plotting 
+#'                            factor
+#'
+#' @export 
+#' @rdname addPlottingFactor
+#' 
+setMethod("addPlottingFactor",  "tbl",
+          function(overlay, annots, plottingFactor){
+            return(addPlottingFactor(annots = as.data.frame(annots), 
+                                     overlay = overlay, 
+                                     plottingFactor = plottingFactor))
+          })
+
+#' 
+#' 
+#' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots \code{data.frame} containing plottingFactor, column or column 
 #'                     names must contian matching sample names to overlay
 #' @param plottingFactor  column or row name from annots to add as plotting 

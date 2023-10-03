@@ -4,6 +4,8 @@
 \alias{addPlottingFactor}
 \alias{addPlottingFactor,NanoStringGeoMxSet-method}
 \alias{addPlottingFactor,matrix-method}
+\alias{addPlottingFactor,tbl_df-method}
+\alias{addPlottingFactor,tbl-method}
 \alias{addPlottingFactor,data.frame-method}
 \alias{addPlottingFactor,character-method}
 \alias{addPlottingFactor,numeric-method}
@@ -15,6 +17,10 @@ addPlottingFactor(overlay, annots, plottingFactor, ...)
 \S4method{addPlottingFactor}{NanoStringGeoMxSet}(overlay, annots, plottingFactor, countMatrix = "exprs")
 
 \S4method{addPlottingFactor}{matrix}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{tbl_df}(overlay, annots, plottingFactor)
+
+\S4method{addPlottingFactor}{tbl}(overlay, annots, plottingFactor)
 
 \S4method{addPlottingFactor}{data.frame}(overlay, annots, plottingFactor)
 

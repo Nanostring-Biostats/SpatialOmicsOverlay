@@ -194,7 +194,7 @@ testthat::test_that("annotMatching is correct",{
       
       expect_true(all(names(sort(totalPixels)) == subsetAnnots$SegmentDisplayName[order(subsetAnnots$AOISurfaceArea)]))
     }else{
-      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == as.numeric(i])
+      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == as.numeric(i)])
     }
   }
 })
