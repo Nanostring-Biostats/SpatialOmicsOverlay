@@ -319,11 +319,12 @@ annotMatching <- function(annots, ROInum, maskNum, maskText){
         stop("The column ROILabel is not in annots. ")
     }
   
-    w2kp <- which(annots$ROILabel == ROInum)
-    
-    if(length(w2kp) == 0){
-      w2kp <- which(as.numeric(annots$ROILabel) == as.numeric(ROInum))
+    if(suppressWarnings(!is.na(as.numeric(ROInum)))){
+      ROInum <- as.numeric(ROInum)
+      annots$ROILabel <- as.numeric(annots$ROILabel)
     }
+    
+    w2kp <- which(annots$ROILabel == ROInum)
     
     if(length(w2kp) == 0){
         return(NULL)
