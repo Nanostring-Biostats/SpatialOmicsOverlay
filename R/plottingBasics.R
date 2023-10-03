@@ -365,9 +365,19 @@ scaleBarCalculation <- function(corner = "bottomright", scaleBar,
 scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright", 
                              scaleBarFontSize = 6, scaleBarLineSize = 1.5, 
                              scaleBarColor = "red", textDistance = 2, 
-                             image = NULL, ...){
+                             image = NULL, scaleBarUnit = "um", ...){
+  
+    if(!scaleBarUnit %in% c("um", "mm")){
+      stop("scaleBarUnit not valid, options: um, nm, mm")
+    }
+    
     scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = corner, 
                                        textDistance)
+    
+    scaleBarValue <- switch(scaleBarUnit, 
+           um={paste(scaleBar$um, paste0("\u03BC", "m"))},
+           mm={paste(scaleBar$um/1000, "mm")}
+    )
     
     if(!is.null(image)){
         scaleBarPts$lineY <- image_info(image$imagePointer)$height - 
@@ -385,7 +395,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
         annotate(geom = "text", 
                  x = mean(c(scaleBarPts$start,scaleBarPts$end)),
                  y = scaleBarPts$textY,
-                 label = paste(scaleBar$um, paste0("\u03BC", "m")),
+                 label = scaleBarValue,
                  size = scaleBarFontSize,
                  color = scaleBarColor,
                  ...)

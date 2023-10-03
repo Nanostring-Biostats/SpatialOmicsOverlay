@@ -105,8 +105,8 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
               }
               
               annots <- annots[,match(samples, gxtSamples, nomatch = 0)]
+              gxtSamples <- gsub(".dcc", "", rownames(sData(annots)))
               samples <- samples[match(gxtSamples, samples, nomatch = 0)]
-              
               
               if(length(samples) != length(sampNames(overlay))){
                   warning(paste("Missing annotations in annots. Samples missing:", 
