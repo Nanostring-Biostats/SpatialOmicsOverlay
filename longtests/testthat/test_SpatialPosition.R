@@ -4,7 +4,7 @@ if(!file.exists("muBrain.RDS")){
                         package = "SpatialOmicsOverlay")
   
   overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
-                                                 slideName = "4", outline = FALSE))
+                                                 slideName = "D5761 (3)", outline = FALSE))
   
   saveRDS(overlay, "muBrain.RDS")
 }else{

@@ -4,7 +4,7 @@ if(!file.exists("muBrain.RDS")){
                         package = "SpatialOmicsOverlay")
   
   overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
-                                                 slideName = "4", outline = FALSE))
+                                                 slideName = "D5761 (3)", outline = FALSE))
   
   saveRDS(overlay, "muBrain.RDS")
 }else{
@@ -18,7 +18,7 @@ overlay <- addImageOmeTiff(overlay,
                            ometiff = downloadMouseBrainImage(), 
                            res = 8)
 
-annots <- readLabWorksheet(annots, "4")
+annots <- readLabWorksheet(annots, "D5761 (3)")
 
 overlay <- addPlottingFactor(overlay, annots, "segment")
 
@@ -52,7 +52,7 @@ testthat::test_that("SpatialOverlay is formatted correctly",{
 
 testthat::test_that("SpatialOverlay accessor work as expected",{
     #Spec 2. The class accessors work as expected.
-    expect_true(slideName(overlay) == "4")
+    expect_true(slideName(overlay) == "D5761 (3)")
     expect_identical(slideName(overlay), overlay@slideName)
     
     expect_true(class(overlay(overlay)) == "SpatialPosition")

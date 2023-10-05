@@ -2,7 +2,7 @@ tifFile <- downloadMouseBrainImage()
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
 
-annots <- readLabWorksheet(lw = annots, slideName = "4")
+annots <- readLabWorksheet(lw = annots, slideName = "D5761 (3)")
 
 extracted <- xmlExtraction(ometiff = tifFile, saveFile = T)
 
@@ -112,11 +112,12 @@ testthat::test_that("Errors with invalid inputs",{
                  regexp = "File must be read into R and passed as a dataframe")
 })
 
-
 testthat::test_that("Warnings occur when AOIs are missing or mislabeled",{
     #Spec 2. The function only works with valid sample names.
     expect_warning(AOIattrs <- parseOverlayAttrs(omexml = extracted, 
-                                                 annots = annots, 
+                                                 annots = rbind(annots, 
+                                                                c(rep("FAKE", 9), 
+                                                                  100)), 
                                                  labworksheet = TRUE),
                    regexp = "Some AOIs do not match annotation file")
 })
