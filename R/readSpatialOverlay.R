@@ -30,7 +30,7 @@
 #' image <- downloadMouseBrainImage()
 #' 
 #' muBrain <- readSpatialOverlay(ometiff = image, annots = muBrain_GxT[,1:5], 
-#'                               slideName = "4", image = TRUE, res = 8, 
+#'                               slideName = "D5761 (3)", image = TRUE, res = 8, 
 #'                               saveFile = FALSE, outline = FALSE)
 #' 
 #' @importFrom readxl read_xlsx

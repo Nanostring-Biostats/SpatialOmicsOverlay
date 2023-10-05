@@ -57,7 +57,7 @@ muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zi
 muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                          package = "SpatialOmicsOverlay")
 
-muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+muBrainLW <- readLabWorksheet(muBrainLW, slideName = "D5761 (3)")
 
 muBrain <- addPlottingFactor(overlay = muBrain, 
                              annots = muBrainLW, 

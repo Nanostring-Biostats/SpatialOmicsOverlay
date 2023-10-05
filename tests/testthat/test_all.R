@@ -390,7 +390,7 @@ testthat::test_that("boundary is behaving as expected",{
 library(GeomxTools)
 annotsGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
                                        package = "SpatialOmicsOverlay")))
-annotsGxT <- annotsGxT[,which(sData(annotsGxT)$SegmentLabel == "Full ROI")[1:3]]
+annotsGxT <- annotsGxT[,which(sData(annotsGxT)$segment == "Full ROI")[1:3]]
 
 subsetAnnots <- system.file("extdata", "muBrain_subset_LabWorksheet.txt", 
                             package = "SpatialOmicsOverlay")
