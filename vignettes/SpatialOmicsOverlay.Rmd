@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
   warning = FALSE,
   fig.width = 10
 )
+
+options(java.parameters = "-Xmx4g")
+library(RBioFormats)
 ```
 
 # Overview
@@ -69,10 +72,11 @@ tifFile
 ```
 
 ```{r Read in Data}
-muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
+muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt",
                          package = "SpatialOmicsOverlay")
+
 muBrain <- readSpatialOverlay(ometiff = tifFile, annots = muBrainLW, 
-                              slideName = "4", image = FALSE,  
+                              slideName = "D5761 (3)", image = FALSE,  
                               saveFile = FALSE, outline = FALSE)
 ```
 The readSpatialOverlay function is a wrapper to walk through all of the necessary steps to store the OME-TIFF file components. This function automates XML extraction & parsing, image extraction, and coordinate generation. These functions can also be run separately if desired (`xmlExtraction`, `parseScanMetadata`, `parseOverlayAttrs`, `addImageOmeTiff`, `createCoordFile`). 
@@ -117,8 +121,8 @@ plotSpatialOverlay(overlay = muBrain, hiRes = FALSE, legend = FALSE)
 `colorBy`, by default, is Sample_ID but almost any annotation or data can be added instead, including gene expression, tissue morphology annotations, pathway score, etc. These annotations can come from a data.frame, matrix, GeomxSet object, or vector. Below we attach the gene expression for CALM1 from a GeomxSet object and color the segments by that value.
 
 ```{r add plotting factors}
-muBrainAnnots <- readLabWorksheet(lw = muBrainLW, slideName = "4")
-muBrainGeomxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
+muBrainAnnots <- readLabWorksheet(lw = muBrainLW, slideName = "D5761 (3)")
+muBrainGeomxSet <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip",
                                   package = "SpatialOmicsOverlay")))
 muBrain <- addPlottingFactor(overlay = muBrain, annots = muBrainAnnots, 
                              plottingFactor = "segment")

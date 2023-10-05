@@ -44,7 +44,7 @@ bookendStr <- function(x, bookend = 8){
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
 #' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "D5761 (3)")
 #' 
 #' @export
 readLabWorksheet <- function(lw, slideName){
@@ -56,7 +56,7 @@ readLabWorksheet <- function(lw, slideName){
     
     lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
                      fill = TRUE)
-    lw$ROILabel <- as.numeric(gsub("\"", "", gsub("=", "", lw$roi)))
+    lw$ROILabel <- gsub("\"", "", gsub("=", "", lw$roi))
     
     lw <- lw[lw$slide.name == slideName,]
     

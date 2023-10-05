@@ -1,2 +1,15 @@
-Changes in version 0.99.0 (2022-04-01)
+Changes in 1.2.0 (2023-10-5)
++ Corrected labworksheet attached to package
++ Added tibble plottingFactor 
++ scale bar printing in mm
++ Bugs fixes:
+  - SpatialPosition printing
+  - saving xml files
+  - ROI matching on string values
+  - overcropping on recolored images
+
+v1.0.0 (2023-04-21)
++ Initial Bioconductor release
+
+v0.99.0 (2022-04-01)
 + Submitted to Bioconductor

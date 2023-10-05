@@ -3,7 +3,7 @@ tifFile <- downloadMouseBrainImage()
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
 
-annotsDF <- readLabWorksheet(lw = annots, slideName = "4")
+annotsDF <- readLabWorksheet(lw = annots, slideName = "D5761 (3)")
 
 ##################################  Utils  #####################################
 testthat::test_that("mouse brain tiff can be downloaded",{
@@ -182,7 +182,7 @@ testthat::test_that("annotMatching is correct",{
     if(nrow(ROI) > 1){
       totalPixels <- NULL
       for(j in ROI$Sample_ID){
-        pixels <- nrow(coordsFromMask(createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
+        pixels <- nrow(SpatialOmicsOverlay:::coordsFromMask(SpatialOmicsOverlay:::createMask(b64string = position(kidneyAOIattrs)[meta(kidneyAOIattrs)$Sample_ID == j], 
                                                  metadata = ROI[ROI$Sample_ID == j,], 
                                                  outline = FALSE), 
                                       metadata = ROI[ROI$Sample_ID == j,],
@@ -194,7 +194,7 @@ testthat::test_that("annotMatching is correct",{
       
       expect_true(all(names(sort(totalPixels)) == subsetAnnots$SegmentDisplayName[order(subsetAnnots$AOISurfaceArea)]))
     }else{
-      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == i])
+      expect_true(ROI$Sample_ID == kidneyAnnots$SegmentDisplayName[kidneyAnnots$ROILabel == as.numeric(i)])
     }
   }
 })
@@ -207,7 +207,7 @@ testthat::test_that("SpatialPosition is formatted correctly",{
   expect_true(all(names(AOIattrs) == c("ROILabel", "Sample_ID", "Height", 
                                        "Width", "X", "Y", "Segmentation", 
                                        "Position")))
-  expect_true(class(AOIattrs@position$ROILabel) == "numeric")
+  expect_true(class(AOIattrs@position$ROILabel) == "character")
   expect_true(class(AOIattrs@position$Sample_ID) == "character")
   expect_true(class(AOIattrs@position$Height) == "numeric")
   expect_true(class(AOIattrs@position$Width) == "numeric")
@@ -396,12 +396,15 @@ subsetAnnots <- system.file("extdata", "muBrain_subset_LabWorksheet.txt",
                             package = "SpatialOmicsOverlay")
 
 overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = subsetAnnots,
-                                               slideName = "4", outline = FALSE,
+                                               slideName = "D5761 (3)", outline = FALSE,
                                                image = FALSE))
+
+colnames(annotsGxT@protocolData@data)[which(colnames(annotsGxT@protocolData@data) == "ScanLabel")] <- "slide name"
+colnames(annotsGxT@phenoData@data)[which(colnames(annotsGxT@phenoData@data) == "SegmentLabel")] <- "segment"
 
 overlayBound <- readSpatialOverlay(ometiff = tifFile, 
                                    annots = annotsGxT, 
-                                   slideName = "4", 
+                                   slideName = "D5761 (3)", 
                                    outline = TRUE,
                                    image = FALSE)
 
@@ -424,12 +427,12 @@ testthat::test_that("readSpatialOverlay works as expected - all points",{
   expect_true(seg(overlay) == "Segmented")
   expect_true(outline(overlay) == FALSE)
   expect_true(is.null(plotFactors(overlay)))
-  expect_true(slideName(overlay) == "4")
+  expect_true(slideName(overlay) == "D5761 (3)")
 
   expect_identical(scanMeta(overlay)[1:3], parseScanMetadata(omexml = xml))
   expect_identical(overlay(overlay), suppressWarnings(parseOverlayAttrs(omexml = xml,
                                                                         annots = readLabWorksheet(subsetAnnots,
-                                                                                                  slideName = "4"),
+                                                                                                  slideName = "D5761 (3)"),
                                                                         labworksheet = TRUE)))
 })
 
@@ -443,10 +446,10 @@ testthat::test_that("readSpatialOverlay works as expected - outline points",{
   expect_true(seg(overlayBound) == "Geometric")
   expect_true(outline(overlayBound) == TRUE)
   expect_true(is.null(plotFactors(overlayBound)))
-  expect_true(slideName(overlayBound) == "4")
+  expect_true(slideName(overlayBound) == "D5761 (3)")
   
   annots <- sData(annotsGxT)
-  annots <- annots[annots$`slide name` == "4",]
+  annots <- annots[annots$`slide name` == "D5761 (3)",]
   annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
   colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
   
@@ -729,7 +732,7 @@ testthat::test_that("SpatialOverlay is formatted correctly",{
 
 testthat::test_that("SpatialOverlay accessor work as expected",{
   #Spec 2. The class accessors work as expected.
-  expect_true(slideName(overlayBound) == "4")
+  expect_true(slideName(overlayBound) == "D5761 (3)")
   expect_identical(slideName(overlayBound), overlayBound@slideName)
   
   expect_true(class(overlay(overlayBound)) == "SpatialPosition")
