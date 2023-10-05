@@ -368,7 +368,7 @@ scaleBarPrinting <- function(gp, scaleBar, corner = "bottomright",
                              image = NULL, scaleBarUnit = "um", ...){
   
     if(!scaleBarUnit %in% c("um", "mm")){
-      stop("scaleBarUnit not valid, options: um, nm, mm")
+      stop("scaleBarUnit not valid, options: um, mm")
     }
     
     scaleBarPts <- scaleBarCalculation(scaleBar = scaleBar, corner = corner, 
