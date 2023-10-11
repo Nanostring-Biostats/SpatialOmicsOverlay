@@ -23,7 +23,7 @@ bookendStr <- function(x, bookend = 8){
     if(!is(x,"character")){
         x <- as.character(x)
     }
-    if(nchar(x) > bookend*2){
+    if(nchar(x)[1] > bookend*2){
         x <- paste(substr(x = x, start = 1, stop = bookend), "...",
                    substr(x = x, start = nchar(x)-(bookend-1), stop = nchar(x)),
                    paste0("(", nchar(x), " total char)"))
@@ -54,9 +54,9 @@ readLabWorksheet <- function(lw, slideName){
     
     startLine <- grep(readLines(lw), pattern = "^Annotations")
     
-    lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
+    lw <- read.csv(lw, header = TRUE, sep = "\t", skip = startLine, 
                      fill = TRUE)
-    lw$ROILabel <- as.numeric(gsub("\"", "", gsub("=", "", lw$roi)))
+    lw$ROILabel <- lw$roi
     
     lw <- lw[lw$slide.name == slideName,]
     
