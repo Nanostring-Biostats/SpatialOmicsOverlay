@@ -56,7 +56,7 @@ readLabWorksheet <- function(lw, slideName){
     
     lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
                      fill = TRUE)
-    lw$ROILabel <- gsub("\"", "", gsub("=", "", lw$roi))
+    lw$ROILabel <- gsub("\\W", "", lw$roi)
     
     lw <- lw[lw$slide.name == slideName,]
     
