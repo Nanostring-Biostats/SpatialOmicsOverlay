@@ -103,6 +103,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
         ROInum <- as.numeric(gsub("Annotation:", "", ROInum))
         
         ROInum <- omexml$StructuredAnnotations[ROInum]$XMLAnnotation$Value$ChannelThresholds$RoiName
+        ROInum <- gsub("\\W", "", ROInum)
         
         ROI <- ROIs[[ROI]]$Union
         
