@@ -16,7 +16,8 @@ vignette: >
 knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
-  fig.width = 10
+  fig.width = 10,
+  fig.retina = 1
 )
 
 options(java.parameters = "-Xmx4g")
@@ -165,7 +166,7 @@ Error in .jcall("RBioFormats", "Ljava/lang/Object;", "readPixels", i,  :
   java.lang.NegativeArraySizeException: -2147483648
 ```  
 
-The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. For the rest of this tutorial we will be using res = 8 for vignette size restrictions, but res 4-6 is recommended. 
+The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. **For the rest of this tutorial we will be using res = 8 for vignette size restrictions, but res 4-6 is recommended.**
 
 ```{r add image}
 #lowest resolution = fastest speeds
