@@ -19,7 +19,7 @@ testthat::test_that("decodeB64 is correct",{
     #Spec 1. The function produces same values as python truth. 
     pythonTruth <- readRDS("testData/kidneyDecodedTruth.RDS")
     expect_true(all(as.numeric(decodeB64(b64string = AOIposition, width = AOImeta$Width,
-                                         height = AOImeta$Height)) == as.numeric(pythonTruth)))
+                                         height = AOImeta$Height)) == pythonTruth))
 })
 
 pythonTruth <- readRDS("testData/kidneyMaskTruth.RDS")
@@ -135,7 +135,8 @@ testthat::test_that("createCoordFile is correct",{
                                      pythonTruth$AOI,
                                      pythonTruth$xcoor),]
     
-    expect_true(all(coords[,c("ycoor", "xcoor")] == 
+    # decreased test data size
+    expect_true(all(coords[1:nrow(pythonTruth),c("ycoor", "xcoor")] == 
                         pythonTruth[,c("ycoor","xcoor")]))
 })
 

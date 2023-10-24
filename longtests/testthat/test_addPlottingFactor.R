@@ -4,7 +4,7 @@ if(!file.exists("muBrain.RDS")){
                         package = "SpatialOmicsOverlay")
   
   overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
-                                                 slideName = "4", outline = FALSE))
+                                                 slideName = "D5761 (3)", outline = FALSE))
   
   saveRDS(overlay, "muBrain.RDS")
 }else{
@@ -13,7 +13,7 @@ if(!file.exists("muBrain.RDS")){
 
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
-annots <- readLabWorksheet(annots, "4")
+annots <- readLabWorksheet(annots, "D5761 (3)")
 
 samples <- sampNames(overlay)[-c(1:4)]
 counts <- as.data.frame(matrix(ncol = length(samples), nrow = 10, 
@@ -183,11 +183,11 @@ GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip",
 testthat::test_that("annotation GeoMxSet object can be added as plotting Factor",{
     #Spec 12. The function works with a NanostringGeomxSet input, column name 
     #           plotting factor. 
-    overlay <- addPlottingFactor(overlay, GxT, "segment")
+    overlay <- addPlottingFactor(overlay, GxT, "Group")
     
-    expect_true(class(plotFactors(overlay)$segment) == "factor")
-    expect_identical(as.character(plotFactors(overlay)$segment),
-                     sData(GxT)$segment[match(rownames(plotFactors(overlay)), 
+    expect_true(class(plotFactors(overlay)$Group) == "factor")
+    expect_identical(as.character(plotFactors(overlay)$Group),
+                     sData(GxT)$Group[match(rownames(plotFactors(overlay)), 
                                               sData(GxT)$SampleID, nomatch = 0)])
     
     #Spec 13. The function works with a NanostringGeomxSet input, row name 
