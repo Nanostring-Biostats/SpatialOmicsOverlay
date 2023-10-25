@@ -4,22 +4,25 @@ annots <- system.file("extdata", "muBrain_LabWorksheet.txt",
 
 annotsGxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip", 
                                  package = "SpatialOmicsOverlay")))
-annotsGxT <- annotsGxT[,sData(annotsGxT)$segment == "Full ROI"]
+annotsGxT <- annotsGxT[,sData(annotsGxT)$Updated_SegLabels == "Full ROI"]
+
+colnames(annotsGxT@protocolData@data)[which(colnames(annotsGxT@protocolData@data) == "ScanLabel")] <- "slide name"
+colnames(annotsGxT@phenoData@data)[which(colnames(annotsGxT@phenoData@data) == "SegmentLabel")] <- "segment"
 
 overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
-                                               slideName = "4", outline = FALSE))
+                                               slideName = "D5761 (3)", outline = FALSE))
 
 testthat::test_that("annotation input types",{
     #Spec 1. The function works with either a labworksheet or a geomxset object 
     #           as annotation.
     expect_error(overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, 
                                                                 annots = annots, 
-                                                                slideName = "4", 
+                                                                slideName = "D5761 (3)", 
                                                                 outline = FALSE)), NA)
     
     expect_error(overlayBound <- readSpatialOverlay(ometiff = tifFile, 
                                                     annots = annotsGxT, 
-                                                    slideName = "4", 
+                                                    slideName = "D5761 (3)", 
                                                     outline = TRUE), NA)
     
     #Spec 2. The function only returns samples in both xml and annotation
@@ -38,9 +41,9 @@ testthat::test_that("readSpatialOverlay works as expected - all points",{
     expect_true(seg(overlay) == "Segmented")
     expect_true(outline(overlay) == FALSE)
     expect_true(is.null(plotFactors(overlay)))
-    expect_true(slideName(overlay) == "4")
+    expect_true(slideName(overlay) == "D5761 (3)")
     
-    annots <- readLabWorksheet(lw = annots, slideName = "4")
+    annots <- readLabWorksheet(lw = annots, slideName = "D5761 (3)")
     labWorksheet <- TRUE
     xml <- xmlExtraction(ometiff = tifFile, saveFile = FALSE)
     
@@ -54,7 +57,7 @@ testthat::test_that("readSpatialOverlay works as expected - all points",{
 
 overlayImage <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, 
                                                     annots = annots, 
-                                                    slideName = "4", 
+                                                    slideName = "D5761 (3)", 
                                                     outline = FALSE, 
                                                     image = TRUE, res = 8))
 
@@ -68,9 +71,9 @@ testthat::test_that("readSpatialOverlay works as expected - with image",{
     expect_true(seg(overlayImage) == "Segmented")
     expect_true(outline(overlayImage) == FALSE)
     expect_true(is.null(plotFactors(overlayImage)))
-    expect_true(slideName(overlayImage) == "4")
+    expect_true(slideName(overlayImage) == "D5761 (3)")
     
-    annots <- readLabWorksheet(lw = annots, slideName = "4")
+    annots <- readLabWorksheet(lw = annots, slideName = "D5761 (3)")
     labWorksheet <- TRUE
     xml <- xmlExtraction(ometiff = tifFile, saveFile = FALSE)
     
@@ -91,7 +94,7 @@ testthat::test_that("readSpatialOverlay works as expected - with image",{
 })
 
 overlayBound <- readSpatialOverlay(ometiff = tifFile, annots = annotsGxT, 
-                                   slideName = "4", outline = TRUE)
+                                   slideName = "D5761 (3)", outline = TRUE)
 
 testthat::test_that("readSpatialOverlay works as expected - boundary points",{
     #Spec 1. The function returns a SpatialOverlay object.
@@ -103,10 +106,10 @@ testthat::test_that("readSpatialOverlay works as expected - boundary points",{
     expect_true(seg(overlayBound) == "Geometric")
     expect_true(outline(overlayBound) == TRUE)
     expect_true(is.null(plotFactors(overlayBound)))
-    expect_true(slideName(overlayBound) == "4")
+    expect_true(slideName(overlayBound) == "D5761 (3)")
     
     annots <- sData(annotsGxT)
-    annots <- annots[annots$`slide name` == "4",]
+    annots <- annots[annots$`slide name` == "D5761 (3)",]
     annots$Sample_ID <- gsub(".dcc", "", rownames(annots))
     colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     

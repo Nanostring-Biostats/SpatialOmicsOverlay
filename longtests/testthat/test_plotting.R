@@ -274,7 +274,7 @@ if(!file.exists("muBrain.RDS")){
                         package = "SpatialOmicsOverlay")
   
   overlay <- suppressWarnings(readSpatialOverlay(ometiff = tifFile, annots = annots, 
-                                                 slideName = "4", outline = FALSE))
+                                                 slideName = "D5761 (3)", outline = FALSE))
   
   saveRDS(overlay, "muBrain.RDS")
 }else{
@@ -286,7 +286,7 @@ overlayImage8 <- add4ChannelImage(overlay, tiff, res = 8)
 
 annots <- system.file("extdata", "muBrain_LabWorksheet.txt", 
                       package = "SpatialOmicsOverlay")
-annots <- readLabWorksheet(annots, "4")
+annots <- readLabWorksheet(annots, "D5761 (3)")
 
 overlayImage8 <- addPlottingFactor(overlayImage8, annots, "segment")
 

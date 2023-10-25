@@ -22,7 +22,8 @@ Suggests:
     pheatmap,
     viridis,
     cowplot,
-    vdiffr
+    vdiffr,
+    sf
 License: MIT
 Collate: addImage.R
          addPlottingFactor.R

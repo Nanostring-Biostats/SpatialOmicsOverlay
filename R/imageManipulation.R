@@ -528,7 +528,7 @@ cropTissue <- function(overlay, buffer = 0.05){
     green <- image_data[,,2] > 0.05
     blue <- image_data[,,3] > 0.05
     
-    bg <- matrix(boundary(red & green & blue), 
+    bg <- matrix(boundary(red | green | blue), 
                  nrow = nrow(red), ncol = ncol(red))
     
     xmin <- min(which(rowSums(bg) > nrow(red)*0.03))
