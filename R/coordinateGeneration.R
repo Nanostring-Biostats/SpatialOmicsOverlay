@@ -82,7 +82,7 @@ createCoordFile <- function(overlay, outline = TRUE){
 #' muBrain <- readRDS(unzip(system.file("extdata", "muBrainSubset_SpatialOverlay.zip", 
 #'                                     package = "SpatialOmicsOverlay")))
 #' 
-#' samp <- which(sampNames(muBrain) == "DSP-1012996073013-H-F12")
+#' samp <- which(sampNames(muBrain) == "DSP-1012999073013-A-F12")
 #' 
 #' ROIMask <- createMask(b64string = position(overlay(muBrain))[samp], 
 #'                       metadata = meta(overlay(muBrain))[samp,],

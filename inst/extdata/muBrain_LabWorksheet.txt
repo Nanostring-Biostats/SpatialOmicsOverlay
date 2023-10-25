@@ -1,287 +1,109 @@
-Experiment Summary								
-Readout group name	19July2021_MsWTA							
-Date	8/4/2021 22:30							
-Readout mode	NGS							
-Number of Collection Plates	3							
-Number Of AOIs	267							
-Library Prep Protocol Version								
-								
-Library Prep Summary								
-Library Prep Plate	Collection Plate	Primer Plate	Rows	Area				
-19July2021_MsWTA-F	1.013E+12	GeoMx Seq Code F	A - H	5627357.19				
-19July2021_MsWTA-G	1.013E+12	GeoMx Seq Code G	A - G	4434260.1				
-19July2021_MsWTA-H	1.013E+12	GeoMx Seq Code H	A - H	5330410.34				
-Total Area	15392028							
-								
-Annotations								
+Experiment Summary
+Readout group name	04June2021_msWTA
+Date	15 Jun 2021  9:58 PM
+Readout mode	NGS
+Number of Collection Plates	1
+Number Of AOIs	93
+Library Prep Protocol Version
+
+Library Prep Summary
+Library Prep Plate	Collection Plate	Primer Plate	Rows
+04June2021_msWTA-A	"=""1012999073013"""	GeoMx Seq Code A	A - H
+Total Area	5572977
+
+Annotations
 Sample_ID	slide name	scan name	panel	roi	segment	aoi	area	tags
-DSP-1012998073013-F-A01	No Template Control							
-DSP-1012998073013-F-A02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	1	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	2	Full ROI	Full ROI-aoi-001	65828.36	
-DSP-1012998073013-F-A04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	3	Full ROI	Full ROI-aoi-001	69552.04	
-DSP-1012998073013-F-A05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	4	Full ROI	Full ROI-aoi-001	111873.41	
-DSP-1012998073013-F-A06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	5	Full ROI	Full ROI-aoi-001	121261.33	
-DSP-1012998073013-F-A07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	6	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	7	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	8	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	9	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	10	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-A12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	11	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	12	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	13	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	14	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	15	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	16	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	17	Full ROI	Full ROI-aoi-001	162905.05	
-DSP-1012998073013-F-B07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	18	Full ROI	Full ROI-aoi-001	131127.25	
-DSP-1012998073013-F-B08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	19	DNA	DNA-aoi-001	25693.11	
-DSP-1012998073013-F-B09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	20	DNA	DNA-aoi-001	15592.35	
-DSP-1012998073013-F-B10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	21	DNA	DNA-aoi-001	17105.29	
-DSP-1012998073013-F-B11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	22	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-B12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	23	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-C01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	24	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-C02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	25	Full ROI	Full ROI-aoi-001	42449.58	
-DSP-1012998073013-F-C03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	26	Full ROI	Full ROI-aoi-001	49616.7	
-DSP-1012998073013-F-C04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	27	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-C05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	28	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-C06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	29	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-C07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	30	NeuN+	NeuN+-aoi-001	24390.87	
-DSP-1012998073013-F-C08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	31	NeuN+	NeuN+-aoi-001	23815.36	
-DSP-1012998073013-F-C09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	32	NeuN+	NeuN+-aoi-001	35629.04	
-DSP-1012998073013-F-C10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	33	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-C11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	34	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-C12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	35	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-D01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	36	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-D02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	37	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-D03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	38	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-D04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	39	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012998073013-F-D05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	40	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-D06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	41	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-D07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	42	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-D08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	43	Full ROI	Full ROI-aoi-001	49658.58	
-DSP-1012998073013-F-D09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	44	Full ROI	Full ROI-aoi-001	89548.28	
-DSP-1012998073013-F-D10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	45	Full ROI	Full ROI-aoi-001	66907.27	
-DSP-1012998073013-F-D11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	46	Full ROI	Full ROI-aoi-001	119976.68	
-DSP-1012998073013-F-D12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	47	Full ROI	Full ROI-aoi-001	85109.06	
-DSP-1012998073013-F-E01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	NeuN+	NeuN+-aoi-001	7885.22	
-DSP-1012998073013-F-E02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	DNA	DNA-aoi-001	32270.49	
-DSP-1012998073013-F-E03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	NeuN+	NeuN+-aoi-001	5058.53	
-DSP-1012998073013-F-E04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	DNA	DNA-aoi-001	34107.31	
-DSP-1012998073013-F-E05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	NeuN+	NeuN+-aoi-001	4100.31	
-DSP-1012998073013-F-E06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	DNA	DNA-aoi-001	80648.1	
-DSP-1012998073013-F-E07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	NeuN+	NeuN+-aoi-001	2075.66	
-DSP-1012998073013-F-E08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	DNA	DNA-aoi-001	53061.42	
-DSP-1012998073013-F-E09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	53	Full ROI	Full ROI-aoi-001	62682.74	
-DSP-1012998073013-F-E10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	54	Full ROI	Full ROI-aoi-001	86525.6	
-DSP-1012998073013-F-E11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	55	Full ROI	Full ROI-aoi-001	71988.82	
-DSP-1012998073013-F-E12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	56	Full ROI	Full ROI-aoi-001	70559.65	
-DSP-1012998073013-F-F01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	57	Full ROI	Full ROI-aoi-001	49795.74	
-DSP-1012998073013-F-F02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	NeuN+	NeuN+-aoi-001	7789.14	
-DSP-1012998073013-F-F03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	DNA	DNA-aoi-001	35255.29	
-DSP-1012998073013-F-F04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	NeuN+	NeuN+-aoi-001	5761.45	
-DSP-1012998073013-F-F05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	DNA	DNA-aoi-001	16687.09	
-DSP-1012998073013-F-F06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	NeuN+	NeuN+-aoi-001	3447.12	
-DSP-1012998073013-F-F07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	DNA	DNA-aoi-001	64180.49	
-DSP-1012998073013-F-F08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	NeuN+	NeuN+-aoi-001	1329.42	
-DSP-1012998073013-F-F09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	DNA	DNA-aoi-001	48495.42	
-DSP-1012998073013-F-F10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	63	Full ROI	Full ROI-aoi-001	83993.86	
-DSP-1012998073013-F-F11	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	64	Full ROI	Full ROI-aoi-001	98717.52	
-DSP-1012998073013-F-F12	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	65	Full ROI	Full ROI-aoi-001	100303.99	
-DSP-1012998073013-F-G01	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	66	Full ROI	Full ROI-aoi-001	130142.66	
-DSP-1012998073013-F-G02	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	67	Full ROI	Full ROI-aoi-001	130630.88	
-DSP-1012998073013-F-G03	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	NeuN+	NeuN+-aoi-001	7451.19	
-DSP-1012998073013-F-G04	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	DNA	DNA-aoi-001	46355.98	
-DSP-1012998073013-F-G05	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	NeuN+	NeuN+-aoi-001	6186.68	
-DSP-1012998073013-F-G06	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	DNA	DNA-aoi-001	43099.26	
-DSP-1012998073013-F-G07	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	NeuN+	NeuN+-aoi-001	4491.82	
-DSP-1012998073013-F-G08	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	DNA	DNA-aoi-001	59339.22	
-DSP-1012998073013-F-G09	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	NeuN+	NeuN+-aoi-001	3968.27	
-DSP-1012998073013-F-G10	1	1	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	DNA	DNA-aoi-001	64991.64	
-DSP-1012998073013-F-G11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	1	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-G12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	2	Full ROI	Full ROI-aoi-001	62658.28	
-DSP-1012998073013-F-H01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	3	Full ROI	Full ROI-aoi-001	69631.81	
-DSP-1012998073013-F-H02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	4	Full ROI	Full ROI-aoi-001	131532.34	
-DSP-1012998073013-F-H03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	5	Full ROI	Full ROI-aoi-001	123079.93	
-DSP-1012998073013-F-H04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	6	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	7	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	8	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	9	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	10	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	11	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	12	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	13	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012998073013-F-H12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	14	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A01	No Template Control							
-DSP-1012997073012-G-A02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	15	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	16	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	17	Full ROI	Full ROI-aoi-001	131135.24	
-DSP-1012997073012-G-A05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	18	Full ROI	Full ROI-aoi-001	157531.11	
-DSP-1012997073012-G-A06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	19	DNA	DNA-aoi-001	30190.52	
-DSP-1012997073012-G-A07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	20	DNA	DNA-aoi-001	32471.28	
-DSP-1012997073012-G-A08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	21	DNA	DNA-aoi-001	47342.01	
-DSP-1012997073012-G-A09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	22	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	23	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	24	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-A12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	25	Full ROI	Full ROI-aoi-001	68928.09	
-DSP-1012997073012-G-B01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	26	Full ROI	Full ROI-aoi-001	65246.46	
-DSP-1012997073012-G-B02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	27	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-B03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	28	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-B04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	29	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-B05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	30	NeuN+	NeuN+-aoi-001	33355.16	
-DSP-1012997073012-G-B06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	31	NeuN+	NeuN+-aoi-001	26671.47	
-DSP-1012997073012-G-B07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	32	NeuN+	NeuN+-aoi-001	42067.51	
-DSP-1012997073012-G-B08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	33	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-B09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	34	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-B10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	35	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-B11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	36	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-B12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	37	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-C01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	38	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-C02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	39	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012997073012-G-C03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	40	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-C04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	41	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-C05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	42	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012997073012-G-C06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	43	Full ROI	Full ROI-aoi-001	58866.5	
-DSP-1012997073012-G-C07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	44	Full ROI	Full ROI-aoi-001	130791.22	
-DSP-1012997073012-G-C08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	45	Full ROI	Full ROI-aoi-001	99735.68	
-DSP-1012997073012-G-C09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	46	Full ROI	Full ROI-aoi-001	141262.38	
-DSP-1012997073012-G-C10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	47	Full ROI	Full ROI-aoi-001	106946.44	
-DSP-1012997073012-G-C11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	NeuN+	NeuN+-aoi-001	5153.01	
-DSP-1012997073012-G-C12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	DNA	DNA-aoi-001	36105.43	
-DSP-1012997073012-G-D01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	NeuN+	NeuN+-aoi-001	11135.23	
-DSP-1012997073012-G-D02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	DNA	DNA-aoi-001	64024.79	
-DSP-1012997073012-G-D03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	NeuN+	NeuN+-aoi-001	7741.34	
-DSP-1012997073012-G-D04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	DNA	DNA-aoi-001	44105.6	
-DSP-1012997073012-G-D05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	NeuN+	NeuN+-aoi-001	4073.3	
-DSP-1012997073012-G-D06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	DNA	DNA-aoi-001	114172.07	
-DSP-1012997073012-G-D07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	NeuN+	NeuN+-aoi-001	9661.61	
-DSP-1012997073012-G-D08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	DNA	DNA-aoi-001	31660.94	
-DSP-1012997073012-G-D09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	53	Full ROI	Full ROI-aoi-001	60150.36	
-DSP-1012997073012-G-D10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	54	Full ROI	Full ROI-aoi-001	137620.23	
-DSP-1012997073012-G-D11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	55	Full ROI	Full ROI-aoi-001	122508.1	
-DSP-1012997073012-G-D12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	56	Full ROI	Full ROI-aoi-001	133015.87	
-DSP-1012997073012-G-E01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	57	Full ROI	Full ROI-aoi-001	115844.39	
-DSP-1012997073012-G-E02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	58	NeuN+	NeuN+-aoi-001	5372.34	
-DSP-1012997073012-G-E03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	58	DNA	DNA-aoi-001	38700.96	
-DSP-1012997073012-G-E04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	NeuN+	NeuN+-aoi-001	8353.78	
-DSP-1012997073012-G-E05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	DNA	DNA-aoi-001	49509.43	
-DSP-1012997073012-G-E06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	NeuN+	NeuN+-aoi-001	5791.34	
-DSP-1012997073012-G-E07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	DNA	DNA-aoi-001	37087.63	
-DSP-1012997073012-G-E08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	NeuN+	NeuN+-aoi-001	5625.08	
-DSP-1012997073012-G-E09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	DNA	DNA-aoi-001	79923.28	
-DSP-1012997073012-G-E10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	NeuN+	NeuN+-aoi-001	4761.99	
-DSP-1012997073012-G-E11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	DNA	DNA-aoi-001	80747.53	
-DSP-1012997073012-G-E12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	63	Full ROI	Full ROI-aoi-001	52539.3	
-DSP-1012997073012-G-F01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	64	Full ROI	Full ROI-aoi-001	127707.95	
-DSP-1012997073012-G-F02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	65	Full ROI	Full ROI-aoi-001	81498.72	
-DSP-1012997073012-G-F03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	66	Full ROI	Full ROI-aoi-001	128888.54	
-DSP-1012997073012-G-F04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	67	Full ROI	Full ROI-aoi-001	131216.45	
-DSP-1012997073012-G-F05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	68	NeuN+	NeuN+-aoi-001	5899.09	
-DSP-1012997073012-G-F06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	68	DNA	DNA-aoi-001	36028.86	
-DSP-1012997073012-G-F07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	NeuN+	NeuN+-aoi-001	9695.66	
-DSP-1012997073012-G-F08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	DNA	DNA-aoi-001	47587.08	
-DSP-1012997073012-G-F09	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	NeuN+	NeuN+-aoi-001	6325.44	
-DSP-1012997073012-G-F10	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	DNA	DNA-aoi-001	47693.07	
-DSP-1012997073012-G-F11	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	NeuN+	NeuN+-aoi-001	9299.04	
-DSP-1012997073012-G-F12	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	DNA	DNA-aoi-001	103178.16	
-DSP-1012997073012-G-G01	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	NeuN+	NeuN+-aoi-001	5611.18	
-DSP-1012997073012-G-G02	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	DNA	DNA-aoi-001	94888.33	
-DSP-1012997073012-G-G03	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	73	NeuN+	NeuN+-aoi-001	2092.76	
-DSP-1012997073012-G-G04	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	73	DNA	DNA-aoi-001	54385.88	
-DSP-1012997073012-G-G05	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	74	NeuN+	NeuN+-aoi-001	3352.64	
-DSP-1012997073012-G-G06	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	74	DNA	DNA-aoi-001	48548.5	
-DSP-1012997073012-G-G07	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	75	NeuN+	NeuN+-aoi-001	1977.34	
-DSP-1012997073012-G-G08	2	2	(v1.0) TAP Mouse Whole Transcriptome Atlas	75	DNA	DNA-aoi-001	53906.77	
-DSP-1012996073013-H-A01	No Template Control							
-DSP-1012996073013-H-A02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	1	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	2	Full ROI	Full ROI-aoi-001	93228.8	
-DSP-1012996073013-H-A04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	3	Full ROI	Full ROI-aoi-001	82528.56	
-DSP-1012996073013-H-A05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	4	Full ROI	Full ROI-aoi-001	164911.48	
-DSP-1012996073013-H-A06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	5	Full ROI	Full ROI-aoi-001	156564.42	
-DSP-1012996073013-H-A07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	6	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	7	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	8	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	9	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	10	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-A12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	11	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	12	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	13	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	14	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	15	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	16	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	17	Full ROI	Full ROI-aoi-001	224266.85	
-DSP-1012996073013-H-B07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	18	Full ROI	Full ROI-aoi-001	170872.92	
-DSP-1012996073013-H-B08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	19	DNA	DNA-aoi-001	38341.11	
-DSP-1012996073013-H-B09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	20	DNA	DNA-aoi-001	59696.83	
-DSP-1012996073013-H-B10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	21	DNA	DNA-aoi-001	25845.78	
-DSP-1012996073013-H-B11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	22	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-B12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	23	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-C01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	24	NeuN+	NeuN+-aoi-001	14529.11	
-DSP-1012996073013-H-C02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	25	Full ROI	Full ROI-aoi-001	64590.54	
-DSP-1012996073013-H-C03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	26	Full ROI	Full ROI-aoi-001	70755	
-DSP-1012996073013-H-C04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	27	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-C05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	28	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-C06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	29	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-C07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	30	NeuN+	NeuN+-aoi-001	27009.26	
-DSP-1012996073013-H-C08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	31	NeuN+	NeuN+-aoi-001	44127.98	
-DSP-1012996073013-H-C09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	32	NeuN+	NeuN+-aoi-001	24280.88	
-DSP-1012996073013-H-C10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	33	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-C11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	34	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-C12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	35	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-D01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	36	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-D02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	37	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-D03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	38	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-D04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	39	Full ROI	Full ROI-aoi-001	31383.73	
-DSP-1012996073013-H-D05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	40	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-D06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	41	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-D07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	42	Full ROI	Full ROI-aoi-001	70624.23	
-DSP-1012996073013-H-D08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	43	Full ROI	Full ROI-aoi-001	40918.9	
-DSP-1012996073013-H-D09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	44	Full ROI	Full ROI-aoi-001	132457.79	
-DSP-1012996073013-H-D10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	45	Full ROI	Full ROI-aoi-001	83569.42	
-DSP-1012996073013-H-D11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	46	Full ROI	Full ROI-aoi-001	101370.76	
-DSP-1012996073013-H-D12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	47	Full ROI	Full ROI-aoi-001	89247.42	
-DSP-1012996073013-H-E01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	NeuN+	NeuN+-aoi-001	6455.89	
-DSP-1012996073013-H-E02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	48	DNA	DNA-aoi-001	36697.57	
-DSP-1012996073013-H-E03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	NeuN+	NeuN+-aoi-001	16393.1	
-DSP-1012996073013-H-E04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	49	DNA	DNA-aoi-001	42705.2	
-DSP-1012996073013-H-E05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	NeuN+	NeuN+-aoi-001	15118.2	
-DSP-1012996073013-H-E06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	50	DNA	DNA-aoi-001	38861.47	
-DSP-1012996073013-H-E07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	NeuN+	NeuN+-aoi-001	10280.6	
-DSP-1012996073013-H-E08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	51	DNA	DNA-aoi-001	72105.84	
-DSP-1012996073013-H-E09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	NeuN+	NeuN+-aoi-001	9758.49	
-DSP-1012996073013-H-E10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	52	DNA	DNA-aoi-001	50197.16	
-DSP-1012996073013-H-E11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	53	Full ROI	Full ROI-aoi-001	50200.36	
-DSP-1012996073013-H-E12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	54	Full ROI	Full ROI-aoi-001	93935.39	
-DSP-1012996073013-H-F01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	55	Full ROI	Full ROI-aoi-001	77278.51	
-DSP-1012996073013-H-F02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	56	Full ROI	Full ROI-aoi-001	129844.35	
-DSP-1012996073013-H-F03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	57	Full ROI	Full ROI-aoi-001	88752.01	
-DSP-1012996073013-H-F04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	58	NeuN+	NeuN+-aoi-001	7685.87	
-DSP-1012996073013-H-F05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	58	DNA	DNA-aoi-001	29426.86	
-DSP-1012996073013-H-F06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	NeuN+	NeuN+-aoi-001	9305.76	
-DSP-1012996073013-H-F07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	59	DNA	DNA-aoi-001	49251.57	
-DSP-1012996073013-H-F08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	NeuN+	NeuN+-aoi-001	5091.14	
-DSP-1012996073013-H-F09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	60	DNA	DNA-aoi-001	38358.06	
-DSP-1012996073013-H-F10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	NeuN+	NeuN+-aoi-001	5201.93	
-DSP-1012996073013-H-F11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	61	DNA	DNA-aoi-001	76415.25	
-DSP-1012996073013-H-F12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	NeuN+	NeuN+-aoi-001	3409.55	
-DSP-1012996073013-H-G01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	62	DNA	DNA-aoi-001	59403.64	
-DSP-1012996073013-H-G02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	63	Full ROI	Full ROI-aoi-001	54434.63	
-DSP-1012996073013-H-G03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	64	Full ROI	Full ROI-aoi-001	126881.14	
-DSP-1012996073013-H-G04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	65	Full ROI	Full ROI-aoi-001	124165.88	
-DSP-1012996073013-H-G05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	66	Full ROI	Full ROI-aoi-001	181534.79	
-DSP-1012996073013-H-G06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	67	Full ROI	Full ROI-aoi-001	138071.84	
-DSP-1012996073013-H-G07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	68	NeuN+	NeuN+-aoi-001	9897.73	
-DSP-1012996073013-H-G08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	68	DNA	DNA-aoi-001	21245.73	
-DSP-1012996073013-H-G09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	NeuN+	NeuN+-aoi-001	9648.5	
-DSP-1012996073013-H-G10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	69	DNA	DNA-aoi-001	38832.53	
-DSP-1012996073013-H-G11	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	NeuN+	NeuN+-aoi-001	8978.68	
-DSP-1012996073013-H-G12	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	70	DNA	DNA-aoi-001	23822.88	
-DSP-1012996073013-H-H01	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	NeuN+	NeuN+-aoi-001	11111.57	
-DSP-1012996073013-H-H02	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	71	DNA	DNA-aoi-001	59399.81	
-DSP-1012996073013-H-H03	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	NeuN+	NeuN+-aoi-001	7311.63	
-DSP-1012996073013-H-H04	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	72	DNA	DNA-aoi-001	37954.88	
-DSP-1012996073013-H-H05	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	73	NeuN+	NeuN+-aoi-001	5944.97	
-DSP-1012996073013-H-H06	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	73	DNA	DNA-aoi-001	34274.05	
-DSP-1012996073013-H-H07	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	74	NeuN+	NeuN+-aoi-001	5569.45	
-DSP-1012996073013-H-H08	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	74	DNA	DNA-aoi-001	31895.45	
-DSP-1012996073013-H-H09	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	75	NeuN+	NeuN+-aoi-001	6950.66	
-DSP-1012996073013-H-H10	4	4	(v1.0) TAP Mouse Whole Transcriptome Atlas	75	DNA	DNA-aoi-001	29065.25	
+DSP-1012999073013-A-A01	No Template Control
+DSP-1012999073013-A-A02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""001"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""002"""	Full ROI	Full ROI-aoi-001	81013.22
+DSP-1012999073013-A-A04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""003"""	Full ROI	Full ROI-aoi-001	100893.41
+DSP-1012999073013-A-A05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""004"""	Full ROI	Full ROI-aoi-001	153435.75
+DSP-1012999073013-A-A06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""005"""	Full ROI	Full ROI-aoi-001	113976.40
+DSP-1012999073013-A-A07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""006"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""007"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""008"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""009"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""010"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-A12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""011"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""012"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""013"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""014"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""015"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""016"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""017"""	Full ROI	Full ROI-aoi-001	193581.87
+DSP-1012999073013-A-B07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""018"""	Full ROI	Full ROI-aoi-001	163940.64
+DSP-1012999073013-A-B08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""019"""	DNA	DNA-aoi-001	35680.36
+DSP-1012999073013-A-B09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""020"""	DNA	DNA-aoi-001	19980.58
+DSP-1012999073013-A-B10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""021"""	DNA	DNA-aoi-001	57667.69
+DSP-1012999073013-A-B11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""022"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-B12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""023"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-C01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""024"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-C02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""025"""	Full ROI	Full ROI-aoi-001	98671.32
+DSP-1012999073013-A-C03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""026"""	Full ROI	Full ROI-aoi-001	98603.70
+DSP-1012999073013-A-C04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""027"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-C05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""028"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-C06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""029"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-C07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""030"""	Full ROI	Full ROI-aoi-001	28910.82
+DSP-1012999073013-A-C08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""031"""	Full ROI	Full ROI-aoi-001	34682.66
+DSP-1012999073013-A-C09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""032"""	Full ROI	Full ROI-aoi-001	42324.89
+DSP-1012999073013-A-C10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""033"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-C11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""034"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-C12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""035"""	NeuN+	NeuN+-aoi-001	187.84
+DSP-1012999073013-A-D01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""036"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-D02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""037"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-D03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""038"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-D04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""039"""	Full ROI	Full ROI-aoi-001	31383.73
+DSP-1012999073013-A-D05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""040"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-D06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""041"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-D07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""042"""	Full ROI	Full ROI-aoi-001	70624.23
+DSP-1012999073013-A-D08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""043"""	Full ROI	Full ROI-aoi-001	43677.00
+DSP-1012999073013-A-D09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""044"""	Full ROI	Full ROI-aoi-001	182449.84
+DSP-1012999073013-A-D10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""045"""	Full ROI	Full ROI-aoi-001	60118.71
+DSP-1012999073013-A-D11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""046"""	Full ROI	Full ROI-aoi-001	120949.92
+DSP-1012999073013-A-D12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""047"""	Full ROI	Full ROI-aoi-001	141720.70
+DSP-1012999073013-A-E01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""048"""	NeuN+	NeuN+-aoi-001	6847.39
+DSP-1012999073013-A-E02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""048"""	DNA	DNA-aoi-001	39238.42
+DSP-1012999073013-A-E03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""049"""	NeuN+	NeuN+-aoi-001	24080.25
+DSP-1012999073013-A-E04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""049"""	DNA	DNA-aoi-001	65319.99
+DSP-1012999073013-A-E05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""050"""	NeuN+	NeuN+-aoi-001	14484.19
+DSP-1012999073013-A-E06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""050"""	DNA	DNA-aoi-001	28672.31
+DSP-1012999073013-A-E07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""051"""	NeuN+	NeuN+-aoi-001	12773.98
+DSP-1012999073013-A-E08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""051"""	DNA	DNA-aoi-001	68801.00
+DSP-1012999073013-A-E09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""052"""	NeuN+	NeuN+-aoi-001	17982.30
+DSP-1012999073013-A-E10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""052"""	DNA	DNA-aoi-001	75677.65
+DSP-1012999073013-A-E11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""053"""	Full ROI	Full ROI-aoi-001	34093.25
+DSP-1012999073013-A-E12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""054"""	Full ROI	Full ROI-aoi-001	153498.42
+DSP-1012999073013-A-F01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""055"""	Full ROI	Full ROI-aoi-001	59683.40
+DSP-1012999073013-A-F02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""056"""	Full ROI	Full ROI-aoi-001	144684.39
+DSP-1012999073013-A-F03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""057"""	Full ROI	Full ROI-aoi-001	117561.95
+DSP-1012999073013-A-F04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""058"""	NeuN+	NeuN+-aoi-001	7553.35
+DSP-1012999073013-A-F05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""058"""	DNA	DNA-aoi-001	34406.58
+DSP-1012999073013-A-F06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""059"""	NeuN+	NeuN+-aoi-001	28746.80
+DSP-1012999073013-A-F07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""059"""	DNA	DNA-aoi-001	35946.21
+DSP-1012999073013-A-F08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""060"""	NeuN+	NeuN+-aoi-001	9160.76
+DSP-1012999073013-A-F09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""060"""	DNA	DNA-aoi-001	11229.06
+DSP-1012999073013-A-F10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""061"""	NeuN+	NeuN+-aoi-001	14309.62
+DSP-1012999073013-A-F11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""061"""	DNA	DNA-aoi-001	74500.74
+DSP-1012999073013-A-F12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""062"""	NeuN+	NeuN+-aoi-001	15432.97
+DSP-1012999073013-A-G01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""062"""	DNA	DNA-aoi-001	50511.61
+DSP-1012999073013-A-G02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""063"""	NeuN+	NeuN+-aoi-001	1168.91
+DSP-1012999073013-A-G03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""064"""	Full ROI	Full ROI-aoi-001	134973.22
+DSP-1012999073013-A-G04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""065"""	Full ROI	Full ROI-aoi-001	102930.06
+DSP-1012999073013-A-G05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""066"""	Full ROI	Full ROI-aoi-001	159717.55
+DSP-1012999073013-A-G06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""067"""	Full ROI	Full ROI-aoi-001	191969.02
+DSP-1012999073013-A-G07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""068"""	NeuN+	NeuN+-aoi-001	10100.44
+DSP-1012999073013-A-G08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""068"""	DNA	DNA-aoi-001	32479.75
+DSP-1012999073013-A-G09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""069"""	NeuN+	NeuN+-aoi-001	15459.67
+DSP-1012999073013-A-G10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""069"""	DNA	DNA-aoi-001	39632.16
+DSP-1012999073013-A-G11	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""070"""	NeuN+	NeuN+-aoi-001	7524.41
+DSP-1012999073013-A-G12	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""070"""	DNA	DNA-aoi-001	18408.65
+DSP-1012999073013-A-H01	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""071"""	NeuN+	NeuN+-aoi-001	14727.50
+DSP-1012999073013-A-H02	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""071"""	DNA	DNA-aoi-001	71368.23
+DSP-1012999073013-A-H03	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""072"""	NeuN+	NeuN+-aoi-001	12480.95
+DSP-1012999073013-A-H04	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""072"""	DNA	DNA-aoi-001	42711.75
+DSP-1012999073013-A-H05	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""073"""	NeuN+	NeuN+-aoi-001	5238.70
+DSP-1012999073013-A-H06	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""073"""	DNA	DNA-aoi-001	39285.10
+DSP-1012999073013-A-H07	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""074"""	NeuN+	NeuN+-aoi-001	6437.03
+DSP-1012999073013-A-H08	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""074"""	DNA	DNA-aoi-001	34464.77
+DSP-1012999073013-A-H09	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""075"""	NeuN+	NeuN+-aoi-001	6649.48
+DSP-1012999073013-A-H10	D5761 (3)	D5761 (3)	(v1.0) TAP Mouse Whole Transcriptome Atlas	"=""075"""	DNA	DNA-aoi-001	36174.66

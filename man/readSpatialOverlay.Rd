@@ -53,7 +53,7 @@ muBrain_GxT <- readRDS(unzip(system.file("extdata", "muBrain_GxT.zip",
 image <- downloadMouseBrainImage()
 
 muBrain <- readSpatialOverlay(ometiff = image, annots = muBrain_GxT[,1:5], 
-                              slideName = "4", image = TRUE, res = 8, 
+                              slideName = "D5761 (3)", image = TRUE, res = 8, 
                               saveFile = FALSE, outline = FALSE)
 
 }

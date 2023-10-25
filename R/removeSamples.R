@@ -13,7 +13,7 @@
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
 #' 
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "D5761 (3)")
 #' 
 #' samps <- muBrainLW$Sample_ID[muBrainLW$segment != "Full ROI"]
 #' 

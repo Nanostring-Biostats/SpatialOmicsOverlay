@@ -11,7 +11,7 @@ setClass("SpatialOverlay",
                    image = "list"),
          prototype = prototype(
              new("VersionedBiobase",
-                 versions = c(SpatialOverlay = "0.99")),
+                 versions = c(SpatialOverlay = "1.0")),
              slideName = "slide",
              scanMetadata = list(),
              overlayData = SpatialPosition(),
