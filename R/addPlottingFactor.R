@@ -20,7 +20,7 @@
 #' muBrainLW <- system.file("extdata", "muBrain_LabWorksheet.txt", 
 #'                          package = "SpatialOmicsOverlay")
 #'
-#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
+#' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "D5761 (3)")
 #'
 #' muBrain <- addPlottingFactor(overlay = muBrain, 
 #'                              annots = muBrainLW, 
@@ -92,14 +92,21 @@ setMethod("addPlottingFactor",  "NanoStringGeoMxSet",
                   
                   if(length(sampIDs) == 0){
                       stop("Sample IDs in SpatialOverlay do not match given annots")
+                  }else if(length(sampIDs) > 1){
+                    matchingSamps <- NULL
+                    for(i in names(sampIDs)){
+                      matchingSamps[i] <- length(sData(annots)[[i]] %in% samples)
+                    }
+                    
+                    sampIDs <- names(sort(matchingSamps, decreasing = TRUE)[1L])
                   }
                   
                   gxtSamples <- sData(annots)[[sampIDs]]
               }
               
               annots <- annots[,match(samples, gxtSamples, nomatch = 0)]
+              gxtSamples <- gsub(".dcc", "", rownames(sData(annots)))
               samples <- samples[match(gxtSamples, samples, nomatch = 0)]
-              
               
               if(length(samples) != length(sampNames(overlay))){
                   warning(paste("Missing annotations in annots. Samples missing:", 
@@ -163,6 +170,42 @@ setMethod("addPlottingFactor",  "matrix",
 #' 
 #' 
 #' @param overlay \code{\link{SpatialOverlay}} object
+#' @param annots \code{matrix} containing plottingFactor, column or column names 
+#'                must contian matching sample names to overlay
+#' @param plottingFactor  column or row name from annots to add as plotting 
+#'                            factor
+#'
+#' @export 
+#' @rdname addPlottingFactor
+#' 
+setMethod("addPlottingFactor",  "tbl_df",
+          function(overlay, annots, plottingFactor){
+            return(addPlottingFactor(annots = as.data.frame(annots), 
+                                     overlay = overlay, 
+                                     plottingFactor = plottingFactor))
+          }) 
+
+#' 
+#' 
+#' @param overlay \code{\link{SpatialOverlay}} object
+#' @param annots \code{matrix} containing plottingFactor, column or column names 
+#'                must contian matching sample names to overlay
+#' @param plottingFactor  column or row name from annots to add as plotting 
+#'                            factor
+#'
+#' @export 
+#' @rdname addPlottingFactor
+#' 
+setMethod("addPlottingFactor",  "tbl",
+          function(overlay, annots, plottingFactor){
+            return(addPlottingFactor(annots = as.data.frame(annots), 
+                                     overlay = overlay, 
+                                     plottingFactor = plottingFactor))
+          })
+
+#' 
+#' 
+#' @param overlay \code{\link{SpatialOverlay}} object
 #' @param annots \code{data.frame} containing plottingFactor, column or column 
 #'                     names must contian matching sample names to overlay
 #' @param plottingFactor  column or row name from annots to add as plotting 
@@ -204,6 +247,13 @@ setMethod("addPlottingFactor",  "data.frame",
                   
                   if(length(sampIDs) == 0){
                       stop("Sample IDs in SpatialOverlay do not match given annots")
+                  }else if(length(sampIDs) > 1){
+                    matchingSamps <- NULL
+                    for(i in names(sampIDs)){
+                      matchingSamps[i] <- length(annots[[i]] %in% samples)
+                    }
+                    
+                    sampIDs <- names(sort(matchingSamps, decreasing = TRUE)[1L])
                   }
                   
                   annots <- annots[match(samples, annots[,sampIDs], 

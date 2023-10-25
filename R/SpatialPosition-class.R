@@ -8,7 +8,7 @@ setClass("SpatialPosition",
 setMethod("show", signature = "SpatialPosition",
           function(object) {
               suppressWarnings(print(cbind(meta(object),
-                                           Position=bookendStr(position(object)))))
+                                           Position=unlist(lapply(position(object), bookendStr)))))
           })
 
 # Constructors
