@@ -65,6 +65,8 @@ addImageOmeTiff <- function(overlay, ometiff = NULL, res = NULL, ...){
 #' 
 #' @export
 addImageFile <- function(overlay, imageFile = NULL, res = NULL){
+    .Deprecated("addImageOmeTiff")
+  
     if(!is(overlay,"SpatialOverlay")){
         stop("overlay must be a SpatialOverlay object")
     }
