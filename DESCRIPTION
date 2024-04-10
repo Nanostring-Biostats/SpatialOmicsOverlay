@@ -7,7 +7,7 @@ Version: 1.3.2
 Encoding: UTF-8
 Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", role = c("cre","aut")),
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
-             person("Stephanie", "Zimmerman", email = "stzimmerman@nanostring.com", role = c("ctb")))
+             person("Stephanie", "Zimmerman", role = c("ctb")))
 Depends: R (>= 4.1.0)
 Imports: S4Vectors, Biobase, base64enc, EBImage, ggplot2, XML, 
          scattermore, dplyr, pbapply, data.table, readxl, magick, grDevices, 
