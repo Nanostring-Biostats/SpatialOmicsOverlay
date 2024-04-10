@@ -43,7 +43,7 @@
 #' 
 
 readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, 
-                               res = NULL, saveFile = FALSE, outline = TRUE){
+                               res = NULL, saveFile = FALSE, outline = TRUE, ...){
     labWorksheet <- FALSE
     if(is(annots,"NanoStringGeoMxSet")){
         annots <- sData(annots)
@@ -58,7 +58,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
         labWorksheet <- TRUE
         colnames(annots)[colnames(annots) == "roi"] <- "ROILabel"
     }else if(endsWith(tolower(annots), "_labworksheet.txt")){
-        annots <- readLabWorksheet(lw = annots, slideName = slideName)
+        annots <- readLabWorksheet(lw = annots, slideName = slideName, ...)
         labWorksheet <- TRUE
     }else if(endsWith(annots, ".xlsx")){
         annots <- readxl::read_xlsx(annots, sheet = "SegmentProperties")
@@ -79,7 +79,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
     
     message("Parsing XML - overlay data")
     AOIattrs <- parseOverlayAttrs(omexml = xml, annots = annots, 
-                                  labworksheet = labWorksheet)
+                                  labworksheet = labWorksheet, ...)
     
     if(any(meta(AOIattrs)$Segmentation == "Segmented")){
         scan_metadata[["Segmentation"]] <- "Segmented"

@@ -54,6 +54,7 @@ parseScanMetadata <- function(omexml){
 #'                   will automatically be extracted 
 #' @param annots df of annotations
 #' @param labworksheet annots are from lab worksheet file
+#' @param ... segCol in annotMatching, if auto detection doesn't work. 
 #' 
 #' @return SpatialPosition of AOIs containing metadata and base64encoded positions
 #' 
@@ -77,7 +78,7 @@ parseScanMetadata <- function(omexml){
 #' @export
 #' 
 
-parseOverlayAttrs <- function(omexml, annots, labworksheet){
+parseOverlayAttrs <- function(omexml, annots, labworksheet, ...){
   if(!is(annots,"data.frame")){
     stop("File must be read into R and passed as a dataframe")
   }
@@ -125,7 +126,7 @@ parseOverlayAttrs <- function(omexml, annots, labworksheet){
         maskText <- NULL
       }
       
-      ROIannot <- annotMatching(annots, ROInum, maskNum, maskText)
+      ROIannot <- annotMatching(annots, ROInum, maskNum, maskText, ...)
       
       if(is.null(ROIannot) ){
         next
@@ -314,7 +315,7 @@ decodeB64 <- function(b64string, width, height){
 #' 
 #' @return df with ROI unique identifiers
 #' 
-#' @noRd
+#'
 
 annotMatching <- function(annots, ROInum, maskNum, maskText, segCol = NULL){
   if(!"ROILabel" %in% colnames(annots)){
