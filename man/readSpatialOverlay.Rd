@@ -11,7 +11,9 @@ readSpatialOverlay(
   image = FALSE,
   res = NULL,
   saveFile = FALSE,
-  outline = TRUE
+  outline = TRUE,
+  ...,
+  segCol = NULL
 )
 }
 \arguments{
@@ -37,6 +39,11 @@ directory with same name as OME-TIFF}
 
 \item{outline}{returned coordinates only contain outlinearies, 
 will not work for segmented ROIs}
+
+\item{...}{additional parameters for `readLabWorksheet` like `roiCol` and `slideCol`}
+
+\item{segCol}{additional parameter for `annotMatching` if default search doesn't work. 
+For default search, set to NULL}
 }
 \value{
 \code{\linkS4class{SpatialOverlay}} of slide

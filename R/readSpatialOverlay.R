@@ -19,6 +19,9 @@
 #'                     directory with same name as OME-TIFF 
 #' @param outline returned coordinates only contain outlinearies, 
 #'                   will not work for segmented ROIs
+#' @param ... additional parameters for `readLabWorksheet` like `roiCol` and `slideCol`
+#' @param segCol additional parameter for `annotMatching` if default search doesn't work. 
+#'                For default search, set to NULL
 #' 
 #' @return \code{\linkS4class{SpatialOverlay}} of slide
 #' 
@@ -43,7 +46,8 @@
 #' 
 
 readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE, 
-                               res = NULL, saveFile = FALSE, outline = TRUE, ...){
+                               res = NULL, saveFile = FALSE, outline = TRUE, ...,
+                               segCol = NULL){
     labWorksheet <- FALSE
     if(is(annots,"NanoStringGeoMxSet")){
         annots <- sData(annots)
@@ -79,7 +83,7 @@ readSpatialOverlay <- function(ometiff, annots, slideName, image = FALSE,
     
     message("Parsing XML - overlay data")
     AOIattrs <- parseOverlayAttrs(omexml = xml, annots = annots, 
-                                  labworksheet = labWorksheet, ...)
+                                  labworksheet = labWorksheet, segCol = segCol)
     
     if(any(meta(AOIattrs)$Segmentation == "Segmented")){
         scan_metadata[["Segmentation"]] <- "Segmented"

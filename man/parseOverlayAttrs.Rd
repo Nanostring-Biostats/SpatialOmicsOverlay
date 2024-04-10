@@ -4,7 +4,7 @@
 \alias{parseOverlayAttrs}
 \title{Parse the xml file for AOI attributes in GeoMx images}
 \usage{
-parseOverlayAttrs(omexml, annots, labworksheet)
+parseOverlayAttrs(omexml, annots, labworksheet, ...)
 }
 \arguments{
 \item{omexml}{xml file from OME-TIFF, can provide path to OME-TIFF and xml 
@@ -13,6 +13,8 @@ will automatically be extracted}
 \item{annots}{df of annotations}
 
 \item{labworksheet}{annots are from lab worksheet file}
+
+\item{...}{segCol in annotMatching, if auto detection doesn't work.}
 }
 \value{
 SpatialPosition of AOIs containing metadata and base64encoded positions
