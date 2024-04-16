@@ -65,7 +65,7 @@ readLabWorksheet <- function(lw, slideName, roiCol = NULL, slideCol = NULL){
         warning("First matched ROI column used. If not correct specify roiCol in fuction call")
         roiCol <- roiCol[1L]
       }
-    }else{
+    }else if(!roiCol %in% colnames(lw)){
       stop("Provided roiCol not valid")
     }
     
@@ -75,7 +75,7 @@ readLabWorksheet <- function(lw, slideName, roiCol = NULL, slideCol = NULL){
         warning("First matched ROI column used. If not correct specify slideCol in fuction call")
         slideCol <- slideCol[1L]
       }
-    }else{
+    }else if(!slideCol %in% colnames(lw)){
       stop("Provided slideCol not valid")
     }
     
