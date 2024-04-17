@@ -342,7 +342,7 @@ annotMatching <- function(annots, ROInum, maskNum, maskText, segCol = NULL){
         warning("First matched ROI column used. If not correct specify segCol in fuction call")
         segCol <- segCol[1L]
       }
-    }else if(!segCol %in% colnames(annots))
+    }else if(!segCol %in% colnames(annots)){
       stop("Provided segCol not valid")
     }
     
