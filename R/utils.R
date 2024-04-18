@@ -36,6 +36,8 @@ bookendStr <- function(x, bookend = 8){
 #' 
 #' @param lw lab worksheet file path
 #' @param slideName name of slide 
+#' @param roiCol column containing ROI information, if NULL function will determine automatically
+#' @param slideCol column containing slide name, if NULL function will determine automatically
 #' 
 #' @return df of ROI annotations
 #' 
@@ -47,7 +49,7 @@ bookendStr <- function(x, bookend = 8){
 #' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "D5761 (3)")
 #' 
 #' @export
-readLabWorksheet <- function(lw, slideName){
+readLabWorksheet <- function(lw, slideName, roiCol = NULL, slideCol = NULL){
     if(!file.exists(lw)){
         stop("Lab worksheet path is invalid")
     }
@@ -56,9 +58,29 @@ readLabWorksheet <- function(lw, slideName){
     
     lw <- read.table(lw, header = TRUE, sep = "\t", skip = startLine, 
                      fill = TRUE)
-    lw$ROILabel <- gsub("\\W", "", lw$roi)
     
-    lw <- lw[lw$slide.name == slideName,]
+    if(is.null(roiCol)){
+      roiCol <- colnames(lw)[grepl("^roi$", tolower(colnames(lw)))]
+      if(length(roiCol) > 1L){
+        warning("First matched ROI column used. If not correct specify roiCol in fuction call")
+        roiCol <- roiCol[1L]
+      }
+    }else if(!roiCol %in% colnames(lw)){
+      stop("Provided roiCol not valid")
+    }
+    
+    if(is.null(slideCol)){
+      slideCol <- colnames(lw)[grepl("^slide", tolower(colnames(lw)))]
+      if(length(slideCol) > 1L){
+        warning("First matched ROI column used. If not correct specify slideCol in fuction call")
+        slideCol <- slideCol[1L]
+      }
+    }else if(!slideCol %in% colnames(lw)){
+      stop("Provided slideCol not valid")
+    }
+    
+    lw$ROILabel <- gsub("\\W", "", lw[[roiCol]])
+    lw <- lw[lw[[slideCol]] == slideName,]
     
     if(nrow(lw) == 0){
         stop("No ROIs match given slideName")

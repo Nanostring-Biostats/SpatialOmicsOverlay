@@ -4,12 +4,16 @@
 \alias{readLabWorksheet}
 \title{Read lab worksheet into dataframe of annotations}
 \usage{
-readLabWorksheet(lw, slideName)
+readLabWorksheet(lw, slideName, roiCol = NULL, slideCol = NULL)
 }
 \arguments{
 \item{lw}{lab worksheet file path}
 
 \item{slideName}{name of slide}
+
+\item{roiCol}{column containing ROI information, if NULL function will determine automatically}
+
+\item{slideCol}{column containing slide name, if NULL function will determine automatically}
 }
 \value{
 df of ROI annotations
