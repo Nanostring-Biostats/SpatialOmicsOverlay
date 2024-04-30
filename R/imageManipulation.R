@@ -13,27 +13,41 @@
 #' @noRd
 
 imageColoring <- function(omeImage, scanMeta){
-    red <- matrix(0, nrow = nrow(imageData(omeImage)), 
+    oneFluor <- nrow(scanMeta$Fluorescence) == 1
+    
+    red <- matrix(0, nrow = nrow(imageData(omeImage)),
                   ncol = ncol(imageData(omeImage)))
     green <- matrix(0, nrow = nrow(imageData(omeImage)), 
                     ncol = ncol(imageData(omeImage)))
     blue <- matrix(0, nrow = nrow(imageData(omeImage)), 
                    ncol = ncol(imageData(omeImage)))
     
+    
     if("MinIntensity" %in% colnames(scanMeta$Fluorescence)){
         for(i in seq_len(nrow(scanMeta$Fluorescence))){
-            imageData(omeImage)[,,i] <- normalize(imageData(omeImage)[,,i],
-                                                  inputRange = 
-                                                      c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
-                                                        as.numeric(scanMeta$Fluorescence$MaxIntensity[i])))
+            if(oneFluor){
+                imageData(omeImage) <- normalize(imageData(omeImage),
+                                                      inputRange = 
+                                                          c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
+                                                            as.numeric(scanMeta$Fluorescence$MaxIntensity[i])))
+            }else{
+                imageData(omeImage)[,,i] <- normalize(imageData(omeImage)[,,i],
+                                                      inputRange = 
+                                                          c(as.numeric(scanMeta$Fluorescence$MinIntensity[i]),
+                                                            as.numeric(scanMeta$Fluorescence$MaxIntensity[i])))
+            }
         }
     }
     
     omeImage <- normalize(omeImage)
     
     for(i in seq_len(nrow(scanMeta$Fluorescence))){
-        imageLayer <- imageData(omeImage)[,,i]
-        
+        if(oneFluor){
+            imageLayer <- imageData(omeImage)
+        }else{
+            imageLayer <- imageData(omeImage)[,,i]
+        }
+
         rgba <- col2rgb(scanMeta$Fluorescence$ColorCode[i], alpha = TRUE)
         
         red <- red+((imageLayer*rgba[1])*(1/nrow(scanMeta$Fluorescence)))
@@ -41,10 +55,24 @@ imageColoring <- function(omeImage, scanMeta){
         blue <- blue+((imageLayer*rgba[3])*(1/nrow(scanMeta$Fluorescence)))
     }
     
-    imageData(omeImage) <- array(c(red,green,blue), dim = c(nrow(imageData(omeImage)),
-                                                            ncol(imageData(omeImage)),
-                                                            3))
-    
+    if(oneFluor){
+        message("Images only have one fluorescent and will be in greyscale")
+        if(!all(red == 0)){
+            imageData(omeImage) <- array(red, dim = c(nrow(imageData(omeImage)),
+                                                      ncol(imageData(omeImage))))
+        }else if(!all(green == 0)){
+            imageData(omeImage) <- array(green, dim = c(nrow(imageData(omeImage)),
+                                                      ncol(imageData(omeImage))))
+        }else{
+            imageData(omeImage) <- array(blue, dim = c(nrow(imageData(omeImage)),
+                                                      ncol(imageData(omeImage))))
+        }
+    }else{
+        imageData(omeImage) <- array(c(red,green,blue), dim = c(nrow(imageData(omeImage)),
+                                                                ncol(imageData(omeImage)),
+                                                                3))
+    }
+
     return(normalize(omeImage))
 }
 
