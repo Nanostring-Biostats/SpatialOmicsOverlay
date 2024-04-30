@@ -552,12 +552,19 @@ cropTissue <- function(overlay, buffer = 0.05){
         }
     }
     
-    red <- image_data[,,1] > 0.05
-    green <- image_data[,,2] > 0.05
-    blue <- image_data[,,3] > 0.05
-    
-    bg <- matrix(boundary(red | green | blue), 
-                 nrow = nrow(red), ncol = ncol(red))
+    if(is.na(dim(image_data)[3])){
+        red <- image_data > 0.05
+        
+        bg <- matrix(boundary(red), 
+                     nrow = nrow(red), ncol = ncol(red))
+    }else{
+        red <- image_data[,,1] > 0.05
+        green <- image_data[,,2] > 0.05
+        blue <- image_data[,,3] > 0.05
+        
+        bg <- matrix(boundary(red | green | blue), 
+                     nrow = nrow(red), ncol = ncol(red))
+    }
     
     xmin <- min(which(rowSums(bg) > nrow(red)*0.03))
     xmax <- max(which(rowSums(bg) > nrow(red)*0.03))
