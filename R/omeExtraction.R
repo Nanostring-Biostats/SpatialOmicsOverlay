@@ -151,7 +151,7 @@ imageExtraction <- function(ometiff, res = 6, scanMeta = NULL, saveFile = FALSE,
     }
     
     if(color == TRUE){
-        omeImage <- image_read(omeImage)
+      omeImage <- image_read(omeImage)
     }
     
     return(omeImage)
