@@ -171,6 +171,8 @@ Error in .jcall("RBioFormats", "Ljava/lang/Object;", "readPixels", i,  :
   java.lang.NegativeArraySizeException: -2147483648
 ```  
 
+Another error that can occur with large images is `cache resources exhausted @ error/cache.c/OpenPixelCache/4095`. This occurs because of a memory limit set in the magick config. To increase the memory, please refer to https://github.com/ropensci/magick/issues/403 for instructions. 
+
 The resolution size will affect speed and image resolution through the rest of the analysis. To check the smallest resolution size available, for the fastest speeds, use `checkValidRes()`. **For the rest of this tutorial we will be using res = 8 for vignette size restrictions, but res 4-6 is recommended.**
 
 ```{r add image}
@@ -277,6 +279,34 @@ chan4 <- recolor(chan4)
 showImage(chan4)
 ```
 
+
+# Troubleshooting
+
+These notes are in other sections of the vignette but added here again for easy searching.
+
+###  `java.lang.OutOfMemoryError: Java heap space`
+
+If you are getting a `java.lang.OutOfMemoryError: Java heap space` when running `readSpatialOverlay()`, restart your R session and try increasing the maximum heap size by supplying the -Xmx parameter before the Java Virtual Machine is initialized used by a dependency package RBioFormats. Run the code below before loading any other libraries. [RBioFormats source](https://github.com/aoles/RBioFormats#caveats)
+
+```
+options(java.parameters = "-Xmx4g")
+library(RBioFormats)
+```
+
+### `java.lang.NegativeArraySizeException`
+
+Using too big of an image will cause a java memory error. If this error occurs, increase your `res` value. Below is an example of the error you will receive if the resolution is too high for your system.
+
+```
+Error in .jcall("RBioFormats", "Ljava/lang/Object;", "readPixels", i,  : 
+  java.lang.NegativeArraySizeException: -2147483648
+```  
+
+### `cache resources exhausted`
+
+Another error that can occur with large images is `cache resources exhausted @ error/cache.c/OpenPixelCache/4095`. This occurs because of a memory limit set in the magick config. To increase the memory, please refer to https://github.com/ropensci/magick/issues/403 for instructions.
+
+
 # Future Directions
 
 In future releases of SpatialOmicsOverlay, we will be 
@@ -285,6 +315,7 @@ In future releases of SpatialOmicsOverlay, we will be
 2. Adding ability to add graphing features on top of the image
 3. Adding image analysis capabilities 
 4. Adding extraction of image data to use in ML/AI applications
+
 
 ```{r}
 sessionInfo()
