@@ -3,7 +3,7 @@ Title: Spatial Overlay for Omic Data from Nanostring GeoMx Data
 Description: Tools for NanoString Technologies GeoMx Technology. Package to 
               easily graph on top of an OME-TIFF image. Plotting annotations 
               can range from tissue segment to gene expression.
-Version: 1.7.1
+Version: 1.9.1
 Encoding: UTF-8
 Authors@R: c(person("Maddy", "Griswold", email = "mgriswold@nanostring.com", role = c("cre","aut")),
              person("Megan", "Vandenberg", email = "mvandenberg@nanostring.com", role = c("ctb")),
