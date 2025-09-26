@@ -973,7 +973,7 @@ testthat::test_that("plotSpatialOverlay prints",{
                                         hiRes = FALSE, scaleBar = FALSE, 
                                         fluorLegend = TRUE), NA)
   expect_error(gp, NA)
-  expect_true(all(class(gp) == c("gg","ggplot")))
+  expect_true(is_ggplot(gp))
   
   #Spec 6. The function produces reproducible figures.
   # vdiffr::expect_doppelganger("lowRes fluorLegend", gp)
@@ -1140,7 +1140,7 @@ testthat::test_that("plotting occurs on images",{
                                          scaleBar = FALSE, 
                                          image = TRUE), NA)
   expect_error(gp4, NA)
-  expect_true(all(class(gp4) == c("gg","ggplot")))
+  expect_true(is_ggplot(gp4))
   
   #Spec 6. The function produces reproducible figures.
   # vdiffr::expect_doppelganger("4-channel no scaleBar", gp4)
